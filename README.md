@@ -10,4 +10,4 @@ I was inspired by the [work](https://github.com/FlorianAdler/AlgebraBonn/tree/ma
 >
 > Not using `theorem` environment is somewhat intentional for now.
 
-
+Latest compiled pdf can be downloaded from [here](https://am813nt.github.io/higher-categories-i/Higher_Categories_I.pdf).
