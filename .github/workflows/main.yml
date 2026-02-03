@@ -14,4 +14,4 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: PDF
-          path: docs/Higher_Categories_I.pdf
+          path: main.pdf
