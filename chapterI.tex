@@ -1,0 +1,942 @@
+\chapter{Categories}
+    \section{Definition}
+        A \emph{category} $\Cc$ consists of two classes of $O$ and $M$ whose elements are called \emph{objects} and \emph{morphisms}, respectively, and four maps
+        \begin{equation*}
+            i \,\colon\, O \to M, \quad s \,\colon\, M \to O, \quad t \,\colon\, M \to O
+        \end{equation*}
+        and
+        \begin{equation*}
+            c \,\colon\, M \leftindex_{s}\times_{t} \; M \to M
+        \end{equation*}
+        called \emph{identity}, \emph{source}, \emph{target} and \emph{composition}
+        such that
+        \begin{multicols}{2}
+            \begin{enumerate}[label=\arabic*)]
+                \item 
+                    $\begin{aligned}[t]
+                        s \circ i = \id_O \\
+	                    t \circ i = \id_O
+                    \end{aligned}$
+                \item
+                    $\begin{aligned}[t]
+                        s \circ c &= s \circ \pr_2 \\
+	                    t \circ c &= t \circ \pr_1
+                    \end{aligned}$
+                \item $c \circ (c \times_O \id_M) = c \circ (\id_M \times_O c)$
+                \item
+                    $\begin{aligned}[t]
+                        c \circ ((i \circ t) \times \id_M) \circ \Delta_M &= \id_M \\
+	                    c \circ (\id_M \times (i \circ s)) \circ \Delta_M &= \id_M
+                    \end{aligned}$
+            \end{enumerate}
+        \end{multicols}
+        For $x, y \in O$ we set
+        \begin{equation*}
+            \Hom_{\Cc}(x, y) = \left\{ \varphi \in M \mid s(\varphi) = x, \, t(\varphi) = y \right\}
+        \end{equation*}
+        $\Cc$ is called \emph{small} if both $O$ and $M$ are sets and \emph{locally small} if $\Hom_{\Cc}(x, y)$ is a set for every $x, y \in O$. More generally an object $x \in O$ is called \emph{left} or \emph{right locally small} if $\Hom_{\Cc}(x, y)$ or $\Hom_{\Cc}(y, x)$ are (in bijection with) sets for all $y \in O$. \\
+        For a category $\Cc = \left(O, M, \ldots \right)$ one writes
+        \begin{equation*}
+            x \in \Cc, \; \varphi \,\colon x \to y, \; \id_x, \; \varphi \circ \psi
+        \end{equation*}
+        instead of
+        \begin{equation*}
+            x \in O, \; \varphi \in \Hom_{\Cc}(x, y), \; i(x), \; c(\varphi, \psi).
+        \end{equation*}
+    \section{Remark}
+        By 1) smallness is implied by $M$ being a set, and for locally small categories also by the smallness of $O$.
+    \section{Definition}
+        A morphism $\varphi \,\colon\, x \to y$ is called a \emph{split monomorphism}, or \emph{split epimorphism} if it admits a \emph{retraction} $\psi \,\colon\, y \to x$, that is $\psi \circ \varphi = \id_x$, or a \emph{section}, that is $\varphi \circ \psi = \id_y$, respectively. It is called an \emph{isomorphism} if it admits an \emph{inverse}, that is $\psi \,\colon\, y \to x$ that is both a retraction and a section simultaneously.
+    \section{Definition}
+        A category $\Cc$ is called \emph{essentially small} with \emph{skeleton} $S$, a subset of $O$, if it is locally small and for each $x \in O$ there exists a $y \in S$ and an isomorphism $\varphi \,\colon\, x \to y$.
+    \section{Definition}
+        A functor $F \,\colon\, \Cc \to \Cc'$ is a pair
+        \begin{equation*}
+            F \,\colon\, O \to O' \quad , \quad F_* \,\colon\, M \to M'
+        \end{equation*}
+        that commutes with all structure maps, i.e. such that
+        \begin{enumerate}[label=\arabic*)]\centering
+            \begin{multicols}{2}
+                \item $F_* \circ i = i \circ F$
+                \item 
+                    $\begin{aligned}[t]
+                        s' \circ F_* = F \circ s \\
+	                    t' \circ F_* = F \circ t
+                    \end{aligned}$
+            \end{multicols}
+            \item $F_* \circ c = c \circ (F_* \times_O F_*)$
+        \end{enumerate}
+        We denote the class of functors $\Cc \to \Cc'$ by $\Fun(\Cc, \Cc')$.
+        $F$ is called \emph{full} or \emph{faithful} if the map
+        \begin{equation*}
+            (F_*, \, s, \, t) \,\colon\, M \to M' \times_{O' \times O'} O \times O \footnotemark
+        \end{equation*}
+        \footnotetext{$\left\{ \left( x, \, y, \, \varphi \right) \in O^2 \times M' \mid \varphi \,\colon\, F(x) \to F(y) \right\}$}
+        is surjective or injective, respectively. An \emph{embedding} is a functor that is fully faithful.
+    \section{Examples}
+        \begin{enumerate}[label=\roman*)]
+            \item $\Set, \Top, \Ring, \Mod{R}, \Grp, \Ab, \Ord, \Cat, \ldots$
+            \item For $\Mm$ a monoid there is the category $\mathbb{B}\Mm$ with 
+                \begin{equation*}
+                    O = \left\{*\right\} \text{ and } M = \Mm
+                \end{equation*}
+                $i(*) = e$, and composition the multiplication in $\Mm$
+            \item For every poset $P$ there is the category $\mathbbmsl{N}P$ with
+                \begin{equation*}
+	                   O = P \text{ and } M = \left\{(i, j) \in P^2 \mid i \leq j \right\}
+                \end{equation*}
+                $i = \Delta_P, s = \pr_1, t = \pr_2$ and
+                \begin{equation*}
+                    c((p, q), (r, p)) = (r, q)
+                \end{equation*}
+                For $[n] = \left\{ 0, 1, 2, \ldots, n\right\}$ we find $\mathbbmsl{N}[n]$ pictorially
+                \begin{equation*}
+                    % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAB12AjJhhmHCAC+pdJlz5CKAIzkqtRizacefAcNEgM2PASIAmOdXrNWiDt179BIsTslEAzEYWnl7BlAg4EQ+TCgAc3giUAAzACcIAFskMhAcCCRZVyVzAAoyAAJpAEoNcKjYxBTEpENUsxB02X182xBImPLqMsRHPyEgA
+                    \begin{tikzcd}
+                        \overset{0}{\bullet} \arrow[r, "{(0, 1)}"] & \overset{1}{\bullet} \arrow[r, "{(1,2)}"] & \overset{2}{\bullet} \arrow[r] & \ldots
+                    \end{tikzcd}
+                    \color{red}
+                    \quad + \;
+                    \begin{aligned}
+                        &\text{composites } (i, j) \quad i < j + 1 \\
+                        &\text{identities } (i, i)
+                    \end{aligned}
+                \end{equation*}
+                We obtain an embedding $\mathbbmsl{N} \,\colon \Ord \to \Cat$.
+            \item The various $\Hom_{\Cc}(x, y)$ assemble into a functor $\Hom_{\Cc} \,\colon \Cc^{\op} \times \Cc \to \Set$.
+        \end{enumerate}
+    \section{Definition}
+        A \emph{natural transformation} $\tau \,\colon F \Rightarrow G$ of functors $\Cc \to \Cc'$ is a map
+        \begin{equation*}
+            \tau \,\colon O \to M' \; \text{, s.t.}
+        \end{equation*}
+        \begin{multicols}{2}
+            \begin{enumerate}[label=\arabic*)]\centering
+                \item
+                    $\begin{aligned}[t]
+                        s' \circ \tau = F \\
+	                    t' \circ \tau = G
+                    \end{aligned}$
+                \item 
+                    $\begin{aligned}[t]
+                        c' \circ (G \times (\tau \circ s)) \circ \Delta_M \\
+                        = c' \circ ((\tau \circ t) \times F) \circ \Delta_M
+                    \end{aligned}$
+            \end{enumerate}
+        \end{multicols}
+        From now on we will write $\obj(\Cc) \coloneq O$ and $\mor(\Cc) \coloneq M$.
+    \section{Definition}
+        Denote by $d_i \,\colon [n] \to [n + 1] \enspace (0 \leq i \leq n + 1) \,$ and $s_i \,\colon [n] \to [n - 1] \enspace (0 \leq i \leq i - 1) \,$ the unique order preserving injection and surjection, respectively, that misses $i$ or hits $i$ twice.
+    \section{Definition}
+        For categories $\Cc, \Cc'$ define the \emph{category of functors} $\Cc \to \Cc'$ to have objects and morphisms
+        \begin{equation*}
+            \Fun(\Cc \times \mathbbmsl{N}[0], \Cc') \text{ and } \Fun(\Cc \times \mathbbmsl{N}[1], \Cc')
+        \end{equation*}
+        respectively; structure maps are
+        \begin{equation*}
+            i = - \circ (\id_{\Cc} \times \mathbbmsl{N}_* s_0), \; s = - \circ (\id_{\Cc} \times \mathbbmsl{N}_* d_1), \; t = - \circ (\id_{\Cc} \times \mathbbmsl{N}_* d_0)
+        \end{equation*}
+        and composition is given by
+        %$$\Fun(\Cc \times \mathbbmsl{N}[1], \Cc') \times_{\Fun(\Cc \times \mathbbmsl{N}[0], \Cc')} \Fun(\Cc \times \mathbbmsl{N}[1], \Cc') \xleftarrow[(- \circ \mathbbmsl{N}_* d_0, - \circ \mathbbmsl{N}_* d_2)]{\cong} \Fun(\Cc \times \mathbbmsl{N}[2], \Cc') \xrightarrow[- \circ \mathbbmsl{N}_* d_1]{} \Fun(\Cc \times \mathbbmsl{N}[1], \Cc')$$
+        \begin{equation*}
+            \begin{tikzcd}[column sep=tiny, row sep=huge]
+                \Fun(\Cc \times \mathbbmsl{N}[2], \Cc') \arrow{r}{- \circ \mathbbmsl{N}_* d_1} \arrow{d}{(- \circ \mathbbmsl{N}_* d_0, - \circ \mathbbmsl{N}_* d_2)}[swap]{\cong} & \Fun(\Cc \times \mathbbmsl{N}[1], \Cc') \\
+                \Fun(\Cc \times \mathbbmsl{N}[1], \Cc') \times_{\Fun(\Cc \times \mathbbmsl{N}[0], \Cc')} \Fun(\Cc \times \mathbbmsl{N}[1], \Cc') &
+            \end{tikzcd}
+        \end{equation*}
+        
+        \emph{Warning}. If $\Cc$ is small and $\Cc'$ locally small then $\Fun(\Cc, \Cc')$ is locally small, but this can fail when $\Cc$ is only locally small!
+    \section{Definition}
+        A natural transformation that is an isomorphism in $\Fun(\Cc, \Cc')$ is called a \emph{natural isomorphism}.
+    \section{Definition}
+        A functor $F \,\colon \Cc \to \Cc'$ is called an \emph{equivalence} if there exists a functor $G \,\colon \Cc' \to \Cc$ and natural isomorphisms
+        \begin{equation*}
+            F \circ G \Rightarrow \id_{\Cc'} \quad \text{ and } \quad G \circ F \Rightarrow \id_{\Cc}.
+        \end{equation*}
+    \section{Definition}
+        The \emph{essential image} $F(\Cc)$ of a functor $F \,\colon \Cc \to \Cc'$ is the full\footnote{i.e. with morphisms the entire $\Hom$-sets.} subcategory generated by all objects isomorphic to one in the image of $F \,\colon O \to O'$.
+    \section{Warning}
+        The actual image
+        \begin{equation*}
+            (F(O), F_*(M)) \subseteq (O', M')
+        \end{equation*}
+        is not generally closed under composition in $\Cc'$, so does not form a subcategory.
+        The notion of equivalence of categories is \emph{not} that of isomorphism in $\Cat$, which requires $F \circ G = \id_{\Cc'}$ and $G \circ F = \id_{\Cc}$! 
+    \section{Proposition}\label{chI-14}
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                A functor $F \,\colon \Cc \to \Cc'$ is an equivalence if and only if it is an embedding and essentially surjective, i.e. $F(\Cc) = \Cc'$.
+            \item
+                A natural transformation is a natural isomorphism if and only if it takes values in isomorphisms.\label{chI-14-ii}
+        \end{enumerate}
+        \emph{Proof}. MacLane ...\hfill\(\Box\)
+    \section{Corollary}
+        Every embedding of categories is an equivalence onto its essential image\footnote{It need not be an isomorphism onto its image!}.
+        For example, the inclusion of every full subcategory $\Cc \subseteq \Cc'$ containing an object from every isomorphism class of $\Cc'$ is an equivalence.
+    \section{Definition}
+        A category is called a \emph{groupoid} if every morphism in it is an isomorphism.
+        A typical example is the inclusion of the \emph{groupoid core}
+        \begin{equation*}
+            \Core(\Cc) \subseteq \Cc
+        \end{equation*}
+        having the same objects as $\Cc$ but retaining only the isomorphisms of $\Cc$ as morphisms. Also the functor $\mathbb{B}$ factors as $\Grp \xrightarrow{\mathbb{B}} \Grpd \subseteq \Cat$.
+        \\
+        \\
+        Every left/right locally small object $x \in \Cc$ determines the functors
+        
+        \setlength{\columnseprule}{1pt}        
+        \begin{multicols}{2}
+            \noindent
+            \begin{align*}
+               \Hom_{\Cc}(x, -) &= Y_x \,\colon \Cc \to \Set \\
+                y &\mapsto \Hom_{\Cc}(x, y) \\
+                f &\mapsto f \circ - 
+            \end{align*}            
+            \begin{align*}
+               \Hom_{\Cc}(-, x) &= Y^x \,\colon \Cc^{\op} \to \Set \\
+                y &\mapsto \Hom_{\Cc}(y, x) \\
+                f &\mapsto - \circ f 
+            \end{align*}                        
+        \end{multicols}
+        \setlength{\columnseprule}{0pt}
+        known as the functors \emph{(co)represented} by $x$.
+        \\
+        \\
+        The arguably most important statement of category theory is
+    \section{Proposition (Yoneda's Lemma)}
+        For all functors $F \,\colon \Cc \to \Set$ and $G \,\colon \Cc^{\op} \to \Set$ and $x \in \Cc$ left or right locally small, the maps $\Nat(Y_x, F) \to F(x)$ and $\Nat(Y^x, G) \to G(x)$ given by
+        \begin{equation*}
+            \tau \mapsto \tau_x(\id_x)
+        \end{equation*}
+        are bijections, respectively.
+        
+        \emph{Proof}. MacLane ...\hfill\(\Box\)
+        \\
+        \\
+        For locally small $\Cc$, the functors $Y^x$ give rise to a single functor
+        \begin{equation*}
+            Y^{\Cc} \,\colon \Cc \to \Fun(\Cc^{\op}, \Set) =: \Pp(\Cc)\footnote{not usually locally small}
+        \end{equation*}
+        for example, as the image of $\Hom_{\Cc} \in \Fun(\Cc^{\op} \times \Cc, \Set)$ under
+        \begin{equation*}
+            \Fun(\Cc^{\op} \times \Cc, \Set) \cong \Fun(\Cc, \Fun(\Cc^{\op}, \Set))
+        \end{equation*}
+    \section{Corollary/Definition}
+        Let $\Cc$ be locally small. The \emph{Yoneda embedding}
+        \begin{equation*}
+            Y^{\Cc} \,\colon \Cc \to \Fun(\Cc^{\op}, \Set)
+        \end{equation*}
+        is really an embedding. Its essential image is called the category of \emph{representables}\footnote{they are left locally small} of $\Cc$.
+
+        Thus one can specify a functor $\Cc \to \Dd$ (with $\Dd$ locally small) up to unique isomorphism by giving a functor
+        \begin{equation*}
+            \Cc \to \Fun(\Dd^{\op}, \Set)
+        \end{equation*}
+        and checking that its image is contained in the representables. Specialized to $\Cc = *$ this is a method of definition by \emph{universal property}!
+        
+        An example is:
+    \section{Definition}
+        An object $x \in \Cc$\footnote{locally small, but see \ref{chI-23}\label{locsm}} is \emph{left} or \emph{right adjoint} to an object $y \in \Dd$\footref{locsm} under a functor $F \,\colon \Cc \to \Dd$, if, respectively, there is a natural isomorphism
+        \begin{equation*}
+            \tau\footnotemark \,\colon Y_x \implies Y_y \circ F \quad \text{or} \quad \tau\footnotemark \,\colon Y^x \implies Y^y \circ F^{\op},
+        \end{equation*}
+        which is called a \emph{witness} of the adjunction.
+        \addtocounter{footnote}{-2}
+        \stepcounter{footnote}\footnotetext{i.e. $\Hom_{\Cc}(x, -) \cong \Hom_{\Dd}(y, F(-))$}
+        \stepcounter{footnote}\footnotetext{i.e. $\Hom_{\Cc}(-, x) \cong \Hom_{\Dd}(F(-), y)$}
+    \section{Examples}
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                The integers are left adjoint to the empty set under the forgetful functor $\Ring \to \Set$.
+            \item 
+                An $R$-module is free if and only if it is left adjoint to some set under the forgetful functor $\Mod{R} \to \Set$ and a witness is precisely a choice of basis indexed by that set.
+            \item 
+                The groupoid core of $\Cc$ is right adjoint to $\Cc$ under the inclusion $\Grpd \subseteq \Cat$.
+            \item 
+                The set
+                \begin{equation*}
+                    \pi_0(\Cc) = \obj(\Cc)/{\sim} \,,
+                \end{equation*}
+                where $\sim$ is the equivalence relation generated by setting
+                \begin{equation*}
+                    x \sim y \quad \text{if} \quad \Hom_{\Cc}(x, y) \neq \varnothing ,
+                \end{equation*}
+                is left adjoint to $\Cc$ under $\mathbb{D} \,\colon \Set \to \Cat$
+        \end{enumerate}
+        
+        If $\Dd_F \subseteq \Dd$ and $\Dd^F \subseteq \Dd$ denote the full subcategories spanned by the objects admitting a left or right adjoint, respectively, then the functors
+        \begin{equation*}
+            \Dd^{\op}_F \subseteq \Dd^{\op} \xrightarrow{Y_{\Dd}} \Fun(\Dd, \Set) \xrightarrow{- \circ F} \Fun(\Cc, \Set)
+        \end{equation*}
+        \begin{equation*}
+            \Dd^F \subseteq \Dd \xrightarrow{Y^{\Dd}} \Fun(\Dd^{\op}, \Set) \xrightarrow{- \circ F^{\op}} \Fun(\Cc^{\op}, \Set)
+        \end{equation*}
+        take values in the (co)representables. Thus they determine functors
+        \begin{equation*}
+            L_F \,\colon \Dd_F \to \Cc \quad \text{and} \quad R_F \,\colon \Dd^F \to \Cc
+        \end{equation*}
+        together with natural isomorphisms
+        \begin{equation*}
+            \Hom_{\Cc} \circ (L^{\op}_F \times \id_{\Cc}) \implies \Hom_{\Dd} \circ (\id_{\Dd^{\op}_F} \times F)
+        \end{equation*}
+        and
+        \begin{equation*}
+            \Hom_{\Cc} \circ (\id_{\Cc^{\op}} \times R_F) \implies \Hom_{\Dd} \circ (F^{\op} \times \id_{\Dd^F})
+        \end{equation*}
+        of functors 
+        \begin{equation*}
+            \Dd^{\op}_F \times \Cc \to \Set \quad \text{and} \quad \Cc^{\op} \times \Dd^F \to \Set \,,
+        \end{equation*}
+        respectively. In case $F$ happens to take values in $\Dd_F$ or $\Dd^F$ the functors $L_F$ or $R_F$ also determine $F$ as $R_{L_F}$ or $L_{R_F}$, respectively. We set:
+    \section{Definition}
+        An \emph{adjunction} between functors $L \,\colon \Cc \to \Dd$ and $R \,\colon \Dd \to \Cc$ is a natural isomorphism
+        \begin{equation*}
+            \tau \,\colon \Hom_{\Dd} \circ (L^{\op} \times \id_{\Dd}) \implies \Hom_{\Cc} \circ (\id_{\Cc^{\op}} \times R) \,.
+        \end{equation*}
+        One often says that $\tau$ exhibits $L$ as left adjoint to $R$ or $R$ as right adjoint to $L$ in this situation.
+    \section{Proposition/Definition}
+        Any adjunction is both of the form
+        \begin{equation*}
+            \Hom_{\Dd} \circ (L^{\op} \times \id_{\Dd}) \overset{R_*\footnotemark}{\implies} \Hom_{\Cc} \circ (R^{\op}L^{\op} \times R) \overset{u^*}{\implies} \Hom_{\Cc} \circ (\id_{\Cc^{\op}} \times R)
+        \end{equation*}
+        and inverse to
+        \begin{equation*}
+            \Hom_{\Cc} \circ (\id_{\Cc^{\op}} \times R) \overset{L_*\footnotemark}{\implies} \Hom_{\Dd} \circ (L^{\op} \times LR) \overset{c_*}{\implies} \Hom_{\Dd} \circ (L^{\op} \times \id_{\Dd})
+        \end{equation*}
+        \addtocounter{footnote}{-2}
+        \stepcounter{footnote}\footnotetext{The tautological transformation $\Hom_{\Cc} \Rightarrow \Hom_{\Dd} \circ \, (F^{\op} \times F)$ for any $F \colon \Cc \to \Dd$.\label{chI-22-fn}}
+        \stepcounter{footnote}\footnotetext{See footnote \footref{chI-22-fn}.}
+        for unique natural transformations
+        \begin{equation*}
+            u \,\colon \id_{\Cc} \implies RL \quad \text{and} \quad c \,\colon LR \implies \id_{\Dd} \,,
+        \end{equation*}
+        called the \emph{unit} and \emph{counit} of the adjunction.
+        Such transformations $c$ and $u$ give rise to an adjunction if and only if the \emph{triangle identities}
+        \begin{equation*}
+            (L \overset{Lu}{\implies} LRL \overset{cL}{\implies} L) = \id_L
+        \end{equation*}
+        \begin{equation*}
+            (R \overset{uR}{\implies} RLR \overset{Rc}{\implies} R) = \id_R
+        \end{equation*}
+        hold.
+        
+        \emph{Proof}. MacLane ...\hfill\(\Box\)
+    \section{Remark}\label{chI-23}
+        This latter description does not require $\Cc$ and $\Dd$ to be locally small so extends the notion of adjunction to arbitrary categories. In particular, one can check that an adjunction $L : \Cc \rightleftarrows \Dd : R$ induces $- \circ R : \Fun(\Cc, \Ee) \rightleftarrows \Fun(\Dd, \Ee) : - \circ L$ and $L \circ - : \Fun(\Ee, \Cc) \rightleftarrows \Fun(\Ee, \Dd) : R \circ -$ by extending the unit/counit in the evident way.
+    \section{Proposition}\label{chI-24}
+        A left adjoint functor $L$ is an embedding if and only if the unit of adjunction $u \,\colon \id \Rightarrow RL$ is a natural isomorphism, and dually a right adjoint is an embedding if and only if the counit $c \,\colon LR \Rightarrow \id$ is an isomorphism.
+        
+        \emph{Proof}. MacLane ...\hfill\(\Box\)
+    \section{Definition}
+        A functor admitting a fully faithful left or right adjoint is called a right or left \emph{Bousfield localisation}.
+    \section{Remark}
+        In general a \emph{localisation} of a category $\Cc$ at a class of morphisms $S \subseteq \mor(\Cc)$ is a functor $L \,\colon \Cc \to \Dd$ such that for any category $\Ee$ the induced functor
+        \begin{equation*}
+            - \circ L \,\colon \Fun(\Dd, \Ee) \to \Fun(\Cc, \Ee)
+        \end{equation*}
+        is an embedding with essential image
+        \begin{equation*}
+            \left\{ F \colon \Cc \to \Ee \mid F(s) \text{ is an isomorphism for all } s \in S\right\} \,.
+        \end{equation*}
+        For any $S$ and $\Cc$ there exists a contractible $2$-groupoid of such localisations, but note that the Yoneda Lemma does not apply here!
+        Furthermore, even if $\Cc$ is locally small the localisation, usually denoted $\Cc[S^{-1}]$ need not be so. However, any Bousfield localisation is a localisation (at which class of morphisms?), where the latter problem does not occur!
+
+        Here is another general example of adjoints:
+    \section{Definition}
+        Given functors $i \colon \Cc \to \Cc'$ and $F \colon \Cc \to \Dd$ a \emph{left} or \emph{right Kan extension} of $F$ along $i$ is a functor $\Cc' \to \Dd$ that is left or right adjoint to $F$ under
+        \begin{equation*}
+            - \circ i \,\colon \Fun(\Cc', \Dd) \to \Fun(\Cc, \Dd) \,.
+        \end{equation*}
+        Kan extensions are denoted $\Lan_i(F) / \Ran_i(F)$ or $i_!F / i_*F$.
+
+        Decoding, a witness for $G$ being a left Kan extension is a natural transformation $\sigma \colon F \Rightarrow G \circ i$ such that any natural transformation $\sigma' \colon F \Rightarrow G' \circ i$ factors uniquely through $\sigma$\footnote{Succinctly: $\Nat(\Lan_i F, G') \cong \Nat(F, G' \circ i )$.}:
+        \begin{equation*}
+            \begin{tikzcd}[cramped]
+                \Cc &&& \Dd \\
+	            \\
+	            \Dd'
+	            \arrow[""{name=0, anchor=center, inner sep=0}, from=1-1, to=1-4]
+	            \arrow[from=1-1, to=3-1, "i"']
+	            \arrow[""{name=1, anchor=center, inner sep=0}, curve={height=30pt}, from=3-1, to=1-4, "G'"']
+	            \arrow[""{name=2, anchor=center, inner sep=0}, from=3-1, to=1-4, "G" near end]
+	            \arrow[Rightarrow, from=0, to=2, shorten=2mm]
+	            \arrow[Rightarrow, dashed, from=2, to=1, shorten=1mm]
+            \end{tikzcd}
+        \end{equation*}
+    \section{Examples}
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                For a group homomorphism $\varphi \colon H \to G$ the equivalence
+                \begin{equation*}
+                    \Fun(\mathbb{B}G, \Mod{R}) \simeq \Mod{R[G]}
+                \end{equation*}
+                translates left/right Kan extension along
+                \begin{equation*}
+                    \varphi^* \,\colon \Mod{R[G]} \to \Mod{R[H]}
+                \end{equation*}
+                into induction and coinduction
+                \begin{equation*}
+                    M \mapsto R[G] \otimes_{R[H]} M \quad \text{and} \quad M \mapsto \Hom_{R[H]}(R[G], M)
+                \end{equation*}
+            \item 
+                Given an additive functor $F \colon \Mod{R} \to \Mod{S}$ (or any other abelian categories with enough projectives), e.g. $- \otimes_R M$ or $\Hom_R(M, -)$ the left derived functors $\mathbb{L}_i F$ are given by the right Kan extension
+                \begin{equation*}
+                    \begin{tikzcd}
+                        \mathrm{CC}^{\geqslant 0}_R \arrow[rr] \arrow[d, "\pi_R"']            &  & \mathrm{CC}^{\geqslant 0}_S \arrow[d, "\pi_S"] \\
+                        \Dd^{\geqslant 0}(R) \arrow[rr, "\Ran_{\pi_R}(\pi_s \circ F)"', dashed] \arrow[rru, shorten=5mm, Rightarrow] &  & \Dd^{\geqslant 0}(S)      
+                    \end{tikzcd}
+                \end{equation*}
+                known as the total left derived (or sometimes hyperhomology) functor $\mathbb{L}F$, composed with the functor $-[0] \colon \Mod{R} \to \Dd(R)$, that regards a module as a single degree chain complex, and the homology functor $H_i \colon \Dd(R) \to \Mod{R}$.
+                \item 
+                    A homotopy invariant functor $F \colon \Top \to \Cc$ is Kan extended from a homotopy invariant functor $\mathrm{CW} \to \Cc$ if and only if $F$ sends weak homotopy equivalences to isomorphisms.
+                \item 
+                    For $i \colon \Cc \to \Cc'$, $i' \colon \Cc' \to \Cc''$ and $F \colon \Cc \to \Dd$ we find straight from the definitions that
+                    \begin{equation*}
+                        \Lan_{i'}(\Lan_i(F)) \simeq \Lan_{i' \circ i}(F) \,.
+                    \end{equation*}
+        \end{enumerate}
+        On the other hand we set
+    \section{Definition}
+        A functor $G \colon \Dd \to \Ee$ \emph{preserves} the left/right Kan extension of $F \colon \Cc \to \Dd$ along $i \colon \Cc \to \Cc'$ if the diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                \Cc \arrow[r] \arrow[d, "i"'] \arrow[r, "F"] \arrow[r] \arrow[rd, Rightarrow, shorten >=2em, "Gy", near start] & \Dd \arrow[r, "G"] & \Ee \\
+                \Cc' \arrow[rru, "G \, \circ \, \mathrm{Lan}_i F"', dashed]                & {}            & 
+            \end{tikzcd}
+            \qquad
+            \begin{tikzcd}
+                \Cc \arrow[r] \arrow[d, "i"'] \arrow[r, "F"] \arrow[r] \arrow[rd, Leftarrow, shorten >=2em, "Gy", near start] & \Dd \arrow[r, "G"] & \Ee \\
+                \Cc' \arrow[rru, "G \, \circ \, \mathrm{Ran}_i F"', dashed]                & {}            & 
+            \end{tikzcd}
+        \end{equation*}
+        exhibits $G \circ \Lan_i F / G \circ \Ran_i F$ as the left/right Kan extension of $GF$ along $i$.
+    \section{Proposition}\label{chI-30}
+        Left adjoints preserve left Kan extensions and right adjoints preserve right Kan extensions.
+
+        \emph{Proof}. Let $L \colon \Dd \to \Ee$ be left adjoint to $R \colon \Ee \to \Dd$. Then for $G \colon \Cc' \to \Ee$
+        \begin{align*}
+            \Nat(L \Lan_i F, G) &\cong\footnotemark \Nat(\Lan_i F, RG) \\
+                                &\cong \Nat(F, RGi) \\
+                                &\cong \Nat(LF, Gi) \\
+                                &\cong \Nat(\Lan_i LF, G)
+        \end{align*}
+        \footnotetext{By \ref{chI-23}}
+        and tracing through the definitions shows that for $G = L \Lan_i F$ we find
+        \begin{equation*}
+            \id_{L \Lan_i F} \mapsto\footnotemark u \circ \Lan_i F \mapsto\footnotemark u \circ y \mapsto\footnotemark c \circ L(u \circ y) =\footnotemark Ly
+        \end{equation*}
+        \addtocounter{footnote}{-4}
+        \stepcounter{footnote}\footnotetext{Definition of $u$.}
+        \stepcounter{footnote}\footnotetext{Definition of $y$.}
+        \stepcounter{footnote}\footnotetext{Definition of $c$.}
+        \stepcounter{footnote}\footnotetext{Triangle identity.}
+        where $y \colon F \Rightarrow (\Lan_i F) \circ i$ is the original witness of the Kan extension.\hfill\(\Box\)
+    \section{Definition}
+        A Kan extension is called \emph{absolute} if it is preserved by all functors. It is called \emph{pointwise} if it is preserved by representables: For a left/right Kan extension this means preservation by
+        \begin{equation*}
+            (Y^*)^{\op} \,\colon \Dd \to \Set^{\op} \quad \text{or} \quad Y_* \,\colon \Dd \to \Set \,,
+        \end{equation*}
+        respectively.
+    \section{Proposition}\label{chI-32}
+        If $i \colon \Cc \to \Cc'$ admits a right or left adjoint $j$ then any functor $F \colon \Cc \to \Dd$ admits a left or right Kan extension, respectively. It is given by $F \circ j$ and thus absolute and in particular pointwise.
+
+        Note the order reversal, succinctly
+        \begin{equation*}
+            \Lan_L(F) = F \circ R \quad \text{and} \quad \Ran_R(F) = F \circ L \,.
+        \end{equation*}
+
+        \emph{Proof}. By Remark \ref{chI-23} the functor
+        \begin{equation*}
+            - \circ j \,\colon \Fun(\Cc, \Dd) \to \Fun(\Cc', \Dd)
+        \end{equation*}
+        is left or right adjoint to $- \circ i$ if $j$ is right or left adjoint to $i$. Thus $F \circ j$ satisfies the universal property of the Kan extension.\hfill\(\Box\)
+
+        The adjunction witness determines isomorphisms
+        \begin{equation*}
+            R \cong \Lan_L(\id_{\Cc}) \quad \text{and} \quad L \cong \Ran_R(\id_{\Dd})
+        \end{equation*}
+        and these Kan extensions are absolute.
+
+        In fact, the converse holds as well: A functor $R$ is right adjoint to $L$ if and only if $R$ is an absolute left Kan extension of $\id_{\Cc}$ along $L$. The canonical map $\id_{\Cc} \Rightarrow \Lan_L(\id_{\Cc}) \circ L$ is then exactly the counit of the adjunction.
+
+        As an important special case we also have:
+    \section{Definition}
+        Given a functor $F \colon \Jj \to \Dd$ the left and right Kan extensions of $F$ along $r \colon \Jj \to *$ are called the \emph{colimit} and \emph{limit} of $F$, respectively, denoted $\colim F$\footnote{Or informally $\colim \limits_{x \in \Cc} F(x)$} and $\lim F$.
+        
+        Let us unpack this again: Upon identifying $\Fun(*, \Jj) \cong \Jj$, we find
+        \begin{equation*}
+            \Hom_{\Dd}(\colim F, y) \cong \Nat(F, \const_{\Jj} y)
+        \end{equation*}
+        naturally in $y \in \Dd$, where $\const_{\Jj} y$ is the constant functor with value $y$. The right hand side here consists of assignments $\tau \colon \obj(\Jj) \to \mor(\Dd)$ with $\tau_x \colon F(x) \to y$ such that for all $f \colon x \to x'$ all triangles commute:
+        \begin{equation*}
+            \begin{tikzcd}
+                F(x) \arrow[r, "\tau_x"] \arrow[d, "f_*"'] & y \\
+                F(x') \arrow[ru, "\tau_{x'}"']             &  
+            \end{tikzcd}
+        \end{equation*}
+        The category $\Jj$ if often called the \emph{shape} of the (co)limit.
+    \section{Examples}
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                Colimits and limits of shape $\mathbb{D}S$ for $S \in \Set$ are called \emph{sums} (or \emph{coproducts}) and \emph{products}.
+            \item 
+                An element $x \in \Cc$ is called \emph{initial} or \emph{terminal} if it is a colimit or a limit, respectively, of the empty diagram $\mathbb{D}\varnothing \to \Cc$, i.e. if
+                \begin{equation*}
+                    \Hom_{\Cc}(x, y) = \left\{ * \right\} \quad \text{or} \quad \Hom_{\Cc}(y, x) = \left\{ * \right\}
+                \end{equation*}
+                for all $y \in \Cc$. Another formulation is that an object $x$ is initial/terminal if and only if it is left/right adjoint to $r \colon \Cc \to *$, when regarded as a functor $* \to \Cc$.
+            \item 
+                The identification $\Fun(\mathbb{B}G, \Set) = \text{G-Set}$ translates limits and colimits into fixed points and orbits.
+            \item 
+                (Co)limits over the shapes $\mathbbmsl{N}P$ for posets $P$ can vary greatly: Colimits over $\mathbbmsl{N}\{ (0, 0), (0, 1), (1, 0) \}$ with the evident order are called \emph{pushouts} and limits over $\mathbbmsl{N}\{ (0, 1), (1, 0), (1, 1) \}$ are called \emph{pullbacks}.
+            \item 
+                (Co)limits in functor categories.
+        \end{enumerate}
+        From \ref{chI-30} and \ref{chI-32} we immediately obtain:
+    \section{Corollary}\label{chI-35}
+        \begin{enumerate}[label=\roman*)]
+            \item Left adjoint functors preserve colimits and right adjoints preserve limits.
+            \item If $\Jj$ admits an initial object $x \in \Jj$ then for every functor $F \colon \Jj \to \Cc$ we have $\lim F = F(x)$ and similarly $\colim F = F(y)$ if $y$ is terminal in $\Jj$.\label{chI-35-ii}
+        \end{enumerate}
+        In particular, (co)limits as in \ref{chI-35-ii} are absolute, which is fairly rare. We will see that the latter are precisely the colimits preserved by the Yoneda embedding.
+
+        We will need pointwise versions of \ref{chI-23} and \ref{chI-35} as well.
+    \section{Observation}\label{chI-36}
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                Given $F \colon \Cc \to \Dd$ with partial left adjoint $L_F \colon \Dd_F \to \Cc$, and $G \colon \Ee \to \Dd$ with $\im(G) \subseteq \Dd_F$ then $L_F G \in \Fun(\Ee, \Cc)$ is a left adjoint object to $G \in \Fun(\Ee, \Dd)$ under
+                \begin{equation*}
+                    F \circ - \,\colon \Fun(\Ee, \Cc) \to \Fun(\Ee, \Dd) \,.
+                \end{equation*}\label{chI-36-i}
+            \item 
+                Given $F \colon \Cc \to \Dd$ and $G \colon \Ii \to \Dd$ with $G(\Ii) \subseteq \Dd_F$ such that $\colim\limits_{\Ii} G$ exists (in $\Dd$) with witness $y \colon G \Rightarrow \const_{\colim G}$. Then the following are equivalent:
+                \begin{enumerate}[label=\alph*)]
+                    \item 
+                        $\colim\limits_{\Ii} G \in \Dd_F$
+                    \item 
+                        $\colim\limits_{\Ii} L_F G$ exists (in $\Cc$)
+                \end{enumerate}
+                In this case the natural map
+                \begin{equation*}
+                    L_F G \overset{L_F y}{\implies} L_F \const_{\colim G} = \const_{L_F \colim G}
+                \end{equation*}
+                exhibits $L_F \colim\limits_{\Ii} G$ as a colimit of $L_F G$, i.e.
+                \begin{equation*}
+                    \colim\limits_{\Ii} L_F G = L_F(\colim\limits_{\Ii} G) \,.
+                \end{equation*}\label{chI-36-ii}
+        \end{enumerate}
+        Similar statements hold for $\Dd^F, R^F$, right adjoints and limits.
+
+        We use this observation to establish another basic property of colimits:
+    \section{Proposition}\label{chI-37}
+        Given $G \colon \Ii \times \Jj \to \Cc$ denote by $G_0 \colon \Ii \to \Fun(\Jj, \Cc)$ and $G_1 \colon \Jj \to \Fun(\Ii, \Cc)$ the curried functors. Then
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                If $G_1(j) \colon \Ii \to \Cc$ admits a colimit for all $j \in \Jj$, then $G_0$ admits a colimit and the canonical map
+                \begin{equation*}
+                    \colim\limits_{\Ii} G_1(j) \to (\colim\limits_{\Ii} G_0)(j)
+                \end{equation*}
+                is an isomorphism for all $j \in \Jj$; similarly for limits.\label{chI-37-i}
+            \item 
+                If $G_0(i) \colon \Jj \to \Cc$ admits a colimit for each $i \in \Ii$ and $G_1(j) \colon \Ii \to \Cc$ admits a colimit for each $j \in \Jj$, then
+                \begin{equation*}
+	                   \colim\limits_{\Ii} (\colim\limits_{\Jj} G_1) \text{ exists} \quad \text{iff} \quad \colim\limits_{\Jj} (\colim\limits_{\Ii} G_0) \text{ exists,}
+                \end{equation*}
+                in which case they agree; similarly for limits.\label{chI-37-ii}
+        \end{enumerate}
+        One loosely says that "(co)limits in functor categories are computed pointwise", although this only applies to diagrams whose colimit \emph{can} be computed pointwise: It can happen that $\colim\limits_{\Ii} G_0$ exists "accidentally" without the colimits that could define its values existing. 
+        Similarly for part \ref{chI-37-ii} one often says "colimits commute". The value is also given by $\colim\limits_{\Ii \times \Jj} G$ but again this latter object may exist without either $\colim\limits_{\Ii} G_0$ or $\colim\limits_{\Jj} G_1$ existing.
+
+        \emph{Proof}. Observe that by assumption
+        \begin{equation*}
+            G_1 \colon \Jj \to \Fun(\Ii, \Cc)
+        \end{equation*}
+        takes values in $\Fun(\Ii, \Cc)_{r^*_{\Ii}}$ with $r^*_{\Ii} \colon \Cc \to \Fun(\Ii,\Cc)$ the "constant diagram" functor, as this latter category consists precisely of those functors admitting colimits over $\Ii$ (by definition of colimits!) Thus there is the partial adjoint
+        \begin{equation*}
+            \colim\limits_{\Ii} \colon \Fun(\Ii, \Cc)_{r^*_{\Ii}} \to \Cc
+        \end{equation*}
+        and part \ref{chI-36-i} of \ref{chI-36} implies that $\colim\limits_{\Ii} \circ \, G_1 \colon \Jj \to \Cc$ is a left adjoint object to $G_1$ under
+        \begin{equation*}
+            r^*_{\Ii} \circ - \,\colon \Fun(\Jj, \Cc) \to \Fun(\Jj, \Fun(\Ii, \Cc)) \,.
+        \end{equation*}
+        But using the equivalence
+        \begin{equation*}
+            \Fun(\Jj, \Fun(\Ii, \Cc)) \simeq \Fun(\Ii \times \Jj, \Cc) \simeq \Fun(\Ii, \Fun(\Jj, \Cc))
+        \end{equation*}
+        $r^*_{\Ii} \circ -$ corresponds to $- \circ r_{\Ii}$, and $G_1$ to $G_0$, so $\colim\limits_{\Ii} \circ \, G_1$ is a colimit of $G_0$ and clearly satisfies the desired formula. This gives \ref{chI-37-i}. For \ref{chI-37-ii} we use part \ref{chI-36-ii} of \ref{chI-36} with $F r^*_{\Ii} \colon \Cc \to \Fun(\Ii, \Cc)$ and $L_F = \colim\limits_{\Ii}$:
+
+        If $G_1 \colon \Jj \to \Fun(\Ii, \Cc)$ takes values in $\Fun(\Ii, \Cc)_{r^*_{\Ii}}$, $\colim\limits_{\Jj} G_1$ exists (which follows from the assumption by part \ref{chI-37-i}) and $\colim\limits_{\Ii}(\colim\limits_{\Jj} G_1)$ exists then also $\colim\limits_{\Ii} \circ \, G_1$ exists and
+        \begin{equation*}
+            \colim\limits_{\Ii}(\colim\limits_{\Jj} G_1) =\footnotemark \colim\limits_{\Jj}(\colim\limits_{\Ii} \circ \, G_1) =\footnotemark \colim\limits_{\Jj}(\colim\limits_{\Ii} G_0)
+        \end{equation*}
+        \hfill\(\Box\)
+        \addtocounter{footnote}{-2}
+        \stepcounter{footnote}\footnotetext{By part \ref{chI-35-ii} of \ref{chI-35}}
+        \stepcounter{footnote}\footnotetext{By \ref{chI-37-i}}
+    \section{Definition}
+        A category $\Cc$ is called \emph{complete} or \emph{cocomplete} if it admits all limits or colimits of small shape, respectively.
+
+        All the usual examples $\Grp, \Set, \Top, \Mod{R}, \ldots$ are both!
+    \section{Corollary}
+        If $\Dd$ is (co)complete then so is $\Fun(\Cc, \Dd)$ for every category $\Cc$, in particular $\mathrm{P}(\Cc)$ is both complete and cocomplete for every $\Cc$. Furthermore, for any $F \colon \Cc \to \Cc'$ the functor
+        \begin{equation*}
+            F^* \,\colon \Fun(\Cc', \Dd) \to \Fun(\Cc, \Dd)
+        \end{equation*}
+        preserves all limits and colimits.\footnote{Because they are pointwise!}
+
+        In fact, we will see below that under a further smallness assumption $F^*$ admits both adjoints $F_!$ and $F_*$ (a.k.a. $\Lan_F(-)$ and $\Ran_F(-)$) from which the last statement also follows in that case.
+
+        Now we have:
+    \section{Observation}\label{chI-40}
+        The functors $Y^x \colon \Cc^{\op} \to \Set$ and $Y_x \colon \Cc \to \Set$ preserve small limits for every (left locally small) $x \in \Cc$.\footnote{I.e. $\Hom_{\Cc}(\colim\limits_{\Ii} F, y) = \lim\limits_{\Ii^{\op}} \Hom(F(-), y) = \Hom_{\Cc^{\op}}(y, \lim\limits_{\Ii^{\op}} F^{\op})$} For locally small $\Cc$ therefore the Yoneda embeddings
+        \begin{equation*}
+	       Y^{\Cc} \colon \Cc \to \mathrm{P}(\Cc) \quad \text{and} \quad Y_{\Cc} \colon \Cc^{\op} \to \mathrm{P}(\Cc^{\op})
+        \end{equation*}
+        preserve all limits.
+        
+        \emph{Proof}. We note that
+        \begin{equation*}
+            \Hom_{\Cc}(x, \lim\limits_{\Ii}F) = \Nat(\const_{\Ii}x, F)
+        \end{equation*}
+        where the latter by inspection is $\lim\limits_{\Ii} \Hom_{\Cc}(x, F(-))$, with both consisting of assignments
+        \begin{equation*}
+            \tau \,\colon \obj(\Ii) \to \mor(\Cc)
+        \end{equation*}
+        with $\tau_i \colon x \to F(i)$, such that for all $f \colon i \to j \in \Ii$ the diagram
+        \begin{equation*}
+            \begin{tikzcd}[column sep=small]
+                x \arrow[r, "\tau_i"] \arrow[d, "\tau_j"'] & F(i) \arrow[ld, "F(f)"] \\
+                F(j)                                       &                        
+            \end{tikzcd}
+        \end{equation*}
+        commutes.\\
+        The first statement (for $Y_x$) follows, since
+        \begin{equation*}
+            Y_x(\lim F) = \Hom_{\Cc}(x, \lim F) = \lim\limits_{\Cc} \Hom(x, F(-)) = \lim\limits_{\Cc} Y^x \circ F
+        \end{equation*}
+        The second one is similar:
+        \begin{equation*}
+            Y^{\Cc}(\lim F) = \Hom_{\Cc}(-, \lim F) =\footnotemark \lim \Hom_{\Cc}(-, F) = \lim Y^{\Cc} \circ F
+        \end{equation*}
+        \footnotetext{Uses the fact that limits in $\mathrm{P}\Cc$ are pointwise!}
+        \hfill$\Box$
+
+        Colimits are very much \emph{not} preserved by the Yoneda embedding! Before we analyse the situation, let's justify the smallness restriction in the definition of completeness.
+    \section{Proposition (Freyd)}
+        If a category $\Cc$ admits coproducts for all diagrams of shape $\mathbb{D}(\mor(\Cc))$, then $\Cc$ is equivalent to $\mathbbmsl{N}(P)$ for some poset $P$. In particular, small cocomplete categories are posets.
+
+        \emph{Proof}. Let $x, y \in \Cc$ be two objects. Then form the sum $\sum\limits_{\mathbb{D}(\mor(\Cc))} x$, which exists by assumption. Then
+        \begin{equation*}
+            \Hom_{\Cc}(\sum\limits_{\mor(\Cc)}x, y) = \prod\limits_{\mor(\Cc)}\Hom_{\Cc}(x, y)
+        \end{equation*}
+        where the former has cardinality at most that of $\mor(\Cc)$, whereas the latter has cardinality at least that of the power set of $\mor(\Cc)$, unless $\left| \Hom_{\Cc} (x, y) \right| \leq 1$.
+        
+        \quad\hfill$\Box$
+
+        We are now ready to state the main theorem of this section:
+    \section{Theorem}\label{chI-42}
+        If $\Dd$ is cocomplete, and $\Cc$ small, then restriction along the Yoneda embedding induces an equivalence
+        \begin{equation*}
+            (Y^{\Cc})^* \,\colon \Fun^{\colim}(\mathrm{P}(\Cc), \Dd) \to \Fun(\Cc, \Dd)
+        \end{equation*}
+        where the superscript denotes the full subcategory on those functors that preserve all small colimits. The inverse functor is given by left Kan extension along $Y^{\Cc}$.
+
+        In other words, $\mathrm{P}(\Cc)$ is left $2$-adjoint\footnote{I.e. in the $2$-categorical sense, because $(Y^{\Cc})^*$ is an equivalence, but not an iso!} to $\Cc$ under the inclusion of cocomplete categories with colimit preserving functors into all categories.\\
+        In particular,
+        \begin{equation*}
+            \Fun^{\colim}(\Set, \Cc) \simeq \Cc
+        \end{equation*}
+        means that $\Set$ is freely generated under colimits by any one-point set. Generally, $\mathrm{P}(\Cc)$ is the free cocompletion of $\Cc$.
+
+        The proof needs a few preparations:
+    \section{Definition}
+        Given functors $F \colon \Cc \to \Dd$ and $G \colon \Cc' \to \Dd$ define the \emph{slice category} $\nicefrac{F}{G}$ by
+        \begin{equation*}
+            \obj(\nicefrac{F}{G}) = \left\{ (x, y, f) \in \obj(\Cc) \times \obj(\Cc') \times \mor(\Dd) \mid f \colon F(x) \to G(y) \right\}
+        \end{equation*}
+        \begin{equation*}
+            \Hom_{\nicefrac{F}{G}}((x,y,f),(x',y',f')) = \\
+                \left\{
+                    (g, g') \in \mor(\Cc) \times \mor(\Cc')
+                    \;\middle|\;
+                    \begin{alignedat}{1}
+                        &\centerdot g \colon x \to y \\
+                        &\centerdot g' \colon x' \to y' \\
+                        &\begin{tikzcd}[column sep=tiny, cramped]
+                            F(x) \arrow[d, "F(g)"'] \arrow[r, "f"] & G(y) \arrow[d, "G(g')"] \\
+                            F(x') \arrow[r, "f'"']                 & G(y')                  
+                        \end{tikzcd}
+                    \end{alignedat}                
+                \right\}
+        \end{equation*}
+        If $F = \id_{\Cc}$ one writes $\nicefrac{\Cc}{G}$, and if $F \colon * \to \Cc$ one writes $\nicefrac{F(*)}{G}$. As special cases we find
+        \begin{itemize}
+            \item 
+                $\nicefrac{\Dd}{\Dd} = \Fun(\mathbbmsl{N}[1], \Cc)$, the \emph{arrow category} of $\Dd$.
+            \item 
+                $\nicefrac{d}{\Dd}$ the \emph{under category} of $d \in \Dd$:
+                \begin{equation*}
+                    \obj(\nicefrac{d}{\Dd}) = \left\{ (x, f) \mid f \colon d \to \Dd \right\}
+                \end{equation*}
+                \begin{equation*}
+                    \Hom_{\nicefrac{d}{\Dd}}((x,f),(y,g)) = 
+                    \left\{ 
+                        \varphi \colon x \to y 
+                        \;\middle|\;
+                        \begin{tikzcd}[column sep=small]
+                            d \arrow[d, "g"'] \arrow[r, "f"] & x \arrow[ld, "\varphi"] \\
+                            y                                &                        
+                        \end{tikzcd}
+                    \right\}
+                \end{equation*}
+                and similarly the \emph{overcategory} $\nicefrac{\Dd}{d}$.
+        \end{itemize}
+        There are always forgetful functors
+        \begin{equation*}
+            \begin{alignedat}{1}
+                s \,\colon \nicefrac{F}{G} &\to \Cc \\
+                (x,y,f) &\mapsto x
+            \end{alignedat}
+            \quad \text{and} \quad
+            \begin{alignedat}{1}
+                t \,\colon \nicefrac{F}{G} &\to \Cc' \\
+                (x,y,f) &\mapsto y
+            \end{alignedat}
+        \end{equation*}
+        and a tautological natural transformation
+        \begin{equation*}
+            \begin{alignedat}{1}
+                \tau \colon Fs &\Rightarrow Gt \\
+                \tau(x,y,f) &= f 
+            \end{alignedat}
+        \end{equation*}
+        Armed with this definition, we turn to the existence of Kan extensions:
+    \section{Proposition}\label{chI-44}
+        Given $i \colon \Cc \to \Cc'$ and $F \colon \Cc \to \Dd$ then the Kan extension $\Lan_i F$ is pointwise if and only if the canonical map
+        \begin{equation*}
+            \colim(\nicefrac{i}{c'}\footnotemark \overset{s}{\rightarrow} \Cc \overset{F}{\rightarrow} \Dd) \to (\Lan_i F)(c')
+        \end{equation*}
+        is an isomorphism for all $c' \in \Cc'$. Dually, $\Ran_i F$ is pointwise if and only if the natural map
+        \begin{equation*}
+            (\Ran_i F)(c') \to \lim(\nicefrac{c'}{i} \overset{t}{\rightarrow} \Cc \overset{F}{\rightarrow} \Dd)
+        \end{equation*}
+        is an isomorphism.
+        \footnotetext{$\obj(\nicefrac{i}{c'}) = \left\{ (c,f) \mid f \colon i(c) \to c' \right\}$}
+
+        If conversely the displayed (co)limits exist for all $c' \in \Cc$, then they combine into Kan extensions of $F$ along $i$ (which are then automatically pointwise).
+    \section{Corollary}\label{chI-45}
+        If $\Cc$ is small, $\Cc'$ locally small\footnote{Makes $\nicefrac{i}{c'}$ and $\nicefrac{c'}{i}$ small for all $c' \in \Cc'$.} and $\Dd$ cocomplete or complete, respectively, then all functors $\Cc \to \Dd$ admit left ot right Kan extensions along $i$, all of which are pointwise. In particular,
+        \begin{equation*}
+            i^* \,\colon \Fun(\Cc', \Dd) \to \Fun(\Cc, \Dd)
+        \end{equation*}
+        admits both adjoints in this case (namely $\Lan_i$ and $\Ran_i$).
+    \section{Proof of \ref{chI-44}}\label{chI-46}
+        Assume that $\Ran_i F$ is pointwise. recall that this means that
+        \begin{equation*}
+            Y_d \circ \Ran_i F = \Ran_i(Y_d \circ F)
+        \end{equation*}
+        i.e. the following diagram commutes:
+        \begin{equation*}
+            \begin{tikzcd}[column sep=huge, row sep=large]
+                \Cc \arrow[r] \arrow[d, "i"']                                                        & \Dd \arrow[r, "{\Hom(d, -)}"] & \Set \\
+                \Cc' \arrow[ru, "\Ran_i F" near end, dashed] \arrow[rru, "{\Ran_i (\Hom(d, F(-)))}"', dashed] &                               &     
+            \end{tikzcd}
+        \end{equation*}
+        Then we compute
+        \begin{align*}
+            \Hom_{\Dd}(d, (\Ran_i F)(i')) &= (Y_d \circ \Ran_i F)(c')\\
+                                        &= \Nat(Y_{c'}, Y_d \circ (\Ran_i F)) \\
+                                        &= \Nat(Y_{c'}, \Ran_i (Y_d \circ F)) \\
+                                        &= \Nat(Y_{c' \circ i}, Y_d \circ F) \\        &= \Nat(\Hom_{\Cc'}(c', i(-)), \Hom_{\Dd}(d, F(-)))\,.
+        \end{align*}
+        Now
+        \begin{equation*}
+            \Nat(\Hom_{\Cc'}(c', i(-)), \Hom_{\Dd}(d, F(-)))
+        \end{equation*}
+        consists of maps
+        \begin{equation*}
+            \tau \,\colon \obj(\Cc) \to \mor(\Set)
+        \end{equation*}
+        \begin{equation*}
+            \tau_{c} \,\colon \Hom_{\Cc'}(c', i(c)) \to \Hom_{\Dd}(d, Fc) 
+        \end{equation*}
+        that are natural in $c$. Such a $\tau$ is exactly the same map as a map
+        \begin{equation*}
+            \obj(\nicefrac{c'}{i}) \to \mor(\Set)
+        \end{equation*}
+        that forms a natural transformation
+        \begin{equation*}
+            \const_{\nicefrac{c'}{i}}d \Rightarrow F \circ t
+        \end{equation*}
+        Thus
+        \begin{equation*}
+            \Hom_{\Dd}(d, (\Ran_i F)(c')) = \Nat(\const_{\nicefrac{c'}{i}}d, F \circ t)
+        \end{equation*}
+        which exhibits $(\Ran_i F)(c')$ as a limit of $F \circ t$, since $d \in \Dd$ was arbitrary.
+
+        Conversely, if all the functors $\nicefrac{c'}{i} \overset{t_c}{\rightarrow} \Cc \overset{F}{\rightarrow} \Dd$ admit limits for all $c' \in \Cc'$, then they fit together into a functor $R \colon \Cc' \to \Dd$, with morphism component on $g \colon c' \to c''$ induced by
+        \begin{align*}
+            g^* \,\colon \nicefrac{c''}{i} &\to \nicefrac{c'}{i} \\
+            (x, f) &\mapsto (x, f \circ g)
+        \end{align*}
+        (note $F \circ t_{c'} \circ g^* = F \circ t_{c''}$) and the canonical map
+        \begin{equation*}
+            \lim\limits_{\Dd} A \to \lim\limits_{\Cc} (A \circ B)
+        \end{equation*}
+        for functors $B \colon \Cc \to \Dd$, and $A \colon \Dd \to \Ee$.
+
+        $R$ acquires a natural transformation
+        \begin{equation*}
+            \lambda \,\colon R \circ i \Rightarrow F
+        \end{equation*}
+        by projecting $\lim \nicefrac{i(c)}{i} \overset{t}{\rightarrow} \Cc \overset{F}{\rightarrow} \Dd$ to the component of $(c, \id_{i(c)}) \in \nicefrac{i(c)}{i}$. Given another functor and transformation $R' \circ i \overset{\tau}{\Rightarrow} F$, then we obtain elements in
+        \begin{equation*}
+            \Hom_{\Dd}(R'(c'), R(c')) = \Nat(\const_{\nicefrac{c'}{i}}R'(c'), F \circ t)
+        \end{equation*}
+        by
+        \begin{equation*}
+            (x, f \colon c' \to i(x)) \mapsto (R'(c') \overset{f_*}{\rightarrow} R'(i(x)) \overset{\tau_x}{\rightarrow} F(x)) \,.
+        \end{equation*}
+        These fit into a natural transformation $\sigma \colon R' \Rightarrow R$ that makes
+        \begin{equation*}
+            \begin{tikzcd}
+                R'i \arrow[r, "\sigma_i", Rightarrow] \arrow[d, "\tau"', Rightarrow] & Ri \arrow[ld, "\lambda", Rightarrow] \\
+                F                                                                    &                                     
+            \end{tikzcd}
+        \end{equation*}
+        commutative (by unwrapping the definitions). We leave it to the reader to check that $\sigma$ is unique with this property, which shows $R$ to be a right Kan extension of $F$ along $i$.
+
+        That it is pointwise follows immediately from \ref{chI-40}.\hfill$\Box$
+
+        Corollary \ref{chI-45} yields the functor
+        \begin{equation*}
+            \Lan_{Y^{\Cc}} \,\colon \Fun(\Cc, \Dd) \rightarrow \Fun(\mathrm{P}(\Cc), \Dd)\footnotemark
+        \end{equation*}
+        \footnotetext{$\Dd$ is cocomplete.}
+        which we claim is inverse to the restriction in \ref{chI-42}. We first check that its essential image is indeed contained in $\Fun^{\colim}(\mathrm{P}(\Cc), \Dd)$: Since the Kan extension is pointwise and colimits in $\mathrm{P}(\Cc)$ are computed pointwise, this is immediate from part \ref{chI-37-ii} of \ref{chI-37} and \ref{chI-44}.
+
+        To see that $\Lan_{Y^{\Cc}}$ really is an inverse we have:
+    \section{Proposition}\label{chI-47}
+        If $i \colon \Cc \to \Cc'$ is an embedding and $F \colon \Cc \to \Dd$ a functor with pointwise left/right Kan extension, then the structure maps
+        \begin{equation*}
+            F \Rightarrow (\Lan_i F) \circ i \quad \text{and} \quad (\Ran_i F) \circ i \Rightarrow F
+        \end{equation*}
+        are natural equivalences. 
+        
+        In this case $\Lan_i F$ and $\Ran_i F$ really are extensions of $F$.
+
+        \emph{Proof}. We saw (in \ref{chI-46}) that the structural map
+        \begin{equation*}
+            \lambda_c \,\colon (\Ran_i F) (i(c)) \to F(c)
+        \end{equation*}
+        is given by selecting the component of $(c, \id_{i(c)}) \in \nicefrac{i(c)}{i}$ to give a map
+        \begin{equation*}
+            (\Ran_i F)(i(c)) = \lim \nicefrac{i(c)}{i} \overset{t}{\rightarrow} \Cc \overset{F}{\rightarrow} \Dd \to F(c) \,.
+        \end{equation*}
+        But if $i$ is an embedding then $(c, \id_{i(c)})$ is initial in $\nicefrac{i(c)}{i}$: A map
+        \begin{equation*}
+            (c, \id_{i(c)}) \to (x, f \colon i(c) \to i(x))
+        \end{equation*}
+        consists of a map $g \colon c \to x$ such that
+        \begin{equation*}
+            \begin{tikzcd}
+                i(c) \arrow[d, "\id_{i(c)}"'] \arrow[r, "f"] & i(x) \\
+                i(c) \arrow[ru, "i(g)"']                     &     
+            \end{tikzcd}
+        \end{equation*}
+        commutes. Thus $f = i(g)$ which determines $g$ uniquely. Thus by part \ref{chI-35-ii} of \ref{chI-35} $\lambda_c$ is an isomorphism and by part \ref{chI-14-ii} of \ref{chI-14} we are done.\hfill$\Box$
+
+        In particular, this applies to $\Lan_{Y^{\Cc}}$ and shows that the composite
+        \begin{equation*}
+            \Fun(\Cc, \Dd) \xrightarrow{\Lan_{Y^{\Cc}}} \Fun(\mathrm{P}(\Cc), \Dd) \xrightarrow{(Y^{\Cc})^*} \Fun(\Cc, \Dd)
+        \end{equation*}
+        is equivalent to the identity. To see the other direction we have:
+    \section{Proposition}
+        For every $F \in \mathrm{P}(\Cc)$ the tautological map
+        \begin{equation*}
+            \colim(\nicefrac{Y^{\Cc}}{F} \overset{s}{\rightarrow} \Cc \overset{Y^{\Cc}}{\rightarrow} \mathrm{P}(\Cc)) \Rightarrow F
+        \end{equation*}
+        induced by the tautological transformation
+        \begin{equation*}
+            \begin{tikzcd}[column sep=scriptsize, row sep=tiny]
+                \nicefrac{Y^{\Cc}}{F} \arrow[r, "s"] & \Cc \arrow[r, "Y^{\Cc}"] \arrow[d, Rightarrow] & \mathrm{P}(\Cc) \\
+                \nicefrac{Y^{\Cc}}{F} \arrow[r, "t"] & * \arrow[r, "F"]                               & \mathrm{P}(\Cc)
+            \end{tikzcd}
+        \end{equation*}
+        is an isomorphism.
+
+        Said more abstractly: The left Kan extension of $Y^{\Cc}$ along itself is the identity of $\mathrm{P}(\Cc)$. The category $\nicefrac{Y^{\Cc}}{F}$ is often called the \emph{category of objects} of $F$: By definition it consists of pairs $(x, f)$ with $f \colon Y^x \Rightarrow F$. By Yoneda's Lemma this is equivalent to a pair $(x, f)$ with $f \in F(X)$. Similarly, there is an identification
+        \begin{equation*}
+            \Hom((x, f), (y, g)) \cong \left\{ \varphi \colon x \to y \mid \varphi^* \widehat{g} = \widehat{f} \right\} \,.
+        \end{equation*}
+        The category $\nicefrac{Y^{\Cc}}{F}$ is the simplest example of a Grothendieck construction, which Lurie's unstraightening construction generalises to $\infty$-categories.
+
+        For us the important observation is that \emph{every} $F \in \mathrm{P}(\Cc)$ is a  colimit of representables. In particular, it illustrates the failure of $Y^{\Cc}$ to commute with colimits quite drastically.
+
+        \emph{Proof}. We compute for $G \colon \Cc^{\op} \to \Set$
+        \begin{align*}
+            \Nat(\colim(\nicefrac{Y^{\Cc}}{F} \overset{s}{\rightarrow} \Cc \overset{Y^{\Cc}}{\rightarrow} \mathrm{P}(\Cc)), G) &= \\
+                    &= \lim\limits_{(x,f) \in (\nicefrac{Y^{\Cc}}{F})^{\op}}\Nat(Y^x, G) \\
+                    &= \lim\limits_{(x,f) \in (\nicefrac{Y^{\Cc}}{F})^{\op}} G(x) \\
+                    &= \lim((\nicefrac{Y^{\Cc}}{F})^{\op} \overset{s}{\rightarrow} \Cc^{\op} \overset{G}{\rightarrow} \Set)
+        \end{align*}
+        But this limit consists of assignments
+        \begin{equation*}
+            \tau \,\colon \obj(\nicefrac{Y^{\Cc}}{F}) \to \obj(\Set)
+        \end{equation*}
+        \begin{equation*}
+            \tau(x, f) \in G(x)
+        \end{equation*}
+        such that for $\varphi \colon y \to x$ we have
+        \begin{equation*}
+            \tau(y, \varphi^*f) = \varphi^*\tau(x, f) \,.
+        \end{equation*}
+        This is the same data as that of a natural transformation $\tau \colon F \Rightarrow G$. Thus
+        \begin{equation*}
+            \Nat(\colim(\nicefrac{Y^{\Cc}}{F} \overset{s}{\rightarrow} \Cc \overset{Y^{\Cc}}{\rightarrow} \mathrm{P}(\Cc)), G) = \Nat(F, G)
+        \end{equation*}
+        and the claim follows from Yoneda's Lemma after unwinding.\hfill$\Box$
+
+        To prove \ref{chI-42} we finally need the following lemma:
+    \section{Lemma}
+        Let $L \colon \Cc \rightleftarrows \Dd \colon R$ be an adjoint pair of functors. If
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                $L$ is an embedding, and
+            \item 
+                $R$ detects isomorphisms, that is if $Rf$ is an isomorphism in $\Dd$ then $f$ is one in $\Cc$,
+        \end{enumerate}
+        then $L$ and $R$ are inverse equivalences of categories, witnessed by the unit and counit of the adjunction.
+
+        \emph{Proof}. As $L$ is an embedding the unit $u \colon \id_{\Cc} \Rightarrow RL$ is a natural isomorphism by \ref{chI-24}. To check that the counit
+        \begin{equation*}
+            c \,\colon LP \Rightarrow \id_{\Dd}
+        \end{equation*}
+        is an isomorphism as well, we may apply $R$ (as natural isomorphisms are detected pointwise, and $R$ detects these). But the triangle identity  
+        \begin{equation*}
+            (R \xrightarrow{uR} RLR \xrightarrow{Rc} R) = \id_R
+        \end{equation*}
+        tells us that $Rc$ is left-inverse to an isomorphism so one itself.\hfill$\Box$
+
+        Finally we have:
+    \section{Proof of \ref{chI-42}}
+        We checked that
+        \begin{equation*}
+            \Lan_{Y^{\Cc}} \,\colon \Fun(\Cc, \Dd) \to \Fun(\mathrm{P}(\Cc), \Dd)
+        \end{equation*}
+        is an embedding as an application of \ref{chI-46}, and so the same holds for its restriction
+        \begin{equation*}
+            \Lan_{Y^{\Cc}} \,\colon \Fun(\Cc, \Dd) \to \Fun^{\colim}(\mathrm{P}(\Cc), \Dd)
+        \end{equation*}
+        as the right hand side was defined as a full subcategory. We are left to check that the restriction functor
+        \begin{equation*}
+            Y^*_{\Cc} \,\colon \Fun^{\colim}(\mathrm{P}(\Cc), \Dd) \to \Fun(\Cc, \Dd)
+        \end{equation*}
+        detects isomorphisms. This follows from \ref{chI-47} as for a natural transformation $y \colon \Ii \Rightarrow \Jj$ of colimit-preserving functors $\mathrm{P}(\Cc) \to \Dd$, we have
+        \begin{equation*}
+            \begin{tikzcd}[column sep=tiny, row sep=scriptsize]
+                \Ii(F) \arrow[r, "=" description, phantom] \arrow[d, "Y_F"'] & {\Ii(\colim\limits_{(x,f) \in \nicefrac{Y^{\Cc}}{F}} Y^x)} \arrow[r, "=" description, phantom] \arrow[d] & {\colim\limits_{(x,f) \in \nicefrac{Y^{\Cc}}{F}} \Ii(Y^x)} \arrow[d, "\colim y(Y^x)"] \\
+                \Jj(F) \arrow[r, "=" description, phantom]                   & \Jj(\colim Y^x) \arrow[r, "=" description, phantom]                                                            & \colim \Jj(Y^x)
+            \end{tikzcd}
+        \end{equation*}
+        so if $y$ is an isomorphism on representable it is an isomorphism.\hfill$\Box$

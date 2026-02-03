@@ -1,0 +1,19 @@
+\chapter{Quasi-categories}
+
+    We shall here develop just the language of quasi-categories just sufficiently to state the main results of the lecture course. The proofs are still very much out of reach.
+    
+    We start off with some terminology: if $\Cc$ is a quasi-category than we shall refer to $\Cc_0$ as the objects of $\Cc$ and to $\Cc_1$ as its morphisms. The later will be denoted $f \colon x \to y$ if $d_0f = y$ and $d_1f = x$. The degenerate $1$-simplex with boundaries $x$ will be referred to as $\id_x$.
+    
+    In distinction with ordinary categories, however, quasi-categories have an entire simplicial set of morphisms between two objects:
+
+    \section{Definition}
+        Let $x, y \in \Cc$ be objects. We define $\Hom_{\Cc}(x, y) \in \sSet$ by
+        \begin{equation*}
+            \begin{tikzcd}
+                \Hom_{\Cc}(x, y) \arrow[r] \arrow[d]
+                \arrow[dr, phantom, "\lrcorner", very near end]
+                & F(\Delta^1, \Cc) \arrow{d}{(d_1^*, d_0^*)} \\
+                \Delta^0 \arrow{r}{(x,y)}
+                & \Cc \times \Cc
+            \end{tikzcd}        
+        \end{equation*}
