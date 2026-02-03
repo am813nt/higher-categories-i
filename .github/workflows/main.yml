@@ -10,8 +10,9 @@ jobs:
         uses: xu-cheng/latex-action@v4
         with:
           root_file: main.tex
-      - name: Upload PDF file
-        uses: actions/upload-artifact@v6
+      - run: mv main.pdf docs/
+      - name: Upload PDF file to GitHub Pages branch
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          name: PDF
-          path: main.pdf
+          commit_message: Automated build
+          branch: gh-pages
