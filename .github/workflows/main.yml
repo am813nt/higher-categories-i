@@ -17,3 +17,4 @@ jobs:
           commit_message: Automated build
           branch: gh-pages
           push_options: '--force'
+          skip_checkout: true
