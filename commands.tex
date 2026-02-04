@@ -3,6 +3,8 @@
 \newcommand{\id}{\operatorname{id}}
 \newcommand{\im}{\operatorname{im}}
 \newcommand{\op}{\operatorname{op}}
+\newcommand{\sk}{\operatorname{sk}}
+\newcommand{\cosk}{\operatorname{cosk}}
 \newcommand{\const}{\operatorname{const}}
 \newcommand{\Sing}{\operatorname{Sing}}
 \newcommand{\hofib}{\operatorname{hofib}}
@@ -16,6 +18,8 @@
 \newcommand{\Ran}{\operatorname{Ran}}
 \newcommand{\II}{\mathrm{I}}
 \DeclareMathOperator*{\colim}{colim}
+\newcommand{\gr}[1]{\left| #1 \right|}
+
 
 % some categories
 \newcommand{\Set}{\operatorname{Set}}
@@ -60,3 +64,18 @@
 \newcommand{\Zz}{\mathcal{Z}}
 
 \DeclareMathAlphabet{\mathbbmsl}{U}{bbm}{m}{sl}
+
+% xrightrightarrows
+\makeatletter
+
+\def\rightarrowfill@script{%
+    \arrowfill@{\scriptstyle\relbar}{\scriptstyle\relbar}{\scriptstyle\rightarrow}}
+
+\newcommand*\xrightrightarrows[2][]{\mathrel{%
+  \raise.6ex\hbox{%
+    $\ext@arrow 0359\rightarrowfill@script{\phantom{#1}}{#2}$}%
+  \setbox0=\hbox{%
+    $\ext@arrow 0359\rightarrowfill@script{#1}{\phantom{#2}}$}%
+  \kern-\wd0 \lower.2ex\box0}}
+
+\makeatother

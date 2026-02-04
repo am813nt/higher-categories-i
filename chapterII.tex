@@ -1,3 +1,158 @@
 \chapter{Simplicial Sets}
     \section{Definition}
         $\Delta \coloneq$ full subcategory of the category of posets spanned by $\left\{[n] \mid n \geq 0\right\}$.
+    \section{Definition}
+        $\sSet \coloneq = \mathrm{P}(\Delta) = \Fun(\Delta^{\op}, \Set)$.
+    \section{Corollary}
+        $\sSet$ is complete and cocomplete.
+    \section{Definition}
+        $n$-simplex, vertex, edge, face map, degeneracy map, degenerate simplex, non-degenerate simplex
+    \section{Definition}
+        standard $n$-simplex $\Delta^n \coloneq Y^{\Delta}([n])$
+    \section{Remark}
+        For $X \in \sSet$, we have
+        \begin{equation*}
+            X_n \cong \Hom_{\sSet}(\Delta^n, X)
+        \end{equation*}
+        and
+        \begin{equation*}
+            \colim(\nicefrac{Y^{\Delta}}{X} \overset{s}{\rightarrow} \Delta \overset{Y^{\Delta}}{\rightarrow} \sSet) \cong X \,.
+        \end{equation*}
+        The category $\nicefrac{Y^{\Delta}}{X}$ is called the \emph{category of simplices} of X.
+    \section{Lemma}
+        Every degenerate simplex is the degeneration of an unique non-degenerate simplex.
+    \section{Example}
+        For $\Cc$ a small category, the nerve $N\Cc$ is the simplicial set with
+        \begin{equation*}
+            N\Cc_n \coloneq \obj(\Fun([n], \Cc)) \,.
+        \end{equation*}
+        for example, $N[n] \cong \Delta^n$ and $N\mathbb{B}M$, $M$ a monoid, is the bar construction on $M$.
+    \section{Definition}
+        Affine $n$-simplex
+        \begin{equation*}
+            \gr{\Delta^n} \coloneq \left\{ (t_0,\ldots,t_n) \in \mathbb{R}^{n+1} \mid 0 \leq t_i \leq 1, \sum^n_{i=0}t_i = 1 \right\}
+        \end{equation*}
+            These form a functor $\gr{\Delta^{\bullet}} \colon \Delta \to \Top.$
+    \section{Definition}
+        The singular set functor $\Sing \colon \sSet \to \Top$ is given by
+        \begin{equation*}
+            \Delta^{\op} \times \Top \xrightarrow{\gr{\Delta^{\bullet}}^{\op} \times \id} \Top^{\op} \times \Top \xrightarrow{\Hom_{\Top}(-,-)} \Set \,.
+        \end{equation*}
+    \section{Definition}
+        The geometric realisation functor $\gr{-} \colon \sSet \to \Top$ is the unique colimit-preserving functor satisfying $\gr{-} \circ Y^{\Delta} \cong \gr{\Delta^{\bullet}}$.
+    \section{Definition}\label{chII-12}
+        The functors $\gr{-}$ and $\Sing$ are adjoint.
+    \section{Definition}
+        For $k \geq 0$, let $i_k \colon \Delta_{\leq k} \to \Delta$ be the inclusion of the full subcategory on objects of cardinality at most $k + 1$.\\
+        The $k$-skeleton functor is given by $\sk_k \coloneq (i_k)_! i^*_k$.\\
+        The $k$-coskeleton functor is given by $\cosk_k \coloneq (i_k)_* i^*_k$.
+    \section{Lemma}
+        $k$-skeleton and $k$-coskeleton are adjoint functors.\\
+        The $k$-skeleton of $X$ is the smallest simplicial subset which has the same simplices as $X$ in degrees $\leq k$. All simplices in degrees $> k$ are degenerate.
+    \section{Definition}
+        $\partial \Delta^n \coloneq \sk_{n-1} \Delta^n$
+    \section{Proposition}\label{chII-16}
+        For $X \in \sSet$ and $n \geq 0$ the square
+        \begin{equation*}
+            \begin{tikzcd}
+                \coprod\limits_{x \in X_n \text{ non-deg.}} \partial \Delta^n \arrow[d] \arrow[r] & \sk_{n-1}X \arrow[d] \\
+                \coprod\limits_{x \in X_n \text{ non-deg.}} \Delta^n \arrow[r]                    & \sk_nX              
+            \end{tikzcd}
+        \end{equation*}
+        is a pushout.
+    \section{Corollary}
+        The geometric realisation of a simplicial set $X$ carries a canonical CW-structure given by
+        \begin{equation*}
+            \varnothing \subseteq \gr{\sk_0 X} \subseteq \gr{\sk_1 X} \subseteq \ldots \subseteq \gr{X}.
+        \end{equation*}
+        \medskip
+
+        In \ref{chII-12} we've seen that $\gr{-} \colon \sSet \rightleftarrows \Top \colon \Sing$ are adjoint. More generally we have:
+
+    \section{Proposition}
+        If $F \colon \Cc \to \Dd$ is a functor, $\Cc$ essentially small and $\Dd$ cocomplete, then the colimit preserving extension $\widehat{F} \colon \mathrm{P}(\Cc) \to \Dd$ admits a right adjoint $R \colon \Dd \to \mathrm{P}{\Cc}$ which satisfies
+        \begin{equation*}
+            (R(d))(c) \cong \Hom_{\Dd}(F(c), d)
+        \end{equation*}
+        naturally in $c \in \Cc$ and $d \in \Dd$. Furthermore, $F$ itself admits an adjoint if and only if $R$ takes values in the representables in which case the two adjoints correspond to one another under the Yoneda embedding.
+
+        The above case is $\Delta_{\Top} \colon \Delta \to \Top, \; [n] \mapsto \Delta^n_{\Top} (\subseteq \mathbb{R}^{n+1})$.
+        \medskip
+
+        Here are two further examples.
+    \section{Examples}\label{chII-19}
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                Let $* \colon \Delta \to \Set$ be the constant functor with value $*$. Then its adjoint is the functor
+                \begin{equation*}
+                    \const \colon \Set \to \sSet \,.
+                \end{equation*}
+
+                The colimit preserving extension can be described in several ways. Tor example it has to be given by
+                \begin{equation*}
+                    X \mapsto \colim\limits_{\Delta^{\op}}X
+                \end{equation*}
+                as this functor is also left adjoint to $\const$. An explicit description is
+                \begin{equation*}
+                    X \mapsto \colim(X_1 \xrightrightarrows[d_1]{d_0} X_0) \,;
+                \end{equation*}
+                or in other words ${X_0}/{\sim}$ where $\sim$ is generated by $d_0(y) \sim d_1(y)$ for every $y \in X_1$; the fact that this functor preserves colimits follows from
+                \begin{enumerate}[label=\roman*)]
+                    \item 
+                        the functor
+                        \begin{equation*}
+                            \Fun(\Delta^{\op}, \Set) \xrightarrow{\text{rest.}} \Fun((\left\{ 0 \right\} \rightrightarrows \left\{ 0, 1 \right\})^{\op}, \Set)
+                        \end{equation*}
+                        preserves colimits since it admits right Kan extension as an adjoint, and
+                    \item 
+                        colimits commute.  
+                \end{enumerate}
+                The fact that it restricts to the constant functor $\Delta \to \Set$ follows since
+                \begin{equation*}
+                    \colim (\Delta^n_1 \xrightrightarrows[d_1]{d_0} \Delta^n_0) = 0 \,:
+                \end{equation*}
+                for $i \leq j \in \Delta^n_0$ we have $d_0(i, j) = j$ and $d_1(i, j) = i$ so $i \sim j$.
+        \end{enumerate}
+    \section{Definition}
+        For $X \in \sSet$ we set $\pi_0 X = \colim\limits_{\Delta^{\op}}X \in \Set$
+    \section{Proposition}
+        The natural map $X_0 \to \gr{X}$ induces a bijection
+        \begin{equation*}
+            \pi_0 X \to \pi_0 \gr{X}
+        \end{equation*}
+        for any simplicial set $X$.
+        \smallskip
+
+        \emph{Proof}. This follows from cellular approximation / the theorem of Seifert-van Kampen: The inclusion $\gr{X}^{(1)} \subseteq \gr{X}$ induces an isomorphism on $\pi_0$, and by \ref{chII-16} and by $\gr{X}^{(1)} = \gr{\sk_1 X}$ given by gluing an edge to $X_0$ for every non-degenerate $1$-simplex $y \in X_1$. Thus $\pi_0 \gr{X}$ is given by ${X}/{\sim}$ where $x \sim y$ if there is a series of edges in $\gr{\sk_1 X}$ connecting $x$ and $y$. This is clearly the same relation as that defining $\pi_0 X$.\hfill$\Box$
+        \medskip
+
+        Continuing the examples in \ref{chII-19}, we have:
+        \begin{enumerate}[label=\roman*)]
+            \setcounter{enumi}{1}
+            \item 
+                the functor
+                \begin{equation*}
+                    \Delta \to \sSet \;, [n] \mapsto X \times \Delta^n
+                \end{equation*}
+                has colimit preserving extension $Y \mapsto X \times Y$, since products (like all limits)are computed pointwise in $\sSet$, and therefor commute with colimits as this is the case in $\Set$, we obtain an adjoint
+                \begin{equation*}
+                    F(X, -) \,\colon \sSet \to \sSet \,,
+                \end{equation*}
+                i.e. there are isomorphisms
+                \begin{equation*}
+                    \Hom_{\sSet}(Y \times X, Z) \cong \Hom_{\sSet}(Y, F(X, Z)) \,,
+                \end{equation*}
+                and we find
+                \begin{equation*}
+                    F(X, Y)_n \cong \Hom_{\sSet}(X \times \Delta^n, Y) \,.
+                \end{equation*}
+                These properties formally imply that in fact
+                \begin{equation*}
+                    F(Y \times X, Z) \cong F(Y, F(X, Z))
+                \end{equation*}
+                as functors
+                \begin{equation*}
+                    (\sSet^{\op})^2 \times \sSet \to \sSet \,.
+                \end{equation*}
+                This provides us with a notion of homotopy od simplicial maps:
+        \end{enumerate}

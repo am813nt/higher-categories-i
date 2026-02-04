@@ -169,6 +169,8 @@
             \item
                 A natural transformation is a natural isomorphism if and only if it takes values in isomorphisms.\label{chI-14-ii}
         \end{enumerate}
+        \smallskip 
+        
         \emph{Proof}. MacLane ...\hfill\(\Box\)
     \section{Corollary}
         Every embedding of categories is an equivalence onto its essential image\footnote{It need not be an isomorphism onto its image!}.
@@ -180,8 +182,8 @@
             \Core(\Cc) \subseteq \Cc
         \end{equation*}
         having the same objects as $\Cc$ but retaining only the isomorphisms of $\Cc$ as morphisms. Also the functor $\mathbb{B}$ factors as $\Grp \xrightarrow{\mathbb{B}} \Grpd \subseteq \Cat$.
-        \\
-        \\
+        \medskip
+
         Every left/right locally small object $x \in \Cc$ determines the functors
         
         \setlength{\columnseprule}{1pt}        
@@ -200,8 +202,8 @@
         \end{multicols}
         \setlength{\columnseprule}{0pt}
         known as the functors \emph{(co)represented} by $x$.
-        \\
-        \\
+        \medskip
+        
         The arguably most important statement of category theory is
     \section{Proposition (Yoneda's Lemma)}
         For all functors $F \,\colon \Cc \to \Set$ and $G \,\colon \Cc^{\op} \to \Set$ and $x \in \Cc$ left or right locally small, the maps $\Nat(Y_x, F) \to F(x)$ and $\Nat(Y^x, G) \to G(x)$ given by
@@ -209,10 +211,11 @@
             \tau \mapsto \tau_x(\id_x)
         \end{equation*}
         are bijections, respectively.
+        \smallskip
         
         \emph{Proof}. MacLane ...\hfill\(\Box\)
-        \\
-        \\
+        \medskip
+        
         For locally small $\Cc$, the functors $Y^x$ give rise to a single functor
         \begin{equation*}
             Y^{\Cc} \,\colon \Cc \to \Fun(\Cc^{\op}, \Set) =: \Pp(\Cc)\footnote{not usually locally small}
@@ -233,6 +236,7 @@
             \Cc \to \Fun(\Dd^{\op}, \Set)
         \end{equation*}
         and checking that its image is contained in the representables. Specialized to $\Cc = *$ this is a method of definition by \emph{universal property}!
+        \medskip
         
         An example is:
     \section{Definition}
@@ -319,12 +323,14 @@
             (R \overset{uR}{\implies} RLR \overset{Rc}{\implies} R) = \id_R
         \end{equation*}
         hold.
+        \smallskip
         
         \emph{Proof}. MacLane ...\hfill\(\Box\)
     \section{Remark}\label{chI-23}
         This latter description does not require $\Cc$ and $\Dd$ to be locally small so extends the notion of adjunction to arbitrary categories. In particular, one can check that an adjunction $L : \Cc \rightleftarrows \Dd : R$ induces $- \circ R : \Fun(\Cc, \Ee) \rightleftarrows \Fun(\Dd, \Ee) : - \circ L$ and $L \circ - : \Fun(\Ee, \Cc) \rightleftarrows \Fun(\Ee, \Dd) : R \circ -$ by extending the unit/counit in the evident way.
     \section{Proposition}\label{chI-24}
         A left adjoint functor $L$ is an embedding if and only if the unit of adjunction $u \,\colon \id \Rightarrow RL$ is a natural isomorphism, and dually a right adjoint is an embedding if and only if the counit $c \,\colon LR \Rightarrow \id$ is an isomorphism.
+        \smallskip
         
         \emph{Proof}. MacLane ...\hfill\(\Box\)
     \section{Definition}
@@ -412,6 +418,7 @@
         exhibits $G \circ \Lan_i F / G \circ \Ran_i F$ as the left/right Kan extension of $GF$ along $i$.
     \section{Proposition}\label{chI-30}
         Left adjoints preserve left Kan extensions and right adjoints preserve right Kan extensions.
+        \smallskip
 
         \emph{Proof}. Let $L \colon \Dd \to \Ee$ be left adjoint to $R \colon \Ee \to \Dd$. Then for $G \colon \Cc' \to \Ee$
         \begin{align*}
@@ -458,6 +465,7 @@
         and these Kan extensions are absolute.
 
         In fact, the converse holds as well: A functor $R$ is right adjoint to $L$ if and only if $R$ is an absolute left Kan extension of $\id_{\Cc}$ along $L$. The canonical map $\id_{\Cc} \Rightarrow \Lan_L(\id_{\Cc}) \circ L$ is then exactly the counit of the adjunction.
+        \medskip
 
         As an important special case we also have:
     \section{Definition}
@@ -488,7 +496,7 @@
             \item 
                 The identification $\Fun(\mathbb{B}G, \Set) = \text{G-Set}$ translates limits and colimits into fixed points and orbits.
             \item 
-                (Co)limits over the shapes $\mathbbmsl{N}P$ for posets $P$ can vary greatly: Colimits over $\mathbbmsl{N}\{ (0, 0), (0, 1), (1, 0) \}$ with the evident order are called \emph{pushouts} and limits over $\mathbbmsl{N}\{ (0, 1), (1, 0), (1, 1) \}$ are called \emph{pullbacks}.
+                (Co)limits over the shapes $\mathbbmsl{N}P$ for posets $P$ can vary greatly: Colimits over \\ $\mathbbmsl{N}\{ (0, 0), (0, 1), (1, 0) \}$ with the evident order are called \emph{pushouts} and limits over $\mathbbmsl{N}\{ (0, 1), (1, 0), (1, 1) \}$ are called \emph{pullbacks}.
             \item 
                 (Co)limits in functor categories.
         \end{enumerate}
@@ -499,6 +507,7 @@
             \item If $\Jj$ admits an initial object $x \in \Jj$ then for every functor $F \colon \Jj \to \Cc$ we have $\lim F = F(x)$ and similarly $\colim F = F(y)$ if $y$ is terminal in $\Jj$.\label{chI-35-ii}
         \end{enumerate}
         In particular, (co)limits as in \ref{chI-35-ii} are absolute, which is fairly rare. We will see that the latter are precisely the colimits preserved by the Yoneda embedding.
+        \medskip
 
         We will need pointwise versions of \ref{chI-23} and \ref{chI-35} as well.
     \section{Observation}\label{chI-36}
@@ -526,6 +535,7 @@
                 \end{equation*}\label{chI-36-ii}
         \end{enumerate}
         Similar statements hold for $\Dd^F, R^F$, right adjoints and limits.
+        \medskip
 
         We use this observation to establish another basic property of colimits:
     \section{Proposition}\label{chI-37}
@@ -546,6 +556,7 @@
         \end{enumerate}
         One loosely says that "(co)limits in functor categories are computed pointwise", although this only applies to diagrams whose colimit \emph{can} be computed pointwise: It can happen that $\colim\limits_{\Ii} G_0$ exists "accidentally" without the colimits that could define its values existing. 
         Similarly for part \ref{chI-37-ii} one often says "colimits commute". The value is also given by $\colim\limits_{\Ii \times \Jj} G$ but again this latter object may exist without either $\colim\limits_{\Ii} G_0$ or $\colim\limits_{\Jj} G_1$ existing.
+        \smallskip
 
         \emph{Proof}. Observe that by assumption
         \begin{equation*}
@@ -585,6 +596,7 @@
         preserves all limits and colimits.\footnote{Because they are pointwise!}
 
         In fact, we will see below that under a further smallness assumption $F^*$ admits both adjoints $F_!$ and $F_*$ (a.k.a. $\Lan_F(-)$ and $\Ran_F(-)$) from which the last statement also follows in that case.
+        \medskip
 
         Now we have:
     \section{Observation}\label{chI-40}
@@ -593,6 +605,7 @@
 	       Y^{\Cc} \colon \Cc \to \mathrm{P}(\Cc) \quad \text{and} \quad Y_{\Cc} \colon \Cc^{\op} \to \mathrm{P}(\Cc^{\op})
         \end{equation*}
         preserve all limits.
+        \smallskip
         
         \emph{Proof}. We note that
         \begin{equation*}
@@ -624,6 +637,7 @@
         Colimits are very much \emph{not} preserved by the Yoneda embedding! Before we analyse the situation, let's justify the smallness restriction in the definition of completeness.
     \section{Proposition (Freyd)}
         If a category $\Cc$ admits coproducts for all diagrams of shape $\mathbb{D}(\mor(\Cc))$, then $\Cc$ is equivalent to $\mathbbmsl{N}(P)$ for some poset $P$. In particular, small cocomplete categories are posets.
+        \smallskip
 
         \emph{Proof}. Let $x, y \in \Cc$ be two objects. Then form the sum $\sum\limits_{\mathbb{D}(\mor(\Cc))} x$, which exists by assumption. Then
         \begin{equation*}
@@ -647,6 +661,7 @@
             \Fun^{\colim}(\Set, \Cc) \simeq \Cc
         \end{equation*}
         means that $\Set$ is freely generated under colimits by any one-point set. Generally, $\mathrm{P}(\Cc)$ is the free cocompletion of $\Cc$.
+        \medskip
 
         The proof needs a few preparations:
     \section{Definition}
@@ -824,6 +839,7 @@
         are natural equivalences. 
         
         In this case $\Lan_i F$ and $\Ran_i F$ really are extensions of $F$.
+        \smallskip
 
         \emph{Proof}. We saw (in \ref{chI-46}) that the structural map
         \begin{equation*}
@@ -872,6 +888,7 @@
         The category $\nicefrac{Y^{\Cc}}{F}$ is the simplest example of a Grothendieck construction, which Lurie's unstraightening construction generalises to $\infty$-categories.
 
         For us the important observation is that \emph{every} $F \in \mathrm{P}(\Cc)$ is a  colimit of representables. In particular, it illustrates the failure of $Y^{\Cc}$ to commute with colimits quite drastically.
+        \smallskip
 
         \emph{Proof}. We compute for $G \colon \Cc^{\op} \to \Set$
         \begin{align*}
@@ -896,6 +913,7 @@
             \Nat(\colim(\nicefrac{Y^{\Cc}}{F} \overset{s}{\rightarrow} \Cc \overset{Y^{\Cc}}{\rightarrow} \mathrm{P}(\Cc)), G) = \Nat(F, G)
         \end{equation*}
         and the claim follows from Yoneda's Lemma after unwinding.\hfill$\Box$
+        \medskip
 
         To prove \ref{chI-42} we finally need the following lemma:
     \section{Lemma}
@@ -907,6 +925,7 @@
                 $R$ detects isomorphisms, that is if $Rf$ is an isomorphism in $\Dd$ then $f$ is one in $\Cc$,
         \end{enumerate}
         then $L$ and $R$ are inverse equivalences of categories, witnessed by the unit and counit of the adjunction.
+        \smallskip
 
         \emph{Proof}. As $L$ is an embedding the unit $u \colon \id_{\Cc} \Rightarrow RL$ is a natural isomorphism by \ref{chI-24}. To check that the counit
         \begin{equation*}
@@ -917,6 +936,7 @@
             (R \xrightarrow{uR} RLR \xrightarrow{Rc} R) = \id_R
         \end{equation*}
         tells us that $Rc$ is left-inverse to an isomorphism so one itself.\hfill$\Box$
+        \medskip
 
         Finally we have:
     \section{Proof of \ref{chI-42}}
