@@ -13,7 +13,7 @@
         \item 
             The lift in a HELP-diagram with one of the vertical maps a homotopy equivalence \label{list01-03}
             \begin{equation*}
-                \begin{tikzcd}
+                \begin{tikzcd}[row sep=scriptsize, column sep=scriptsize]
                     A && E \\
                     \\
                     X && B
@@ -58,7 +58,7 @@
         \end{equation*}
         represents a \emph{homotopy coherent} diagram
         \begin{equation*}
-            \begin{tikzcd}
+            \begin{tikzcd}[column sep=scriptsize, row sep=scriptsize]
                 Z && X \\
                 & {} \\
                 * && Y
@@ -118,7 +118,12 @@
         \end{tikzcd}        
     \end{equation*}
     to commute, which is clearly absurd since $s(*) \neq \varnothing$. Note, however, that a (unique) transformation $\id_{\Cc} \Rightarrow s \circ p$ exists just fine, showing that natural transformations, which are pointwise equivalences need not admit inverses, another desirable criterion that Kan-enriched categories fit. As a second example consider the category $\Nn[2]$ with three objects and six morphisms
-
+    \begin{equation*}
+        \begin{tikzcd}[column sep=small]
+                                                                                       & 1 \arrow[rd, "g"] \arrow["\id"', loop, distance=2em, in=125, out=55] &                                                      \\
+0 \arrow[ru, "f"] \arrow[rr, "gf"'] \arrow["\id"', loop, distance=2em, in=215, out=145] &                                                                      & 2 \arrow["\id"', loop, distance=2em, in=35, out=325]
+\end{tikzcd}
+    \end{equation*}
     We can give it the trivial enrichment.
     Consider also the simplicially enriched category $\Cc$, whose only difference is that we replace 
     \begin{equation*}
@@ -172,7 +177,7 @@
             & \Hom(\Lambda^2_1, \Cc) 
         \end{tikzcd}        
     \end{equation*}    
-    Warning: the actual definition requires the right hand vertical map to also be a Kan fibration!
+    \emph{Warning}: the actual definition requires the right hand vertical map to also be a Kan fibration!
     
     We will develop the very basics of this notion. The main results we will hopefully show, say precisely that quasi-categories do not share the defects of Kan-enriched categories, i.e. that
     \begin{enumerate}[label=\arabic*)]

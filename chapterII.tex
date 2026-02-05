@@ -21,12 +21,12 @@
         The category $\nicefrac{Y^{\Delta}}{X}$ is called the \emph{category of simplices} of X.
     \section{Lemma}
         Every degenerate simplex is the degeneration of an unique non-degenerate simplex.
-    \section{Example}
-        For $\Cc$ a small category, the nerve $N\Cc$ is the simplicial set with
+    \section{Example}\label{chII-8}
+        For $\Cc$ a small category, the nerve $\Nn\Cc$ is the simplicial set with
         \begin{equation*}
-            N\Cc_n \coloneq \obj(\Fun([n], \Cc)) \,.
+            \Nn\Cc_n \coloneq \obj(\Fun([n], \Cc)) \,.
         \end{equation*}
-        for example, $N[n] \cong \Delta^n$ and $N\mathbb{B}M$, $M$ a monoid, is the bar construction on $M$.
+        for example, $\Nn[n] \cong \Delta^n$ and $\Nn\mathbb{B}M$, $M$ a monoid, is the bar construction on $M$.
     \section{Definition}
         Affine $n$-simplex
         \begin{equation*}
@@ -156,3 +156,148 @@
                 \end{equation*}
                 This provides us with a notion of homotopy od simplicial maps:
         \end{enumerate}
+    \section{Definition}
+        Two maps $f, g \colon X \to Y$ of simplicial sets are called \emph{homotopic} if $[f] = [g] \in \pi_0 F(X,Y)$. A \emph{simplicial homotopy} from $f$ to $g$ is an element
+        \begin{equation*}
+            H \in F(X, Y)_1 = \Hom_{\sSet} (X \times \Delta^1, Y)
+        \end{equation*}
+            with $d_1H = f$ and $d_0H = g$.
+        \smallskip
+
+        Let me explicitly warn you: The existence of a simplicial homotopy us neither a symmetric nor a transitive relation in general.
+
+        \smallskip
+
+        To give an example, recall
+        \begin{equation*}
+            \partial \Delta^n = \bigcup_{0 \leq i \leq n} \im (\Delta^{n-1} \xrightarrow{d_i} \Delta^n) \subseteq \Delta^n
+        \end{equation*}
+        or equivalently
+        \begin{equation*}
+            (\partial \Delta^n)_k = \left\{ \varphi \colon [k] \to [n] \mid \varphi \text{ not surjective} \right\}
+        \end{equation*}
+    \section{Definition}
+        The \emph{$j$-th $n$-dimensional horn} $\horn{n}{j} \enspace (0 \leq j \leq n)$ is given by
+        \begin{equation*}
+            \horn{n}{j} = \bigcup_{\substack{0 \leq i \leq n \\ i \neq j}} \im (\Delta^{n-1} \xrightarrow{d_i} \Delta^n) \subseteq \partial \Delta^n
+        \end{equation*}
+        or equivalently
+        \begin{equation*}
+            (\horn{n}{j})_k = \left\{ \varphi \colon [k] \to [n] \mid [n] \neq \im(\varphi) \cup \left\{ j \right\} \right\}
+        \end{equation*}
+        Similarly, we define the \emph{$n$-spine} $\II_n \subseteq \partial \Delta^n$ as
+        \begin{equation*}
+            \II_n = \bigcup_{0 \leq i \leq n - 1} \im(\Delta^1 \xrightarrow{(i, i + 1)} \Delta^n)
+        \end{equation*}
+        or equivalently
+        \begin{equation*}
+            (\II_n)_k = \left\{ \varphi \colon [k] \to [n] \mid \im(\varphi) \text{ consists of at most two consecutive numbers} \right\} \,.
+        \end{equation*}
+        \smallskip
+        
+        In pictures:
+
+        Note that $\sk_{n-2}(\horn{n}{i}) = \sk_{n-2}(\Delta^n)$ whereas $\II_n$ is $1$-skeletal. For $n \geq 3$ there is then an inclusion $\II_n \subseteq \horn{n}{i}$ for all $0 \leq i \leq n$.
+        Now for the counterexamples consider
+        \begin{gather*}
+            \Hom_{\sSet}(\Delta^{\bullet}, \horn{2}{1}) \cong (\horn{2}{1})_0 \cong \left\{ 0, 1, 2 \right\} \\
+            \Hom_{\sSet}(\Delta^1, \horn{2}{1}) \cong (\horn{2}{1})_1 \cong \left\{ (0,1), (1,2), (0,0), (1,1), (2,2) \right\}
+        \end{gather*}
+        meaning that there are simplicial paths
+        \begin{equation*}
+            0 \leadsto 1 \quad \text{and} \quad 1 \leadsto 2
+        \end{equation*}
+        but not $1 \leadsto 0$ or $1 \leadsto 2$. We will isolate a better class of simplicial sets soon.
+        \smallskip
+
+        For now we give another example (continuing \ref{chII-19}):
+        \begin{enumerate}[label=\roman*)]
+            \setcounter{enumi}{2}
+            \item 
+                The functor
+                \begin{equation*}
+                    \Delta \cong \Ord \xrightarrow{\mathbbmsl{N}} \Cat
+                \end{equation*}
+                extends to a colimit preserving functor
+                \begin{equation*}
+                    h \,\colon \sSet \to \Cat
+                \end{equation*}
+                with right adjoint $\Nn \colon \Cat \to \sSet$
+                \begin{equation*}
+                    (\Nn\Cc)_n = \Hom_{\Cat}(\mathbbmsl{N}[n], \Cc)
+                \end{equation*}
+                    as defined in \ref{chII-8}. As colimits in $\Cat$ are complicated, the functor $h$ is a bit unpleasant to describe:
+        \end{enumerate}
+    \section{Construction/Proposition}
+        For a simplicial set $X$ let $hX \in \Cat$ have objects $X_0$ and morphisms are given as a certain quotient of
+        \begin{equation*}
+            \sum_{n \geq 0} \longpb{X_1}{X_0} \in \Set
+        \end{equation*}
+        i.e. of the set of strings $(f_1, \ldots, f_n) \in X^n_1$ for some $n$ with
+        \begin{equation*}
+            d_1 f_i = d_0 f_{i+1}
+        \end{equation*}
+        for all $0 \leq i \leq n - 1$. The morphisms are given by the quotient with respect to the equivalence relation generated by
+        \begin{equation*}
+            (f_1, \ldots, f_i, g, h, f_{i+1}, \ldots, f_n) \sim (f_1, \ldots, f_i, k, f_{i+1}, \ldots, f_n)
+        \end{equation*}
+        if there exists a $2$-simplex $H \in X_2$ with
+        \begin{equation*}
+            d_0 H = g, \quad d_1 H = k \quad \text{and} \quad d_2 H = h \,.
+        \end{equation*}
+        The source and target maps $\mor(hX) \to \obj(hX) = X_0$ are given by
+        \begin{equation*}
+            s(f_1, \ldots, f_n) = d_1(f_n) \quad \text{and} \quad t(f_1, \ldots, f_n) = d_0 f_1 \,,
+        \end{equation*}
+        respectively. Composition is then given by concatenation of strings and identities by
+        \begin{equation*}
+            X_0 \xrightarrow{s_0} X_1 \rightarrow \mor(hX) \,.
+        \end{equation*}
+        Then $hX$ really is a category and the resulting functor $h \colon \sSet \to \Cat$ is left adjoint to the nerve $\Nn \colon \Cat \to \sSet$.
+        \smallskip
+
+        \emph{Proof}. The only non-obvious step in checking that $hX$ really is a well-defined category is probably the compatibility of cmposition and identities:
+        However, we find
+        \begin{equation*}
+            (f_1, \ldots, f_n, s_0 d_1(f_n)) \sim (f_1, \ldots, f_n)
+        \end{equation*}
+        through the $2$-simplex $s_0(f_n)$, and
+        \begin{equation*}
+            (s_0d_0(f_1), f_1, \ldots, f_n) \sim (f_1, \ldots, f_n)
+        \end{equation*}
+        through $s_1(f_1)$.
+        Let us then directly construct inverse map
+        \begin{equation*}
+            \tau \,\colon \Hom_{\Cat}(hX, \Cc) \longleftrightarrow \Hom_{\sSet}(X, \Nn\Cc) \colon \sigma
+        \end{equation*}
+        as follows: Given $F \colon hX \to \Cc$ we define
+        \begin{equation*}
+            \tau(F)_n \,\colon X_n \to \Nn_n\Cc
+        \end{equation*}
+        by
+
+        Conversely, given $g \colon X \to \Nn\Cc$, we define
+        \begin{align*}
+            \sigma(g) \,\colon \obj(hX) &\to \obj(\Cc) \\
+            X_0 &\mapsto \Nn_0 \Cc
+        \end{align*}
+        and $\sigma(g) \mor(hX) \to \mor(\Cc)$ on generators by
+        \begin{equation*}
+            \sigma(g)(f_1, \ldots, f_n) = g_1(f_1) \circ g_1(f_2) \circ \ldots \circ g_1(f_n) \,.
+        \end{equation*}
+        This is well-defined as $g(H) \in \Nn_2(\Cc)$ witnesses $g(h) \circ g(i) = g(k)$ for
+
+        It is easily checked that $\tau$ and $\sigma$ are inverse and indeed well-defined. It is also clear that they are natural, so we are done.\hfill$\Box$
+
+        The maps $\Seg_i \colon X_n \to X_1$ induced by $[1] \to [n], 0 \mapsto i, 1 \mapsto i + 1$ are called the \emph{Segal maps} and always combine into the diagram
+
+        occurring in the proof, but make sense for any simplicial object. A simplicial object for which they exhibit $X_n$ as the pullback displayed on the right is called a \emph{Segal object}.
+
+        The unit and counit
+        \begin{equation*}
+            X \to \Nn hX \quad \text{and} \quad h\Nn\Cc \to \Cc
+        \end{equation*}
+        of the adjunction constructed in the proof are given by
+        \begin{equation*}
+            X_n \xrightarrow{\Seg} \longpb{X_1}{X_0} \rightarrow \longpb{\mor(hX)}{\obj(hX)} \cong \Nn_n hX
+        \end{equation*}
