@@ -301,3 +301,62 @@
         \begin{equation*}
             X_n \xrightarrow{\Seg} \longpb{X_1}{X_0} \rightarrow \longpb{\mor(hX)}{\obj(hX)} \cong \Nn_n hX
         \end{equation*}
+
+        We next aim to prove:
+        \section{Theorem}\label{chII-25}
+            The functor $\Nn \colon \Cat \to \sSet$ is fully faithful and its essential image is given equivalently by all simplicial sets satisfying one of two equivalent conditions:
+            \begin{enumerate}[label=\alph*)]
+                \item 
+                    the map $\Hom(\Delta^n, X) \xrightarrow{\text{rest.}} \Hom(\II_n, X)$ is bijective for all $n \geq 0$, in other words $X$ is a Segal set, or\label{chII-25-a}
+                \item 
+                    the map $\Hom(\Delta^n, X) \rightarrow \Hom(\horn{n}{i}, X)$ is bijective  for all $0 < i < n$.\label{chII-25-b}
+            \end{enumerate}
+
+            One says that a simplicial set satisfying \ref{chII-25-b} has "unique inner horn fillers"; said diagrammatically:
+            \begin{equation*}
+                \begin{tikzcd}
+                    \horn{n}{i} \arrow[r] \arrow[d, hook]          & X \\
+                    \Delta^n \arrow[ru, "{\exists \, !}"', dashed] &  
+                \end{tikzcd}
+            \end{equation*}
+            for all $0 < i < n$. The proof will consist of several steps: We already observed that nerves satisfy \ref{chII-25-a} and the first step will be to show that Segal sets satisfy \ref{chII-25-b}. For simplicial sets $X$ satisfying a weak version of \ref{chII-25-b} there is a drastically simpler description of $hX$, which we will then use to show that the unit of a simplicial set satisfying \ref{chII-25-b} and counit of an arbitrary category are isomorphisms. Before we dive into that let us, however, observe:
+
+    \section{Lemma}
+        For a topological space $X$ the simplicial set $\Sing X$ has (not-necessarily unique) horn fillers for all horns.
+        \smallskip
+        
+        \emph{Proof}. By adjunction the extension problems
+        \begin{equation*}
+            \begin{tikzcd}[column sep=scriptsize]
+                \horn{n}{i} \arrow[r] \arrow[d, phantom, "\subseteq" rotate=-90] & \Sing X \\
+                \Delta^n \arrow[ru, dashed]           &        
+            \end{tikzcd}
+            \quad \text{and} \quad
+            \begin{tikzcd}
+                \gr{\horn{n}{i}} \arrow[r] \arrow[d, phantom, "\subseteq" rotate=-90] & X \\
+                \gr{\Delta^n} \arrow[ru, dashed]           &        
+            \end{tikzcd}
+        \end{equation*}
+        are equivalent. As $\gr{\horn{n}{i}} \subseteq \gr{\Delta^n}$ is the inclusion of a (deformation) retract, the right hand  one clearly admits a solution\footnote{In fact, a contractible space of such solutions.}.\hfill$\Box$
+
+        We can thus give the central definition of this course:
+    \section{Definition}
+        A simplicial set $X$ is called a \emph{Kan complex} if every horn $\horn{n}{i} \to X$ admits a filler, i.e.
+        \begin{equation*}
+              \begin{tikzcd}
+                \horn{n}{i} \arrow[r] \arrow[d, phantom, "\subseteq" rotate=-90] & X \\
+                \Delta^n \arrow[ru, dashed, "\exists"']           &        
+            \end{tikzcd}
+        \end{equation*}
+        $X$ is called a \emph{quasi-category} if $X$ admits fillers for all inner horns, i.e. those $\horn{n}{i}$ with $0 < i < n$.
+
+        Thus a quasi-category is a hybrid of the nerve of a category and the singular complex of a space.
+
+        Before we look more closely at these definitions, let us prove \ref{chII-25}.
+
+    \section{Lemma}
+        Every Segal set $X$ has unique inner horn fillers and in fact unique fillers for all horns $\horn{n}{i}$ with $n \geq 4$.
+        \smallskip
+
+        \emph{Proof}. Let $f \colon \horn{}n{j} \to X$ with $0 < j < n$ be given. In particular, $n \geq 2$ and since $n = 2$ forces $j = 1$ and $\horn{2}{1} = \II_2$ this case follows 
+        
