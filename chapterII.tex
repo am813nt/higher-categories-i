@@ -358,5 +358,49 @@
         Every Segal set $X$ has unique inner horn fillers and in fact unique fillers for all horns $\horn{n}{i}$ with $n \geq 4$.
         \smallskip
 
-        \emph{Proof}. Let $f \colon \horn{}n{j} \to X$ with $0 < j < n$ be given. In particular, $n \geq 2$ and since $n = 2$ forces $j = 1$ and $\horn{2}{1} = \II_2$ this case follows 
-        
+        \emph{Proof}. Let $f \colon \horn{}n{j} \to X$ with $0 < j < n$ be given. In particular, $n \geq 2$ and since $n = 2$ forces $j = 1$ and $\horn{2}{1} = \II_2$ this case follows from an assumption. For $n \geq 3$ consider the inclusion $\II_n \subseteq \horn{n}{j}$ and let $g \colon \Delta^n \to X$ be the unique extension of ${f|}_{\II_n} \colon \II_n \to X$. We have to show that ${g|}_{\horn{n}{j}} = f$. As
+        \begin{equation*}
+            \horn{n}{j} = \bigcup_{\substack 0 \leq i \leq n \\ i \neq j} \im(\Delta^{n-1} \to \Delta^n)
+        \end{equation*}
+        it suffices to show that
+        \begin{equation*}
+            f d_i = g d_i \,\colon \Delta^{n-1} \to X \quad \text{for} \enspace i \neq j \,.
+        \end{equation*}
+        This is easy for $i = 0, n$ since in these cases
+        \begin{equation*}
+            d_i(\II_{n-1}) \subseteq \II_n
+        \end{equation*}
+        so, since ${f|}_{\II_n} = {g|}_{\II_n}$ by definition both $f d_i$ ad $g d_i$ are extensions of $f{d_i|}_{\II^{n-1}} = g{d_i|}_{\II^{n-1}}$. But by assumption there is only one such extension so $fd_i = gd_i$. We thus obtain that $f$ equals $g$ on all of
+        \begin{equation*}
+            \II_n \cup d_0 \delta^{n-1} \cup d_n \Delta^{n-1} \subseteq \horn{N}{j} \,.
+        \end{equation*}
+        But now for $0 < i < n$ we still have
+        \begin{equation*}
+            d_i \II_{n-1} \subseteq \II_n \cup d_0 \Delta^{n-1} \cup d_n \Delta^{n-1} \,\colon
+        \end{equation*}
+        a $k$-simplex on the left is a map $\varphi \colon [k] \to [n]$ that is monotone and whose image consists of at most two consecutive numbers in $\left\{ 0, \dots, i - 1, i + 1, \ldots, n \right\}$. Thus $\varphi \in \II_n$ unless
+        \begin{equation*}
+            \im(\varphi) = \left\{ i - 1, i + 1 \right\} \,.
+        \end{equation*}
+        But then $\varphi \in d_0 \Delta^n$ unless $i - 1 = 0$, in which case $i + 1 = 2 < n$, so $\varphi \in d_n \Delta^n$. Thus we can run the same argument again for all $0 < i < n, \enspace i \neq j$: The restriction of $f d_i$ and $g d_i$ to $\II^{n-1}$ agree by the above, so by uniqueness of extensions $f d_i = g d_i$.
+        For the outer horns for $n \geq 4$ observer first that the previous argument shows that the restriction map
+        \begin{equation*}
+            \Hom(\partial \Delta^n, X) \to \Hom(\II_n, X)
+        \end{equation*}
+        is bijective for any Segal set (we only had to exclude $i = j$ from our reasoning previously, because $f$ was not defined on $d_j \Delta^n$). But since
+        \begin{equation*}
+            \begin{tikzcd}[row sep=small, column sep=tiny]
+                {\Hom(\Delta^n, X)} \arrow[rd, "\cong"'] \arrow[rr] &                  & {\Hom(\partial \Delta^n, X)} \arrow[ld, "\cong"] \\
+                                                    & {\Hom(\II_n, X)} &                                                 
+            \end{tikzcd}
+        \end{equation*}
+        commutes and has two isomorphisms it follows that every Segal set is $2$-coskeletal. But then
+        \begin{align*}
+            \Hom(\horn{n}{j}, X) &\cong \Hom(\horn{n}{j}, \cosk_2 X) \\                                     &\cong \Hom(\sk_2 \horn{n}{j}, X) \\
+                                 &\cong \Hom(\sk_2 \Delta^n, X) \\
+                                 &\cong \Hom(\Delta^n, X)
+        \end{align*}
+        and tracing through shows the map given by restriction.\hfill$\Box$
+        \medskip
+
+        We then turn to the simpler description of $hX$ when $X$ admits (not necessarily unique!) inner horn fillers up to dimension $3$.
