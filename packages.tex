@@ -6,10 +6,18 @@
 \usepackage{enumitem}
 \usepackage[colorlinks=true,linkcolor=teal,citecolor=teal,urlcolor=teal,unicode]{hyperref}
 \usepackage{quiver}
-\usepackage{tikz-cd}
+
+% TikZ and its settings
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\makeatletter
+    \tikzset{nomorepostaction/.code={\let\tikz@postactions\pgfutil@empty}}
+\makeatother        
+
 \usepackage{leftindex}
 \usepackage{multicol}
 \usepackage{nicefrac}
+\usepackage{relsize}
 
 % to fix warning
 \let\CheckCommand\providecommand
