@@ -776,3 +776,31 @@
     \end{scope}
 
 \end{tikzpicture}
+
+\begin{tikzpicture}[
+    scale=2, 
+    thick, 
+    color=violet, 
+    every node/.style={text=violet, font=\Large}
+]
+
+    % Define Coordinates
+    \coordinate (TL) at (0,2); % Top Left
+    \coordinate (TR) at (2,2); % Top Right
+    \coordinate (BL) at (0,0); % Bottom Left
+    \coordinate (BR) at (2,0); % Bottom Right
+
+    % Draw Square Edges
+    \draw (TL) -- node[above] {$f$} (TR);
+    \draw (BL) -- node[below] {$g$} (BR);
+    
+    % Draw Vertical Edges with rotated labels
+    % 'rotate=90' aligns the text vertically reading upwards
+    \draw (BL) -- node[above, rotate=90] {$d_2 f$} (TL);
+    \draw (BR) -- node[below, rotate=90] {$d_1 f$} (TR);
+
+    % Draw Diagonal
+    % 'sloped' aligns text with the line
+    \draw (TL) -- node[sloped, below] {$d_2 f$} (BR);
+
+\end{tikzpicture}

@@ -664,7 +664,7 @@
 
         Before we look more closely at these definitions, let us prove \ref{chII-25}.
 
-    \section{Lemma}
+    \section{Lemma}\label{chII-28}
         Every Segal set $X$ has unique inner horn fillers and in fact unique fillers for all horns $\horn{n}{i}$ with $n \geq 4$.
         \smallskip
 
@@ -1704,3 +1704,148 @@
             \end{tikzpicture}
         \end{equation*}
         and extend and done. Finally!\hfill$\Box$
+
+    \section{Remark}\label{chII-30}
+        A more systematic way of defining $f \sim g$ is the existence of a square $\Delta^1 \times \Delta^1 \to X$:
+        \begin{equation*}
+            \begin{tikzpicture}[
+                scale=0.8, 
+                thick, 
+                color=violet, 
+                every node/.style={text=black}
+            ]
+
+                % Define Coordinates
+                \coordinate (TL) at (0,2); % Top Left
+                \coordinate (TR) at (2,2); % Top Right
+                \coordinate (BL) at (0,0); % Bottom Left
+                \coordinate (BR) at (2,0); % Bottom Right
+
+                % Draw Square Edges
+                \draw (TL) -- node[above] {$f$} (TR);
+                \draw (BL) -- node[below] {$g$} (BR);
+    
+                % Draw Vertical Edges with rotated labels
+                % 'rotate=90' aligns the text vertically reading upwards
+                \draw (BL) -- node[above, rotate=90] {$\text{deg}$} (TL);
+                \draw (BR) -- node[above, rotate=-90] {$\text{deg}$} (TR);
+
+                % Draw Diagonal
+                % 'sloped' aligns text with the line
+                \draw (TL) -- node[sloped, below] {} (BR);
+
+            \end{tikzpicture}            
+        \end{equation*}
+        The equivalence to our definition is clear from transitivity of $\sim$.
+
+    \section{Corollary}\label{chII-31}
+        If $X$ has inner horn fillers up to dimension $3$ then there is a canonical isomorphism
+        \begin{equation*}
+            \pi X \longleftrightarrow h X \,.
+        \end{equation*}
+        \smallskip
+
+        \emph{Proof}. Both directions are the identity on objects.
+
+        To go from $hX \to \pi X$, take
+        \begin{equation*}
+            \begin{tikzcd}
+                \longpb{X_1}{X_0} \arrow[r] \arrow[dr] & \longpb{{X_1}/{\sim}}{X_0} \arrow[r, "\circ"] & {X_1}/{\sim} = \mor \pi X \\
+                & \mor hX \arrow[ur, dashed] &
+            \end{tikzcd}
+        \end{equation*}
+        It is hopefully clear that this constitutes a functor.
+
+        Conversely,
+        \begin{equation*}
+            \begin{tikzcd}
+                X_1 \arrow[r] \arrow[d] & \mor hX \\
+                {X_1}/{\sim} = \mor \pi X \arrow[ur, dashed]
+            \end{tikzcd}
+        \end{equation*}
+        Here, the compatibility with composition requires a (brief) moment's thought. Clearly
+        \begin{equation*}
+            \pi X \to hX \to \pi X
+        \end{equation*}
+        is the identity (even before taking quotients), and
+        \begin{equation*}
+            hX \to \pi X \to hX
+        \end{equation*}
+        sends $\left[ f_1, \ldots, f_n \right]$ to $\left[ f_1 \right] \circ \ldots \circ \left[ f_n \right]$, but each composition is witnessed by a relation in $hX$ so $(f_1, \ldots, f_n)$ is equivalent to any composite of the $f_i$ in $\mor hX$.\hfill$\Box$
+
+    \section{Proof of \ref{chII-25}}
+        We have to verify that the unit $X \to \Nn hX$ for a simplicial set with unique inner horn fillers and the counit $h\Nn\Cc \to \Cc$ for an arbitrary category are isomorphisms.
+        In both statements we are free to replace $h$ by $\pi$ because of \ref{chII-28} and \ref{chII-31}. But this makes the second part tautological:
+        \begin{equation*}
+            \pi \Nn \Cc \to \Cc
+        \end{equation*}
+        is essentially the identity, because the relation $\sim$ on $\Nn_1 \Cc$ from the definition  of $\pi$ becomes equality.
+
+        A similar phenomenon occurs for the map
+        \begin{equation*}
+            X \to \Nn \pi X \,.
+        \end{equation*}
+        As horn fillers of $\horn{2}{1}$ are unique in $X$ the relation $\sim$ on $X_1$ is also equality: For $f \in X_1$ the simplex $s_1(f) \in X_2$ is the only $2$-simplex $\sigma$ with $d_1(\sigma) = f$ and $d_2(\sigma)$ degenerate:
+        \begin{equation*}
+            \begin{tikzpicture}[
+                scale=0.9, 
+                thick, 
+                color=violet, 
+                every node/.style={text=black},
+                dot/.style={circle, fill=violet, inner sep=1.5pt, outer sep=0pt}
+            ]
+
+                % Define coordinates
+                \coordinate (O) at (0,0);       % Vertex 0
+                \coordinate (A) at (1, 1.5);    % Vertex 1
+                \coordinate (B) at (2, 0);      % Vertex 2
+
+                % Draw the triangle and edge labels
+                \draw (O) -- node[left] {$f$} (A) 
+                    -- node[right] {$s_0 d_0 f$} (B) 
+                    -- node[below] {$f$} cycle;
+
+                % Draw vertices (dots)
+                \node[dot] at (O) {};
+                \node[dot] at (A) {};
+                \node[dot] at (B) {};
+
+                % Draw vertex labels (0, 1, 2)
+                \node[below left, text=black] at (O) {0};
+                \node[above, text=black] at (A) {1};
+                \node[below right, text=black] at (B) {2};
+
+                % Draw center label H
+                \node[scale=0.9] at (1, 0.6) {$s_1(f)$};
+
+            \end{tikzpicture}          
+        \end{equation*}
+        Thus $X \to \Nn \pi X$ is the identity on bot $0$- and $1$-simplices, in particular an isomorphism. As bot $X$ and $\Nn \pi X$ have unique inner horn fillers we can now use induction to deduce the result:
+
+        If $X_i \to \Nn_i \pi X$ is an isomorphism, then so is
+        \begin{equation*}
+            \Hom_{\sSet}(Y, X) \to \Hom_{\sSet}(Y, \Nn \pi X)
+        \end{equation*}
+        for any $i$-dimensional $Y$:
+        \begin{align*}
+            \Hom_{\sSet}(Y, X) &\cong \Hom_{sSet}(\sk_i Y, X) \\
+                             &\cong \Hom_{\sSet}(Y, \cosk_i X) \\
+                             &\cong \Hom_{\sSet}(Y, \cosk_i \Nn \pi X) \\
+                             &\cong \Hom_{\sSet}(\sk_i Y, \Nn \pi X) \\
+                             &\cong \Hom_{\sSet}(Y, \Nn \pi X)
+        \end{align*}
+        So (since we may assume $i \geq 1$) consider the diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                \Hom_{\sSet}(\Delta^{i+1}, X) \arrow[r] \arrow[d] & \Hom_{\sSet}(\Delta^{i+1}, \Nn \pi X) \arrow[d] \\
+                \Hom_{\sSet}(\horn{i+1}{1}, X) \arrow[r] & \Hom_{\sSet}(\horn{i+1}{1}, \Nn \pi X)
+            \end{tikzcd}
+        \end{equation*}
+        then the vertical maps are isomorphisms by unique horn filling, and the lower horizontal one by induction and the fact that $\horn{i+1}{1}$ is $1$-dimensional. It follows that the top horizontal map is bijective as well, i.e.
+        \begin{equation*}
+            X_{i+1} \to \Nn_{i+1} \pi X
+        \end{equation*}
+        is an isomorphism.\hfill$\Box$
+        \medskip
+
+        Note that the proff does not even need all horns fillable. Unique fillability of the horns $\horn{i}{1}$ and $\horn{3}{2}$ is enough to guarantee $X \cong \Nn \pi X$.        
