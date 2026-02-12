@@ -2,3 +2,156 @@
     The goal of this section is to introduce the homotopy coherent nerve of Cordier and Porter which will be our main source of examples of quasi-categories. First we will have to define the input objects, and this will take us back to ordinary category theory for a while.
 
     \section{Definition}
+        A \emph{monoidal structure} on a category $\Cc$ consists of
+        \begin{enumerate}[label=\roman*)]
+            \item
+                a functor $\mu \colon \Cc^2 \to \Cc$, usually written as
+                \begin{equation*}
+                    (X, Y) \mapsto X \boxtimes Y \,,
+                \end{equation*}
+            \item
+                an object $\1 \in \Cc$, regarded as a functor
+                \begin{equation*}
+                    \1 \,\colon * \to \Cc
+                \end{equation*}
+            \item
+                a natural isomorphism
+                \begin{equation*}
+                    \alpha \,\colon \mu \circ \left( \mu \times \id_{\Cc} \right) \Rightarrow \mu \circ \left( \id_{\Cc} \times \mu \right)
+                \end{equation*}
+                of functors $\Cc^3 \to \Cc$, and
+            \item
+                natural isomorphisms
+                \begin{align*}
+                    \eta_L \,\colon \id_{\Cc} &\Rightarrow \mu \circ \left( \1 \times \id_{\Cc} \right) \\
+                    \eta_R \,\colon \id_{\Cc} &\Rightarrow \mu \circ \left( \id_{\Cc} \times \1 \right)
+                \end{align*}
+        \end{enumerate}
+        such that the following two diagrams commute:
+        \begin{equation*}
+            \begin{tikzcd}
+                \mu \circ (\id \times \mu) \circ (\mu \times \id \times \id) \arrow[r, equal]                                   & \mu \circ (\mu \times \id) \circ (\id \times \id \times \mu) \arrow[d, "\alpha", Rightarrow] \\
+                \mu \circ (\mu \times \id) \circ (\mu \times \id \times \id) \arrow[u, "\alpha"', Rightarrow] \arrow[d, "\alpha", Rightarrow] & \mu \circ (\id \times \mu) \circ (\id \times \id \times \mu)                                 \\
+                \mu \circ (\mu \times \id) \circ (\id \times \mu \times \id) \arrow[r, "\alpha"', Rightarrow]                                 & \mu \circ (\id \times \mu) \circ (\id \times \mu \times \id) \arrow[u, "\alpha", Rightarrow]
+            \end{tikzcd}
+        \end{equation*}
+        \smallskip
+        
+        \begin{equation*}
+            \begin{tikzcd}[row sep=tiny, column sep=normal]
+                                                                     & \mu \circ (\mu \times \id) \circ (\id \times \1 \times \id) \arrow[dd, "\alpha", Rightarrow] \\
+\mu = \mu \circ (\id \times \id) \arrow[ru, "\eta_R", Rightarrow, start anchor={[yshift=-0.5ex]north east}, end anchor={[yshift=-0.5ex]real west}] \arrow[rd, "\eta_L"', Rightarrow, start anchor={[yshift=0.5ex]south east}, end anchor={[yshift=0.5ex]real west}] &                                    \\
+                                                                     & \mu \circ (\id \times \mu) \circ (\id \times \1 \times \id)                                 
+            \end{tikzcd}
+        \end{equation*}
+        These diagrams encode that
+        \begin{equation*}
+            \begin{tikzpicture}[
+                scale=1.2,   % Adjust scale to fit the long equations
+                implies/.style={
+                    double, 
+                    double equal sign distance, 
+                    -Implies
+                },    
+            ]
+            
+                \node (Top) at (90:2.5cm) {$((X \boxtimes Y) \boxtimes W) \boxtimes Z$};
+
+                \node (TopRight) at (18:2.5cm) {$(X \boxtimes (Y \boxtimes W)) \boxtimes Z$};
+
+                \node (BotRight) at (-54:2.5cm) {$X \boxtimes ((Y \boxtimes W) \boxtimes Z)$};
+
+                \node (BotLeft) at (-126:2.5cm) {$X \boxtimes (Y \boxtimes (W \boxtimes Z))$};
+
+                \node (TopLeft) at (162:2.5cm) {$(X \boxtimes Y) \boxtimes (Y \boxtimes Z)$};
+            
+                \draw[implies] (Top) -- node[sloped, above] {} (TopRight);
+
+                \draw[implies] (BotRight) -- node[right, xshift=2pt] {} (TopRight);
+
+                \draw[implies] (BotLeft) -- node[sloped, below] {} (BotRight);
+
+                \draw[implies] (TopLeft) -- node[sloped, above] {} (Top);
+
+                \draw[implies] (TopLeft) -- node[left, xshift=-2pt] {} (BotLeft);
+
+            \end{tikzpicture}
+        \end{equation*}
+        and
+        \begin{equation*}
+            \begin{tikzcd}[row sep=tiny, column sep=normal]
+                                                                     & (X \boxtimes \1) \boxtimes Y \arrow[dd, Rightarrow] \\
+X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, end anchor={[yshift=-0.5ex]real west}] \arrow[rd, Rightarrow, start anchor={[yshift=0.5ex]south east}, end anchor={[yshift=0.5ex]real west}] &                                    \\
+                                                                     & X \boxtimes (\1 \boxtimes Y)                                 
+            \end{tikzcd}
+        \end{equation*}
+        commute. In Mac Lane's book there is a third axiom, namely $\eta_L = \eta_R \colon \1 \to \1 \boxtimes \1$, which we will need later, so let me prove it.
+
+    \section{Lemma (Kelly)}
+        The diagrams
+        \begin{equation*}
+            \begin{tikzcd}[row sep=tiny, column sep=large]
+                                                                     & (X \boxtimes Y) \boxtimes \1 \arrow[dd, "\alpha", Rightarrow] \\
+(X \boxtimes Y) \arrow[ru, "\eta_R", Rightarrow, start anchor={[yshift=-0.5ex]north east}, end anchor={[yshift=-0.5ex]real west}] \arrow[rd, "\id_X \boxtimes \, \eta_R"' sloped, Rightarrow, start anchor={[yshift=0.5ex]south east}, end anchor={[yshift=0.5ex]real west}] &                                    \\
+                                                                     & X \boxtimes (Y \boxtimes \1)                                 
+            \end{tikzcd}
+            \quad
+            \begin{tikzcd}[row sep=tiny, column sep=large]
+                                                                     & \1 \boxtimes (X \boxtimes Y) \arrow[dd, "\alpha", Rightarrow] \\
+(X \boxtimes Y) \arrow[ru, "\eta_L", Rightarrow, start anchor={[yshift=-0.5ex]north east}, end anchor={[yshift=-0.5ex]real west}] \arrow[rd, "\eta_L \boxtimes \, \id_Y"' sloped, Rightarrow, start anchor={[yshift=0.5ex]south east}, end anchor={[yshift=0.5ex]real west}] &                                    \\
+                                                                     & (\1 \boxtimes X) \boxtimes Y                                 
+            \end{tikzcd}            
+        \end{equation*}
+        commute for all $X, Y \in \Cc$, and consequently
+        \begin{equation*}
+            \eta_R = \eta_L \,\colon \1 \to \1 \boxtimes \1 \,.
+        \end{equation*}
+        \smallskip
+
+        \emph{Proof}. Consider the diagram
+        \begin{equation*}
+            \begin{tikzcd}[sep=huge]
+                ((\1 \boxtimes \1) \boxtimes Y) \arrow[r, Rightarrow, "\alpha"] \arrow[rrdd, phantom, "?" very near end, end anchor={north}] & (\1 \boxtimes (\1 \boxtimes X)) \boxtimes Y \arrow[rd, Rightarrow, "\alpha"] & \\
+                (\1 \boxtimes (\1 \boxtimes X)) \boxtimes Y \arrow[u, Rightarrow, "(\eta_R \, \boxtimes \, \id_X) \, \boxtimes \, \id_Y"] \arrow[rd, Rightarrow, "\alpha"] \arrow[ru, Rightarrow, "(\id_{\1} \, \boxtimes \, \eta_L) \, \boxtimes \, \id_Y" sloped] & & \1 \boxtimes ((\1 \boxtimes X) \boxtimes Y) \arrow[d, Rightarrow, "\alpha"] \\ 
+                & \1 \boxtimes (X \boxtimes Y) \arrow[r, Rightarrow, "\id_{\1} \, \boxtimes \, \eta_L"'] \arrow[ru, Rightarrow, "\id_{\1} \, \boxtimes \, (\eta_L \, \boxtimes \, \id_Y)" sloped] & \1 \boxtimes (\1 \boxtimes (X \boxtimes Y))                      
+            \end{tikzcd}            
+        \end{equation*}
+        Then commutativity of the right triangle in the claim is then equivalent to that of the triangle labeled with a question mark, as the latter is $\1 \boxtimes -$ applied to the former (and $\1 \boxtimes - \overset{\eta_L}{\cong} \id_{\Cc}$ is an equivalence of categories). But because of the left and middle diagrams commuting and consisting of isomorphisms, this equivalent to the commutativity of the outer diagram
+        \begin{equation*}
+            \begin{tikzcd}[sep=huge]
+                ((\1 \boxtimes \1) \boxtimes Y) \arrow[r, Rightarrow, "\alpha"] \arrow[rd, Rightarrow, magenta, "\alpha"] & (\1 \boxtimes (\1 \boxtimes X)) \boxtimes Y \arrow[rd, Rightarrow, "\alpha"] & \\
+                (\1 \boxtimes (\1 \boxtimes X)) \boxtimes Y \arrow[u, Rightarrow, "(\eta_R \, \boxtimes \, \id_X) \, \boxtimes \, \id_Y"] \arrow[rd, Rightarrow, "\alpha"] & |[text=magenta]|(\1 \boxtimes \1) \boxtimes (X \boxtimes Y) \arrow[rd, Rightarrow, magenta, "\alpha"] & \1 \boxtimes ((\1 \boxtimes X) \boxtimes Y) \arrow[d, Rightarrow, "\alpha"] \\ 
+                & \1 \boxtimes (X \boxtimes Y) \arrow[r, Rightarrow, "\id_{\1} \, \boxtimes \, \eta_L"'] \arrow[u, Rightarrow, magenta, "\eta_R \, \boxtimes \, (\id_X \boxtimes \id_Y)"' near start] & \1 \boxtimes (\1 \boxtimes (X \boxtimes Y))                      
+            \end{tikzcd}            
+        \end{equation*}
+        But this follows because of the pink stuff (left parallerlogram - naturality of $\alpha$, upper right pentagon - pentagon axiom, lower triangle - unit axiom). The claim for $\eta_R$ follows by the dual argument. To obtain $\eta_L = \eta_R \colon \1 \to \1 \boxtimes \1$ observe that it again suffices to prove $\eta_L \boxtimes \1 = \eta_R \boxtimes \1 \colon \1 \boxtimes \1 \to (\1 \boxtimes \1) \boxtimes \1$. But from naturality of $\eta_L$ we find the commutative diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                \1 \arrow[r, "\eta_L"] \arrow[d, "\eta_L"'] & \1 \boxtimes \1 \arrow[d, "\1 \boxtimes \eta_L"] \\
+                \1 \boxtimes \1 \arrow[r, "\eta_L"] & \1 \boxtimes (\1 \boxtimes \1)
+            \end{tikzcd}
+        \end{equation*}
+        which shows
+        \begin{equation*}
+            \1 \boxtimes \eta_L = \eta_L \,\colon \1 \boxtimes \1 \to \1 \boxtimes (\1 \boxtimes \1) \,.
+        \end{equation*}
+        But the first part of the proposition then gives $\1 \boxtimes \eta_L = (\eta_L \boxtimes \1) \circ \alpha$. But from the unit axiom we also find $\1 \boxtimes \eta_L = (\eta_R \boxtimes \1) \circ \alpha$, so
+        \begin{equation*}
+            (\eta_R \boxtimes \1) \circ \alpha = (\eta_L \boxtimes \1) \circ \alpha
+        \end{equation*}
+        which gives the claim since $\alpha$ is an isomorphism.\hfill$\Box$
+        \medskip
+
+        Now Mac Lane proved that given the commutativity of these diagrams, \emph{every} sensible diagram in $\Cc$ built from objects of $\Cc$ by tensoring and units commutes; more formally, we showed that there is a canonical isomorphism between any two meaningful ways of positioning brackets and units in the expression
+        \begin{equation*}
+            X_1 \boxtimes X_2 \boxtimes \ldots \boxtimes X_n \,,
+        \end{equation*}
+        e.g.
+        \begin{equation*}
+            ((X_1 \boxtimes \1) \boxtimes X_2) \boxtimes X_3 \quad \text{and} \quad (\1 \boxtimes (X_1 \boxtimes X_2)) \boxtimes (\1 \boxtimes X_3)
+        \end{equation*}
+        but not
+        \begin{equation*}
+            (X_1 \boxtimes \1 \boxtimes X_2) \boxtimes X_3 \,,
+        \end{equation*}
+        for any $X_1, \ldots, X_n \in \Cc$ that is any two ``formal'' ways of moving between such expressions give the same result. Of course such an isomorphism is generally not unique: On the one hand for the stupid reason that there can for example be isomorphisms $(X \boxtimes Y) \boxtimes Z \to X \boxtimes (Y \boxtimes Z)$ that have nothing to do with the associator, but also for the more subtle reason that it may happen that two differently bracketed expressions are "accidentally" equal in $\Cc$, which allows one to build non-commuting diagrams made solely from associators, by skipping some rebracketings. See Mac Lane's book for a precise statement of this \emph{coherence theorem}.

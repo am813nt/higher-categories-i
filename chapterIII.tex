@@ -11,7 +11,7 @@
         \begin{equation*}
             \begin{tikzcd}
                 \Hom_{\Cc}(x, y) \arrow[r] \arrow[d]
-                \arrow[dr, phantom, "\pb", very near end, end anchor={[xshift=-1ex]north}]]
+                \arrow[dr, phantom, "\pb", very near end, end anchor={[xshift=-1ex]north}]
                 & F(\Delta^1, \Cc) \arrow{d}{(d_1^*, d_0^*)} \\
                 \Delta^0 \arrow{r}{(x,y)}
                 & \Cc \times \Cc
@@ -114,7 +114,7 @@
         A morphism $f \colon x \to y$ in $\Cc$ is an equivalence if and only if $\left[ f \right] \colon x \to y$ in $hC$ is an isomorphism.
         \smallskip
 
-        \emph{Proof}. The 'if'-directoin follows directly from exercise 3 of sheet 4 and $h\Cc \cong \pi \Cc$, while the 'only if'-direction is trivial.\hfill$\Box$
+        \emph{Proof}. The 'if'-direction follows directly from exercise 3 of sheet 4 and $h\Cc \cong \pi \Cc$, while the 'only if'-direction is trivial.\hfill$\Box$
 
         \section{Definition}
         A quasi-category in which every morphism is an equivalence is called an \emph{anima}, or quasi-groupoid or $\infty$-groupoid.
@@ -222,7 +222,7 @@
         in $\Dd$ is an equivalence.
 
         \section{Theorem F}
-        A functor $F \colon \Cc \to \Dd$ is an equialence of quasi-categories, if and only if it induces an equivalence of categories $h\Cc \to h\Dd$ and for every $x, y \in \Cc$ a homotopy equivalence
+        A functor $F \colon \Cc \to \Dd$ is an equivalence of quasi-categories, if and only if it induces an equivalence of categories $h\Cc \to h\Dd$ and for every $x, y \in \Cc$ a homotopy equivalence
         \begin{equation*}
             \Hom_{\Cc}(x, y) \to \Hom_{\Dd}(F(x), F(y)) \,.
         \end{equation*}
@@ -231,7 +231,7 @@
         \begin{equation*}
             \Nn \Kan \subseteq \An \quad \text{and} \quad \Nn \qCat \subseteq \Cat_{\infty}
         \end{equation*}
-        which are equalities on $0$- and $1$-simplices, but the right hand side will be much bigger. The difference is best illustrated by $2$-simplices in $\Nn \Kan$ and $\An$. For the former we obtain a commuting triangle, while for the latter it should consist of three maos $f, g, h$ and a homotopy $H \colon f \circ g \Rightarrow h$:
+        which are equalities on $0$- and $1$-simplices, but the right hand side will be much bigger. The difference is best illustrated by $2$-simplices in $\Nn \Kan$ and $\An$. For the former we obtain a commuting triangle, while for the latter it should consist of three maps $f, g, h$ and a homotopy $H \colon f \circ g \Rightarrow h$:
         \begin{equation*}
             \begin{tikzpicture}[
                 scale=0.9, 

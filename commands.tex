@@ -24,6 +24,11 @@
 \newcommand{\longpb}[2]{#1 \underset{#2}{\times} \ldots \underset{#2}{\times} #1}
 \newcommand{\comp}{\operatorname{comp}}
 \newcommand*{\pb}{\mathlarger{\mathlarger{\lrcorner}}}
+\newcommand*{\boldone}{\text{\usefont{U}{bbold}{m}{n}1}}
+
+\DeclareFontFamily{U}{stix2bb}{}
+\DeclareFontShape{U}{stix2bb}{m}{n} {<-> stix2-mathbb}{}
+\NewDocumentCommand{\1}{}{\text{\usefont{U}{stix2bb}{m}{n}1}}
 
 % some categories
 \newcommand{\Set}{\operatorname{Set}}
