@@ -1,7 +1,7 @@
 \chapter{Simplicially Enriched Categories}
     The goal of this section is to introduce the homotopy coherent nerve of Cordier and Porter which will be our main source of examples of quasi-categories. First we will have to define the input objects, and this will take us back to ordinary category theory for a while.
 
-    \section{Definition}
+    \section{Definition}\label{chIV-1}
         A \emph{monoidal structure} on a category $\Cc$ consists of
         \begin{enumerate}[label=\roman*)]
             \item
@@ -124,7 +124,7 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
                 & \1 \boxtimes (X \boxtimes Y) \arrow[r, Rightarrow, "\id_{\1} \, \boxtimes \, \eta_L"'] \arrow[u, Rightarrow, magenta, "\eta_R \, \boxtimes \, (\id_X \boxtimes \id_Y)"' near start] & \1 \boxtimes (\1 \boxtimes (X \boxtimes Y))                      
             \end{tikzcd}            
         \end{equation*}
-        But this follows because of the pink stuff (left parallerlogram - naturality of $\alpha$, upper right pentagon - pentagon axiom, lower triangle - unit axiom). The claim for $\eta_R$ follows by the dual argument. To obtain $\eta_L = \eta_R \colon \1 \to \1 \boxtimes \1$ observe that it again suffices to prove $\eta_L \boxtimes \1 = \eta_R \boxtimes \1 \colon \1 \boxtimes \1 \to (\1 \boxtimes \1) \boxtimes \1$. But from naturality of $\eta_L$ we find the commutative diagram
+        But this follows because of the pink stuff (left parallelogram - naturality of $\alpha$, upper right pentagon - pentagon axiom, lower triangle - unit axiom). The claim for $\eta_R$ follows by the dual argument. To obtain $\eta_L = \eta_R \colon \1 \to \1 \boxtimes \1$ observe that it again suffices to prove $\eta_L \boxtimes \1 = \eta_R \boxtimes \1 \colon \1 \boxtimes \1 \to (\1 \boxtimes \1) \boxtimes \1$. But from naturality of $\eta_L$ we find the commutative diagram
         \begin{equation*}
             \begin{tikzcd}
                 \1 \arrow[r, "\eta_L"] \arrow[d, "\eta_L"'] & \1 \boxtimes \1 \arrow[d, "\1 \boxtimes \eta_L"] \\
@@ -155,3 +155,130 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
             (X_1 \boxtimes \1 \boxtimes X_2) \boxtimes X_3 \,,
         \end{equation*}
         for any $X_1, \ldots, X_n \in \Cc$ that is any two ``formal'' ways of moving between such expressions give the same result. Of course such an isomorphism is generally not unique: On the one hand for the stupid reason that there can for example be isomorphisms $(X \boxtimes Y) \boxtimes Z \to X \boxtimes (Y \boxtimes Z)$ that have nothing to do with the associator, but also for the more subtle reason that it may happen that two differently bracketed expressions are "accidentally" equal in $\Cc$, which allows one to build non-commuting diagrams made solely from associators, by skipping some rebracketings. See Mac Lane's book for a precise statement of this \emph{coherence theorem}.
+
+    \section{Remark}
+        Of course the conclusion of the coherence theorem should really be the \emph{definition} of a monoidal category, and the theorem should be that it suffices to check the pentagon and unit axioms to establish a monoidal structure! The same already goes for associativity in algebra: its definition should be that any bracketing of $a_1 \cdot \ldots \cdot a_n$ gives the same result and it is a proposition that $(a_1 a_2) a_3 = a_1 (a_2 a_3)$ already implies this. This becomes visible when associativity is replaced by weaker conditions such as \emph{alternativity} (meaning that bracketing of $a_1 \cdot \ldots \cdot a_n$ only need to agree if $| \left\{ a_1, \ldots, a_n \right\}| \leq 2$) or \emph{power-associativity} (rebracketing requirement only for $| \left\{ a_1, \ldots, a_n \right\}| = 1$, i.e. $a_1 = a_2 = \ldots = a_n$). That rebracketing for expressions of length $3$ suffices is a non-trivial theorem of Artin in the former case, and simply false in the latter!
+
+        In the case of quasi-categories there can also not be a coherence theorem, albeit for a different reason: The commutativity of a rebracketing diagram is then a \emph{datum} and not a condition and larger and larger diagrams require higher and higher simplices as witnesses for their commutativity. The definition of a monoidal quasi-category is therefore necessarily quite different from \ref{chIV-1}; in fact, it is much more elegant as it avoids the choices we shall have to make in the examples below.
+
+    \section{Examples}
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                Using your favorite model of the product of two sets and your favorite one element set $*$ ($\left\{ \varnothing \right\}$, no?) we obtain a functor
+                \begin{equation*}
+                    - \times - \,\colon \Set \to \Set
+                \end{equation*}
+                and as part of the package come bijections
+                \begin{equation*}
+                    (X \times Y) \times Z \longleftrightarrow X \times (Y \times Z)
+                \end{equation*}
+                and
+                \begin{equation*}
+                    * \times Z \longleftrightarrow Z \longleftrightarrow Z \times *
+                \end{equation*}
+                which give the associator and unit isomorphisms of a monoidal structure on $\Set$.
+            \item 
+                Let $\Cc$ be a category which admits finite products. Then pick a functor
+                \begin{equation*}
+                    \mu \,\colon \Cc^2 \to \Cc \,,
+                \end{equation*}
+                which upon postcomposition with Yoneda's embedding $\Cc \to \mathrm{P}(\Cc)$ becomes naturally isomorphic to
+                \begin{equation*}
+                    \Cc^2 \overset{Y_{\Cc^2}}{\longrightarrow} \mathrm{P}(\Cc^2) \overset{\Delta^*}{\longrightarrow} \mathrm{P}(\Cc)
+                \end{equation*}
+                say via an isomorphism $\varphi$ and let furthermore $* \in \Cc$ be a terminal object; the assumptions exactly guarantee the existence of such objects! \\
+                Unwinding definitions the functor $\mu$ sends $(X, Y)$ to a choice of product $X \times Y$. Now $\varphi$ induces isomorphisms of both composites of
+                \begin{equation*}
+                    \mu \circ (\id_{\Cc} \circ \mu) \quad \text{and} \quad \mu \circ (\mu \circ \id_{\Cc})
+                \end{equation*}
+                and the Yoneda embedding of $\Cc$ with
+                \begin{equation*}
+                    \Cc^3 \overset{Y_{\Cc^3}}{\longrightarrow} \mathrm{P}(\Cc^3) \overset{\Delta}{\longrightarrow} \mathrm{P}(\Cc)
+                \end{equation*}
+                and the resulting isomorphism between the two composites is a candidate associator. \\
+                Similarly,
+                \begin{equation*}
+                    \mu \circ (\id_{\Cc} \times *) \quad \text{and} \quad \mu \circ (* \times \id_{\Cc})
+                \end{equation*}
+                composed with $Y_{\Cc}$ both represent the Yoneda embedding of $\Cc$ itself, so are canonically equivalent to the identity. Checking the axioms is tedious but easy.\\
+                what we have just constructed is a \emph{cartesian} monoidal structure on $\Cc$; by definition this is a monoidal structure with terminal unit such that the resulting maps
+                \begin{gather*}
+                    X \boxtimes Y \longrightarrow X \boxtimes \1 \overset{Y^{-1}_R}{\longrightarrow} X \\
+                    X \boxtimes Y \longrightarrow \1 \boxtimes Y \overset{Y^{-1}_L}{\longrightarrow} Y
+                \end{gather*}
+                exhibit $X \boxtimes Y$ as a product of $X$ and $Y$. Such a structure is not unique but once we have introduced monoidal functors, it is easy to see that they form the objects of a contractible groupoid, so are essentially unique, i.e. the choices occurring in the construction above do not really matter.\\
+                A dual discussion applies to \emph{cocartesian} monoidal structures on categories with finite coproducts.
+            \item 
+                The most prominent example of a monoidal structure that is neither cartesian nor cocartesian is the tensor product $\otimes_R$ on the category $\Mod{R}$, for $R$ a commutative ring, the unit is the ring $R$ itself. Similarly, for a not necessarily commutative ring $A$ the category of $A$-$A$-bimodules, which is just $\Mod{A \otimes A^{\op}}$, also carries a monoidal structure given by $\otimes_A$ with unit $A$.
+            \item 
+                For a category $\Cc$ the category $\Fun(\Cc, \Cc)$ carries a monoidal structure given by composition with unit $\id_{\Cc}$. This is an example of a \emph{strict} monoidal category, that is one where the associator and unitors $\alpha, \eta_L, \eta_R$ are in fact identities.
+            \item 
+                For $M$ a monoid the category $\mathbb{D}M$ is also strictly monoidal. Similarly a commutative monoid $N$ gives rise to a monoidal structure on $\mathbb{B}N$.
+            \item 
+                A monoidal structure on $\Cc$ induces one on $\Cc^{\op}$, by sending $(\mu, \1, \alpha, \eta_L, \eta_R)$ to \\
+                $(\mu^{\op}, \1, \alpha^{-1}, \eta_L^{-1}, \eta_R^{-1})$, and also a reverse monoidal structure on $\Cc$ via $(\mu \circ \tau, \1, \alpha^{-1} \circ \sigma, \eta_R, \eta_L)$, where $\sigma \colon \Cc^3 \to \Cc^3,\; \tau \colon \Cc^2 \to \Cc^2$ are the order reversals. For example,
+                \begin{equation*}
+                    \mathbb{D}(M^{\op}) \simeq (\mathbb{D}M)^{\text{rev}}, \qquad \Fun(\Cc^{\op}, \Cc^{\op}) \simeq \Fun(\Cc, \Cc)^{\op} 
+                \end{equation*}
+                as monoidal categories.
+        \end{enumerate}
+
+    \section{Definition}
+        A \emph{lax monoidal functor} between monoidal categories $\Cc$ and $\Dd$ consists of
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                a functor $\Cc \to \Dd$
+            \item 
+                a natural transformation
+                \begin{equation*}
+                    \lambda \,\colon \mu_{\Cc} \circ (F \times F) \Rightarrow F \circ \mu_{\Dd}
+                \end{equation*}
+                of functors $\Cc^2 \to D$
+            \item 
+                a map
+                \begin{equation*}
+                    u \,\colon \1_{\Dd} \to F(\1_{\Cc})
+                \end{equation*}
+        \end{enumerate}
+        such that
+        \begin{equation*}
+            \begin{tikzcd}
+                (FX \underset{\Dd}{\boxtimes} FY) \underset{\Dd}{\boxtimes} FZ  \arrow[r, "\lambda"] \arrow[d, "\alpha_{\Dd}"'] & F(X \underset{\Cc}{\boxtimes} Y) \underset{\Dd}{\boxtimes} FZ \arrow[d, "\lambda"] \\
+                FX \underset{\Dd}{\boxtimes} (FY \underset{\Dd}{\boxtimes} FZ) \arrow[d, "\lambda"'] & F((X \underset{\Cc}{\boxtimes} Y) \underset{\Cc}{\boxtimes} Z) \arrow[d, "\alpha_{\Cc}"] \\
+                FX \underset{\Dd}{\boxtimes} F(Y \underset{\Cc}{\boxtimes} Z) \arrow[r, "\lambda"] & F(X \underset{\Cc}{\boxtimes} (Y \underset{\Cc} {\boxtimes} Z))
+            \end{tikzcd}
+        \end{equation*}
+        and
+        \begin{equation*}
+            \begin{tikzcd}
+                F(X) \arrow[r, "F \eta^{\Cc}_R"] \arrow[d, "\eta^{\Dd}_R"'] & F(X \boxtimes \1_{\Cc}) \\
+                F(X) \underset{\Dd}{\boxtimes} \1_{\Dd} \arrow[r, "u"] & F(X) \boxtimes F(\1_{\Cc}) \arrow[u, "\lambda"']
+            \end{tikzcd}
+            \quad
+            \begin{tikzcd}
+                F(X) \arrow[r, "F \eta^{\Cc}_L"] \arrow[d, "\eta^{\Dd}_L"'] & F(\1_{\Cc} \boxtimes X) \\
+                \1_{\Dd} \underset{\Dd}{\boxtimes} F(X) \arrow[r, "u"] & F(\1_{\Cc}) \underset{\Dd}{\boxtimes} F(X) \arrow[u, "\lambda"']
+            \end{tikzcd}
+        \end{equation*}
+        commute. The triple $(F, \lambda, u)$ is called (strong) \emph{monoidal} if both $\lambda$ and $u$ are isomorphisms. Dually, an \emph{oplsx monoidal functor} has as data
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                a functor $F \colon \Cc \to \Dd$
+            \item 
+                a natural transformation
+                \begin{equation*}
+                    \omega \,\colon F \circ \mu_{\Dd} \Rightarrow \mu_{\Cc} \circ (F \times F) 
+                \end{equation*}
+            \item 
+                a map
+                \begin{equation*}
+                    c \,\colon F(\1_{\Cc}) \to \1_{\Dd}
+                \end{equation*}
+        \end{enumerate}
+        satisfying dual axioms.
+        \medskip
+
+        Note that a monoidal functor in particular also gives rise to an oplax monoidal one (by inverting $\lambda$ and $u$), so we find categories
+        \begin{equation*}
+            \MonCat^{\lax} \supseteq \MonCat \subseteq \MonCat^{\oplax} \,.
+        \end{equation*}
