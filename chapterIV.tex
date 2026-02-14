@@ -282,3 +282,80 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
         \begin{equation*}
             \MonCat^{\lax} \supseteq \MonCat \subseteq \MonCat^{\oplax} \,.
         \end{equation*}
+
+    \section{Examples}
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                If $\Cc$ and $\Dd$ carry cartesian monoidal structures then any functor $F \colon \Cc \to \Dd$ admits an unique oplax monoidal structure: We have to provide maps
+                \begin{equation*}
+                    F(X \times Y) \to FX \times FY \quad \text{and} \quad F(*_{Cc}) \to *_{\Dd} \,. 
+                \end{equation*}
+                But for the latter there is an unique choice since $*_{\Dd}$ is terminal, and for the former we have to take the map induced by
+                \begin{gather*}
+                    F(X \times Y) \to F(X \times *_{\Cc}) \overset{F_{\eta^{-1}_R}}{\rightarrow} F(X) \\
+                    F(X \times Y) \to F(*_{\Cc} \times Y) \overset{F_{\eta^{-1}_L}}{\rightarrow} F(Y)
+                \end{gather*}
+                Similarly, if $\Cc$ and $\Dd$ carry cocartesian structures then all functors $\Cc \to \Dd$ have unique lax monoidal structures. \\
+                These structures are strong monoidal if and only if $F$ preserves finite products or coproducts, respectively.\label{chIV-6-i}
+            \item 
+                For an adjoint pair $L \colon \Cc \rightleftarrows \Dd \colon R$ between monoidal structures, there is a bijection between
+                \begin{equation*}
+                    \left\{ \text{oplax monoidal structures on L} \right\} \quad \text{and} \quad \left\{ \text{lax monoidal structures on R} \right\}
+                \end{equation*}\label{chIV-6-ii}
+            \item 
+                Here is a concrete example: Consider the adjoint functors
+                \begin{equation*}
+                    \text{free} \colon \Set \rightleftarrows \Ab \colon \text{forget}
+                \end{equation*}
+                Then we have 4 monoidal structures to play with: $(\Set, +)$, $(\Set, \times)$, $(\Ab, \oplus)$ and $\Ab, \otimes$. For the cocartesian structures we find the lax structures given by the evident maps
+                \begin{align*}
+                    \mathbb{Z}[S] \oplus \mathbb{Z}[T] &\to \mathbb{Z}[S + T],  &&0 \to 0 = \mathbb{Z}[\varnothing] &&\in \Ab \\
+                    A + B &\to A \oplus B, &&\varnothing \to 0 &&\in \Set
+                \end{align*}
+                of which the former is clearly strong monoidal (this proves the linear algebra fact, that bases of products are unions of bases). As there are no maps $0 \to \varnothing$ the forgetful functor does not carry an oplax structure. \\
+                For the cartesian structures we find the oplax structures given by
+                \begin{align*}
+                    \mathbb{Z}[S \times T] &\to \mathbb{Z}[S] \oplus \mathbb{Z}[T], &&\mathbb{Z}[*] = \mathbb{Z} \to 0 &&\in \Ab \\
+                    A \oplus B &\overset{\id}{\rightarrow} A \times B, &&0 \to + &&\in \Set
+                \end{align*}
+                where clearly the latter functor is strong monoidal as part \ref{chIV-6-i} implies. Conversely, the free functor this time also carries a lax structure: The zero map
+                \begin{equation*}
+                    \mathbb{Z}[S] \oplus \mathbb{Z}[T] \overset{\circ}{\rightarrow}, \quad 0 \to \mathbb{Z} = \mathbb{Z}[*] \in \Ab
+                \end{equation*}
+                Finally, the free functor is also strong monoidal
+                \begin{equation*}
+                    \text{free} \,\colon (\Set, \times) \to (\Ab, \otimes)
+                \end{equation*}
+                since
+                \begin{equation*}
+                    \mathbb{Z}[S \times T] \cong \mathbb{Z}[S] \otimes \mathbb{Z}[T], \quad \mathbb{Z}[*] \cong \mathbb{Z} \,. 
+                \end{equation*}
+                This also admits a categorical proof, but let us just observer that it gives a lax monoidal structure to the forgetful functor, and once you're done the exercise proving \ref{chIV-6-ii} it will unwind to give
+                \begin{equation*}
+                    A \times B \to A \otimes B, \quad * \overset{1}{\rightarrow} \mathbb{Z}
+                \end{equation*}
+                where the former map is the canonical bilinear form, which can conversely be used to construct the map
+                \begin{equation*}
+                    \mathbb{Z}[S \times T] \to \mathbb{Z}[S] \otimes \mathbb{Z}[T]
+                \end{equation*}
+                via \ref{chIV-6-ii}. I don't think there are any refinements in the final case $(\Set, +)$ and $(\Ab, \otimes)$.
+            \item 
+                the functors
+                \begin{equation*}
+                    \Hom_{\Cc}(\1, -) \colon \Cc \to \Set, \quad \Hom_{\Cc}(-, \1) \colon \Cc^{\op} \to \Set
+                \end{equation*}
+                are both lax monoidal for the cartesian structure on $\Set$: We require a map
+                \begin{equation*}
+                    * \to \Hom_{\Cc}(\1, \1)
+                \end{equation*}
+                in both cases, for which we take $\id_{\1}$, and then maps
+                \begin{gather*}
+                    \Hom_{\Cc}(\1, X) \times \Hom_{\Cc}(\1, Y) \to \Hom_{\Cc}(\1, X \boxtimes Y) \\
+                    \Hom_{\Cc}(X, \1) \times \Hom_{\Cc}(Y, \1) \to \Hom_{\Cc}(X \boxtimes Y, \1)
+                \end{gather*}
+                for which we take
+                \begin{equation*}
+                    (f \colon \1 \to X, g \colon \1 \to Y) \mapsto (\1 \overset{\eta}{\longrightarrow} \1 \boxtimes \1 \overset{f \otimes g}{\longrightarrow} X \boxtimes Y)
+                \end{equation*}
+                and the dual construction. Checking the axioms is a good exercise.
+        \end{enumerate}
