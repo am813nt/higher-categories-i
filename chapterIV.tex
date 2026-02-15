@@ -330,7 +330,7 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
                 \begin{equation*}
                     \mathbb{Z}[S \times T] \cong \mathbb{Z}[S] \otimes \mathbb{Z}[T], \quad \mathbb{Z}[*] \cong \mathbb{Z} \,. 
                 \end{equation*}
-                This also admits a categorical proof, but let us just observer that it gives a lax monoidal structure to the forgetful functor, and once you're done the exercise proving \ref{chIV-6-ii} it will unwind to give
+                This also admits a categorical proof, but let us just observe that it gives a lax monoidal structure to the forgetful functor, and once you're done the exercise proving \ref{chIV-6-ii} it will unwind to give
                 \begin{equation*}
                     A \times B \to A \otimes B, \quad * \overset{1}{\rightarrow} \mathbb{Z}
                 \end{equation*}
@@ -359,3 +359,85 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
                 \end{equation*}
                 and the dual construction. Checking the axioms is a good exercise.
         \end{enumerate}
+
+    \section{Definition}
+        Let $F, G \colon \Cc \to \Dd$ be lax monoidal functors. Then a transformation $\tau \colon F \to G$ is called \emph{monoidal} if the diagrams
+        \begin{equation*}
+            \begin{tikzcd}
+                FX \underset{\Dd}{\boxtimes} FY \arrow[r, "\lambda_F"] \arrow[d, "\tau"] & F(X \underset{\Cc}{\boxtimes} Y) \arrow[d, "\tau"] \\
+                GX \underset{\Dd}{\boxtimes} GY \arrow[r, "\lambda_G"] & G(X \underset{\Cc}{\boxtimes} Y)
+            \end{tikzcd}
+            \qquad
+            \begin{tikzcd}[sep=small]
+                & F(\1_{\Cc}) \arrow[dd, "\tau"] \\
+                \1_{\Dd} \arrow[ur, "u_F"] \arrow[dr, "u_G"'] & \\
+                & G(\1_{\Cc})
+            \end{tikzcd}
+        \end{equation*}
+        commute for all $X, Y \in \Cc$.\\
+        The analogous definition applies to transformations of oplax monoidal functors.
+
+        Note that for a strong monoidal functor the two arising notions of monoidal transformation agree, We obtain full inclusions
+        \begin{equation*}
+            \Fun^{\lax}(\Cc, \Dd) \supseteq \Fun^{\text{mon}}(\Cc, \Dd) \subseteq \Fun^{\oplax}(\Cc, \Dd) \,.
+        \end{equation*}
+        Note furthermore, that these definitions provide us with the notions monoidal natural isomorphism of functor (which can again be tested pointwise) and monoidal equivalence of categories. Here a priori, there are three notions which might be called lax, oplax and strog monoidal equivalence. These turn out to agree: Two lax monoidal functors
+        \begin{equation*}
+            F \,\colon \Cc \leftrightarrows \Dd \colon G
+        \end{equation*}
+        with $F \circ G$ and $G \circ F$ monoidally isomorphic to the respective identities, are automatically strong monoidal (as one easily checks by writing out the definitions) Let me immediately warn you that the same does not apply if $F \colon \Cc \to \Dd$ is lax monoidal and an equivalence of categories, see the example \ref{chIV-8-ii} below.
+    
+        A word on terminology: Many authors call such transformation lax monoidal and oplax monoidal. There is, however, nothing lax about the transformations or their monoidality, but rather only about the functors they run between. Clearly, that's no good!
+
+    \section{Examples}
+        \begin{enumerate}[label=\roman*)]
+            \item
+                If $\Cc$ and $\Dd$ are cartesian monoidal then any natural transformation between functors $F, G \colon \Cc \to \Dd$ is monoidal for the canonical oplax structure of $F$ and $G$. In particular, the forgetful functor
+                \begin{equation*}
+                    \Fun^{\oplax}(\Cc, \Dd) \to \Fun(\Cc, \Dd)
+                \end{equation*}
+                is an isomorphism of categories in this case, and  similarly
+                \begin{equation*}
+                    \Fun^{\lax}(\Cc, \Dd) \to \Fun(\Cc, \Dd)
+                \end{equation*}
+                is an isomorphism for cocartesian $\Cc$ and $\Dd$.
+            \item
+                If $\Cc$ admits a \emph{zero-object}, i.e. one that is simultaneously initial and terminal, and both finite products and coproducts, then the identity functor $\id_{\Cc}$ admits a canonical oplax refinement
+                \begin{equation*}
+                    (\Cc, +) \to (\Cc, \times)
+                \end{equation*}
+                or equivalently, lax refinement
+                \begin{equation*}
+                    (\Cc, \times) \to (\Cc, +)
+                \end{equation*}
+                given by the unique map on units, and
+                \begin{equation*}
+                    X + Y \to X \times Y
+                \end{equation*}
+                induced by
+                \begin{gather*}
+                    X + Y \longrightarrow X + 0 \overset{\eta^{-1}_R}{\longrightarrow} X \\
+                    X + Y \longrightarrow 0 + X \overset{\eta^{-1}_L}{\longrightarrow} Y        
+                \end{gather*}
+                or equivalently
+                \begin{gather*}
+                    X  \overset{\eta_R}{\longrightarrow} X \times 0 \longrightarrow X \times Y \\
+                    X  \overset{\eta_L}{\longrightarrow} 0 \times X \longrightarrow X \times Y \,;
+                \end{gather*}
+                concisely, by the matrix
+                \begin{equation*}
+                    \begin{pmatrix} \id_X & 0 \\ 0 & \id_y \end{pmatrix} \,\colon X + Y \to X \times Y \,,
+                \end{equation*}
+                where $0$ denotes the unique map of any object factoring through the zero-object. This refinement is not strong for example fo $\nicefrac{*}{\Set}$.\label{chIV-8-ii}
+            \item
+                If $R \to S \to T$ are homomorphisms of commutative rings then the functors
+                \begin{align*}
+                    &\Mod{R} \to \Mod{S}, &&M \mapsto S \otimes_R M \\
+                    &\Mod{R} \to \Mod{T} \overset{\text{forget}}{\longrightarrow} \Mod{S}, &&M \mapsto T \otimes_R M
+                \end{align*}
+                are lax monoidal for the respective tensor product and the upper even strongly so. The map $S \to T$ then induces a monoidal transformation
+                \begin{equation*}
+                    S \otimes_R - \Rightarrow T \otimes_R - \,.
+                \end{equation*}
+        \end{enumerate}
+        We are ready to give the main definition of this section:
