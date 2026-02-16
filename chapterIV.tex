@@ -426,7 +426,7 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
                 \end{gather*}
                 concisely, by the matrix
                 \begin{equation*}
-                    \begin{pmatrix} \id_X & 0 \\ 0 & \id_y \end{pmatrix} \,\colon X + Y \to X \times Y \,,
+                    \begin{pmatrix} \id_X & 0 \\ 0 & \id_Y \end{pmatrix} \,\colon X + Y \to X \times Y \,,
                 \end{equation*}
                 where $0$ denotes the unique map of any object factoring through the zero-object. This refinement is not strong for example fo $\nicefrac{*}{\Set}$.\label{chIV-8-ii}
             \item
@@ -437,7 +437,140 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
                 \end{align*}
                 are lax monoidal for the respective tensor product and the upper even strongly so. The map $S \to T$ then induces a monoidal transformation
                 \begin{equation*}
-                    S \otimes_R - \Rightarrow T \otimes_R - \,.
+                    S \otimes_R - \implies T \otimes_R - \,.
                 \end{equation*}
         \end{enumerate}
         We are ready to give the main definition of this section:
+
+    \section{Definition}\label{chIV-9}
+        Let $\Vv$ be a monoidal category. Then a \emph{$\Vv$-enriched category} $\Cc$ consists of
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                a class $O$
+            \item 
+                a map $F \colon O \times O \to \obj(\Vv)$
+            \item 
+                a map $i \colon O \to \mor(\Vv)$
+            \item 
+                a map
+                \begin{equation*}
+                    \comp \colon O \times  O \times O \to \mor(\Vv)
+                \end{equation*}
+        \end{enumerate}
+        such that
+        \begin{enumerate}[label=\alph*)]
+            \item
+                \begin{equation*}
+                    s (\comp(x, y, z)) = F(y, z) \boxtimes F(x, y)
+                \end{equation*}
+                and
+                \begin{equation*}
+                    t(\comp(x, y, z)) = F(x, z)
+                \end{equation*}
+            \item
+                \begin{equation*}
+                    s(i(x)) = \1, \quad t(i(x)) = F(x, x)
+                \end{equation*}
+            \item
+                the diagrams
+                    \begin{equation*}
+                        \begin{tikzcd}
+                            (F(y, z) \boxtimes F(x, y)) \boxtimes F(w, x) \arrow[r, "\comp"] \arrow[d, "\alpha"] & F(x, z) \boxtimes F(w, x) \arrow[dd, "\comp"] \\
+                            F(y, z) \boxtimes (F(x, y) \boxtimes F(w, x)) \arrow[d, "\comp"] & \\
+                            F(y, z) \boxtimes F(w, y) \arrow[r, "\comp"] & F(w, z)
+                        \end{tikzcd}
+                    \end{equation*}
+                    and
+                    \begin{equation*}
+                        \begin{tikzcd}
+                            F(x, y) \arrow[r, "\id"] \arrow[d, "\eta_R"] & F(x, y) \\
+                            F(x, y) \boxtimes \1 \arrow[r, "i"] & F(x, y) \boxtimes F(x, x) \arrow[u, "\comp"]
+                        \end{tikzcd}
+                        \quad
+                        \begin{tikzcd}
+                            F(x, y) \arrow[r, "\id"] \arrow[d, "\eta_L"] & F(x, y) \\
+                            \1 \boxtimes F(x, y) \arrow[r, "i"] & F(y, y) \boxtimes F(x, y) \arrow[u, "\comp"]
+                        \end{tikzcd}        
+                    \end{equation*}
+                    commute.      
+        \end{enumerate}
+
+    \section{Examples}
+        \begin{enumerate}[label=\roman*)]
+            \item
+                A $(\Set, \times)$-enriched category is just an ordinary category.
+            \item
+                A $(\Top, \times)$-enriched category is an ordinary category $\Cc$ together with a topology on each of the sets $\Hom_{\Cc}(x, y)$ such that composition
+                \begin{equation*}
+                    \Hom_{\Cc}(x, y) \times \Hom_{\Cc}(w, x) \to \Hom_{\Cc}(w, y)
+                \end{equation*}
+                is continuous. Let me warn you that the compact-open topology does not unfortunately provide such an enrichment on $\Top$ itself. Some restrictions need to be imposed, making topologically enriched categories somewhat annoying to work with.
+            \item 
+                An $(\Ab, \otimes)$-enriched category translates to an ordinary category together with an abelian group structure on each $\Hom_{\Cc}(x, y)$ such that composition
+                \begin{equation*}
+                    \Hom_{\Cc}(x, y) \times \Hom_{\Cc}(w, x) \to \Hom_{\Cc}(w, y)
+                \end{equation*}
+                is biadditive. Since the question arose in the lecture let me give a brief discussion of he existence and uniqueness of such enrichments. First of all, we did not need inverses for any of the discussions above, and the same decoding works for $(\CMon, \otimes)$-enriched categories. Now a category $\Cc$ which admits both finite products and finite coproducts, which agree (in the sense that the initial element is terminal, and the arising lax transformation
+                \begin{equation*}
+                    (\Cc, +) \to (\Cc, \times)
+                \end{equation*}
+                is actually strong), admits an \emph{unique} $(\CMon, \otimes)$-enrichment. \\ 
+                Conversely, if a $(\CMon, \otimes)$-enriched category admits one of finite products or finite coproducts, then it necessarily also admits the other, and they agree. Without the existence of products or coproducts, however, even $(\Ab, \otimes)$-enrichments need not be unique! For example an $(\Ab, \otimes)$-enriched category with a single object is the same thing as a ring, and the underlying category precisely encodes the multiplicative monoid.
+                \begin{equation*}
+                    \mathbb{Z}_4 \quad \text{and} \quad \mathbb{Z}_2[t]/{t^2} 
+                \end{equation*}
+                are two rings with isomorphic multiplicative monoids, but different additive groups.
+        \end{enumerate}
+
+    \section{Remark}
+        Definition \ref{chIV-9} is not as symmetric in the objects and morphisms as our original definition of a category (it looks more like the usual form!) An analogue of the former style of object exists as well, a \emph{category object initial to $\Vv$}, but outside the case of $\Vv = (\Set, \times)$ this notion is different from that of a $\Vv$-enriched category: In particular, the objects of a $\Vv$-internal category are also an object of $\Vv$! In fact the definition of $\Vv$-internal categories requires more structure than just a monoidal one on $\Vv$, one needs to be able to form relative $\boxtimes$-products in $\Vv$. In the case of cartesian monoidal $\Vv$, these correspond to pullbacks (which featured in our definition of composition in an ordinary category).
+
+    \section{Definition}
+        A $(\Cat, \times)$-enriched category is called a (strict) \emph{$2$-category}.
+        \smallskip
+
+        Decoding, a $2$-category thus consists of objects (namely the object class), morphisms (the objects of the morphism categories) and $2$-morphisms (the morphisms of the morphism categories). The objects and morphisms form an usual category, whereas the $2$-morphisms can be composed in two ways: Once via the composition in the category of morphisms $F(x, y)$ and once via the composition functors
+        \begin{equation*}
+            F(x, y) \times F(w, x) \to F(w, x) \,.
+        \end{equation*}
+
+    \section{Examples}
+        \begin{enumerate}[label=\roman*)]
+            \item
+                the $2$-category $\Cat_2$ consisting of
+                \begin{itemize}
+                    \item[] objects: (small) categories
+                    \item[] morphisms: functors
+                    \item[] $2$-morphisms: natural transformations
+                \end{itemize}
+            \item 
+                the $2$-categories
+                \begin{equation*}
+                    \MonCat_2^{\lax} \supseteq \MonCat_2 \subseteq \MonCat_2^{\oplax}
+                \end{equation*}
+                consisting of
+                \begin{itemize}
+                    \item[] objects: (small) monoidal categories
+                    \item[] morphisms: lax / strong / oplax monoidal functors
+                    \item[] $2$-morphisms: monoidal transformations
+                \end{itemize}
+            \item 
+                the $2$-category $\Grp_2$ consisting of
+                \begin{itemize}
+                    \item[] objects: groups
+                    \item[] morphisms: group homomorphisms
+                    \item[] $2$-morphisms: elements, in the following sense
+                        \begin{equation*}
+                            \Hom_{F(G, H)}(\varphi, \psi) = \left\{ h \in H \mid \varphi \cdot h = h \cdot \psi \right\}
+                        \end{equation*}
+                \end{itemize}
+                I leave it to you to figure the two ways of composing group elements.
+            \item 
+                the not-usually-useful $2$-category $\Top_2$ consisting of
+                \begin{itemize}
+                    \item[] objects: topological spaces
+                    \item[] morphisms: continuous maps
+                    \item[] $2$-morphisms: homotopy classes of homotopies.
+                \end{itemize}
+        \end{enumerate}
+        The last example admits many analogues such as $\sSet_2, (\text{CC}_R)_2, \ldots$ We will discuss those in the (better!) context of simplicially enriched categories:
