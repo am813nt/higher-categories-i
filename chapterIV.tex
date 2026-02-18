@@ -585,13 +585,13 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
         \end{equation*}
         constructed in \ref{chII-19-ii}. In fact, it is an exercise to show that any cartesian closed category is canonically enriched over itself. We will soon see that there are many more simplicial enrichments than one might first guess. For now let us briefly discuss the relation of simplicially enriched categories with simplicial objects in categories:
 
-        \section{Construction/Lemma}
+        \section{Construction/Lemma}\label{chIV-15}
             Let $\Cc$ be simplicially enriched. Then for $i \in \mathbb{N}$ consider the category $\Cc_i \in \Cat$ with
             \begin{gather*}
                 \obj(\Cc_i) = \obj(\Cc) \\
                 \mor(\Cc_i) = \sum_{x, y \in \Cc}F(x, y) \,;
             \end{gather*}
-            i.e. $\Hom_{\Cc_i}(x, y)$ consists of the $i$-simplices of $F(x, y)$. It is (hopefully) clear that $\Cc_i$ really is a category and furthemore one readily checks that the $\Cc_i$ assemble into a simplicial category
+            i.e. $\Hom_{\Cc_i}(x, y)$ consists of the $i$-simplices of $F(x, y)$. It is (hopefully) clear that $\Cc_i$ really is a category and furthermore one readily checks that the $\Cc_i$ assemble into a simplicial category
             \begin{equation*}
                 S(\Cc) \,\colon \Delta^{\op} \to \Cat, \quad [i] \mapsto \Cc_i
             \end{equation*}
@@ -607,3 +607,162 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
 
     \section{Remark}
         Unwinding definitions a simplicial object in categories is in fact the same as a category object internal to $(\sSet, \times)$.
+
+    \section{Definition}
+        An \emph{enriched functor} $G$ between $\Vv$-enriched categories $\Cc \to \Dd$ consists of
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                a map $G_o \colon \obj(\Cc) \to \obj(\Dd)$
+            \item 
+                a map
+                \begin{equation*}
+                    G_m \,\colon \obj(\Cc)^2 \to \mor(\Vv)
+                \end{equation*}
+        \end{enumerate}
+        such that
+        \begin{equation*}
+            s \circ G_m(x, y) = F_{\Cc}(x, y), \quad t \circ G_m(x, y) = F_{\Dd}(G_o x, G_o y)
+        \end{equation*}
+        and the diagrams
+        \begin{equation*}
+            \begin{tikzcd}[column sep=huge]
+                F_{\Cc}(y, z) \boxtimes F_{\Cc}(x, y) \arrow[r, "G_m \boxtimes\, G_m"] \arrow[d] & F_{\Dd}(G_o y, G_o z) \boxtimes F_{\Dd}(G_o x, G_o y) \arrow[d] \\
+                F_{\Cc}(x, z) \arrow[r, "G_m"] & F_{\Dd}(G_o x, G_o z)
+            \end{tikzcd}
+        \end{equation*}
+        \begin{equation*}
+            \begin{tikzcd}[sep=small]
+                & F_{\Cc}(x, x) \arrow[dd, "G_m"] \\
+                \1 \arrow[ur] \arrow[dr] & \\
+                & F_{\Dd}(G_o x, G_o x)
+            \end{tikzcd}
+        \end{equation*}
+        commute. An \emph{enriched natural transformation} $\tau$ from $G$ to $G'$ consists of a map
+        \begin{equation*}
+            \tau \,\colon \obj(\Cc) \to \mor(\Vv)
+        \end{equation*}
+        with
+        \begin{equation*}
+            s \circ \tau (x) = \1,\quad t \circ \tau(x) = F_{\Dd}(G x, G' x)
+        \end{equation*}
+        such that
+        \begin{equation*}
+            \begin{tikzcd}
+                F_{\Cc}(x, y) \arrow[r, "\eta_R"] \arrow[d, "\eta_R"] & \1 \boxtimes F_{\Cc}(x, y) \arrow[r] & F_{\Dd}(G y, G' y) \boxtimes F_{\Dd}(G x, G y) \arrow[d, "\circ"'] \\
+                F_{\Cc}(x, y) \boxtimes \1 \arrow[r, "G \,\boxtimes\, \tau"] & F_{\Dd}(G' x, G' y) \boxtimes F_{\Dd}(G x, G' x) \arrow[r, "\circ"] & F_{\Dd}(G x, G' y)
+            \end{tikzcd}
+        \end{equation*}
+        commutes.
+        \medskip
+
+        We obtain a category $\Cat^{\Vv}$ and a $2$-category $\Cat^{\Vv}_2$ consisting of $\Vv$-enriched categories, functors and natural transformations in the latter case.\\
+        We next extract an underlying ordinary category from an enriched one (hence the name). To this end we generally observe:
+
+    \section{Construction/Lemma}
+        A lax monoidal functor $\Phi \colon \Vv \to \Ww$ induces a $2$-functor
+        \begin{equation*}
+            \Phi_{*} \,\colon \Cat^{\Vv}_2 \to \Cat^{\Ww}_2
+        \end{equation*}
+        and this is part of a $2$-functor
+        \begin{align*}
+            \MonCat^{\lax} &\to \TwoCat\footnotemark \\
+            \Vv &\mapsto \Cat^{\Vv}_2
+        \end{align*}
+        \footnotetext{$\Cat^{\Cat}_2$, $2$-category of $2$-categories, $2$-functors and $2$-natural transformations}
+        \smallskip
+        
+        \emph{Proof}. To define $\Phi_{*}$ on objects
+        \begin{gather*}
+            \obj(\Phi_{*} \Cc) \coloneq \obj(\Cc), \quad F_{\Phi_{*} \Cc}(x, y) \coloneq \Phi F_{\Cc}(x, y) \\
+            i_{\Phi_{*} \Cc}(x) \coloneq \Phi(i_{\Cc} x) \circ u \,\colon \1_{\Ww} \to \Phi(\1_{\Vv}) \to \Phi F_{\Cc}(x, x)
+        \end{gather*}
+        with composition
+        \begin{equation*}
+            \Phi F_{\Cc}(y, z) \underset{\Ww}{\boxtimes} \Phi F_{\Cc}(x, y) \xrightarrow{\lambda} \Phi (F_{\Cc}(y, z) \underset{\Vv}{\boxtimes} F_{\Cc}(x, y)) \xrightarrow{\Phi(- \circ -)} \Phi F_{\Cc}(x, z) \,.
+        \end{equation*}
+        To define $\Phi_{*}$ on morphisms send a $\Vv$-enriched functor $G \colon \Cc \to \Dd$ to
+        \begin{gather*}
+            (\Phi_{*} G)_o \coloneq G \,\colon \obj(\Phi_{*} \Cc) = \obj(\Cc) \to \obj(\Dd) = \obj(\Phi_{*} \Dd) \\
+            (\Phi_{*} G)_m = \Phi(G_m) \,\colon F_{\Phi_{*} \Cc}(x, y) = \Phi F_{\Cc}(x, y) \to \Phi F_{\Dd}(G x, G y) = F_{\Phi_{*} \Dd}(G x, G y) \,.
+        \end{gather*}
+        Finally, to define $\Phi_{*}$ on $2$-morphisms send $\tau \colon G \Rightarrow G'$, a $\Vv$-enriched transformation, to
+        \begin{equation*}
+            (\Phi_{*} \tau)(x) \coloneq \Phi(\tau(x)) \circ u \,\colon \1_{\Ww} \to \Phi(\1_{\Vv}) \to \Phi F_{\Cc}(G x, G' x) = F_{\Phi_{*} \Cc}((\Phi_{*} G) x, (\Phi_{*} G') x) \,.
+        \end{equation*}
+        One readily checks that these data really give a $2$-functor $\Phi_{*} \colon \Cat^{\Vv}_2 \to \Cat^{\Ww}_2$ as desired.\\
+        This construction gives the morphism part of a $2$-functor
+        \begin{equation*}
+            \MonCat^{\lax}_2 \to \TwoCat \,.
+        \end{equation*}
+        To obtain it on $2$-morphisms, let $\tau \colon \Phi \to \Psi$ be a monoidal transformation. Then we have to give for each monoidal category $\Cc$ a morphism
+        \begin{equation*}
+            * \to \Fun^{\Ww}(\Phi_{*} \Cc, \Psi_{*} \Cc)\footnotemark
+        \end{equation*}
+        \footnotetext{Category of $\Ww$-enriched functors}
+        in $\Cat$, i.e. a $\Ww$-enriched functors $\Phi_{*} \Cc \to \Psi_{*} \Cc$. On objects we take
+        \begin{equation*}
+            \id_{\obj(\Cc)} \,\colon \obj(\Phi_{*} \Cc) \to \obj(\Psi_{*} \Cc) 
+        \end{equation*}
+        and on morphisms
+        \begin{equation*}
+            F_{\Phi_{*} \Cc}(x, y) = \Phi F_{\Cc}(x, y) \xrightarrow{\tau} \Psi F_{\Cc}(x, y) = F_{\Psi_{*} \Cc}(x, y) \,.
+        \end{equation*}
+        Again there are a lot of compatibilities to be checked; but I shan't do that.\hfill$\Box$
+
+    \section{Definition}
+        For $\Cc$ a $\Vv$-enriched category, let $u\Cc \in \Cat$, the \emph{underlying category} of $\Cc$, denote the image of $\Cc$ under
+        \begin{equation*}
+            (\Hom_{\Vv}(\1, -))_{*} \,\colon \Cat^{\Vv}_2 \to \Cat^{\Set}_2 = \Cat_2 \,.
+        \end{equation*}
+        \medskip
+
+            For example, we have
+        \begin{equation*}
+            \Hom_{\Top}(*, -) \colon \Top \to \Set \quad \text{and} \quad \Hom_{\Ab}(\mathbb{Z}, -) \colon \Ab \to \Set
+        \end{equation*}
+        are the forgetful functors, whereas
+        \begin{equation*}
+            \Hom_{\Cat}(*, -) = \obj \quad \text{and} \quad \Hom_{\sSet}(\Delta^0, -) = \ev_0
+        \end{equation*}
+        so the underlying categories are given by forgetting topologies, the group structure, the $2$-morphisms and higher simplices. Here are other examples of changes in enrichment:
+
+    \section{Examples}
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                the functors $\ev_i \colon \sSet \to \Set$ all preserve products since they are given by \\
+                $\Hom_{\sSet}(\Delta^i, -)$, so give rise to functors
+                \begin{equation*}
+                    (\ev_i)_{*} \,\colon \Cat^{\sSet}_2 \to \Cat_2
+                \end{equation*}
+                that we used in \ref{chIV-15}. Having defined enriched functors that Lemma immediately upgrades to give that the resulting functor
+                \begin{equation*}
+                    \Cat^{\sSet} \to \sCat
+                \end{equation*}
+                is an embedding with essential image the simplicial categories whose image under
+                \begin{equation*}
+                    \obj \,\colon \sCat \to \sSet
+                \end{equation*}
+                is constant.\\
+                In particular, since $\sCat$ is bicomplete by \ref{chI-39} and $\obj \colon \Cat \to \Set$ preserves both limits and colimits it follows that $\Cat^{\sSet}$ is bicomplete as well (this is a cheap trick avoiding further analysis of colimits in $\Cat^{\sSet}$).
+            \item 
+                the functor $\Sing \colon \Top \to \sSet$ preserves products so every $(\Top, \times)$-enriched category gives a $(\sSet, \times)$-enriched category. The converse is almost true: The functor $\left| \cdot \right| \colon \sSet \to \Top$ carries its tautological oplax monoidal structure
+                \begin{equation*}
+                    \gr{X \times Y} \to \gr{X} \times \gr{Y}
+                \end{equation*}
+                and for finite simplicial sets this a homeomorphisms (this can be checked explicitly for simplices and then follows, since the product functor $\ \times Z$ commutes with colimits as lng a $Z$ is locally compact Hausdorff). \\
+                In general, however, it is not a homeomorphism and one needs to slightly alter the category of topological spaces to allow for maps that are only continuous on compact subsets (or better after precomposition with all maps from compact Hausdorff spaces). The latter category is called $\kTop$ and turns out to be bicomplete with the inclusion $\Top \to \kTop$ preserving limits, but not generally colimits. It does, however, preserve colimits of compactly generated spaces, such as $\gr{X}$ for any $X \in \sSet$, so the realisation/singular set adjunction remains unchanged
+                \begin{equation*}
+                    \gr{\cdot} \,\colon \sSet \leftrightarrows \kTop
+                \end{equation*}
+                and any $(\sSet. \times)$-enriched category gives a $(\kTop, \times)$-enriched one and conversely.
+            \item 
+                the functors $\pi_0 \colon (k)\Top \to \Set$ and $\pi_0 \colon \sSet \to \Set$ both preserve finite products. This is obvious in the former case (where $\pi_0$ in fact preserves all limits), but slightly more subtle for $\sSet$. Let me sketch a counterexample for $\pi_0$ commuting with arbitrary products here: Let $X$ be the infinite spine with $X_0 = \mathbb{Z}$, and non-degenerate $1$-simplices also give by $\mathbb{Z}$, with boundary $d_i(z) = z + i$, and no higher non-degenerate simplices, or in other words
+                \begin{equation*}
+                    X = \colim(\II_0 \xrightarrow{d_1} \II_1 \xrightarrow{d_2} \II_2 \xrightarrow{d_3} \II_3 \rightarrow \ldots) \,.
+                \end{equation*}
+                Then $\pi_0 X = 0$ since $\gr{X} \cong \mathbb{R}           _{\geqslant}$, and so also $\prod\limits_{\mathbb{N}} \pi_0 X = 0$. But $\pi_0 \prod\limits_{i \in \mathbb{N}} X \neq 0$, as the $0$-simplices $(0, ldots, 0, \ldots)$ and $(0,1,2,3, ldots)$ of $\prod\limits_{i \in \mathbb{N}}X$ cannot be connected by a finite sequence of $1$-simplices in $\prod\limits_{i \in \mathbb{N}}X$. In fact, $\pi_0 \prod\limits_{i \in \mathbb{N}}X$ consists of all sequences in $\mathbb{N}$ modulo the relation of bounded difference. Anyway, we obtain
+                \begin{equation*}
+                    (\pi_0)_{*} \,\colon \Cat^{\text{k}\Top} \to \Cat \quad \text{and} \quad (\pi_0)_{*} \,\colon \Cat^{\sSet} \to \Cat
+                \end{equation*}
+                sending $\Cc$ to its \emph{homotopy category}.
+        \end{enumerate}
