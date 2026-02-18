@@ -574,3 +574,36 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
                 \end{itemize}
         \end{enumerate}
         The last example admits many analogues such as $\sSet_2, (\text{CC}_R)_2, \ldots$ We will discuss those in the (better!) context of simplicially enriched categories:
+
+    \section{Definition}
+        A \emph{simplicially enriched category} is a category enriched in $(\sSet, \times)$.
+        \smallskip
+
+        As a first example let us mention simplicial sets themselves via the function complexes
+        \begin{equation*}
+            F(x, y) \in \sSet
+        \end{equation*}
+        constructed in \ref{chII-19-ii}. In fact, it is an exercise to show that any cartesian closed category is canonically enriched over itself. We will soon see that there are many more simplicial enrichments than one might first guess. For now let us briefly discuss the relation of simplicially enriched categories with simplicial objects in categories:
+
+        \section{Construction/Lemma}
+            Let $\Cc$ be simplicially enriched. Then for $i \in \mathbb{N}$ consider the category $\Cc_i \in \Cat$ with
+            \begin{gather*}
+                \obj(\Cc_i) = \obj(\Cc) \\
+                \mor(\Cc_i) = \sum_{x, y \in \Cc}F(x, y) \,;
+            \end{gather*}
+            i.e. $\Hom_{\Cc_i}(x, y)$ consists of the $i$-simplices of $F(x, y)$. It is (hopefully) clear that $\Cc_i$ really is a category and furthemore one readily checks that the $\Cc_i$ assemble into a simplicial category
+            \begin{equation*}
+                S(\Cc) \,\colon \Delta^{\op} \to \Cat, \quad [i] \mapsto \Cc_i
+            \end{equation*}
+            with induced functors the identity on objects and the structure maps in $F(x, y)$ on isomorphisms. Conversely, given a simplicial category $T \colon \Delta^{\op} \to \Cat$ such that the functor
+            \begin{equation*}
+                \Delta^{\op} \overset{T}{\longrightarrow} \Cat \overset{\obj}{\longrightarrow} \Set
+            \end{equation*}
+            is constant with value $O$, then $T$ yields a simplicially enriched category $\Cc$ with objects $O$ and morphisms $F(x, y) \in \sSet$ given by
+            \begin{equation*}
+                F_{\Cc}(x, y)_i = \Hom_{T(i)}(x, y)
+            \end{equation*}
+            with the evident simplicial structure induced from $T$. These processes are evidently inverse to one another.
+
+    \section{Remark}
+        Unwinding definitions a simplicial object in categories is in fact the same as a category object internal to $(\sSet, \times)$.
