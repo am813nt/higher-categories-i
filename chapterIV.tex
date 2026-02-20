@@ -400,7 +400,7 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
                 \begin{equation*}
                     \Fun^{\lax}(\Cc, \Dd) \to \Fun(\Cc, \Dd)
                 \end{equation*}
-                is an isomorphism for cocartesian $\Cc$ and $\Dd$.
+                is an isomorphism for cocartesian $\Cc$ and $\Dd$.\label{chIV-8-i}
             \item
                 If $\Cc$ admits a \emph{zero-object}, i.e. one that is simultaneously initial and terminal, and both finite products and coproducts, then the identity functor $\id_{\Cc}$ admits a canonical oplax refinement
                 \begin{equation*}
@@ -658,14 +658,14 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
         We obtain a category $\Cat^{\Vv}$ and a $2$-category $\Cat^{\Vv}_2$ consisting of $\Vv$-enriched categories, functors and natural transformations in the latter case.\\
         We next extract an underlying ordinary category from an enriched one (hence the name). To this end we generally observe:
 
-    \section{Construction/Lemma}
+    \section{Construction/Lemma}\label{chIV-18}
         A lax monoidal functor $\Phi \colon \Vv \to \Ww$ induces a $2$-functor
         \begin{equation*}
             \Phi_{*} \,\colon \Cat^{\Vv}_2 \to \Cat^{\Ww}_2
         \end{equation*}
         and this is part of a $2$-functor
         \begin{align*}
-            \MonCat^{\lax} &\to \TwoCat\footnotemark \\
+            \MonCat^{\lax} &\to \hCat{2}\footnotemark \\
             \Vv &\mapsto \Cat^{\Vv}_2
         \end{align*}
         \footnotetext{$\Cat^{\Cat}_2$, $2$-category of $2$-categories, $2$-functors and $2$-natural transformations}
@@ -692,7 +692,7 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
         One readily checks that these data really give a $2$-functor $\Phi_{*} \colon \Cat^{\Vv}_2 \to \Cat^{\Ww}_2$ as desired.\\
         This construction gives the morphism part of a $2$-functor
         \begin{equation*}
-            \MonCat^{\lax}_2 \to \TwoCat \,.
+            \MonCat^{\lax}_2 \to \hCat{2} \,.
         \end{equation*}
         To obtain it on $2$-morphisms, let $\tau \colon \Phi \to \Psi$ be a monoidal transformation. Then we have to give for each monoidal category $\Cc$ a morphism
         \begin{equation*}
@@ -756,7 +756,7 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
                 \end{equation*}
                 and any $(\sSet. \times)$-enriched category gives a $(\kTop, \times)$-enriched one and conversely.
             \item 
-                the functors $\pi_0 \colon (k)\Top \to \Set$ and $\pi_0 \colon \sSet \to \Set$ both preserve finite products. This is obvious in the former case (where $\pi_0$ in fact preserves all limits), but slightly more subtle for $\sSet$. Let me sketch a counterexample for $\pi_0$ commuting with arbitrary products here: Let $X$ be the infinite spine with $X_0 = \mathbb{Z}$, and non-degenerate $1$-simplices also give by $\mathbb{Z}$, with boundary $d_i(z) = z + i$, and no higher non-degenerate simplices, or in other words
+                the functors $\pi_0 \colon (k)\Top \to \Set$ and $\pi_0 \colon \sSet \to \Set$ both preserve finite products. This is obvious in the former case (where $\pi_0$ in fact preserves all limits), but slightly more subtle for $\sSet$. Let me sketch a counterexample for $\pi_0$ commuting with arbitrary products here: Let $X$ be the infinite spine with $X_0 = \mathbb{Z}$, and non-degenerate $1$-simplices also given by $\mathbb{Z}$, with boundary $d_i(z) = z + i$, and no higher non-degenerate simplices, or in other words
                 \begin{equation*}
                     X = \colim(\II_0 \xrightarrow{d_1} \II_1 \xrightarrow{d_2} \II_2 \xrightarrow{d_3} \II_3 \rightarrow \ldots) \,.
                 \end{equation*}
@@ -765,4 +765,72 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
                     (\pi_0)_{*} \,\colon \Cat^{\text{(k)}\Top} \to \Cat \quad \text{and} \quad (\pi_0)_{*} \,\colon \Cat^{\sSet} \to \Cat
                 \end{equation*}
                 sending $\Cc$ to its \emph{homotopy category}.
+            \item 
+                various flavors of discrete functors, e.g. $\mathbb{D} \colon \Set \to \Cat, \; \const_{\Delta^{\op}} \colon \Set \to \Set$ and $\Set \to \Top$ preserve products and these give rise to functors (even embeddings)
+                \begin{equation*}
+                    \Cat \to \hCat{2}, \quad \Cat \to \Cat^{\sSet}, \quad \Cat \to \Cat^{\Top}
+                \end{equation*}
+            \item 
+                Lemma \ref{chIV-18} in particular implies that adjoint functors
+                \begin{equation*}
+                    L \colon \Vv \leftrightarrows \Ww \colon R
+                \end{equation*}
+                between monoidal categories, such that both $L$ and $R$ are lax monoidal and the unit and counit are monoidal (a lax monoidal adjunction\footnotemark) give rise to adjoint functors
+                \begin{equation*}
+                    L_{*} \colon \Cat^{\Vv} \leftrightarrows \Cat^{\Ww} \colon R_{*} \,.
+                \end{equation*}
+                Essentially all functors above come in such adjoint pairs.
+            \item 
+                The adjunction
+                \begin{equation*}
+                    h \colon \sSet \leftrightarrows \Cat \colon \Nn
+                \end{equation*}
+                is also monoidal for the cartesian structures (by \hyperref[chIV-8-i]{IV.8 i)} and exercise 3, sheet 5). We obtain functors
+                \begin{equation*}
+                    h_{*} \colon \Cat^{\sSet} \leftrightarrows \hCat{2} \colon \Nn_{*}
+                \end{equation*}
+                embedding $\hCat{2}$ into $\Cat^{\sSet}$ and conversely sending a simplicially enriched category to its \emph{homotopy $2$-category}. Let me immediately warn you that a quasi-category does \emph{not} have a strict homotopy $2$-category. Rather there is a notion of a weak $2$-category, traditionally known as a \emph{bicategory} introduced by Benabou, and every quasi-category has a homotopy bicategory (though we shall not even define bicategories rigorously in this course). A typical example of a bicategory is
+                \begin{equation*}
+                    \text{BiMod} =
+                    \begin{cases*}
+                        \text{objects}     & \text{rings} \\
+                        \text{morphisms}   & \text{bimodules} \\
+                        \text{2-morphisms} & \text{bimodule homomorphisms}
+                    \end{cases*}
+                \end{equation*}
+                with the composition of two morphisms
+                \begin{equation*}
+                    M \in R \otimes \Mod{S^{\op}} \quad \text{and} \quad N \in S \otimes \Mod{T^{\op}}
+                \end{equation*}
+                being $M \otimes_S N \in R \otimes \Mod{T^{\op}}$, which is not a strictly associative operation.\\
+                Exercise 2, sheet 5 together with \ref{chIII-12} in particular imply that the adjunction between $h_{*}$ and $\Nn_{*}$ restricts to
+                \begin{equation*}
+                    h_{*} \colon \Cat^{\Kan} \leftrightarrows \Cat^{\Grpd} \colon \Nn_{*}
+                \end{equation*}
         \end{enumerate}
+        \footnotetext{In fact, there's a notion of adjointness in any $2$-category; so the same works for $\Cat^{\Vv}_2 \leftrightarrows \Cat^{\Ww}_2$.}
+
+        Our next goal is to produce examples of Kan-enriched simplicial categories, but before going there let us briefly open Pandora's box:
+
+        \section{Definition}
+            A \emph{strict n-category} is a category enriched in the category of strict $(n-1)$-categories\footnote{Under cartesian product}.
+            \smallskip
+            Thus a $n$-category has objects and $i$-morphisms for $1 \leq i \leq n$.
+
+        \section{Definition}
+            A strict \emph{(n,k)-category} is a strict $n$-category for which all $i$-morphisms with $i > k$ are invertible.
+            \smallskip
+
+            By convention a $0$-category is just a set, and then a $1$-category is an ordinary category. A $(n,n)$-category is just a $n$-category, and a $(n,0)$-category is a \emph{n-groupoid}. A $(n,k)$-category is enriched in $(n-1,k-1)$-categories and forgetting the top layer of morphisms gives a $(n-1,k)$-category; this process is also defined inductively starting with the monoidal functor
+            \begin{equation*}
+                \obj \,\colon \hCat{1} = \Cat \to \Set = \hCat{0}
+            \end{equation*}
+            and using the monoidal functor
+            \begin{equation*}
+                \obj_n \,\colon \hCat{n} \to \mathrm{(n - 1)Cat}  
+            \end{equation*}
+            to induce
+            \begin{equation*}
+                \obj_{n+1} = (\obj_{n})_{*} \,\colon \hCat{(n+1)} \to \hCat{n} \,.
+            \end{equation*}
+            Similarly, a $n$-category has a homotopy $(n-1)$-category by starting the same process with $\pi_0$ instead of $\obj$.
