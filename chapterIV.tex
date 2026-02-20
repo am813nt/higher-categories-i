@@ -834,3 +834,41 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
                 \obj_{n+1} = (\obj_{n})_{*} \,\colon \hCat{(n+1)} \to \hCat{n} \,.
             \end{equation*}
             Similarly, a $n$-category has a homotopy $(n-1)$-category by starting the same process with $\pi_0$ instead of $\obj$.
+
+    \section{Definition}
+        A \emph{strict $\infty$-category} $\Cc$ consists of a sequence $(C_i, \Cc_i)$ where $\Cc_i \in \hCat{i}$ and $\varphi_i \colon \pi \Cc_{i+1} \to C_i$ is an isomorphism of $i$-categories. A \emph{strict $\infty$-functor} is a sequence of $i$-functors\footnote{I.e. $\hCat{i-1}$-enriched functors} $\Cc_i \to \Cc'_i$ strictly commuting with the $\varphi_i$. $\Cc$ is called a \emph{$(\infty, k)$-category} if $C_i$ is a $(i, k)$-category for all $i \geq k$.
+        \smallskip
+
+        These objects form categories $\hCat{\omega}$ and $\hCat{(\omega, k)}$ for $0 \leq k$, and indeed there are equivalences
+        \begin{equation*}
+            \Cat^{\hCat{\omega}} \simeq \hCat{\omega}, \quad \Cat^{\hCat{(\omega, k)}} \simeq \hCat{(\omega, k+1)}
+        \end{equation*}
+        by shifting.
+        The only examples for $n \geq 3$ that I am immediately aware of arise by a similar iteration: The category of (small) $n$-categories actually forms a (large) $(n+1)$-category $\hCat{n}_{n+1}$; for example between two $2$-natural transformations of $2$-functors $\sigma, \tau \colon G \Rightarrow G', \; G, G' \colon \Cc \to \Dd$ there is a notion of \emph{modification} $\mu$, consisting of an assignment of a natural transformation
+        \begin{equation*}
+            \mu(x) \,\colon \sigma(x) \to \tau(x) \,,
+        \end{equation*}
+        where $\sigma(x), \tau(x) \in F_{\Dd}(G(x), G'(x))$, the category of morphisms $Gx \to G'x$, making the diagram
+        \begin{equation*}
+            \begin{tikzcd}[row sep=small]
+                \sigma(x') \circ Gf \arrow[r, "\mu"] \arrow[d, equal] & \tau(x') \circ Gf \arrow[d, equal] \\
+                G'f \circ \sigma(x) \arrow[r, "\mu"] & G'f \circ \tau(x)
+            \end{tikzcd}
+        \end{equation*}
+        in $F_{\Dd}(Gx, G'x')$ commutes. \\
+        In particular, the category of all small $\omega$-categories organizes into an $\omega$-category $\hCat{\omega}_{\omega}$, and $(\omega, k)$-categories into an $(\omega, k+1)$-category $\hCat{(\omega,k)}_{(\omega,k+1)}$.
+
+        Now quasi-categories want to be a weak form of $(\omega,1)$-categories and indeed Duskin and Street constructed nerves
+        \begin{equation*}
+            \mathrm{Bicat} \to \sSet, \quad \hCat{\omega} \to \sSet
+        \end{equation*}
+        which take values in quasi-categories, when restricted to $\hCat{(\mathrm{Bi}, 1)}$ and $\hCat{(\omega, 1)}$. The former is well=documented in Lurie's Kerodon, and quite useful, whereas details of the latter were worked out in Verity's unpublished thesis. The constructions again rely on \ref{chII-19} and proceed by building certain cosimplicial objects in $\mathrm{Bicat}$ and $\hCat{\omega}$. In the latter case these are known as Street's \emph{orientals}, obtained from $n \to \mathbbmsl{N}[n]$ by freely adding a new morphism $n_1 \to n_k$ for every string $n_1 \to n_2 \to \ldots \to n_k$ and then higher morphisms to relate it to the actual composite $n_1 \to n_k$, and their composites, and their composites, and their composites...\\
+        Let me just mention that Street's nerve is \emph{not} fully faithful: For example consider the $2$-categories
+
+        with $F(x, z) \cong $ in the second example. Then a strict $2$-functor from left to right that is the identity on objects is automatically the inclusion, whereas a weak $2$-functor can send $f$ to $f$ and $g$ to $g$, but $gf$ to $h$!
+        \medskip
+
+        Now finally for the examples of Kan enriched categories: The general construction mechanism is that of the simplicial function sets
+        \begin{equation*}
+            F(X, Y)_n = \Hom_{\sSet}(X \times \Delta^n, Y) \,.
+        \end{equation*}
