@@ -864,7 +864,65 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
         \end{equation*}
         which take values in quasi-categories, when restricted to $\hCat{(\mathrm{Bi}, 1)}$ and $\hCat{(\omega, 1)}$. The former is well=documented in Lurie's Kerodon, and quite useful, whereas details of the latter were worked out in Verity's unpublished thesis. The constructions again rely on \ref{chII-19} and proceed by building certain cosimplicial objects in $\mathrm{Bicat}$ and $\hCat{\omega}$. In the latter case these are known as Street's \emph{orientals}, obtained from $n \to \mathbbmsl{N}[n]$ by freely adding a new morphism $n_1 \to n_k$ for every string $n_1 \to n_2 \to \ldots \to n_k$ and then higher morphisms to relate it to the actual composite $n_1 \to n_k$, and their composites, and their composites, and their composites...\\
         Let me just mention that Street's nerve is \emph{not} fully faithful: For example consider the $2$-categories
+        \begin{equation*}
+            \begin{tikzpicture}[
+                scale=0.9, 
+                thick, 
+                color=violet, 
+                every node/.style={text=black},
+                dot/.style={circle, fill=violet, inner sep=1.5pt, outer sep=0pt}
+            ]
 
+                \begin{scope}[shift={(0,0)}]
+                    % Define coordinates
+                    \coordinate (O) at (0, 0);      % Vertex 0
+                    \coordinate (A) at (1, 1.5);    % Vertex 1
+                    \coordinate (B) at (2, 0);      % Vertex 2
+
+                    % Draw the triangle and edge labels
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>}}}}] (O) -- node[above left] {$f$} (A);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>}}}}] (O) -- node[below] {$gf$} (B);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>}}}}] (A) -- node[above right] {$g$} (B);
+
+                    % Draw vertices (dots)
+                    \node[dot] at (O) {};
+                    \node[dot] at (A) {};
+                    \node[dot] at (B) {};
+
+                    % Draw vertex labels (0, 1, 2)
+                    \node[below left] at (O) {$x$};
+                    \node[above] at (A) {$y$};
+                    \node[below right] at (B) {$z$};
+
+                \end{scope}
+                \begin{scope}[shift={(4,0)}]
+                    % Define coordinates
+                    \coordinate (O) at (0, 0);      % Vertex 0
+                    \coordinate (A) at (1, 1.5);    % Vertex 1
+                    \coordinate (B) at (2, 0);      % Vertex 2
+
+                    % Draw the triangle and edge labels
+                    \draw (O) -- node[left] {$f$} (A) 
+                        -- node[right] {$g$} (B) 
+                        -- node[above] {$gf$} cycle;
+                    \draw (O) to[out=-70,in=-110] node[below] {$h$} (B);
+
+                    % Draw vertices (dots)
+                    \node[dot] at (O) {};
+                    \node[dot] at (A) {};
+                    \node[dot] at (B) {};
+
+                    % Draw vertex labels (x, y, z)
+                    \node[below left] at (O) {$x$};
+                    \node[above] at (A) {$y$};
+                    \node[below right] at (B) {$z$};
+
+                    % Draw vertical arrows
+                    \node[scale=0.9] at (0.6, -0.25) {$\Uparrow$};
+                    \node[scale=0.9] at (1.4, -0.25) {$\Downarrow$};
+                \end{scope}
+            \end{tikzpicture}            
+        \end{equation*}
         with $F(x, z) \cong $ in the second example. Then a strict $2$-functor from left to right that is the identity on objects is automatically the inclusion, whereas a weak $2$-functor can send $f$ to $f$ and $g$ to $g$, but $gf$ to $h$!
         \medskip
 
@@ -872,3 +930,187 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
         \begin{equation*}
             F(X, Y)_n = \Hom_{\sSet}(X \times \Delta^n, Y) \,.
         \end{equation*}
+
+    \section{Construction}
+        Let $\Cc$ be a monoidal category and $\Dd \colon \bbDelta \to \Cc$ a cosimplicial object in $\Cc$, equipped with
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                a \emph{coproduct} $d \colon \Dd \Rightarrow \Dd \boxtimes \Dd$, where the target is
+                \begin{equation*}
+                    \bbDelta \xrightarrow{\Delta} \bbDelta \times \bbDelta \xrightarrow{\Dd \times \Dd} \Cc \times \Cc \xrightarrow{- \, \boxtimes \, -} \Cc 
+                \end{equation*}
+            \item 
+                a \emph{counit} map
+                \begin{equation*}
+                    c \,\colon \Dd \Rightarrow \const_{\bbDelta} \1_{\Cc} \quad \color{magenta}{\text{, i.e. a map } \Dd[0] \Rightarrow \1_{\Cc}}
+                \end{equation*}
+        \end{enumerate}
+        such that
+        \begin{equation*}
+            \begin{tikzcd}[row sep=tiny]
+                & \Dd \boxtimes \Dd \arrow[r, Rightarrow, "\id \boxtimes \, d"] & \Dd \boxtimes (\Dd \boxtimes \Dd) \\
+                \Dd \arrow[ur, Rightarrow, "d", start anchor={[yshift=-0.5ex]north east}, end anchor={[yshift=-0.5ex]real west}] \arrow[dr, Rightarrow, "d"', start anchor={[yshift=0.5ex]south east}, end anchor={[yshift=0.5ex]real west}] & & \\
+                & \Dd \boxtimes \Dd \arrow[r, Rightarrow, "d  \, \boxtimes \, \id"] & (\Dd \boxtimes \Dd) \boxtimes \Dd \arrow[uu, Rightarrow, "\alpha_{\Cc}"']
+            \end{tikzcd}
+        \end{equation*}
+        and
+        \begin{equation*}
+            \begin{tikzcd}[column sep=tiny]
+                \Dd \boxtimes \Dd \arrow[rr, Rightarrow, "\id \boxtimes \, c"] & & \Dd \boxtimes \const_{\bbDelta} \1_{\Cc} \\
+                & \Dd \arrow[ul, Rightarrow, "d"] \arrow[ur, Rightarrow, "\eta_R"'] &
+            \end{tikzcd}
+            \quad
+            \begin{tikzcd}[column sep=tiny]
+                \Dd \boxtimes \Dd \arrow[rr, Rightarrow, "c \, \boxtimes \, \id"] & & \const_{\bbDelta} \1_{\Cc} \boxtimes \Dd \\
+                & \Dd \arrow[ul, Rightarrow, "d"] \arrow[ur, Rightarrow, "\eta_R"'] &
+            \end{tikzcd}        
+        \end{equation*}
+        commute.\\
+        Then we can define a simplicially enriched category $\Cc_{\Dd} \in \Cat^{\sSet}$ with
+        \begin{align*}
+            \obj \Cc_{\Dd} &= \obj \Cc \\
+            F_{\Cc_{\Dd}}(X, Y)_n &= \Hom_{\Cc}(X \boxtimes \Dd[n], Y) \\
+            \id_{\Cc_{\Dd}} \colon X \boxtimes \Dd[0] &\xrightarrow{\id \times c} X \boxtimes \1_{\Cc} \xrightarrow{\eta^{-1}_R} X
+        \end{align*}
+        and composition of $f \colon X \boxtimes \Dd[n] \to Y$ and $g \colon Y \boxtimes \Dd[n] \to Z$ given by
+        \begin{equation*}
+            X \boxtimes \Dd[n] \xrightarrow{\id \boxtimes \, d} X \boxtimes (\Dd[n] \boxtimes \Dd[n]) \xrightarrow{\alpha^{-1}_{\Cc}} (X \boxtimes \Dd[n]) \boxtimes \Dd[n] \xrightarrow{f \, \boxtimes \id} Y \boxtimes \Dd[n] \xrightarrow{g} Z
+        \end{equation*}
+        which is readily checked ti be unital and associative. The counit also provides a canonical functor
+        \begin{equation*}
+            c_{*} \,\colon \Cc \to u \Cc_{\Dd}
+        \end{equation*}
+        which is the identity on objects and send $f \colon X \to Y$ to
+        \begin{equation*}
+            X \boxtimes \Dd[0] \xrightarrow{\id \boxtimes \, c} X \boxtimes \1_{\Cc} \xrightarrow{\eta^{-1}_R} X \xrightarrow{f} Y \,.
+        \end{equation*}
+        The functor $c_{*}$ is an isomorphism if $c$ itself is one.
+        \medskip
+
+        Let's postpone the discussion of the functoriality of this construction for a moment and look at examples:
+
+    \section{Examples}
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                Applied to $\Cc = \sSet$ with the cartesian structure and $\Dd = \Delta^0$ the cosimplicial object given by the standard simplices with its unique (!) comonoid structure given by
+                \begin{equation*}
+                    \Delta \,\colon \Delta^n \to \Delta^n \times \Delta^n \quad \text{and} \quad \id \,\colon \Delta^0 \to \Delta^0 
+                \end{equation*}
+                we recover the cartesian enrichment
+                \begin{equation*}
+                    F(X, Y)_n = \Hom_{\sSet}(X \times \Delta^n, Y) \,.
+                \end{equation*}
+                The composition can here also be described by
+                \begin{equation*}
+                    f \circ g = X \times \Delta^n \xrightarrow{(g, \, \pr_2)} Y \times \Delta^n \xrightarrow{f} Z\footnotemark
+                \end{equation*}
+                \footnotetext{The same is true for any cartesian $\Cc$.}
+                This enrichment is of course not remotely Kan. However, Theorems C and D imply that its restriction to $\mathrm{Kan} \subseteq \sSet$ gives a Kan enrichment.\\
+                Similarly, investing Theorem C and D fully we can also produce a Kan enrichment on $\hCat{q} \subseteq \sSet$ by setting
+                \begin{equation*}
+                    F_{\hCat{q}}(X, Y) = \Core F(X, Y) \,.
+                \end{equation*}
+                For now, we note that we obtain simplicial enrichments on both
+                \begin{equation*}
+                    \mathrm{Kan} \quad \text{and} \quad \hCat{q} \,.
+                \end{equation*}
+            \item 
+                Taking $\Cc = \mathrm{(k)Top}$ and $\Dd = \gr{\Delta^0} = \Delta^0_{\mathrm{top}}$ gives the simplicial enrichment
+                \begin{equation*}
+                    F(X, Y_n) = C(X \times \gr{\Delta^n}, Y)
+                \end{equation*}
+                on $\mathrm{(k)Top}$. It is Kan by the same argument we used to show that $\Sing X$ is always Kan:\\
+                A horn
+                \begin{equation*}
+                    \begin{tikzcd}
+                        X \times \gr{\horn{n}{i}} \arrow[r] \arrow[d, phantom, "\subseteq" rotate=-90] & Y \\
+                        X \times \gr{\Delta^n} \arrow[ru, dashed, "\exists"']           &        
+                    \end{tikzcd}
+                \end{equation*}
+                can be filled since $\gr{\horn{n}{i}}$ is a retract of $\gr{\Delta^n}$.
+            \item 
+                Taking $\Cc = \mathrm{CC}_R$. monoidal under $\otimes_R$ and
+                \begin{equation*}
+                    \Dd_n = C^{\sup}(\Delta^n)\footnotemark
+                \end{equation*}
+                \footnotetext{Either ordered simplicial complex $([n], \mathrm{P}[n])$ or normalised chains on $\Delta^n \in \sSet$}
+                with diagonal given by the Alexander-Whitney map
+                \begin{equation*}
+                    C^{\sup}(\Delta^n) \to C^{\sup}(\Delta^n \times \Delta^n) \to C^{\sup}(\Delta^n) \otimes C^{\sup}(\Delta^n)
+                \end{equation*}
+                and counit the identity map
+                \begin{equation*}
+                    C^{\sup}(\Delta^0) \to \mathbb{Z}[0]
+                \end{equation*}
+                gives a simplicial enrichment; even one in simplicial $R$-modules. As simplicial abelian groups always have underlying simplicial sets that are Kan, this (and any such ``additive'' enrichment) are Kan.
+            \item 
+                One such additive enriched is on the category $\mathrm{sAb}$ with the degree wise tensor product and
+                \begin{equation*}
+                    \Dd_n = \mathbb{Z}[\Delta^n]
+                \end{equation*}
+                which inherits its diagonal from $\Delta^n$ by the strong monoidality of $\mathbb{Z}[-] \colon \Set \to \Ab$. Note that there is always a canonical injection
+                \begin{equation*}
+                    F_{\mathrm{sAb}}(X, Y) \hookrightarrow F_{\sSet}(X, y) \,.
+                \end{equation*}
+            \item 
+                Finally, here is a non-example: The category $\mathrm{CW}$ of cell complexes and cellular maps admits the monoidal structure $- \times_K -$, the Kelley-product, which has as underlying set the usual product, but is topologised with the cellular topology
+                \begin{equation*}
+                    \colim_{\substack{A \subseteq X, B \subseteq Y \\ \text{finite subcomplexes}}} A \times B \coloneqq X \times_k Y \,.
+                \end{equation*}
+                However, $X \times_k Y$ is \emph{not} the categorical product in $\mathrm{CW}$: The maps $\id \colon \Delta^1 \to \Delta^1$ and $\id \colon \Delta^1 \to \Delta^1$ do \emph{not} combine into a cellular map
+                \begin{equation*}
+                    \Delta \,\colon \Delta^1 \to \Delta^1 \times \Delta^1
+                \end{equation*}
+                if we give $\Delta^1 \times \Delta^1$ the product cell structure!\\
+                Thus the cosimplicial object formed by the simplices $\Delta^n_{\mathrm{top}}$ with their evident cell structure does not admit a diagonal. We proceed differently: \\
+                Define
+                \begin{equation*}
+                    F^b_{\mathrm{CW}}(X, Y)_n =
+                    \left\{
+                    \varphi \colon X \times \Delta^n_{\mathrm{top}} \to Y \times \Delta^n_{\mathrm{top}}
+                    \;\middle|\;
+                    \begin{alignedat}{1}
+                        &\varphi \text{ is cellular}\\
+                        &\varphi(X \times \alpha \Delta^i) \subseteq Y \times \alpha \Delta^i \\
+                        &\alpha \colon [i] \hookrightarrow [n]
+                    \end{alignedat}
+                    \right\}
+                \end{equation*}
+                the simplicial set of \emph{block-cellular maps}. Its boundary maps are given by restricting the maps $\varphi$ in the evident fashion, and degeneracies are most easily described by a recipe: For $f \colon X \times \Delta^n \to Y \times \Delta^n$ define $s_i f \colon X \times \Delta^{n+1} \to Y \times \Delta^{n+1}$ component wise by
+                \begin{equation*}
+                    X \times \Delta^{n+1} \xrightarrow{\id \times s_i} X \times \Delta^n \xrightarrow{f} Y \times \Delta^n \xrightarrow{\pr_1} Y
+                \end{equation*}
+                to the simplex by mapping $(x, t_0, \ldots, t_{n+1})$ to
+
+                which is hopefully illustrated by the picture below. \\
+                It is readily checked that this really gives a simplicial set, and it is an exercise on sheet 6 to show that it is Kan, giving $\mathrm{CW}^b_{\mathrm{Cell}}$.\\
+                These spaces of block cellular maps admit forgetful maps
+                \begin{equation*}
+                    F^b_{\mathrm{CW}}(X, Y)_n \to \left\{ \varphi \colon X \times \Delta^n \to Y \mid \varphi \text{ is cellular} \right\}
+                \end{equation*}
+                by projecting to the $Y$ factor, and we will show that this map is a homotopy equivalence of Kan sets.\\
+                There is a similar block version of the enrichment $\Top^b$ of $\Top$:
+                \begin{equation*}
+                    F^b_{\Top}(X, Y)_n =
+                    \left\{
+                    \varphi \colon X \times \Delta^n \to Y \times \Delta^n
+                    \;\middle|\;
+                    \begin{alignedat}{1}
+                        &\varphi(X \times \alpha \Delta^i) \subseteq Y \times \alpha \Delta^i \\
+                        &\alpha \colon [i] \hookrightarrow [n]
+                    \end{alignedat}
+                    \right\}
+                \end{equation*}
+                and the projection $F^b_{\Top} \to F_{\Top}$ admits a section
+                \begin{align*}
+                    F_{\Top}(X, Y) &\to F^b_{\Top}(X, Y) \\
+                    (\varphi : X \times \Delta^n \to Y) &\mapsto ((\varphi. \pr_2) \colon X \times \Delta^n \to Y \times \Delta^n)
+                \end{align*}
+                which is easily shown a homotopy equivalence of Kan complexes. This will be another exercise.
+        \end{enumerate}
+            
+        There result simplicially enriched functors
+        \begin{align*}
+            \mathrm{CW}^b_{\mathrm{Cell}} \to \mathrm{CW}^b \subseteq \mathrm{kTop}^b \leftarrow \Top^b \leftrightarrows \Top
+        \end{align*}
+        the former and latter three of which are examples of
