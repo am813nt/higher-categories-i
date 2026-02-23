@@ -923,7 +923,23 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
                 \end{scope}
             \end{tikzpicture}            
         \end{equation*}
-        with $F(x, z) \cong $ in the second example. Then a strict $2$-functor from left to right that is the identity on objects is automatically the inclusion, whereas a weak $2$-functor can send $f$ to $f$ and $g$ to $g$, but $gf$ to $h$!
+        with $F(x, z) \cong$ 
+        \begin{tikzpicture}[
+            scale=0.8, 
+            thick, 
+            color=violet, 
+            dot/.style={circle, fill=violet, inner sep=1.0pt, outer sep=0pt}
+        ]        
+            \coordinate (A) at (0, 0);
+            \coordinate (B) at (1, 0);
+
+            \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>}}}}] (A) to[out=40,in=140] (B);
+            \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>}}}}] (B) to[out=-140,in=-40] (A);            
+
+            \node[dot] at (A) {};
+            \node[dot] at (B) {};
+        \end{tikzpicture}
+         in the second example. Then a strict $2$-functor from left to right that is the identity on objects is automatically the inclusion, whereas a weak $2$-functor can send $f$ to $f$ and $g$ to $g$, but $gf$ to $h$!
         \medskip
 
         Now finally for the examples of Kan enriched categories: The general construction mechanism is that of the simplicial function sets
@@ -1081,8 +1097,45 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
                     X \times \Delta^{n+1} \xrightarrow{\id \times s_i} X \times \Delta^n \xrightarrow{f} Y \times \Delta^n \xrightarrow{\pr_1} Y
                 \end{equation*}
                 to the simplex by mapping $(x, t_0, \ldots, t_{n+1})$ to
+                \begin{equation*}
+                    \frac{t_i}{t_i + t_{i+1}} d_i \overbrace{\textcolor{black}{\pr_2 f(x, t_0, \ldots, t_i + t_{i+1}, \ldots, t_{n+1})}}^{\color{magenta}{\in \Delta^n}} + \frac{t_{i+1}}{t_i + t_{i+1}} d_{i+1} \pr_2 f(x, t_0, \ldots, t_i + t_{i+1}, \ldots, t_{n+1})
+                \end{equation*}
+                which is hopefully illustrated by the picture below.
+                \begin{equation*}
+                    \begin{tikzpicture}[
+                        scale=1.1, 
+                        thick, 
+                        color=violet, 
+                        every node/.style={text=black},
+                        dot/.style={circle, fill=violet, inner sep=1.5pt, outer sep=0pt}
+                    ]
 
-                which is hopefully illustrated by the picture below. \\
+                    % Define coordinates
+                    \coordinate (O) at (0, 0);      % Vertex 0
+                    \coordinate (A) at (1, 1.5);    % Vertex 1
+                    \coordinate (B) at (2, 0);      % Vertex 2
+
+                    % Draw the triangle and edge labels
+                    \draw (O) -- node[left] {$s_0 f$} (A) 
+                        -- node[right] {$f$} (B) 
+                        -- node[below] {$f$} cycle;
+
+                    % Draw vertices (dots)
+                    \node[dot] at (O) {};
+                    \node[dot] at (A) {};
+                    \node[dot] at (B) {};
+
+                    % Draw vertex labels (x, y, z)
+                    \node[below left] at (O) {$0$};
+                    \node[above] at (A) {$1$};
+                    \node[below right] at (B) {$2$};
+
+                    \foreach \i in {0.25, 0.5, 0.75} {
+                        \draw (B) -- node[right, very near end] {\small $f$} ($(O)!\i!(A)$);
+                    }
+
+                    \end{tikzpicture}
+                \end{equation*}
                 It is readily checked that this really gives a simplicial set, and it is an exercise on sheet 6 to show that it is Kan, giving $\mathrm{CW}^b_{\mathrm{Cell}}$.\\
                 These spaces of block cellular maps admit forgetful maps
                 \begin{equation*}
@@ -1114,3 +1167,84 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
             \mathrm{CW}^b_{\mathrm{Cell}} \to \mathrm{CW}^b \subseteq \mathrm{kTop}^b \leftarrow \Top^b \leftrightarrows \Top
         \end{align*}
         the former and latter three of which are examples of
+
+    \section{Definition}
+        An enriched functor $G \colon \Cc \to \Dd$ of Kan-enriched categories is called a \emph{Dwyer-Kan equivalence} if
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                $G$ induces an equivalence
+                \begin{equation*}
+                    \pi \Cc \to \pi \Dd
+                \end{equation*}
+                on homotopy categories
+            \item 
+                the map
+                \begin{equation*}
+                    G \,\colon F_{\Cc}(x, y) \to F_{\Dd}(Gx, Gy)
+                \end{equation*}
+                is a homotopy equivalence of Kan complexes for all $x, y \in \Cc$.
+        \end{enumerate}
+        Similarly, the Eilenberg-Zilber theorem shows that the Dold-Kan correspondence gives Dwyer-Kan equivalences between
+        \begin{equation*}
+            \mathrm{sAb} \quad \text{and} \quad \mathrm{CC}^{\geqslant 0}_R
+        \end{equation*}
+        in the enrichment discussed above. We will maybe review this later in the course, when we have established Theorem F. The fact that Dwyer-Kan equivalences are not invertible is the worst defect of simplicially enriched categories.
+
+        To this end recall, what the coherent nerve $\Nn^c$cis supposed to do:
+        \begin{equation*}
+            (\Nn^c \Cc)_0 = \obj(\Cc) \quad \text{and} \quad (\Nn^c \Cc)_1 = \mor(u\Cc)
+        \end{equation*}
+        whereas $(\Nn^c \Cc)_2$ is supposed to consist of diagrams that do not necessarily commute but rather come equipped with an element $H \in F_{\Cc}(X, Z)_1$ with $d_0H = h$ and $d_1H = gf$.
+
+        Similarly, an element id $(\Nn^c \Cc)_3$ is to consist of 6 maps as indicated below, one homotopy (i.e. $1$-simplex) for each face; this data produces two parallel homotopies namely
+        \begin{equation*}
+            jgf \Rightarrow jh \Rightarrow k \quad \text{and} \quad jgf \Rightarrow if \Rightarrow k
+        \end{equation*}
+        and as the final piece of data we want a homotopy between these homotopies, i.e. a map $\Delta^1 \times \Delta^1 \to F_{\Cc} (X, W)$ restricting appropriately. This is accomplished by enumerating such maps, homotopies and so on by paths through the simplex as follows:
+
+    \section{Construction}
+        For a totally ordered set $\Jj$ and $i \leq j \in \Jj$ set
+        \begin{equation*}
+            \Jj_{i,j} = \left\{ \II \subseteq [i, j] \mid i, j \in \II \right\}
+        \end{equation*}
+        the poset of paths from $i$ to $j$, ordered by refinement, i.e. inclusion.
+        \smallskip
+
+        For $i \leq j \leq k$ there is a map
+        \begin{align*}
+            \Jj_{j,h} \times \Jj_{i,j} &\to \Jj_{i,k} \\
+              (S, T) &\mapsto S \cup T
+        \end{align*}
+        which is clearly order preserving. We obtain a poset enriched category $\mathfrak{P}\Jj$ with
+        \begin{equation*}
+            \obj \mathfrak{P}\Jj = \Jj \quad F_{\mathfrak{P}\Jj}(i, j) = \Jj_{i,j}
+        \end{equation*}
+        with composition given by the union map above and identities the singletons.
+
+    \section{Definition}
+        Define the simplicially enriched categories $\Ll{\Jj}$ as the image of $\mathfrak{P}\Jj$ under
+        \begin{equation*}
+            \Cat^{\Ord} \xrightarrow{\mathbbmsl{N}_{*}} \Cat^{\Cat} \xrightarrow{\Nn_{*}} \Cat^{\sSet}
+        \end{equation*}
+
+    \section{Corollary/Definition}
+        We obtain a cosimplicial object
+        \begin{equation*}
+            \Ll \,\colon \bbDelta \to \Cat^{\sSet}
+        \end{equation*}
+        sending $[n]$ to $\Ll{[n]}$. Its associated adjunction
+        \begin{equation*}
+            \Ll \colon \sSet \leftrightarrows \Cat^{\sSet} \colon \Nn^c
+        \end{equation*}
+        defines the \emph{coherent nerve}, explicitely given by
+        \begin{equation*}
+            (\Nn^c \Cc)_n = \Hom_{\Cat^{\sSet}}(\Ll([n]), \Cc) \,.
+        \end{equation*}
+        To analyse this construction, observe that
+        \begin{equation*}
+            [n]_{i,j} \cong \prod_{i < k < j}\left\{0, 1\right\}
+        \end{equation*}
+        via
+        \begin{equation*}
+            %S \mapsto \left
+        \end{equation*}
