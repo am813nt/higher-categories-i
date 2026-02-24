@@ -880,9 +880,9 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
                     \coordinate (B) at (2, 0);      % Vertex 2
 
                     % Draw the triangle and edge labels
-                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>}}}}] (O) -- node[above left] {$f$} (A);
-                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>}}}}] (O) -- node[below] {$gf$} (B);
-                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>}}}}] (A) -- node[above right] {$g$} (B);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (O) -- node[above left] {$f$} (A);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (O) -- node[below] {$gf$} (B);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (A) -- node[above right] {$g$} (B);
 
                     % Draw vertices (dots)
                     \node[dot] at (O) {};
@@ -933,8 +933,8 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
             \coordinate (A) at (0, 0);
             \coordinate (B) at (1, 0);
 
-            \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>}}}}] (A) to[out=40,in=140] (B);
-            \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>}}}}] (B) to[out=-140,in=-40] (A);            
+            \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[width=6pt]}}}}] (A) to[out=40,in=140] (B);
+            \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[width=6pt]}}}}] (B) to[out=-140,in=-40] (A);            
 
             \node[dot] at (A) {};
             \node[dot] at (B) {};
@@ -1195,8 +1195,78 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
             (\Nn^c \Cc)_0 = \obj(\Cc) \quad \text{and} \quad (\Nn^c \Cc)_1 = \mor(u\Cc)
         \end{equation*}
         whereas $(\Nn^c \Cc)_2$ is supposed to consist of diagrams that do not necessarily commute but rather come equipped with an element $H \in F_{\Cc}(X, Z)_1$ with $d_0H = h$ and $d_1H = gf$.
+        \begin{equation*}
+            \begin{tikzpicture}[
+                scale=0.9, 
+                thick, 
+                color=violet, 
+                every node/.style={text=black},
+                dot/.style={circle, fill=violet, inner sep=1.5pt, outer sep=0pt}
+            ]
 
-        Similarly, an element id $(\Nn^c \Cc)_3$ is to consist of 6 maps as indicated below, one homotopy (i.e. $1$-simplex) for each face; this data produces two parallel homotopies namely
+                % Define coordinates
+                \coordinate (O) at (0, 0);      % Vertex 0
+                \coordinate (A) at (1, 1.5);    % Vertex 1
+                \coordinate (B) at (2, 0);      % Vertex 2
+
+                % Draw the triangle and edge labels
+                \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (O) -- node[above left] {$f$} (A);
+                \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (O) -- node[below] {$h$} (B);
+                \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (A) -- node[above right] {$g$} (B);
+
+                % Draw vertices (dots)
+                \node[dot] at (O) {};
+                \node[dot] at (A) {};
+                \node[dot] at (B) {};
+
+                % Draw vertex labels (0, 1, 2)
+                \node[below left] at (O) {X};
+                \node[above] at (A) {Y};
+                \node[below right] at (B) {Z};
+
+                \node[] at (1, 0.6) {H};
+            \end{tikzpicture}
+        \end{equation*}
+
+        Similarly, an element id $(\Nn^c \Cc)_3$ is to consist of 6 maps as indicated below, 
+        \begin{equation*}
+            \begin{tikzpicture}[
+                scale=1.2,
+                every node/.style={text=black}, % Set default text color to match drawing
+                thick,
+                color=violet, % Set line color
+                dot/.style={circle, fill=violet, inner sep=1.5pt, outer sep=0pt} % Vertex style
+            ]
+                % Coordinates
+                \coordinate (A) at (0,0);       % Bottom Left
+                \coordinate (B) at (1.2, 1.8);  % Top
+                \coordinate (C) at (2.4, 0);    % Bottom Middle
+                \coordinate (D) at (3.6, 1.2);  % Right
+
+                % Edges with labels
+                \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (A) -- node[above left] {$f$} (B);
+                \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (A) -- node[below left] {$u$} (C);
+                \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>[length=10pt,width=7pt]}}}}] (B) -- node[above right] {$g$} (C);
+                \draw (B)[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>[length=10pt,width=7pt]}}}}] -- node[above] {$i$} (D);
+                \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (C) -- node[below right] {$j$} (D);
+    
+                % Dashed diagonal
+                \draw[dashed,postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>[length=10pt,width=7pt]}}}}] (A) -- node[above, pos=0.3] {$k$} (D);
+
+                % Vertices
+                \node[dot] at (A) {};
+                \node[dot] at (B) {};
+                \node[dot] at (C) {};
+                \node[dot] at (D) {};
+
+                % Vertex Labels
+                \node[below] at (A) {X};
+                \node[above] at (B) {Y};
+                \node[below] at (C) {Z};
+                \node[right] at (D) {W};
+            \end{tikzpicture}
+        \end{equation*}
+        one homotopy (i.e. $1$-simplex) for each face; this data produces two parallel homotopies namely
         \begin{equation*}
             jgf \Rightarrow jh \Rightarrow k \quad \text{and} \quad jgf \Rightarrow if \Rightarrow k
         \end{equation*}
@@ -1236,7 +1306,7 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
         \begin{equation*}
             \Ll \colon \sSet \leftrightarrows \Cat^{\sSet} \colon \Nn^c
         \end{equation*}
-        defines the \emph{coherent nerve}, explicitely given by
+        defines the \emph{coherent nerve}, explicitly given by
         \begin{equation*}
             (\Nn^c \Cc)_n = \Hom_{\Cat^{\sSet}}(\Ll([n]), \Cc) \,.
         \end{equation*}
@@ -1246,5 +1316,46 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
         \end{equation*}
         via
         \begin{equation*}
-            %S \mapsto \left
+            S \mapsto \left( 
+                k \mapsto
+                \begin{cases*}
+                    0 & $k \notin S$ \\
+                    1 & $k \in S$
+                \end{cases*}
+            \right) \,.
         \end{equation*}
+        
+    \section{Observation}
+        This isomorphism induces an isomorphism
+        \begin{equation*}
+            F_{\Ll_{n}}(i, j) \cong \prod_{i < k < j} \Delta^1 \,.
+        \end{equation*}
+        In particular, we find
+        \begin{equation*}
+            \Ll(0) \cong \const_{*}\mathbbmsl{N}[0] \quad \text{and} \quad \Ll(1) \cong \const_{*}\mathbbmsl{N}[1]
+        \end{equation*}
+        discrete and $\pi \Ll(n) \cong \mathbbmsl{N}[n]$ for all $n$.
+        \medskip
+
+        In $\Ll(2)$ we find
+        \begin{equation*}
+            F_{\Ll(2)}(i, j) \cong \Delta^0
+        \end{equation*}
+        except that
+        \begin{equation*}
+            F_{\Ll(2)}(0, 2) \cong \Delta^1
+        \end{equation*}
+        as desired. A similar analysis shows that maps $\Ll(3) \to \Cc$ correspond exactly to diagrams in $\Cc$ as previously discussed.
+
+    \section{Theorem (Cordier-Porter)}\label{chIV-31}
+        If $\Cc$ is Kan-enriched, then $\Nn^c \Cc \in \sSet$ is a quasi-category.
+
+    \section{Theorem H}
+        If $\Cc$ is Kan-neriched, then there are canonical equivalences
+        \begin{equation*}
+            F_{\Cc}(x, y) \simeq \Hom_){\Nn^c \Cc}(x, y)
+        \end{equation*}
+        of Kan complexes.
+        \medskip
+
+        For the proof of \ref{chIV-31} we used to understand $\Ll(\horn{n}{i})$ for $0 < i < n$.
