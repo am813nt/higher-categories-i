@@ -117,19 +117,196 @@
                 \end{scope}                
             \end{tikzpicture}
         \end{equation*}
-        A degree wise injection of simplicial sets, that becomes a homotopy equivalence after realisation is known as an \emph{anodyne extension}\footnote{Though this will not be the definition!}. Horn and spine inclusion are examples as well.
+        A degree wise injection of simplicial sets, that becomes a homotopy equivalence after realisation is known as an \emph{anodyne extension}\footnote{Though this will not be the definition!}. Horn and spine inclusions are examples as well.
 
         One of the main results of the next section will be that Kan complexes in fact admit fillers for \emph{any} anodyne extension, i.e. if $f \colon X \to Y$ is anodyne and $K$ Kan then
         \begin{equation*}
             f^{*} \,\colon \Hom_{\sSet}(Y, K) \to \Hom_{\sSet}(X, K)
         \end{equation*}
         is surjective. In the case of the inclusions occurring as $F_{\Ll(\horn{n}{i})}(0, n) \subseteq F_{\Ll(\Delta^n)}(0, n)$ this statement can also be seen by hand: For $n = 0$ this inclusion simply \emph{is} a horn, for $n = 1$ a filler for
+        \begin{equation*}
+            \begin{tikzpicture}[
+                scale=0.9, 
+                thick, 
+                color=violet, 
+                every node/.style={text=black,font=\footnotesize},
+                dot/.style={circle, fill=violet, inner sep=1.5pt, outer sep=0pt}
+            ]
+                \begin{scope}[shift={(0,0)}]
+                    \coordinate (A) at (0, -0.5);
+                    \coordinate (B) at (0, 0.5);
+                    \coordinate (C) at (1, 0.5);
+                    \coordinate (D) at (1, -0.5);
 
+                    % Draw vertices (dots)
+                    \node[dot] at (A) {};
+                    \node[dot] at (B) {};
+                    \node[dot] at (C) {};
+                    \node[dot] at (D) {};
+
+                    % Draw vertex labels
+                    \node[left] at (A) {00};
+                    \node[left] at (B) {10};
+                    \node[right] at (C) {11};
+                    \node[right] at (D) {01};
+
+                    % left span
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (A) -- (B);
+
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (B) -- (C);
+
+                    % right triangle
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (D) -- (C);                    
+
+                    %\node at (2, 0) {\normalsize $\subseteq$};
+
+                \end{scope}
+                \begin{scope}[shift={(2,-2)}]
+                    \coordinate (A) at (0, -0.5);
+                    \coordinate (B) at (0, 0.5);
+                    \coordinate (C) at (1, 0.5);
+                    \coordinate (D) at (1, -0.5);
+
+                    % Draw vertices (dots)
+                    \node[dot] at (A) {};
+                    \node[dot] at (B) {};
+                    \node[dot] at (C) {};
+                    \node[dot] at (D) {};
+
+                    % Draw vertex labels
+                    \node[left] at (A) {00};
+                    \node[left] at (B) {10};
+                    \node[right] at (C) {11};
+                    \node[right] at (D) {01};
+                
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (A) -- (B);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (B) -- (C);
+                    
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (A) -- (C);
+
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (A) -- (D);
+
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (D) -- (C);
+
+                    \draw[fill=violet,fill opacity=0.3] (A) -- (B) -- (C) -- cycle;
+                    \draw[fill=violet,fill opacity=0.3] (A) -- (C) -- (D) -- cycle;
+                    
+                \end{scope}
+
+                \node[rotate=-45] at (1, -1.3) {\Large $\subseteq$};
+
+                \node at (6,0) {\large K};
+
+                \draw[->, black,thin] (1.5, 0) -- (5.7, 0);
+                \draw[->, black, dashed,thin] (3.5,-1.9) -- (5.7, -0.3);
+                
+            \end{tikzpicture}
+        \end{equation*}
         can clearly be constructed by first filling the horn
+        \begin{equation*}
+            \begin{tikzpicture}[
+                scale=0.9, 
+                thick, 
+                color=violet, 
+                every node/.style={text=black,font=\footnotesize},
+                dot/.style={circle, fill=violet, inner sep=1.5pt, outer sep=0pt}
+            ]
 
+                    \coordinate (A) at (0, -0.5);
+                    \coordinate (B) at (0, 0.5);
+                    \coordinate (C) at (1, 0.5);
+
+                    \coordinate (D) at (3, -0.5);
+                    \coordinate (E) at (3, 0.5);
+                    \coordinate (F) at (4, 0.5);
+
+                    % Draw vertices (dots)
+                    \node[dot] at (A) {};
+                    \node[dot] at (B) {};
+                    \node[dot] at (C) {};
+
+                    \node[dot] at (D) {};
+                    \node[dot] at (E) {};
+                    \node[dot] at (F) {};
+
+                    % Draw vertex labels
+                    \node[left] at (A) {00};
+                    \node[left] at (B) {10};
+                    \node[right] at (C) {11};
+
+                    \node[left] at (D) {00};
+                    \node[left] at (E) {10};
+                    \node[right] at (F) {11};
+
+                    % left span
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (A) -- (B);
+
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (B) -- (C);
+
+                    % right triangle
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (D) -- (E);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (E) -- (F);
+                    
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (D) -- (F);
+                    
+
+                    \node at (2, 0) {\normalsize $\subseteq$};
+
+                    \draw[fill=violet,fill opacity=0.3] (D) -- (E) -- (F) -- cycle;
+
+            \end{tikzpicture}
+        \end{equation*}
         and then using the result $f \colon \Delta^2 \to K$ to fill
+        \begin{equation*}
+            \begin{tikzpicture}[
+                scale=0.9, 
+                thick, 
+                color=violet, 
+                every node/.style={text=black,font=\footnotesize},
+                dot/.style={circle, fill=violet, inner sep=1.5pt, outer sep=0pt}
+            ]
 
+                    \coordinate (A) at (0, -0.5);
+                    \coordinate (B) at (1, 0.5);
+                    \coordinate (C) at (1, -0.5);
 
+                    \coordinate (D) at (3, -0.5);
+                    \coordinate (E) at (4, 0.5);
+                    \coordinate (F) at (4, -0.5);
+
+                    % Draw vertices (dots)
+                    \node[dot] at (A) {};
+                    \node[dot] at (B) {};
+                    \node[dot] at (C) {};
+
+                    \node[dot] at (D) {};
+                    \node[dot] at (E) {};
+                    \node[dot] at (F) {};
+
+                    % Draw vertex labels
+                    \node[left] at (A) {00};
+                    \node[right] at (B) {11};
+                    \node[right] at (C) {01};
+
+                    \node[left] at (D) {00};
+                    \node[left] at (E) {11};
+                    \node[right] at (F) {01};
+
+                    % left wedge
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.7 with {\arrow{>[length=8pt,width=5pt]}}}}] (A) -- node[left] {$d_1 f$} (B);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (C) -- (B);
+                    
+                    % right triangle
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (D) -- (E);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (F) -- (E);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (D) -- (F);
+                    
+                    \node at (2, 0) {\normalsize $\subseteq$};
+
+                    \draw[fill=violet,fill opacity=0.3] (D) -- (E) -- (F) -- cycle;
+
+            \end{tikzpicture}
+        \end{equation*}
         A similar argument works for larger $n$, but as we will show the general statement soon, let us assume anodyne fillers for a moment and dive in to
 
     \section{Proof of \ref{chIV-31}}

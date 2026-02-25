@@ -1360,3 +1360,336 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
 
         For the proof of \ref{chIV-31} we used to understand $\Ll(\horn{n}{i})$ for $0 < i < n$.
 
+    \section{Lemma}\label{chIV-33}
+        The inclusion $\horn{n}{i} \subseteq \Delta^n$ for $0 < i < n$ induces an inclusion\footnote{But not an embedding!} of simplicial categories
+        \begin{equation*}
+            \Ll(\horn{n}{i}) \to \Ll(\Delta^n)
+        \end{equation*}
+        with
+        \begin{alignat*}{2}
+            \obj \Ll(\horn{n}{i}) &= \obj \Ll(\Delta^n) &&= \left\{ 0, \ldots, n \right\} \\
+            F_{\Ll(\horn{n}{i})}(j, k) &= F_{\Ll(n)}(j, k) &&= \Nn([n]_{j, k})
+        \end{alignat*}
+        except for
+        \begin{equation*}
+            F_{\Ll \horn{n}{i}}(0, n) = \bigcup_{o < j < n}\Nn(\left\{ \II \in [n]_{0,n} \mid j \in \II \right\}) \;\cup \bigcup_{\substack{o < j < n\\ i \neq j}}\Nn(\left\{ \II \in [n]_{0,n} \mid j \notin \II \right\}) \subseteq F_{\Ll(n)}(0, n)
+        \end{equation*}
+        The proof is an exercise on sheet 6. Note that under the isomorphism of \ref{chIV-30} the nerves on the right correspond precisely to the faces of the cube $\prod\limits_{0<j<n} \Delta^1$: Let for $\epsilon \in \left\{ 0, 1 \right\}$
+        \begin{equation*}
+            e^{\epsilon}_i \,\colon \prod_{\substack{0<j<n \\ j \neq i}} \Delta^1 \to \prod_{0<j<n}\Delta^1
+        \end{equation*}
+        denote the embedding induced by
+        \begin{equation*}
+            d_{\epsilon} \,\colon \Delta^0 \to \Delta^1
+        \end{equation*}
+        in the $i$-th coordinate, i.e. $e^0_i$ is the inclusion of the $i$-th bottom face of the cube and $e^1_i$ the inclusion of the $i$-th top face we find
+      
+    \section{Corollary}
+        Under the isomorphism of \ref{chIV-30} the inclusion
+        \begin{equation*}
+            F_{\Ll(\horn{n}{i})}(0, n) \subseteq F_{\Ll(n)}(0, n)
+        \end{equation*}
+        becomes
+        \begin{equation*}
+            \bigcup_{\substack{0<j<n \\ i \neq j}} \im(e^0_j) \;\cup \bigcup_{0<j<n} \im(e^1_j) \subseteq \prod_{0<j<n} \Delta^1 \,.
+        \end{equation*}
+        In particular, this inclusion becomes a homotopy equivalence after realisation.
+        \begin{equation*}
+            \begin{tikzpicture}[
+                scale=0.9, 
+                thick, 
+                color=violet, 
+                every node/.style={text=black,font=\footnotesize},
+                dot/.style={circle, fill=violet, inner sep=1.5pt, outer sep=0pt}
+            ]
+
+                \begin{scope}[shift={(0,0)}]
+                    \coordinate (A) at (0, 0);
+                    \coordinate (B) at (2, 0.5);
+                    \coordinate (C) at (2, -0.5);
+
+                    % Draw vertices (dots)
+                    \node[dot] at (A) {};
+                    \node[dot] at (B) {};
+                    \node[dot] at (C) {};
+
+                    \draw (B) -- (C);
+
+                    % Draw vertex labels (0, 1, 2)
+                    \node[right] at (A) {1};
+                    \node[right] at (B) {1};
+                    \node[right] at (C) {0};
+
+                    \node at (1, 0) {\normalsize $\subseteq$};
+                    \node at (1,-1.3) {\normalsize $|F_{\horn{2}{1}}(0,2)| \subseteq |F_{\Delta^2}(0,2)|$};
+
+                \end{scope}
+                \begin{scope}[shift={(4,0)}]
+                    \coordinate (A) at (0, -0.5);
+                    \coordinate (B) at (0, 0.5);
+                    \coordinate (C) at (1, 0.5);
+                    \coordinate (D) at (1, -0.5);
+
+                    % Draw vertices (dots)
+                    \node[dot] at (A) {};
+                    \node[dot] at (B) {};
+                    \node[dot] at (C) {};
+                    \node[dot] at (D) {};
+
+                    \draw (A) -- (B) -- (C) -- (D);
+
+                    % Draw vertex labels (0, 1, 2)
+                    \node[left] at (A) {00};
+                    \node[left] at (B) {10};
+                    \node[right] at (C) {11};
+                    \node[right] at (D) {01};
+
+                    \node at (2, 0) {\normalsize $\subseteq$};
+                    \node at (2,-1.3) {\normalsize $|F_{\horn{3}{1}}(0,3)| \subseteq |F_{\Delta^3}(0,3)|$};
+
+                    \draw[fill=violet!30] (3,-0.5) -- (3,0.5) -- (4,0.5) -- (4,-0.5) -- cycle;
+
+                \end{scope}
+                \begin{scope}[shift={(9.5,0)}]
+                    \coordinate (A) at (0, -0.5);
+                    \coordinate (B) at (0, 0.5);
+                    \coordinate (C) at (1, 0.5);
+                    \coordinate (D) at (1, -0.5);
+
+                    % Draw vertices (dots)
+                    \node[dot] at (A) {};
+                    \node[dot] at (B) {};
+                    \node[dot] at (C) {};
+                    \node[dot] at (D) {};
+
+                    \draw (B) -- (C) -- (D) -- (A);
+
+                    % Draw vertex labels (0, 1, 2)
+                    \node[left] at (A) {00};
+                    \node[left] at (B) {10};
+                    \node[right] at (C) {11};
+                    \node[right] at (D) {01};
+
+                    \node at (2, 0) {\normalsize $\subseteq$};
+                    \node at (2,-1.3) {\normalsize $|F_{\horn{3}{2}}(0,3)| \subseteq |F_{\Delta^3}(0,3)|$};
+
+                    \draw[fill=violet!30] (3,-0.5) -- (3,0.5) -- (4,0.5) -- (4,-0.5) -- cycle;
+
+                \end{scope}                
+            \end{tikzpicture}
+        \end{equation*}
+        A degree wise injection of simplicial sets, that becomes a homotopy equivalence after realisation is known as an \emph{anodyne extension}\footnote{Though this will not be the definition!}. Horn and spine inclusions are examples as well.
+
+        One of the main results of the next section will be that Kan complexes in fact admit fillers for \emph{any} anodyne extension, i.e. if $f \colon X \to Y$ is anodyne and $K$ Kan then
+        \begin{equation*}
+            f^{*} \,\colon \Hom_{\sSet}(Y, K) \to \Hom_{\sSet}(X, K)
+        \end{equation*}
+        is surjective. In the case of the inclusions occurring as $F_{\Ll(\horn{n}{i})}(0, n) \subseteq F_{\Ll(\Delta^n)}(0, n)$ this statement can also be seen by hand: For $n = 0$ this inclusion simply \emph{is} a horn, for $n = 1$ a filler for
+        \begin{equation*}
+            \begin{tikzpicture}[
+                scale=0.9, 
+                thick, 
+                color=violet, 
+                every node/.style={text=black,font=\footnotesize},
+                dot/.style={circle, fill=violet, inner sep=1.5pt, outer sep=0pt}
+            ]
+                \begin{scope}[shift={(0,0)}]
+                    \coordinate (A) at (0, -0.5);
+                    \coordinate (B) at (0, 0.5);
+                    \coordinate (C) at (1, 0.5);
+                    \coordinate (D) at (1, -0.5);
+
+                    % Draw vertices (dots)
+                    \node[dot] at (A) {};
+                    \node[dot] at (B) {};
+                    \node[dot] at (C) {};
+                    \node[dot] at (D) {};
+
+                    % Draw vertex labels
+                    \node[left] at (A) {00};
+                    \node[left] at (B) {10};
+                    \node[right] at (C) {11};
+                    \node[right] at (D) {01};
+
+                    % left span
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (A) -- (B);
+
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (B) -- (C);
+
+                    % right triangle
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (D) -- (C);                    
+
+                    %\node at (2, 0) {\normalsize $\subseteq$};
+
+                \end{scope}
+                \begin{scope}[shift={(2,-2)}]
+                    \coordinate (A) at (0, -0.5);
+                    \coordinate (B) at (0, 0.5);
+                    \coordinate (C) at (1, 0.5);
+                    \coordinate (D) at (1, -0.5);
+
+                    % Draw vertices (dots)
+                    \node[dot] at (A) {};
+                    \node[dot] at (B) {};
+                    \node[dot] at (C) {};
+                    \node[dot] at (D) {};
+
+                    % Draw vertex labels
+                    \node[left] at (A) {00};
+                    \node[left] at (B) {10};
+                    \node[right] at (C) {11};
+                    \node[right] at (D) {01};
+                
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (A) -- (B);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (B) -- (C);
+                    
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (A) -- (C);
+
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (A) -- (D);
+
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (D) -- (C);
+
+                    \draw[fill=violet,fill opacity=0.3] (A) -- (B) -- (C) -- cycle;
+                    \draw[fill=violet,fill opacity=0.3] (A) -- (C) -- (D) -- cycle;
+                    
+                \end{scope}
+
+                \node[rotate=-45] at (1, -1.3) {\Large $\subseteq$};
+
+                \node at (6,0) {\large K};
+
+                \draw[->, black,thin] (1.5, 0) -- (5.7, 0);
+                \draw[->, black, dashed,thin] (3.5,-1.9) -- (5.7, -0.3);
+                
+            \end{tikzpicture}
+        \end{equation*}
+        can clearly be constructed by first filling the horn
+        \begin{equation*}
+            \begin{tikzpicture}[
+                scale=0.9, 
+                thick, 
+                color=violet, 
+                every node/.style={text=black,font=\footnotesize},
+                dot/.style={circle, fill=violet, inner sep=1.5pt, outer sep=0pt}
+            ]
+
+                    \coordinate (A) at (0, -0.5);
+                    \coordinate (B) at (0, 0.5);
+                    \coordinate (C) at (1, 0.5);
+
+                    \coordinate (D) at (3, -0.5);
+                    \coordinate (E) at (3, 0.5);
+                    \coordinate (F) at (4, 0.5);
+
+                    % Draw vertices (dots)
+                    \node[dot] at (A) {};
+                    \node[dot] at (B) {};
+                    \node[dot] at (C) {};
+
+                    \node[dot] at (D) {};
+                    \node[dot] at (E) {};
+                    \node[dot] at (F) {};
+
+                    % Draw vertex labels
+                    \node[left] at (A) {00};
+                    \node[left] at (B) {10};
+                    \node[right] at (C) {11};
+
+                    \node[left] at (D) {00};
+                    \node[left] at (E) {10};
+                    \node[right] at (F) {11};
+
+                    % left span
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (A) -- (B);
+
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (B) -- (C);
+
+                    % right triangle
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (D) -- (E);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (E) -- (F);
+                    
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (D) -- (F);
+                    
+
+                    \node at (2, 0) {\normalsize $\subseteq$};
+
+                    \draw[fill=violet,fill opacity=0.3] (D) -- (E) -- (F) -- cycle;
+
+            \end{tikzpicture}
+        \end{equation*}
+        and then using the result $f \colon \Delta^2 \to K$ to fill
+        \begin{equation*}
+            \begin{tikzpicture}[
+                scale=0.9, 
+                thick, 
+                color=violet, 
+                every node/.style={text=black,font=\footnotesize},
+                dot/.style={circle, fill=violet, inner sep=1.5pt, outer sep=0pt}
+            ]
+
+                    \coordinate (A) at (0, -0.5);
+                    \coordinate (B) at (1, 0.5);
+                    \coordinate (C) at (1, -0.5);
+
+                    \coordinate (D) at (3, -0.5);
+                    \coordinate (E) at (4, 0.5);
+                    \coordinate (F) at (4, -0.5);
+
+                    % Draw vertices (dots)
+                    \node[dot] at (A) {};
+                    \node[dot] at (B) {};
+                    \node[dot] at (C) {};
+
+                    \node[dot] at (D) {};
+                    \node[dot] at (E) {};
+                    \node[dot] at (F) {};
+
+                    % Draw vertex labels
+                    \node[left] at (A) {00};
+                    \node[right] at (B) {11};
+                    \node[right] at (C) {01};
+
+                    \node[left] at (D) {00};
+                    \node[left] at (E) {11};
+                    \node[right] at (F) {01};
+
+                    % left wedge
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.7 with {\arrow{>[length=8pt,width=5pt]}}}}] (A) -- node[left] {$d_1 f$} (B);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (C) -- (B);
+                    
+                    % right triangle
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (D) -- (E);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (F) -- (E);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (D) -- (F);
+                    
+                    \node at (2, 0) {\normalsize $\subseteq$};
+
+                    \draw[fill=violet,fill opacity=0.3] (D) -- (E) -- (F) -- cycle;
+
+            \end{tikzpicture}
+        \end{equation*}
+        A similar argument works for larger $n$, but as we will show the general statement soon, let us assume anodyne fillers for a moment and dive in to
+
+    \section{Proof of \ref{chIV-31}}
+        We have to solve all extension problems
+        \begin{equation*}
+              \begin{tikzcd}
+                \horn{n}{i} \arrow[r, "f"] \arrow[d, phantom, "\subseteq" rotate=-90] & \Nn^c \Cc \\
+                \Delta^n \arrow[ru, dashed]           &        
+            \end{tikzcd}
+        \end{equation*}
+        but by adjunction they are equivalent to
+        \begin{equation*}
+              \begin{tikzcd}
+                \Ll(\horn{n}{i}) \arrow[r, "G"] \arrow[d, phantom, "\subseteq" rotate=-90] & \Cc \\
+                \Ll(\Delta^n) \arrow[ru, dashed]           &        
+            \end{tikzcd}
+        \end{equation*}
+        From Lemma \ref{chIV-33} it now follows that an extension of $g$ only has to defined on $F_{\Ll(\Delta^n)}(0,n)$. Furthermore, an arbitrary extension of
+        \begin{equation*}
+              \begin{tikzcd}
+                F_{\Ll(\horn{n}{i})}(0, n) \arrow[r, "G_{*}"] \arrow[d, phantom, "\subseteq" rotate=-90] & F_{\Cc}(G(0), G(n)) \\
+                F_{\Ll(\Delta^n)}(0, n) \arrow[ru, dashed]           &        
+            \end{tikzcd}
+        \end{equation*}
+        will give a functor as desired since the only object mapping to $0$ is $0$ (and $F_{\Ll(\Delta^n)}(0, 0) = *$) and receiving a map from $n$ is $n$ (and similarly $F_{\Ll(\Delta^n)}(n, n) = *$), so there are no compatibilities with composition to be checked. But since $F_{Cc}(G(0), G(n))$ is assumed Kan a filler exists as the inclusion on the left is anodyne.\hfill$\Box$        
