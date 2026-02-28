@@ -1,0 +1,178 @@
+\chapter{Simplicial Homotopy Theory}
+\section{Motivation and basic definitions}
+    We proved in \emph{Topology II} that the canonical map
+    \begin{equation*}
+        \gr{\Sing(X)} \to X
+    \end{equation*}
+    is a weak equivalence for every topological space $X$, so we ``know'' that simplicial sets are sufficient to model (weak) homotopy types. We would like to try to expand on this idea by showing that it is possible to ``do homotopy theory'' in the category of simplicial sets just as one usually does in topological spaces. One of the key outcomes of this discussion will be the observation that there is essentially no difference between simplicial sets and topological spaces as far as homotopy theory is concerned. Of course, the translation between these two categories will be performed through the familiar adjunction between geometric realisation and the singular set functor. However, our goal will be to develop a homotopy theory for simplicial sets independently of topological spaces and only make the comparison at the very end.
+
+    To get things off the ground, let us attempt to find simplicial analogues of the key notions that allow us to do homotopy theory in topological spaces: these are fibrations, cofibrations and weak equivalences.
+
+    Let us first find an appropriate notion of fibration. The following terminology is not only useful for this purpose, but will reappear throughout the entire lecture course.
+
+    \subsection{Definition}
+        Let $\Cc$ be a category, let $f \colon X \to Y$ be a morphism in $\Cc$ and let $\Sigma$ be a class of morphisms in $\Cc$.
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                The map $f$ has the \emph{right lifting property} (or RLP for short), with respect to $\Sigma$ if for every commutative square
+                \begin{equation*}
+                    \begin{tikzcd}
+                        S \arrow[r, "x"] \arrow[d, "s"] & X \arrow[d, "f"] \\
+                        T \arrow[r, "y"] & Y
+                    \end{tikzcd}
+                \end{equation*}
+                with $s \in \Sigma$ there exists a commutative diagram of the following form:
+                \begin{equation*}
+                    \begin{tikzcd}
+                        S \arrow[r, "x"] \arrow[d, "s"] & X \arrow[d, "f"] \\
+                        T \arrow[r, "y"] \arrow[ur, "\bar{y}"]& Y
+                    \end{tikzcd}
+                \end{equation*}
+            \item 
+                The map $f$ has the \emph{left lifting property} (or LLP) with respect to $\Sigma$ if for every commutative square 
+                \begin{equation*}
+                    \begin{tikzcd}
+                        X \arrow[r, "x"] \arrow[d, "f"] & S \arrow[d, "s"] \\
+                        Y \arrow[r, "y"] & T
+                    \end{tikzcd}
+                \end{equation*}
+                with $s \in \Sigma$ there exists a commutative diagram of the following form:
+                \begin{equation*}
+                    \begin{tikzcd}
+                        X \arrow[r, "x"] \arrow[d, "f"] & S \arrow[d, "s"] \\
+                        Y \arrow[r, "y"] \arrow[ur, "\bar{y}"]& T
+                    \end{tikzcd}
+                \end{equation*}
+        \end{enumerate}
+
+    \subsection{Notation}
+        Let $\Cc$ be a category with finite products and pushouts. For $i \colon A \to B$ and $f \colon X \to Y$ morphisms in $\Cc$, let
+        \begin{equation*}
+            i \boxtimes f \,\colon (A \times Y) \cup_{A \times X} (B \times X) \to B \times Y
+        \end{equation*}
+        be the canonical arrow induced by the universal property of the pushout.
+        \smallskip
+
+        Recall that a map of topological spaces $p \colon E \to B$ is a (Serre) fibration if it has the RLP for the set of inclusions
+        \begin{equation*}
+            \left\{ (S^{n-1} \hookrightarrow D^n) \boxtimes ({0} \hookrightarrow [0, 1]) \mid n \geq 1 \right\} \,.
+        \end{equation*}
+        There is an evident analogue of these maps in simplicial sets, namely
+        \begin{equation*}
+            (\partial \Delta^n \hookrightarrow \Delta^n) \boxtimes ({0} \hookrightarrow \Delta^1) \,.
+        \end{equation*}
+        However, note that there is a homeomorphism
+        \begin{equation*}
+            (S^{n-1} \hookrightarrow D^n) \boxtimes ({0} \hookrightarrow [0, 1]) \cong (S^{n-1} \hookrightarrow D^n) \boxtimes ({1} \hookrightarrow [0, 1])
+        \end{equation*}
+        which has no simplicial analogue. This is the reason why it will also be important to consider the maps
+        \begin{equation*}
+            (\partial \Delta^n \hookrightarrow \Delta^n) \boxtimes ({1} \hookrightarrow \Delta^1) \,.
+        \end{equation*}
+
+    \subsection{Definition}
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                A map of simplicial sets is a \emph{left fibration} if it has the RLP with respect to the set
+                \begin{equation*}
+                    LC \coloneq \left\{ (\partial \Delta^n \hookrightarrow \Delta^n) \boxtimes ({0} \hookrightarrow \Delta^1) \mid n \geq 1 \right\} \,.
+                \end{equation*}
+            \item 
+                A map of simplicial sets is a \emph{right fibration} if it has the RLP with respect to the set
+                \begin{equation*}
+                    RC \coloneq \left\{ (\partial \Delta^n \hookrightarrow \Delta^n) \boxtimes ({1} \hookrightarrow \Delta^1) \mid n \geq 1 \right\} \,.
+                \end{equation*}
+            \item 
+                A map of simplicial sets is a Kan fibration if it is both a left and a right fibration, i.e. if it has the RLP with respect to the set
+                \begin{equation*}
+                    C \coloneq LC \cup RC \,.
+                \end{equation*}
+        \end{enumerate}    
+
+    \subsection{Remark}
+        With this definition, it is not clear that a simplicial set $X$ is Kan if and only if $X \to \Delta^0$ is a Kan fibration. This will be shown in \ref{chV-2-15}.
+        \smallskip
+
+        Similarly, cofibrations in topological spaces were defined in terms of the homotopy extension property. We could try to mimic this definition directly but this turns out to be a bad idea. For example, we would certainly expect the inclusion $(\partial \Delta^n \hookrightarrow \Delta^n) \boxtimes ({0} \hookrightarrow \Delta^1)$ to be a cofibration. However, if we took ``cofibration'' to mean ``has the homotopy extension property with respect to all simplicial sets'', then this map would have a left inverse. It is easy to check in the case $n = 1$ that no such retraction exists (no does it for any other $n$).
+
+        On the other hand, we can think of every (left) homotopy extension problem as a commutative diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                A \times \Delta^1 \cup_{A \times \{0\}} B \times \{0\} \arrow[r] \arrow[d] & X \arrow[d] \\
+                B \times \Delta^1 \arrow[ur, dashed] \arrow[r] & \Delta^0
+            \end{tikzcd}
+        \end{equation*}
+        In particular, for $A = \partial \Delta^n$ and $B = \Delta^n$ we have already \emph{defined} this problem to have a solution if $X \to \Delta^0$ is a left fibration.
+
+    \subsection{Definition}
+        A morphism $i \colon A \to B$ is a \emph{left cofibration} if $i \boxtimes (\{0\} \hookrightarrow \Delta^1)$ has the LLP with respect to all Kan fibrations $X \to \Delta^0$.
+
+    \subsection{Remark}\label{chV-1-6}
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                It would actually be more natural to require $X \to \Delta^0$ to be a left Kan fibration in the definition of a left cofibration. We will see later that every left fibration over $\Delta^0$ is a Kan fibration.
+            \item 
+                One could equally well consider \emph{right cofibrations} and \emph{fibrations}, and develop a parallel theory. We will show soon that this is not a parallel theory, but the \emph{same} theory.
+        \end{enumerate}
+
+    \subsection{Examples}
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                By definition, the inclusion $\partial \Delta^n \to \Delta^n$ is a left cofibration for all $n \geq 0$ if we set $\partial \Delta^0 \coloneq \varnothing$.
+            \item 
+                The map $\varnothing \to B$ is a left cofibration for every simplicial set $B$.
+        \end{enumerate}
+        Finally, recall that the following statements are equivalent for a map $f \colon X \to Y$ of CW-complexes:
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                $f$ is a homotopy equivalence;\label{chV-1-7-1}
+            \item 
+                $f$ induces a bijection on $\pi_0$ and an isomorphism on all homotopy groups with respect to every choice of base point;\label{chV-1-7-2}
+            \item 
+                for every space $Z$, the map $f$ induces a weak homotopy equivalnce
+                \begin{equation*}
+                    f^{*} \,\colon \Hom_{\Top}(Y, Z) \to \Hom_{\Top}(X, Z) \,;
+                    \end{equation*}\label{chV-1-7-3}
+            \item 
+                for every space $Z$, the map $f$ induces a bijection
+                \begin{equation*}
+                    f^* \,\colon \pi_0 \Hom_{\Top}(Y, Z) \to \pi_0 \Hom_{\Top}(X, Z) \,.
+                \end{equation*}\label{chV-1-7-4}
+        \end{enumerate}
+        When defining cofibrations, we already observed that homotopies in the category of simplicial sets are more rigid than homotopies in topological spaces, so it is unlikely that copying condition \ref{chV-1-7-1} will give a sensible notion. For example, our geometric intuition tells us that $(\partial \Delta^n \hookrightarrow \Delta^n) \boxtimes ({0} \hookrightarrow \Delta^1)$ should be an equivalence, but it is certainly not a homotopy equivalence. Conditions \ref{chV-1-7-2} and \ref{chV-1-7-3} would require us to first develop a sensible notion of homotopy groups for simplicial sets. So we will try to adopt \ref{chV-1-7-4} as our definition. Note that $\pi_0\Map(Y, Z)$ will correspond to homotopy classes of maps $Y \to Z$. If we were to require this condition for every simplicial set $Z$, we would run into the same problems we faced when defining cofibrations. Hence, we only require condition \ref{chV-1-7-4} to hold when $Z$ is a Kan complex (see again \ref{chV-1-6}).
+
+    \subsection{Definition}
+        A map of simplicial sets $f \colon X \to Y$ is a \emph{weak equivalence} if it induces a bijection
+        \begin{equation*}
+            f^{*} \,\colon \pi_0F(Y, K) \to \pi_0F(X,K)
+        \end{equation*}
+        for every left Kan complex $K$.
+
+    \subsection{Definition}
+        A morphism $f \colon X \to Y$ is a  \emph{retract} of a morphism $f' \colon X' \to Y'$ if it is a retract in $\Fun([1],\Cc)$, i.e. there exists a commutative diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                X \arrow[r, "i"] \arrow[d, "f"] & X' \arrow[r, "p"] \arrow[d, "f'"] & X \arrow[d, "f"] \\
+                Y \arrow[r, "j"] & Y' \arrow[r, "q"] & Y
+            \end{tikzcd}
+        \end{equation*}
+        such that $pi=\id_X$ and $qj = \id_Y$.
+
+    \subsection{Definition}
+        Let $\Cc$ be a category and let $\Sigma$ be a class of morphisms in $\Cc$.
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                The class $\Sigma$ satisfies the \emph{two-out-of-six property} if the following holds: Given three composable morphisms
+                \begin{equation*}
+                    X_0 \xrightarrow{f_1} X_1 \xrightarrow{f_2} X_2 \xrightarrow{f_3} X_3
+                \end{equation*}
+                such that $f_2f_1$ and $f_3f_2$ belong to $\Sigma$, then $f_1$, $f_2$, $f_3$ and $f_3f_2f_1$ also belong to $\Sigma$.
+            \item 
+                The class $\Sigma$ is \emph{closed under retracts}, i.e. every morphism which is a retract of a member of $\Sigma$ also belongs to $\Sigma$.
+        \end{enumerate}
+
+    \subsection{Proposition}
+        The class of weak equivalences satisfies the two-out-of-six property and is closed under retracts.
+        \smallskip
+
+        \emph{Proof}. This follows directly since bijections satisfy two-out-of-six and are closed under retracts.
