@@ -176,3 +176,152 @@
         \smallskip
 
         \emph{Proof}. This follows directly since bijections satisfy two-out-of-six and are closed under retracts.
+
+    \section{Fibrations via Horn-Filling}
+        As already promised, there is an easier criterion to check whether a map of simplicial sets is a left or right fibration:
+
+    \subsection{Theorem}
+        Let $f \colon X \to Y$ be a map of simplicial sets.
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                $f$ is a left fibration if and only if it has the RLP with respect to the set of left horn inclusions
+                \begin{equation*}
+                    LH \coloneq \left\{ \horn{n}{i} \to \Delta^n \mid n \geq 1, 0 \leq i < n \right\} \,. 
+                \end{equation*}
+            \item 
+                $f$ is a right fibration if and only if it has the RLP with respect to the set of right horn inclusions
+                \begin{equation*}
+                    RH \coloneq \left\{ \horn{n}{i} \to \Delta^n \mid n \geq 1, 0 < i \leq n \right\} \,.
+                \end{equation*}
+            \item 
+                $f$ is a Kan fibration if and only if it has the RLP with respect to the set of horn inclusions $H \coloneq LH \cup RH$.\footnote{These are the standard definitions one will find in the literature.}            
+            \end{enumerate}
+            The proof of the theorem relies on the observation that we may enlarge the class of morphisms against which we test the RLP without changing the class of morphisms which possess the RLP.
+
+    \subsection{Lemma}\label{chV-2-2}
+        Let $\Cc$ be a category with countable colimits and let $f \colon X \to Y$ be a morphism in $\Cc$.
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                Suppose that $f$ has the RLP with respect to $s \colon S \to T$ and let $g \colon S \to Z$ be arbitrary. Then $f$ has the RLP with respect to the induced map $Z \to Z \cup_S T$.
+            \item 
+                Suppose that $f$ has the RLP with respect to $s'$ and that $s$ is a retract of $s'$. Then $f$ has the RLP with respect to $s$.
+            \item 
+                If $\left\{ s_i \colon S_i \to T_i\right\}_{i \in I}$ is an arbitrary family of morphisms and $f$ has the RLP with respect to every $s_i$, then $f$ has the RLP with respect to the coproduct $\coprod_{i \in I}s_i \colon \coprod_{i \in I} S_i \to \coprod_{i \in I} T_i$.
+            \item 
+                Let $S_0 \xrightarrow{s_1} S_1 \xrightarrow{s_2} \ldots$ be a sequence of composable arrows. If $f$ has the RLP with respect to every $s_n$, then $f$ has the RLP with respect to the canonical map $S_0 \to \colim_n S_n$.
+        \end{enumerate}
+        \smallskip
+
+        \emph{Proof}. Draw the appropriate diagrams, see Marcus Land's ``Introduction to infinity-categories'', Lemma 3.8.
+
+    \subsection{Remark}
+        Note that $f$ has the RLP with respect to $s$ if and only if $s$ has the LLP with respect to $f$. Lemma \ref{chV-2-2} can therefore also be read as a statement about preservation of the LLP.
+
+    \subsection{Definition}
+        Let $\Cc$ be a category and let $\Sigma$ be a class of morphisms in $\Cc$. Then $\Sigma$ is \emph{saturated} if it is closed under the four constructions appearing in \ref{chV-2-2}:
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                $S$ is \emph{closed under pushouts}: If $s \colon S \to T$ is in $\Sigma$ and $g \colon S \to Z$ is an arbitrary morphism, then the induced morphism $Z \to Z \cup_S T$ is also in $\Sigma$.
+            \item 
+                $S$ is \emph{closed under retracts}: If $s'$ is a retract of a morphism $s \in \Sigma$, then $s' \in \Sigma$.
+            \item 
+                $S$ is \emph{closed under coproducts}: If $\left\{ s_i \colon S_i \to T_i\right\}_{i \in I}$ is a family of morphisms in $\Sigma$, then $\coprod_{i \in I}s_i \colon \coprod_{i \in I} S_i \to \coprod_{i \in I} T_i$ is in $\Sigma$.
+            \item 
+                $S$ is \emph{closed under countable compositions}: If $S_0 \xrightarrow{s_1} S_1 \xrightarrow{s_2} \ldots$ is a sequence of composable arrows in $S$, then $S_0 \to \colim_n S_n$ is in $\Sigma$.
+        \end{enumerate}
+
+        Every class of morphisms $\Sigma$ in a category $\Cc$ is contained in a smallest saturated class of morphisms $\sat(\Sigma)$, which we call the \emph{saturation} of $\Sigma$. Since any intersection of saturated classes is saturated,
+        \begin{equation*}
+            \sat(\Sigma) = \bigcap_{\substack{S \subseteq \mor(\Cc) \text{ saturated } \\ \Sigma \subseteq S}} S \,.
+        \end{equation*}
+        Note that the indexing set of the intersection is non-empty since $\mor(\Cc)$ certainly is saturated.
+
+        With this terminology, lemma \ref{chV-2-2} can be rephrased as saying that a morphism has the RLP with respect to a class $\Sigma$ if and only if it has the RLP with respect to $\sat(\Sigma)$.
+
+    \subsection{Remark}
+        Note that the saturation of a class of injective maps in $\sSet$ contains only injections.
+        \medskip
+
+        There are numerous classes of morphisms we have considered already and whose saturation we might be interested in.
+
+    \subsection{Definition}
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                The class $B$ of \emph{boundary inclusions} is given by
+                \begin{equation*}
+                    B \coloneq \left\{ \partial \Delta^n \hookrightarrow \Delta^n \mid n \geq 1 \right\} \,.
+                \end{equation*}
+            \item 
+                The class $I$ of injections is given by
+                \begin{equation*}
+                    I \coloneq \left\{ i \colon X \to Y \mid i \text{ injective} \right\} \,.
+                \end{equation*}
+        \end{enumerate}
+        Observe that $I$ is a saturated class. As a little warm-up, we consider the classes $B$ and $I$.
+
+    \subsection{Proposition}\label{chV-2-7}
+        The following classes of morphisms coincide:
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                $\sat(B)$;
+            \item 
+                $I$.
+        \end{enumerate}
+        \smallskip
+
+        \emph{Proof}. Exercise.
+
+    \subsection{Corollary}
+        If a map of simplicial sets has the RLP with respect to $B$, then it is a Kan fibration and a homotopy equivalence.
+        \smallskip
+
+        \emph{Proof}. Let $f \colon X \to Y$ have the RLP with respect to $B$. By \ref{chV-2-7}, it has the RLP with respect to all inclusions, so it is a Kan fibration. Since $\varnothing \to Y$ is an injection, there exists a section $s \colon Y \to X$. Since $fsf = f$, we have a commutative diagram
+        \begin{equation*}
+            \begin{tikzcd}[column sep=large]
+                X \times \{0, 1\} \arrow[r, "sf \,\sqcup\, \id_X"] \arrow[d, hook, "(\varnothing \to X) \,\boxtimes\, (\{0{,}1\} \to \Delta^1)"'] & X \arrow[d, "f"] \\
+                X \times \Delta^1 \arrow[r] & Y
+            \end{tikzcd}
+        \end{equation*}
+        where the map $X \times \Delta^1 \to Y$ is the constant homotopy of $f$. Since $f$ has the RLP with respect to all injections, there exists a homotopy $X \times \Delta^1 \to X$ witnessing $sf \simeq \id_X$.
+
+        Obviously, $LC \subseteq C$, $RC \subseteq C$, $LH \subseteq H$ and $RH \subseteq H$. The analogous inclusions hold for the saturations of these classes.
+
+    \subsection{Proposition}
+        Let $\widetilde{LC}$ denote the class of morphisms
+        \begin{equation*}
+            \left\{ (X \to Y) \boxtimes (\{0\} \hookrightarrow \Delta^1) \mid X \to Y \text{ injective} \right\}\,.
+        \end{equation*}
+        Then the following holds:
+        \begin{enumerate}
+            \item 
+                $\widetilde{LC} \subseteq \sat(LC)$;\label{chV-2-9-1}
+            \item 
+                $LC \subseteq \sat(LH)$;\label{chV-2-9-2}
+            \item 
+                $LH \subseteq \sat(LC)$;\label{chV-2-9-3}
+        \end{enumerate}
+
+        \emph{Proof}. For \ref{chV-2-9-1}, we use again that for every injection $j \colon X \to Y$ there is a filtration
+        \begin{equation*}
+            X = Y^{(-1)} \subseteq Y^{(0)} \subseteq Y^{(1)} \subseteq Y^{(2)} \subseteq \ldots \subseteq Y
+            \end{equation*}
+         such that
+        \begin{equation*}
+            Y^{(n)} \cong Y^{(n-1)} \underset{\coprod_{i \in I_n} \partial \Delta^n}{\cup} \coprod_{i \in I_n} \Delta^n \,,
+        \end{equation*}
+        $\colim_n Y^{(n)} \cong Y$ and $j$ becomes identified with the canonical map $X \to \colim_n Y^{(n)}$. Since pushouts commute with each other and $- \times \Delta^1$ commutes with pushouts, there exists for every $n \geq 0$ a pushout
+        \begin{equation*}
+            \begin{tikzcd}
+                \coprod\limits_{i \in I_n} ((\Delta^n \times \{0\}) \underset{\partial \Delta^n \times \{0\}}{\cup} (\partial \Delta^n \times \Delta^1)) \arrow[r] \arrow[d] & (Y \times \{0\}) \underset{Y^{(n-1)} \times \{0\}}{\cup} (Y^{(n-1)} \times \Delta^1) \arrow[d] \\
+                \coprod\limits_{i \in I_n} (\Delta^n \times \Delta^1) \arrow[r] & (Y \times \{0\}) \underset{Y^{(n)} \times \{0\}}{\cup} (Y^{(n)} \times \Delta^1)
+            \end{tikzcd}
+        \end{equation*}
+        Consequently, the sequence of maps
+        \begin{equation*}
+            \ldots \rightarrow (Y \times \{0\}) \underset{Y^{(n-1)} \times \{0\}}{\cup} (Y^{(n-1)} \times \Delta^1) \rightarrow (Y \times \{0\}) \underset{Y^{(n)} \times \{0\}}{\cup} (Y^{(n)} \times \Delta^1) \rightarrow \ldots
+        \end{equation*}
+        lies in $\sat(LC)$. It follows that
+        \begin{equation*}
+            (Y \times \{0\}) \underset{X \times \{0\}}{\cup} (X \times \Delta^1) \rightarrow \colim\limits_{n} ((Y \times \{0\}) \underset{Y^{(n)} \times \{0\}}{\cup} (Y^{(n)} \times \delta^1)) \cong Y \times \Delta^1
+        \end{equation*}
+        also lies in $\sat(LC)$.
