@@ -25,7 +25,7 @@
                 \begin{equation*}
                     \begin{tikzcd}
                         S \arrow[r, "x"] \arrow[d, "s"] & X \arrow[d, "f"] \\
-                        T \arrow[r, "y"] \arrow[ur, "\bar{y}"]& Y
+                        T \arrow[r, "y"] \arrow[ur, "\overline{y}"]& Y
                     \end{tikzcd}
                 \end{equation*}
             \item 
@@ -40,7 +40,7 @@
                 \begin{equation*}
                     \begin{tikzcd}
                         X \arrow[r, "x"] \arrow[d, "f"] & S \arrow[d, "s"] \\
-                        Y \arrow[r, "y"] \arrow[ur, "\bar{y}"]& T
+                        Y \arrow[r, "y"] \arrow[ur, "\overline{y}"]& T
                     \end{tikzcd}
                 \end{equation*}
         \end{enumerate}
@@ -172,7 +172,7 @@
         \end{enumerate}
 
     \subsection{Proposition}
-        The class of weak equivalences satisfies the two-out-of-six property and is closed under retracts.
+        The class of weak equivalences satisfies the two-out-of-six property and is closed under retracts.\hfill$\Box$
         \smallskip
 
         \emph{Proof}. This follows directly since bijections satisfy two-out-of-six and are closed under retracts.
@@ -180,7 +180,7 @@
     \section{Fibrations via Horn-Filling}
         As already promised, there is an easier criterion to check whether a map of simplicial sets is a left or right fibration:
 
-    \subsection{Theorem}
+    \subsection{Theorem}\label{chV-2-1}
         Let $f \colon X \to Y$ be a map of simplicial sets.
         \begin{enumerate}[label=\roman*)]
             \item 
@@ -212,9 +212,9 @@
         \end{enumerate}
         \smallskip
 
-        \emph{Proof}. Draw the appropriate diagrams, see Marcus Land's ``Introduction to infinity-categories'', Lemma 3.8.
+        \emph{Proof}. Draw the appropriate diagrams, see Marcus Land's ``Introduction to infinity-categories'', Lemma 3.8.\hfill$\Box$
 
-    \subsection{Remark}
+    \subsection{Remark}\label{chV-2-3}
         Note that $f$ has the RLP with respect to $s$ if and only if $s$ has the LLP with respect to $f$. Lemma \ref{chV-2-2} can therefore also be read as a statement about preservation of the LLP.
 
     \subsection{Definition}
@@ -269,7 +269,7 @@
         \end{enumerate}
         \smallskip
 
-        \emph{Proof}. Exercise.
+        \emph{Proof}. Exercise.\hfill$\Box$
 
     \subsection{Corollary}
         If a map of simplicial sets has the RLP with respect to $B$, then it is a Kan fibration and a homotopy equivalence.
@@ -282,17 +282,17 @@
                 X \times \Delta^1 \arrow[r] & Y
             \end{tikzcd}
         \end{equation*}
-        where the map $X \times \Delta^1 \to Y$ is the constant homotopy of $f$. Since $f$ has the RLP with respect to all injections, there exists a homotopy $X \times \Delta^1 \to X$ witnessing $sf \simeq \id_X$.
+        where the map $X \times \Delta^1 \to Y$ is the constant homotopy of $f$. Since $f$ has the RLP with respect to all injections, there exists a homotopy $X \times \Delta^1 \to X$ witnessing $sf \simeq \id_X$.\hfill$\Box$
 
-        Obviously, $LC \subseteq C$, $RC \subseteq C$, $LH \subseteq H$ and $RH \subseteq H$. The analogous inclusions hold for the saturations of these classes.
+        Obviously, $LC \subseteq C$, $RC \subseteq C$, $LH \subseteq H$ and $RH \subseteq H$. The analogous inclusions hold for the saturations of these classes.\hfill$\Box$
 
-    \subsection{Proposition}
+    \subsection{Proposition}\label{chV-2-9}
         Let $\widetilde{LC}$ denote the class of morphisms
         \begin{equation*}
             \left\{ (X \to Y) \boxtimes (\{0\} \hookrightarrow \Delta^1) \mid X \to Y \text{ injective} \right\}\,.
         \end{equation*}
         Then the following holds:
-        \begin{enumerate}
+        \begin{enumerate}[label=\roman*)]
             \item 
                 $\widetilde{LC} \subseteq \sat(LC)$;\label{chV-2-9-1}
             \item 
@@ -324,4 +324,147 @@
         \begin{equation*}
             (Y \times \{0\}) \underset{X \times \{0\}}{\cup} (X \times \Delta^1) \rightarrow \colim\limits_{n} ((Y \times \{0\}) \underset{Y^{(n)} \times \{0\}}{\cup} (Y^{(n)} \times \delta^1)) \cong Y \times \Delta^1
         \end{equation*}
-        also lies in $\sat(LC)$.
+        also lies in $\sat(LC)$.\\
+        For \ref{chV-2-9-2}, it suffices to show that $(\partial \Delta^n \to \Delta^n) \boxtimes (\{0\} \to \Delta^1)$ can be obtained by filling left horns in the domain. Note that $\Delta^n \times \Delta^1 \cong N([n] \times [1])$, so simplices correspond to order-preserving maps $\alpha \colon [k] \to [n] \times [1]$. Such a simplex is non-degenerate if and only if $\alpha$ is injective.\\
+        For $k < n$, $\alpha$ factors as $[k] \to [n-1] \times [1] \xrightarrow{d_i \times \id} [n] \times [1]$ for some $i$. So every $k$-simplex is contained in $\partial \Delta^n \times \Delta^1$ for $k < n$.\\
+        Let $p \colon [n] \times [1] \to [n]$ and $q \colon [n] \times [1] \to [1]$ be the two projection maps. A $n$-simplex $\alpha$ is not contained in $(\Delta^n \times \{0\}) \cup_{\partial \Delta^n \times \{0\}} (\partial \Delta^n \times \Delta^1)$ if and only if $p \alpha = \id_{[n]}$ and $\im(q \alpha) \neq \{0\}$. Moreover, $(\Delta^n \times \{0\}) \cup_{\partial \Delta^n \times \{0\}} (\partial \Delta^n \times \Delta^1)$ does not contain any non-degenerate $n+1$-simplices.\\
+        A $(n+1)$-simplex $\alpha$ is uniquely determined by the number $j(\alpha) \in [n]$ satisfying $q \alpha(j(\alpha)) = 0$ and $q \alpha(j(\alpha) + 1) = 1$. Hence, there are precisely $n + 1$ non-degenerate $(n + 1)$-simplices. These come with a canonical ordering $\alpha_0, \ldots, \alpha_n$ by requiring that $j(\alpha_i) = i$.\\
+        Consider $\alpha_n$. Then there is exactly one face which does not lie in $(\Delta^n \times \{0\}) \cup_{\partial \Delta^n \times \{0\}} (\partial \Delta^n \times \Delta^1)$, namely $d_n \alpha_n$. The remaining faces of $\alpha_n$ define a map
+        \begin{equation*}
+            \horn{n+1}{n} \to (\Delta^n \times \{0\}) \cup_{\partial \Delta^n \times \{0\}} (\partial \Delta^n \times \Delta^1) \,,
+        \end{equation*}
+        and filling this inner horn adds precisely $\alpha_n$ and $d_n \alpha_n$ to give a simplicial subset $X_n \subseteq \Delta^n \times \Delta^1$.\\
+        For $\alpha_{n-1}$, observe that $d_{n+1} \alpha_{n-1}$ lies in $\partial \Delta^n \times \Delta^1$, $d_n \alpha_{n-1} = d_n \alpha_n$ and $d_k \alpha_{n-1}$ also lies in $\partial \Delta^n \times \Delta^1$ for $k < n - 1$. So all faces of $\alpha_{n-1}$ except $d_{n-1} \alpha_{n-1}$ define a map $\horn{n+1}{n-1} \to X_n$. Filling this horn adds $\alpha_{n-1}$ and $d_{n-1} \alpha_{n-1}$ to $X_n$ to obtain $X_{n-1}$.\\
+        Proceeding like this inductively, one ends up with $\alpha_0$. All faces of $\alpha_0$ except $d_0 \alpha_0$ have been added in previous steps. Filling the corresponding (left!) horn $\horn{n+1}{0} \to X_1$ adds the last two missing simplices $\alpha_0$ and $d_0 \alpha_0$ to $X_1$ to give $X_0 = \Delta^n \times \Delta^1$. There are closed formulas for all the face relations which are not difficult to figure out. If you want to look them up, see Goerss and Jardine's ``Simplicial homotopy theory'', proposition 4.2. This shows \ref{chV-2-9-2}.\\
+        Finally, consider the inclusion of a left horn $\horn{n}{k} \to \Delta^n$, i.e. $k < n$. Then there is a retract diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                \horn{n}{k} \arrow[r, "{j|}_{\horn{n}{k}}"] \arrow[d] & (\Delta^n \times \{0\}) \cup_{\horn{n}{k} \times \{0\}} (\horn{n}{k} \times \Delta^1) \arrow[r, "{r_k|}_{\ldots}"] \arrow[d] & \horn{n}{k} \arrow[d] \\
+                \Delta^n \arrow[r, "j"] & \Delta^n \times \Delta^1 \arrow[r, "r_k"] & \Delta^n
+            \end{tikzcd}
+        \end{equation*}
+        in which $j$ is given by the inclusion $\Delta^n \cong \Delta^n \times \{1\} \to \Delta^n \times \Delta^1$ and $r_k$ is induced by the map of posets
+        \begin{equation*}
+            r_k \,\colon [n] \times [1] \to [n], \quad (l, i) \mapsto
+            \begin{cases*}
+                l &$i = 1$ or $l < k$, \\
+                k & else
+            \end{cases*} \,.
+        \end{equation*}
+        Note that $r_k j = \id$, and $r_k$ does not restrict as indicated in the diagram: we only need to check that the inclusion $[n] \setminus \{k\} \subseteq \im(r_k \alpha)$ is impossible. If $\alpha \colon [p] \to [n] \times \{0\}$ is a simplex, then $r_k \alpha$is a map $[p] \to [k]$. Since $k < n$, $\im(r_k \alpha)$ cannot contain $n$. Suppose that $\alpha \colon [p] \to [n] \times [1]$ is a simplex in $\horn{n}{k} \times \Delta^1$. Then $\im(r_k \alpha) \subseteq \im(q \alpha) \cup \{k\}$, where $q \colon [n] \times [1] \to [n]$ is the projection. Since $[n] \setminus \{k\}$ is not a subset of $\im(q \alpha)$, it cannot be a subset of $\im(r_k \alpha)$ either. This proves \ref{chV-2-9-3}.\hfill$\Box$ 
+
+    \subsection{Corollary}\label{chV-2-10}
+        \begin{equation*}
+            \sat(LH) = \sat(LC) = \sat(\widetilde{LC})
+        \end{equation*}
+
+        \emph{Proof}. note that $LC \subseteq \widetilde{LC}$. By \ref{chV-2-9}, we have
+        \begin{equation*}
+            \sat(LH) \subseteq \sat(LC) \subseteq \sat(\widetilde{LC}) \subseteq \sat(LC) \subseteq \sat(LH) \,.
+        \end{equation*}\hfill$\Box$
+        Analogous statements hold for the right cylinders and right horn inclusions. Instead of saying that all proofs work identically, we employ a little trick.
+
+    \subsection{Definition}
+        Define an automorphism $\iota \colon \Delta \to \Delta$ by setting $\iota([n]) \coloneq [n]$ and $\iota(\alpha \colon [m] \to [n]) \coloneq \iota^{\op}_n \alpha^{\op} \iota_m$, where
+        \begin{equation*}
+            \iota_n \,\colon [n] \to [n]^{\op}, \quad i \mapsto n - i \,.
+        \end{equation*}
+        Denote the induced isomorphism of categories $- \circ \iota^{\op} \colon \sSet \to \sSet$ by $(-)^{\op}$ and call the image $X^{\op}$ of a simplicial set under this functor the \emph{opposite} of $X$.
+
+    \subsection{Example}
+        \begin{equation*}
+            \iota(d_i) = d_{n-i} \,.
+        \end{equation*}
+
+    \subsection{Remark}
+        \begin{enumerate}
+            \item 
+                For a category $\Cc$, there is a natural isomorphism $N(\Cc)^{\op} \cong N(\Cc^{\op})$.
+            \item 
+                The functor $\iota$ preserves inner horn inclusions, so $X^{\op}$ is a quasi-category if $X$ is a quasi-category.
+        \end{enumerate}
+
+    \subsection{Corollary}\label{chV-2-14}
+        The following classes of morphisms coincide:
+        \begin{enumerate}
+            \item 
+                $\sat(RC)$;
+            \item 
+                $\sat(RH)$;
+            \item 
+                the saturation of
+                \begin{equation*}
+                    \widetilde{RC} \coloneq \left\{ (X \to Y) \boxtimes (\{1\} hookrightarrow \Delta^1) \mid Y \to X \text{ injective}\right\} \,.
+                \end{equation*}
+        \end{enumerate}
+
+        \emph{Proof}. Note that $(-)^{\op}$ induces bijections $LC \sim RC$, $L \sim R$ and $\widetilde{LC} \sim \widetilde{RC}$. As an isomorphism of categories, $(-)^{\op}$ also preserves saturations, so the corollary follows from \ref{chV-2-10}.\hfill$\Box$
+        \medskip
+
+        Combining \ref{chV-2-10} and \ref{chV-2-14}, we immediately obtain the following:
+
+    \subsection{Corollary}\label{chV-2-15}
+        The following classes of morphisms coincide:
+        \begin{enumerate}
+            \item 
+                $\sat(C)$;
+            \item 
+                $\sat(H)$;
+            \item 
+                the saturation of
+                \begin{equation*}
+                    \widetilde{C} \coloneq \left\{ X \times \{i\} \cup Y \times \Delta^1 \hookrightarrow X \times \Delta^1) \mid Y \to X \text{ injective}, i = 0,1 \right\} \,.
+                \end{equation*}
+        \end{enumerate}
+
+        \emph{Proof}. By \ref{chV-2-9} (and its ``opposite''), we have the following inclusions:
+        \begin{enumerate}
+            \item 
+                $LH \cup RH \subseteq \sat(LC) \cup \sat(RC) \subseteq \sat(LC \cup RC)$;
+            \item 
+                $\widetilde{LC} \cup \widetilde{RC} \subseteq \sat(LH) \cup \sat(RH) \subseteq \sat(LH \cup RH)$;
+            \item 
+                $LC \cup RC \subseteq \widetilde{LC} \cup \widetilde{RC}$.
+        \end{enumerate}
+        Hence, we have
+        \begin{equation*}
+            \sat(C) \subseteq \sat(\widetilde{LC} \cup \widetilde{RC}) \subseteq \sat(H) \subseteq \sat(C) \,.
+        \end{equation*}\hfill$\Box$
+
+    \subsection{Definition}\label{chV-2-16}
+        The class of morphisms described in \ref{chV-2-15} is called the class of \emph{anodyne extensions}.\footnote{The terminology is due to Gabriel-Zisman. ``Anodyne'' is Greek and translates ``painless''.} Similarly, \ref{chV-2-10} and \ref{chV-2-14} describe the classes of \emph{left anodyne extensions} and \emph{right anodyne extensions}, respectively.
+        \medskip
+
+        \emph{Proof} of theorem \ref{chV-2-1}. Immediate from \ref{chV-2-2} and \ref{chV-2-15}.
+
+    \subsection{Remark}\label{chV-2-17}
+        In particular, this shows that $X$ is a Kan complex of and only if $X \to \Delta^0$ is a Kan fibration. Since all inclusions $F_{\Ll(\horn{n}{k})}(0, n) \subseteq F_{\Ll(\Delta^n)}(0, n)$ lie in $\widetilde{C}$ by lemma \ref{chIV-34}, the proof of theorem \ref{chIV-31} is now complete.
+
+    \subsection{Corollary}\label{chV-2-18}
+        A map of simplicial sets is
+        \begin{enumerate}
+            \item 
+                a left fibration if and only if it has the RLP with respect to all left anodyne extensions;
+            \item 
+                a right fibration if and only if it has the RLP with respect to all right anodyne extensions;
+            \item 
+                a Kan fibration if and only if it has the RLP with respect to all anodyne extensions.
+        \end{enumerate}
+
+    \subsection{Corollary}\label{chV-2-19}
+        For every simplicial set $X$ there exists an anodyne extension $X \to \overline{X}$, where $\overline{X}$ is a Kan complex.
+        \smallskip
+
+        \emph{Proof}. For any simplicial set $X$, define $X'$ by pushout
+        \begin{equation*}
+            \begin{tikzcd}
+                \coprod_{f \colon \horn{n}{i} \to X}\horn{n}{i} \arrow[r] \arrow[d] & X \arrow[d] \\
+                \coprod_{f \colon \horn{n}{i} \to X}\Delta^n \arrow[r] & X'
+            \end{tikzcd}
+        \end{equation*}
+        where the coproduct runs over all maps from all possible horns to $X$. Note that $X \to X'$ is an anodyne extension.
+        
+        Given a fixed simplicial set $X$, let $X_0 \coloneq X$ and define $X_{n+1} \coloneq \overline{X_n}$. Then the Yoneda lemma implies that every horn in $\overline{X} \coloneq \colim_n X_n$ can be filled. Moreover, the canonical map $X \to \overline{X}$ is a left anodyne extension.
+        \medskip
+
+        Using \ref{chV-2-3}, \ref{chV-2-2} is enough to show that cofibrations admit a much easier description than our original definition suggests.
