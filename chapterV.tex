@@ -438,7 +438,7 @@
         \emph{Proof} of theorem \ref{chV-2-1}. Immediate from \ref{chV-2-2} and \ref{chV-2-15}.
 
     \subsection{Remark}\label{chV-2-17}
-        In particular, this shows that $X$ is a Kan complex of and only if $X \to \Delta^0$ is a Kan fibration. Since all inclusions $F_{\Ll(\horn{n}{k})}(0, n) \subseteq F_{\Ll(\Delta^n)}(0, n)$ lie in $\widetilde{C}$ by lemma \ref{chIV-34}, the proof of theorem \ref{chIV-31} is now complete.
+        In particular, this shows that $X$ is a Kan complex of and only if $X \to \Delta^0$ is a Kan fibration. Since all inclusions $F_{\Ll(\horn{n}{k})}(0, n) \subseteq F_{\Ll(\Delta^n)}(0, n)$ lie in $\widetilde{C}$ by \ref{chIV-34}, the proof of theorem \ref{chIV-31} is now complete.
 
     \subsection{Corollary}\label{chV-2-18}
         A map of simplicial sets is
@@ -468,3 +468,48 @@
         \medskip
 
         Using \ref{chV-2-3}, \ref{chV-2-2} is enough to show that cofibrations admit a much easier description than our original definition suggests.
+
+    \subsection{Theorem}\label{chV-2-20}
+        A map of simplicial sets is a left cofibration if and only if it is injective.\footnote{As in the case of fibrations, this is usually the definition of a cofibration.}
+        \smallskip
+
+        \emph{Proof}. Exercise: Fix an injection $j$. Let $\Sigma$ be a saturated class of morphisms. Then the class of morphisms
+        \begin{equation*}
+            S \coloneq \left\{ i \mid i \boxtimes j \in \Sigma \right\}
+        \end{equation*}
+        is saturated.\\
+        Consequently, the class of left cofibrations is saturated. Since $\partial \Delta^n \to \Delta^n$ is a left cofibration for all $n \geq 0$, \ref{chV-2-10} implies that every injection is a left cofibration.\\
+        Let $i \colon A \to B$ be a cofibration. By \ref{chV-2-19}, there is an anodyne extension
+        \begin{equation*}
+            B \times \{0\} \cup_{A \times \{0\}} A \times \Delta^1 \to K
+        \end{equation*}
+        for some Kan complex $K$. Since $i$ is a left cofibration, this injection extends to a map $B \times \Delta^1 \to K$. Consequently, $B \times \{0\} \cup_{A \times \{0\}} A \times \Delta^1 \to B \times \Delta^1$ is injective. Since $i$ can be recovered from this map via the inclusion of $A \times \{1\}$, it follows that $i$ is injective.\hfill$\Box$
+
+    \subsection{Corollary}\label{chV-2-21}
+        The classes of left cofibrations, right cofibrations and injections coincide.
+        \medskip
+
+        From now on, we will only (and interchangeably) use the terms ``injection'' and ``cofibration''.
+
+    \subsection{Proposition}\label{chV-2-22}
+        Let $i \colon A \to B$ be a left anodyne extension and let $j \colon X \to Y$ bea cofibration. Then
+        \begin{equation*}
+            (A \times Y) \cup_{A \times X} (B \times X) \to B \times Y
+        \end{equation*}
+        is left anodyne.
+        \smallskip
+
+        \emph{Proof}. For fixed $j$, the class of morphisms
+        \begin{equation*}
+            S \coloneq \left\{ k \colon A \to B \mid k \boxtimes j \text{ left anodyne} \right\}
+        \end{equation*}
+        is saturated by the exercise set in the proof of \ref{chV-2-20}.\\
+        By \ref{chV-2-10}, it suffices to check that $l \boxtimes (\{0\} \to \Delta^1)$ lies in $S$ for all cofibrations $l \colon A \to B$. Since $- \times X$ and $- \times Y$ commute with pushouts, the morphism
+        \begin{equation*}
+            \Big((B \times \{0\}) \underset{A \times \{0\}}{\cup} (A \times \Delta^1)\Big) \times Y \underset{\big((B \times \{0\}) \underset{A \times \{0\}}{\cup} (A \times \Delta^1)\big) \times X}{\cup} (B \times \Delta^1) \times X \to (B \times \Delta^1) \times Y
+        \end{equation*}
+        can be identified with the morphism
+        \begin{equation*}
+            \Big((B \times Y \times \{0\}) \underset{A \times Y \times \{0\}}{\cup} (A \times Y \times \Delta^1)\Big) \underset{(B \times X \times \{0\}) \underset{A \times X \times \{0\}}{\cup} (A \times X \times \Delta^1)}{\cup} (B \times X \times \Delta^1) \to (B \times Y \times \Delta^1)
+        \end{equation*}
+        which is left anodyne by \ref{chV-2-10}.
