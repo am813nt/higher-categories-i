@@ -271,7 +271,7 @@
 
         \emph{Proof}. Exercise.\hfill$\Box$
 
-    \subsection{Corollary}
+    \subsection{Corollary}\label{chV-2-8}
         If a map of simplicial sets has the RLP with respect to $B$, then it is a Kan fibration and a homotopy equivalence.
         \smallskip
 
@@ -513,3 +513,179 @@
             \Big((B \times Y \times \{0\}) \underset{A \times Y \times \{0\}}{\cup} (A \times Y \times \Delta^1)\Big) \underset{(B \times X \times \{0\}) \underset{A \times X \times \{0\}}{\cup} (A \times X \times \Delta^1)}{\cup} (B \times X \times \Delta^1) \to (B \times Y \times \Delta^1)
         \end{equation*}
         which is left anodyne by \ref{chV-2-10}.
+
+    \subsection{Corollary}\label{chV-2-23}
+        If $i \colon A \to B$ is a cofibration and $p \colon X \to Y$ is a left/right/Kan fibration, then the induced map
+        \begin{equation*}
+            F(B, X) \to F(A, X) \underset{F(A, Y)}{\times} F(B, Y)
+        \end{equation*}
+        is a left/right/Kan fibration. In particular, the following holds:
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                If $B$ is any simplicial set and $p \colon X \to Y$ is a left/right/Kan fibration, then
+                \begin{equation*}
+                    p^{*} \,\colon F(B, X) \to F(B, Y)
+                \end{equation*}
+                is a left/right/Kan fibration.\label{chV-2-23-i}
+            \item 
+                If $i \colon A \to B$ is a cofibration and $X$ is a Kan complex, then
+                \begin{equation*}
+                    i^{*} \,\colon F(B, X) \to F(A, X)
+                \end{equation*}
+                is a Kan fibration of Kan complexes.
+        \end{enumerate}
+
+        \emph{Proof}. Every lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                \horn{n}{k} \arrow[r] \arrow[d] & F(B, X) \arrow[d] \\
+                \Delta^n \arrow[r] & F(A, X) \underset{F(A, Y)}{\times} F(B, Y)
+            \end{tikzcd}
+        \end{equation*}
+        corresponds to a commutative diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                (B \times \horn{n}{k}) \underset{A \times \horn{n}{k}}{\cup} (A \times \Delta^n) \arrow[r] \arrow[d] & X \arrow[d, "p"] \\
+                B \times \Delta^n \arrow[r] & Y
+            \end{tikzcd}
+        \end{equation*}
+        The left vertical map is an anodyne extension by \ref{chV-2-22}, and hence has the LLP with respect to $p$. The resulting lift provides the required lift of the original lifting problem.\hfill$\Box$
+
+    \subsection{Corollary}\label{chV-2-24}
+        Let $K$ be a Kan complex and let $X$ be a simplicial set. Then $F(X, K)$ is a Kan complex.
+        \smallskip
+
+        \emph{Proof}. This is \ref{chV-2-23} \ref{chV-2-23-i} for $p \colon K \to \Delta^0$.\hfill$\Box$
+        \medskip
+
+        \ref{chV-2-24} shows that the simplicially enriched category $\mathrm{Kan}$ of Kan complexes is enriched in Kan complexes. So the following definition is justified.
+
+    \subsection{Definition}\label{chV-2-25}
+        Define the quasi-category of \emph{anima} to be
+        \begin{equation*}
+            \An \coloneq \Nn^c(\mathrm{Kan}) \,.
+        \end{equation*}
+        Note that the name $\An$ is abusive at this point in time. we have defined ``anima'' is such a way that it is a theorem that ``anima'' is synonymous to ``Kan complex''. Our notation anticipates that we will prove thes eventually.\\
+        Also, let us emphasise that at the time of writing the name ``anima'' is very much non-standard. Most people prefer the term ``spaces'' ans write $\Ss$ or $\mathrm{Spc}$ instead of $\An$.
+
+    \subsection{Corollary}\label{chV-2-26}
+        Let $i \colon A \to B$ be a left/right/$\varnothing$ anodyne extension ans let $p \colon X \to Y$ be a left/right/Kan fibration. Then the induced map
+        \begin{equation*}
+            F(B, X) \to F(A, X) \underset{F(A, Y)}{\times} F(B, Y) 
+        \end{equation*}
+        has the RLP with respect to $\II$. In particular, it is a Kan fibration and a homotopy equivalence (see \ref{chV-2-8}).
+        \smallskip
+
+        \emph{Proof}. Since $\sat(B) = \II$, it is enough to consider $B$. Any lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                \partial \Delta^n \arrow[r] \arrow[d] & F(B, X) \arrow[d] \\
+                \Delta^n \arrow[ur, dashed] \arrow[r] & F(A, X) \underset{F(A, Y)}{\times} F(B, Y)
+            \end{tikzcd}
+        \end{equation*}
+        corresponds to a lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                (A \times \Delta^n) \underset{A \times \partial \Delta^n}{\cup} (B \times \partial \Delta^n) \arrow[r] \arrow[d] & X \arrow[d, "p"] \\
+                B \times \Delta^n \arrow[ur, dashed] \arrow[r] & Y
+            \end{tikzcd}
+        \end{equation*}
+        The left vertical map is left/right/$\varnothing$ anodyne by \ref{chV-2-22}, so there exists a solution.\hfill$\Box$
+
+    \subsection{Corollary}\label{chV-2-27}
+        Every anodyne extension is a cofibration and a weak equivalence.
+        \smallskip
+
+        \emph{Proof}. We only need to show that every anodyne extension is a weak equivalence. This follows from \ref{chV-2-26} for $Y = \Delta^0$ by taking $\pi_0$.
+
+    \subsection{Definition}\label{chV-2-28}
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                A category $\Ii$ is \emph{filtered} if for every diagram $F \colon \Jj \to \Ii$ where $\Jj$ has only finitely many objects and morphisms there exists an object $i \in \Ii$ and a natural transformation $F \Rightarrow \const_i$.
+            \item 
+                A \emph{filtered colimit} is a colimit of a diagram indexed by a filtered category.
+            \item 
+                Let $\Cc$ be a category with all filtered colimits. Then $c \in \Cc$ is \emph{compact} if $\Hom_{\Cc}(c, -)$ commutes with all filtered colimits.
+            \item 
+                Let $\Cc$ be a cocomplete category. Then $c \in \Cc$ is \emph{tiny} if $\Hom_{\Cc}(c, -)$ commutes with all colimits. 
+        \end{enumerate}
+
+    \subsection{Examples}\label{chV-2-29}
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                Every directed poset is a filtered category, e.g. $\mathbb{N}$.
+            \item 
+                A set $X$ is compact in $\Set$ if and only if $X$ is finite.
+            \item 
+                A simplicial set $X$ is compact in $\sSet$ if and only if $X$ is finite.
+            \item 
+                A module $M$ over some ring $R$ is compact in $\Mod{R}$ if and only if $M$ is finitely generated.
+        \end{enumerate}
+
+        The following statement is often referred to as the ``small object argument'':
+
+    \subsection{Proposition}\label{chV-2-30}
+        Let $\Cc$ be a cocomplete category. Let $S$ be a set of morphisms such that the domain of each morphism in $S$ is compact. Then every morphism $f \colon X \to Y$ of simplicial sets can be factored as $f = p \circ i$, where $i$ lies in $\sat(S)$ and $p$ has the RLP with respect to $S$.
+
+        \emph{Proof}. For an arbitrary map $g \colon V \to W$, let
+        \begin{equation*}
+            \mathrm{LP}(S, g) \coloneq \left\{ (a \colon A \to V, \, b \colon B \to W, \, i \colon A \to B) \mid i \in S, \, g \circ a = b \circ i \right\} \,.
+        \end{equation*}
+        Define $V'$ as the pushout
+        \begin{equation*}
+            \begin{tikzcd}
+                \coprod\limits_{(a,b,i) \in \mathrm{LP}(S, g)}A \arrow[r, "\Sigma a"] \arrow[d, "\coprod i"'] & V \arrow[d, "g"] \\
+                \coprod\limits_{(a,b,i) \in \mathrm{LP}(S, g)}B \arrow[r, "\Sigma b"] & V'
+            \end{tikzcd}
+        \end{equation*}
+        Then there is a canonically induced map $V' \to W$, and the map $V \to V'$ lies in the saturation of $S$.\\
+        Now define $X^0 \coloneq X$ and $X^{n+1} \coloneq (X^n)'$. Set $E \coloneq \colim_n X^n$. By definition, the induced map $i \colon X \to E$ is in $\sat(S)$. Moreover, the induced map $p \colon E \to Y$ satisfies $p \circ i = f$.\\
+        Consider a lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                A \arrow[r, "a"] \arrow[d, "j"] & V \arrow[d, "f"] \\
+                B \arrow[ur, dashed] \arrow[r, "b"] & W
+            \end{tikzcd}
+        \end{equation*}
+        with $j \in S$. Since $A$ is compact by assumption, $a$ factors as
+        \begin{equation*}
+            a \,\colon A \to X^n \to \colim\limits_{n}X^n = E
+        \end{equation*}
+        for some $n \in \mathbb{N}$. By construction, the induced lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                A \arrow[r, "a'"] \arrow[d, "j"] & X^{n+1} \arrow[d, "f"] \\
+                B \arrow[ur, dashed] \arrow[r, "b"] & Y
+            \end{tikzcd}
+        \end{equation*}
+        has a solution, and this also provides a solution to the original lifting problem.\hfill$\Box$
+
+        Note that this contains \ref{chV-2-19} as a special case (take $S = H$ and $f$ to be the projection map $X \to \Delta^0$).
+        \medskip
+
+        We can now prove a converse to \ref{chV-2-18}.
+
+    \subsection{Corollary}\label{chV-2-31}
+        Let $\Cc$ be a cocomplete category and $S$ a set of maps such that the domain of every morphism in $S$ is compact. Then
+        \begin{equation*}
+            \sat(S) = \left\{ f \colon X \to Y \mid \begin{array}{r} f \text{ has the LLP with respect to the class of morphisms} \\ \text{which have the RLP with respect to } S\end{array} \right\} \eqcolon \overline{S}
+        \end{equation*}
+        In particular, a morphism is a left/right/$\varnothing$ anodyne extension if and only if it has the LLP with respect to every ;eft/right/Kan fibration.
+        \smallskip
+
+        \emph{Proof}. Since $\overline{S}$ is a saturated class by \ref{chV-2-2} and contains $S$, we have $\sat(S) \subseteq \overline{S}$.\\
+        Let $f \colon X \to Y$ be in $\overline{S}$. By \ref{chV-2-30}, factor $f$ into a map $i \colon X \to E$ in $\sat(S)$ followed by a map $p \colon E \to Y$ which has the RLP with respect to $S$. The lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                X \arrow[r, "i"] \arrow[d, "f"] & E \arrow[d, "p"] \\
+                Y \arrow[ur, dashed, "s"] \arrow[r, "\id"] & Y
+            \end{tikzcd}
+        \end{equation*}
+        has a solution since $f$ has the LLP with respect to $p$. These maps define a retract diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                X \arrow[r, "\id"] \arrow[d, "f"] & X \arrow[r, "\id"] \arrow[d, "i"] & X \arrow[d, "f"] \\
+                Y \arrow[r, "s"] & E \arrow[r, "p"] & Y
+            \end{tikzcd}
+        \end{equation*}
+        So $f$ is in $\sat(S)$.\hfill$\Box$
