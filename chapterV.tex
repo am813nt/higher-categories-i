@@ -177,8 +177,8 @@
 
         \emph{Proof}. This follows directly since bijections satisfy two-out-of-six and are closed under retracts.
 
-    \section{Fibrations via Horn-Filling}
-        As already promised, there is an easier criterion to check whether a map of simplicial sets is a left or right fibration:
+\section{Fibrations via Horn-Filling}
+    As already promised, there is an easier criterion to check whether a map of simplicial sets is a left or right fibration:
 
     \subsection{Theorem}\label{chV-2-1}
         Let $f \colon X \to Y$ be a map of simplicial sets.
@@ -689,3 +689,103 @@
             \end{tikzcd}
         \end{equation*}
         So $f$ is in $\sat(S)$.\hfill$\Box$
+
+\section{Simplicial homotopy groups}
+    \subsection{Proposition}\label{chV-3-1}
+        Let $K$ be a Kan complex. Then $\pi X$ is a groupoid. In particular, homotopy is an equivalence relation on $\Hom_{\sSet}(\Delta^0, K)$.
+        \smallskip
+
+        \emph{Proof}. Let $x, y \in X$ and let $e$ be an edge such that $d_0(e) = y$ and $d_1(e) = x$. Consider $e$ and $s_0(x)$ as a map $\horn{2}{0} \to X$. For any filler $F$, the edge $d_0(F)$ provides a morphism $y \to x$ in $\pi X$ such that $d_0F \circ e = \id_x$. Similarly, $e$ and $s_0(x)$ also define a map $\horn{2}{2} \to X$, and $d_2$ of any filler provides a right inverse to $e$. Since isomorphisms satisfy two-out-of-six, $e$ is an isomorphism in $\pi X$.
+
+    \subsection{Corollary}\label{chV-3-2}
+        Let $K$ be a Kan complex, let $X$ be a simplicial set, and let $A$ be a simplicial subset of $X$. Then homotopy relative $A$ is an equivalence relation on $\Hom_{\sSet}(X, K)$.
+        \smallskip
+
+        \emph{Proof}. Let $f \colon A \to K$ be given and consider the pullback
+        \begin{equation*}
+            \begin{tikzcd}
+                F(X, K)_f \arrow[d] \arrow[r] & F(X, K) \arrow[d] \\
+                \Delta^0 \arrow[r, "f"] & F(A, K)
+            \end{tikzcd}
+        \end{equation*}
+        Then $F(X, K)_f$ is a Kan complex by \ref{chV-2-23}. Homotopy of $0$-simplices in $F(X, K)_f$ corresponds precisely to homotopy relative $A$ of maps $X \to K$ which restrict to the given map $f$ on $A$. So the corollary follows from \ref{chV-3-1}.\hfill$\Box$
+
+    \subsection{Corollary}\label{chV-3-3}
+        Every weak equivalence between Kan complexes is a homotopy equivalence.
+        \smallskip
+
+        \emph{Proof}. Let $f \colon K \to L$ be a weak equivalence between Kan complexes. Since $f^{*} \colon \pi_0(L, K) \to \pi_0(K, K)$ is a bijection, there exists by \ref{chV-3-2} a map $g \colon L \to K$ such that $gf \simeq \id_K$. Since $fgf \simeq f$, the injectivity of $f^{*}$ implies that $fg \simeq \id_L$ as well.\hfill$\Box$
+
+    \subsection{Definition}\label{chV-3-4}
+        Let $A \subseteq X$ and $B \subseteq Y$ be inclusions of simplicial subsets. Define $F((X, A),(Y, B))$ as the pullback
+        \begin{equation*}
+            \begin{tikzcd}
+                F((X, A), (Y, B)) \arrow[d] \arrow[r] & F(X, Y) \arrow[d] \\
+                F(A, B) \arrow[r] & F(A, Y)
+            \end{tikzcd}
+        \end{equation*}
+        Note that $F((X, A),(Y, B))$ is a Kan complex if $B$ and $Y$ are Kan complexes (by \ref{chV-2-23} and \ref{chV-2-24}).
+
+    \subsection{Definition}\label{chV-3-5}
+        For $n \geq 0$, let
+        \begin{equation*}
+            \Box^n \coloneq (\Delta^1)^n \cong N([1]^n)
+        \end{equation*}
+        be the \emph{n-cube}. The simplicial subset
+        \begin{equation*}
+            \partial \Box^n \coloneq \{\alpha \colon [k] \to [1]^n \mid \exists \; 1 \leq i \leq n \colon \pr_i \alpha \text{ constant} \}
+        \end{equation*}
+        is called the \emph{boundary} of the $n$-cube. We agree that $\partial \Box^0 = \varnothing$.
+
+    \subsection{Definition}\label{chV-3-6}
+        Let $X$ be a Kan complex and $x \in X_0$. Define
+        \begin{equation*}
+            \pi_n(X, x) \coloneq \pi_0(F((\Box^n, \partial \Box^n),(X,x)))
+        \end{equation*}
+        Let $Y$ be a Kan complex and $y \in Y$. Define
+        \begin{equation*}
+            \pi_1(Y, y) \coloneq \End_{\pi Y}(y)
+        \end{equation*}
+        Unwinding definitions and using \ref{chV-2-30}, there is a natural isomorphism
+        \begin{equation*}
+            \pi_n(X, x) \cong \pi_1(F((\Box^{n-1}, \partial \Box^{n-1}),(X, x)), c_x)
+        \end{equation*}
+        for all $n \geq 1$, where $c_x$ denotes the constant map with value $x$. So the composition law in the homotopy category equips $\pi_x(X, x)$ with the structure of a monoid.\\
+        Conjugating the identification
+        \begin{equation*}
+            \pi_n(X, x) \cong \pi_1(F((\Box^{n-1}, \partial \Box^{n-1}),(X, x)), c_x)
+        \end{equation*}
+        by the transposition $\tau_{1, i}$ acting on the factors of $(\Delta^1)^n$, we i fact obtain $n$ monoid structures $\{ \cdot_i \}_{i \leq i \leq n}$ on $\pi_n(X, x)$ which have the same neutral element (namely the class represented by the constant map).
+
+    \subsection{Proposition}\label{chV-3-7}
+        Let $X$ be a Kan complex and $x \in X$. Then $\pi_n(X, x)$ is a group for all $n \geq 1$. For $n \geq 2$, the compositions $\cdot_i$ all agree and are commutative.
+        \smallskip
+
+        \emph{Proof}. Since $F((\Box^{n-1}, \partial \Box^{n-1}),(X, x))$ is a Kan complex for all $n \geq 1$, the first assertion follows from the fact that $\pi Y$ is a groupoid for every Kan complex Y.\\
+        Let $\alpha, \beta, \gamma, \delta \colon (\Box^n, \partial \Box^n) \to (X, x)$ represent elements in $\pi_n(X, x)$ for $n \geq 2$. We claim that
+        \begin{equation*}
+            ([\alpha] \cdot_1 [\beta]) \cdot_2 ([\gamma] \cdot_1 [\delta]) = ([\alpha] \cdot_2 [\gamma]) \cdot_1 ([\beta] \cdot_2 [\delta]) \,.
+        \end{equation*}
+        If this holds, the Eckmann-Hilton argument shows that $\cdot_1 = \cdot_2$ and that this composition is abelian.\\
+        The four given elements induce a map $\horn{2}{1} \times \horn{2}{1} \times \Box^{n-2} \to X$. Decoding the definition of the composition laws, the left hand composition amounts to extending this map along the anodyne extensions
+        \begin{equation*}
+            \horn{2}{1} \times \horn{2}{1} \times \Box^{n-2} \to \Delta^2 \times \horn{2}{1} \times \Box^{n-2} \to \Delta^2 \times \Delta^2 \times \Box^{n-2} \,,
+        \end{equation*}
+        while the right hand side corresponds to extending along the anodyne extensions
+        \begin{equation*}
+            \horn{2}{1} \times \horn{2}{1} \times \Box^{n-2} \to \horn{2}{1} \times \Delta^2 \times \Box^{n-2} \to \Delta^2 \times \Delta^2 \times \Box^{n-2} \,.
+        \end{equation*}
+        Note that we are ignoring various boundary conditions for legibility. Both extensions provide an extension along the anodyne extension
+        \begin{equation*}
+            \horn{2}{1} \times \horn{2}{1} \times \Box^{n-2} \to \Delta^2 \times \Delta^2 \times \Box^{n-2} \,.
+        \end{equation*}
+        Since such an extension is unique up to homotopy (\ref{chV-2-26}), this proves the claim.\\
+        For arbitrary $\cdot_i$ and $\cdot_j$, the same proof works after appropriate permutation of the factors.\hfill$\Box$
+        \medskip
+
+        Of course, one can construct the group structure on $\pi_n(X, x)$ directly and observe that there are $n$ different compositions on $\pi_n(X, x)$. As soon as there are at least two, the Eckmann-Hilton argument applies.\\
+        Each $\pi_n$ defines a functor
+        \begin{equation*}
+            \pi_n \,\colon \Kan_{*} \to \Grp
+        \end{equation*}
+        which is invariant under pointed simplicial homotopies.
