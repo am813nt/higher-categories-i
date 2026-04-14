@@ -789,3 +789,106 @@
             \pi_n \,\colon \Kan_{*} \to \Grp
         \end{equation*}
         which is invariant under pointed simplicial homotopies.
+
+    \subsection{Theorem}\label{chV-3-8}
+        Let $p \colon X \to Y$ be a Kan fibration of Kan complexes and $x \in X_0$. Let $F$ denote the fibre of $p$ over $p(x)$. Then there exists a natural long exact sequence
+        \begin{equation*}
+            \ldots \rightarrow \pi_{n+1}(X,x) \xrightarrow{p_{*}} \pi_{n+1}(Y, p(x)) \xrightarrow{\partial} \pi_n(F,x) \xrightarrow{i_{*}} \pi_n(X,x) \xrightarrow{p_{*}} \pi_n(Y, p(x)) \rightarrow \ldots 
+        \end{equation*}
+        In low degrees, exactness means the following:
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                There is an action $\pi_1(Y, p(x)) \times \pi_0(F, x) \to \pi_0(F, x)$ such that
+                \begin{itemize}
+                    \item 
+                        the image of $\pi_{*} \colon \pi_1(X, x) \to \pi_1(Y,y)$ is precisely the stabilizer of $[x] \in \pi_0(F)$;
+                    \item 
+                        two elements in $\pi_0(F,x)$ map to the same element in $\pi_0(X, x)$ if and only if they lie in the same orbit of this action.
+                \end{itemize}
+            \item 
+                An element in $\pi_0(X, x)$ maps to the basepoint in $\pi_0(Y, p(x))$ if and only if they lie in the image of $\pi_0(F, x) \to \pi_0(X, x)$.
+        \end{enumerate}
+        \smallskip
+
+        \emph{Proof}. Since we are using cubes to model homotopy groups, the proof is more or less identical to the proof for topological spaces. Set $y \coloneq p(x)$.
+        We begin by defining the boundary map. Let $\alpha \colon (\Box^{n+1}, \partial \Box^{n+1}) \to (Y, y)$ represent any element in $\pi_{n+1}(Y, y)$. Since $(\partial \Box^n \to \Box^n) \boxtimes (\{0\} \to \Delta^1)$ is anodyne, the lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                (\Delta^1 \times \partial \Box^n) \underset{\{0\} \times \partial \Box^n}{\cup} (\{0\} \times \Box^n) \arrow[d] \arrow[r, "\const_x"] & X \arrow[d, "p"] \\
+                \Delta^1 \times \Box^n \arrow[ur, dashed, "\overline{\alpha}"] \arrow[r, "\alpha"] & Y 
+            \end{tikzcd}
+        \end{equation*}
+        has a solution. Set
+        \begin{equation*}
+            \partial [\alpha] \coloneq [{\overline{\alpha}|}_{\{1\} \times \Box^n}] \,.
+        \end{equation*}
+        This is well-defined: let $h \colon \Box^{n+1} \times \Delta^1 \cong \Delta^1 \times \Box^n \times \Delta^1 \to Y$ be a homotopy relative $\partial \Box^{n+1}$ from $\alpha$ to $\alpha'$. Any two lifts $\overline{\alpha}$ and $\overline{\alpha}'$ as above define a map $(\Delta^1 \times \Box^n \times \partial \Delta^1) \to X$. This map glues with the constant map on
+        \begin{equation*}
+            ((\Delta^1 \times \partial \Box^n) \underset{\{0\} \times \partial \Box^n}{\cup} (\{0\} \times \Box^n)) \times \Delta^1
+        \end{equation*}
+        to define a partial lift of $h$. Since $(\{0\} \to \Delta^1) \boxtimes (\partial \Box^n \to \Box^n)$ is anodyne, so is
+        \begin{equation*}
+            ((\{0\} \to \Delta^1) \boxtimes (\partial \Box^n \to \Box^n)) \boxtimes (\partial \Delta^1 \to \Delta^1) \,.
+        \end{equation*}
+        Any lift $\overline{h} \colon \Delta^1 \times \Box^n \times \Delta^n \to X$ witnesses that $\alpha$ and $\alpha'$ are homotopic relative $\partial \Box^n$. So $\partial$ is well-defined.
+        If $n \geq 1$, we claim that $\partial$ is a group homomorphism. Two elements $[\alpha], [\beta]$ define a map
+        \begin{equation*}
+            \Delta^1 \times \horn{2}{1} \times \Box^{n-1} \to Y \,.
+        \end{equation*}
+        Similarly, the lifts $\overline{\alpha}$ and $\overline{\beta}$ glue to a map on $\Delta^1 \times \horn{2}{1} \times \Box^{n-1}$ which has an extension to a map $\gamma \colon \Delta^1 \times \Delta^2 \times \Box^{n-1} \to X$. Then ${\gamma|}_{\{1\} \times d_1 \Delta^2 \times \Box^{n-1}}$ defines $\partial[\alpha] \cdot \partial[\beta]$. On the other hand, $p \circ \gamma$ is an extension of the original map, and ${(p \circ \gamma)|}_{\{1\} \times d_1 \Delta^2 \times \Box^{n-1}}$ defines $[\alpha] \cdot_2 [\beta]$, so
+        \begin{equation*}
+            \partial ([\alpha] \cdot_2 [\beta]) = \partial [\alpha] \cdot \partial [\beta] \,.
+        \end{equation*}
+        Since $\cdot_2 = \cdot$, this proves that $\partial$ is a homomorphism.
+        Let $e \in F_0$ and $[\alpha] \in \pi_1(Y, y)$. Solve the lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                \Delta^0 \arrow[d] \arrow[r, "e"] & X \arrow[d, "p"] \\
+                \Delta^1 \arrow[ur, dashed, "\overline{\alpha}"] \arrow[r, "\alpha"] & Y
+            \end{tikzcd}
+        \end{equation*}
+        to define $[\alpha][e] \coloneq [\overline{\alpha}(1)]$. It is easy to check that this is well-defined and defines a group action. We recover the definition of the connecting map by letting $\pi_1(Y, y)$ act on $[x]$.
+        We begin by showing exactness in low degrees.
+        
+        \emph{Exactness at $\pi_0(X)$:} The composition $\pi_0(F) \to \pi_0(X) \to \pi_0(Y)$ obviously hits the basepoint. Suppose that $x' \in X$ such that $[p(x')] = [y] \in \pi_0(Y)$. Then the lifting problem
+        \begin{equation*}
+            \begin{tikzcd}[column sep=large]
+                \Delta^0 \arrow[d] \arrow[r, "x'"] & X \arrow[d, "p"] \\
+                \Delta^1 \arrow[ur, dashed, "h"] \arrow[r, "p{(x')} \simeq y"] & Y
+            \end{tikzcd}
+        \end{equation*}
+        has a solution, and $h(1)$ is a point in $F$ such that $[h(1)] = [x'] \in \pi_0(X)$.
+        
+        \emph{Exactness at $\pi_0(F)$:} Suppose that $[e], [e'] \in pi_0(F)$ satisfy $[\alpha][e] = [e']$ for some $[\alpha] \in \pi_1(Y, y)$. Then, by definition, there exists $\overline{\alpha} \colon \Delta^1 \to X$ such that $\overline{\alpha}(0) = e$ and $\overline{\alpha}(1)$ is homotopic to $[e']$ in $F$. This implies that $e$ and $e'$ are homotopic in $X$.
+        Conversely, suppose that $[e] = [e'] \in \pi_0(X)$. Then there exists a homotopy $h \colon \Delta^1 \to X$ from $e$ to $e'$. The map $ph$ defines an element in $\pi_1(Y, y)$ since $p(e) = y = p(e')$. By definition, we have $[ph][e] = [e']$. So the fibres of $pi_0(F) \to \pi_0(X)$ correspond precisely to the orbits of the $\pi_1(Y, y)$-action on $\pi_0(F)$.
+        
+        \emph{Exactness at $\pi_1(Y, y)$:} Let $[\alpha] \in \pi_1(X, x)$. Then $\alpha$ itself is a solution to the lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                \Delta^0 \arrow[d] \arrow[r, "x"] & X \arrow[d, "p"] \\
+                \Delta^1 \arrow[ur, dashed] \arrow[r, "p \alpha"] & Y
+            \end{tikzcd}
+        \end{equation*}
+        so $[p \alpha][x] = [x]$. Conversely, suppose that $[\alpha] \in \pi_1(Y, y)$ satisfies $[\alpha][x] = [x]$. Then $\alpha$ lifts by definition of the action to a loop in $X$. So the image of $p_{*} \colon \pi_1(X, x) \to \pi_1(Y, y)$ is precisely the stabilizer of $[x] \in \pi_0(F)$.
+        
+        \emph{Exactness at $\pi_n(X, x)$ for $n \geq 1$:} The composition $p_{*} i_{*}$ is obviously trivial. Suppose that $p_{*} [\alpha] = 1 \in \pi_n(Y, y)$. Then there exists a homotopy $h \colon \Box^n \times \Delta^1 \to Y$ relative $\partial \Box^n$ from $p \alpha$ to the constant map with value $y$. Since $p$ is a Kan fibration, the lifting problem
+        \begin{equation*}
+            \begin{tikzcd}[column sep=large]
+                (\Box^n \times \{0\}) \underset{\partial \Box^n \times \{0\}}{\cup} (\partial \Box^n \times \Delta^1) \arrow[d] \arrow[r, "\alpha \, \cup \, \const_x"] & X \arrow[d, "p"] \\
+                \Box^n \times \Delta^1 \arrow[r, "h"] & Y
+            \end{tikzcd}
+        \end{equation*}
+        has a solution. The endpoint of this solution provides a preimage of $[\alpha]$ under $i_{*}$.
+        
+        \emph{Exactness at $\pi_n(F, x)$ for $n \geq 1$:} Let $[\alpha] \in \pi_{n+1}(Y, y)$. Then $\partial [\alpha]$ is by construction represented by a map which is homotopic to $\const_x$ relative $\partial \Box^n$ in $X$. Consequently, $i_{*} \partial$ is trivial.
+        Conversely, suppose that $[i \alpha]$ is trivial in $\pi_n(X, x)$ for some $[\alpha] \in \pi_n(F, x)$. Then there exists a homotopy (note we are free to choose the direction of the homotopy) $h \colon \Delta^1 \times \Box^n \to X$ relative $\partial \Box^n$ from $\const_x$ to $i \alpha$. Then, by definition, $h$ represents an element in $\pi_{n+1}(Y, y)$ with $\partial [h] = [\alpha]$.
+        
+        \emph{Exactness at $\pi_{n+1}(Y, y)$ for $n \geq 1$:} Let $[\alpha] \in \pi_{n+1}(X, x)$. Then $\alpha$ solves the lifting problem used to define $\partial [p \alpha]$. Since $\alpha$ is constant on $\partial \Box^n$, this proves that $\partial p_{*}$ is trivial.
+        Conversely, suppose that $\partial [\alpha] = [{\overline{\alpha}|}_{\{1\} \times \Box^n}] = 1$ for some $[\alpha] \in \pi_{n+1}(Y, y)$. Then there exists a homotopy $h \colon \Delta^1 \times \Box^n \to F$ relative $\partial \Box^n$ from ${\overline{\alpha}|}_{\{1\} \times \Box^n}$ to $\const_x$. Since $p$ is a Kan fibration, the lifting problem
+        \begin{equation*}
+            \begin{tikzcd}[column sep=huge]
+                (\horn{2}{1} \times \Box^n) \underset{\horn{2}{1} \times \partial \Box^n}{\cup} (\Delta^2 \times \partial \Box^n) \arrow[d] \arrow[r, "{(\alpha \, \cup \, h)} \, \cup \, \const_x"] & X \arrow[d, "p"] \\
+                \Delta^2 \times \Box^n \arrow[r, "\alpha {(s_1 \times \id)}"] & Y
+            \end{tikzcd}
+        \end{equation*}
+        has a solution $\overline{h}$, where $s_1$ denotes the appropriate degeneration map. Then ${\overline{h}|}_{d_1 \Delta^2 \times \Box^n}$ defined an element in $\pi_{n+1}(X, x)$ such that $[{p \overline{h}|}_{d_1 \Delta^2 \times \Box^n}] = [\alpha]$.\hfill$\Box$
