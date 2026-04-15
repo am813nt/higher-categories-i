@@ -93,7 +93,7 @@
         With this definition, it is not clear that a simplicial set $X$ is Kan if and only if $X \to \Delta^0$ is a Kan fibration. This will be shown in \ref{chV-2-15}.
         \smallskip
 
-        Similarly, cofibrations in topological spaces were defined in terms of the homotopy extension property. We could try to mimic this definition directly but this turns out to be a bad idea. For example, we would certainly expect the inclusion $(\partial \Delta^n \hookrightarrow \Delta^n) \boxtimes ({0} \hookrightarrow \Delta^1)$ to be a cofibration. However, if we took ``cofibration'' to mean ``has the homotopy extension property with respect to all simplicial sets'', then this map would have a left inverse. It is easy to check in the case $n = 1$ that no such retraction exists (no does it for any other $n$).
+        Similarly, cofibrations in topological spaces were defined in terms of the homotopy extension property. We could try to mimic this definition directly but this turns out to be a bad idea. For example, we would certainly expect the inclusion $(\partial \Delta^n \hookrightarrow \Delta^n) \boxtimes (\{0\} \hookrightarrow \Delta^1)$ to be a cofibration. However, if we took ``cofibration'' to mean ``has the homotopy extension property with respect to all simplicial sets'', then this map would have a left inverse. It is easy to check in the case $n = 1$ that no such retraction exists (no does it for any other $n$).
 
         On the other hand, we can think of every (left) homotopy extension problem as a commutative diagram
         \begin{equation*}
@@ -860,7 +860,7 @@
         has a solution, and $h(1)$ is a point in $F$ such that $[h(1)] = [x'] \in \pi_0(X)$.
         
         \emph{Exactness at $\pi_0(F)$:} Suppose that $[e], [e'] \in pi_0(F)$ satisfy $[\alpha][e] = [e']$ for some $[\alpha] \in \pi_1(Y, y)$. Then, by definition, there exists $\overline{\alpha} \colon \Delta^1 \to X$ such that $\overline{\alpha}(0) = e$ and $\overline{\alpha}(1)$ is homotopic to $[e']$ in $F$. This implies that $e$ and $e'$ are homotopic in $X$.
-        Conversely, suppose that $[e] = [e'] \in \pi_0(X)$. Then there exists a homotopy $h \colon \Delta^1 \to X$ from $e$ to $e'$. The map $ph$ defines an element in $\pi_1(Y, y)$ since $p(e) = y = p(e')$. By definition, we have $[ph][e] = [e']$. So the fibres of $pi_0(F) \to \pi_0(X)$ correspond precisely to the orbits of the $\pi_1(Y, y)$-action on $\pi_0(F)$.
+        Conversely, suppose that $[e] = [e'] \in \pi_0(X)$. Then there exists a homotopy $h \colon \Delta^1 \to X$ from $e$ to $e'$. The map $ph$ defines an element in $\pi_1(Y, y)$ since $p(e) = y = p(e')$. By definition, we have $[ph][e] = [e']$. So the fibres of $\pi_0(F) \to \pi_0(X)$ correspond precisely to the orbits of the $\pi_1(Y, y)$-action on $\pi_0(F)$.
         
         \emph{Exactness at $\pi_1(Y, y)$:} Let $[\alpha] \in \pi_1(X, x)$. Then $\alpha$ itself is a solution to the lifting problem
         \begin{equation*}
@@ -892,3 +892,133 @@
             \end{tikzcd}
         \end{equation*}
         has a solution $\overline{h}$, where $s_1$ denotes the appropriate degeneration map. Then ${\overline{h}|}_{d_1 \Delta^2 \times \Box^n}$ defined an element in $\pi_{n+1}(X, x)$ such that $[{p \overline{h}|}_{d_1 \Delta^2 \times \Box^n}] = [\alpha]$.\hfill$\Box$
+
+    \subsection{Lemma}\label{chV-3-9}
+        Let $f \colon (X, x) \to (Y, y)$ be a pointed map of pointed Kan complexes. Then f is a simplicial homotopy equivalence if and only if it is a pointed simplicial homotopy equivalence.
+        \smallskip
+
+        \emph{Proof}. The basepoint inclusions induce Kan fibrations
+        \begin{equation*}
+            \ev_x \,\colon F(X, Z) \to Z, \quad \ev_y \,\colon F(Y, Z) \to Z
+        \end{equation*}
+        for every Kan complex $Z$. For $z \in Z_0$, the fibres of $\ev_x$ and $\ev_y$ over $z$ are precisely $F((X, x),(Z, z))$ and $F((Y, y),(Z ,z))$, respectively. Consider the induced map on long exact sequences in low degrees:
+        \begin{equation*}
+            \begin{tikzcd}
+                \pi_1(Z, z) \arrow[d, "\id"] \arrow[r, "\partial_Y"] & \pi_0 F((Y, y),(Z, z)) \arrow[d, "f^{*}_p"] \arrow[r] & \pi_0 F(Y, Z) \arrow[d, "\sim"', "f^{*}"] \arrow[r] & \pi_0(Z) \arrow[d, "\id"] \\
+                \pi_1(Z, z) \arrow[r, "\partial_X"] & \pi_0 F((X, x),(Z, z)) \arrow[r] & \pi_0 F(X, Z) \arrow[r] & \pi_0(Z) 
+            \end{tikzcd}
+        \end{equation*}
+        By a diagram chase, $f^{*}_p$ is surjective. Inserting $(Z, z) = (X, x)$, there exists a pointed map $g \colon (Y, y) \to (Z, z)$ such that $gf$ is pointed homotopic to $\id_X$. In particular, $g$ is an unpointed homotopy equivalence, Repeating the argument with $g$ in place of $f$, we obtain a pointed map $f' \colon (X, x) \to (Y, y)$ such that $f'g$ is pointed homotopic to $\id_Y$. By two-out-of-six, it follows that $f$ is a pointed homotopy equivalence.\hfill$\Box$
+
+    \subsection{Corollary}\label{chV-3-10}
+        Let $f \colon (X, x) \to (Y, y)$ be a map of pointed Kan complexes such that $f \colon X \to Y$ is a homotopy equivalence. Then $f$ induces isomorphisms
+        \begin{equation*}
+            f_{*} \,\colon \pi_n(X, x) \xrightarrow{\cong} \pi_n(Y, y)
+        \end{equation*}
+        for all $n$.
+        \medskip
+
+        Our next goal is to prove a converse to \ref{chV-3-10}.
+
+    \subsection{Theorem}\label{chV-3-11}
+        A map $f \colon X \to Y$ between Kan complexes is a homotopy equivalence if and only if $f$ induces a bijection on $\pi_0$ and an isomorphism $\pi_n(X, x) \to \pi_n(Y, f(x))$ for all $x \in X_0$ and $n \geq 1$.
+        \medskip
+
+        We begin by characterizing contractible Kan complexes by their homotopy groups. The proof relies on a description of the homotopy groups in terms of simplices.
+
+    \subsection{Definition}\label{chV-3-12}
+        For $X$ a Kan complex, $x \in X_0$ and $n \geq 1$, define
+        \begin{equation*}
+            \pi^{\triangle}_n(X, x) \coloneq \pi_0(F((\Delta^n, \partial \Delta^n),(X, x))) \,.
+        \end{equation*}
+        The comparison of $\pi^{\triangle}_n$ with $\pi_n$ rests on the following lemma.
+
+    \subsection{Lemma}\label{chV-3-13}
+        Let $A_1 \subseteq A_2 \subseteq X$ be simplicial sets and suppose that $A_1 \subseteq A_2$ is an anodyne extension. Then the restriction map
+        \begin{equation*}
+            F((X, A_2),(Y, B)) \to F((X, A_1),(Y, B))
+        \end{equation*}
+        induces a bijection on $\pi_0$.
+        \smallskip
+
+        \emph{Proof}. The map under consideration comes from a map of pullback squares
+        \begin{equation*}
+            \begin{tikzcd}
+                & F((X, A_2),(Y, B)) \arrow[ld] \arrow[dd] \arrow[rr] & & F(X, Y) \arrow[ld, "\id"] \arrow[dd] \\
+                F((X, A_1),(Y, B)) \arrow[dd] \arrow[rr, crossing over] & & F(X, Y) & \\
+                & F(A_2, B) \arrow[ld] \arrow[rr] & & F(A_2, Y) \arrow[ld] \\
+                F(A_1, B) \arrow[rr] & & F(A_1, Y) \arrow[from=uu, crossing over] &
+            \end{tikzcd}
+        \end{equation*}
+        The restriction maps $F(A_2, B) \to F(A_1, B)$ and $F(A_2, Y) \to F(A_1, Y)$ have the RLP with respect to $I$ by \ref{chV-2-26}.
+
+        Let $a \colon A_1 \to A_2$, $i_1 \colon A_1 \to X$, $i_2 \colon A_2 \to X$ and $j \colon B \to Y$ denote the various inclusion maps.
+
+        We first prove surjectivity on $\pi_0$. Let $f \colon (X, A_1) \to (Y, B)$ be a vertex in $F((X, A_1),(Y, B))$. Let ${f|}_{A_1} \colon A_1 \to B$ be the induced map. Then ${f|}_{A_1}$ has a lift to map $f_2 \colon A_2 \to B$. By assumption, $j f_2 a = j {f|}_{A_1} = f i_1 \colon A_1 \to Y$. Since $F(A_2, Y) \to F(A_1, Y)$ has the RLP with respect to $I$, there exists a homotopy $f i_2 \simeq j f_2$ relative $A_1$.\\
+        Since $f i_2$ extends to $X$ and $F(X, Y) \to F(A_2,Y)$ is a Kan fibration, we obtain a homotopy $X \times \Delta \to Y$ relative $A_1$ from $f$ to a map $f'$ satisfying $f' i_2 = j f_2$. By construction, this homotopy gives a $1$-simplex in $F((X, A_1),(Y, B))$ from $f$ to $f'$, and $f'$ is a map $(X, A_2) \to (Y, B)$.
+
+        For injectivity, let $f_0, f_1 \colon (X, A_2) \to (Y, B)$ be two maps such that there exists a homotopy $h \colon X \times \Delta^1 \to Y$ from $f_0$ to $f_1$ which restricts to a homotopy ${h|}_{A_1} \colon A_1 \times \Delta^1 \to B$ from ${f_0|}_{A_1}$ to ${f_1|}_{A_1}$. Since $F(A_2, B) \to F(A_1, B)$ has the RLP with respect to $I$, the homotopy ${h|}_{A_1}$ extends to a homotopy $k \colon A_2 \times \Delta^1 \to B$ from ${f_0|}_{A_2} \simeq {f_1|}_{A_2}$.\\
+        Consider the map
+        \begin{equation*}
+            A_2 \times (\Delta^1 \times \{0\} \underset{\partial \Delta^1 \times \{0\}}{\cup} \partial \Delta^1) \times \Delta^1 \to B
+        \end{equation*}
+        which is given by ${h|}_{A_2}$ on $A_2 \times \Delta^1 \times \{0\}$ and by the constant homotopies on $f_e$ on $A_2 \times \{e\} \times \Delta^1$. This map glues with $k$ to give a map
+        \begin{equation*}
+            A_2 \times (\Delta^1 \times \partial \Delta^1 \underset{\partial \Delta^1 \times \{0\}}{\cup} \partial \Delta^1 \times \Delta^1) \to B \,,
+        \end{equation*}
+        which extends to a map $A_2 \times \Delta^1 \times \Delta^1$. Since ${h|}_{A_2}$ extends to a homotopy on $X$ and $F(X, Y) \to F(A_2, Y)$ is a Kan fibration, there exists a map
+        \begin{equation*}
+            \overline{h} \,\colon X \times \Delta^1 \times \Delta^1 \to Y
+        \end{equation*}
+        such that ${\overline{h}|}_{X \times \Delta^1 \times \{0\}} = h$ and ${\overline{h}|}_{X \times \{e\} \times  \Delta^1}$ is the constant homotopy on $f_e$. The endpoint ${\overline{h}|}_{X \times \Delta^1 \times \{1\}}$ is a homotopy $f_0 \simeq f_1$ which restricts to a homotopy ${f_0|}_{A_2} \simeq {f_1|}_{A_2}$.
+
+    \subsection{Proposition}\label{chV-3-14}
+        There is a natural bijection
+        \begin{equation*}
+            \pi^{\triangle}_n(X, x) \sim \pi_n(X, x) \,.
+        \end{equation*}
+        \smallskip
+
+        \emph{Proof}. By definition,
+        \begin{equation*}
+            \pi_n(X, x) = \pi_0(F((\Box^n, \partial \Box^n),(X, x))) \,.
+        \end{equation*}
+        Let $C^n \subseteq \Box^n$ denote the simplicial subset obtained by removing the simplex
+        \begin{equation*}
+            \sigma^n \,\colon [n] \to [1]^n, \quad i \mapsto \underbrace{1 \ldots 1}_{i \text{ times}} \; \underbrace{0 \ldots 0}_{n-i \text{ times}} \,.
+        \end{equation*}
+        Claim: \emph{The inclusion $\partial \Box^n \to C^n$ is anodyne}. For someone who is good at finite combinatorics, this can probably be proven directly by successively filling horns. We will derive it later from results that are independent of the present discussion, but would lead us on a tangent right now.
+        Consequently, the restriction map induces by \ref{chV-3-13} a bijection
+        \begin{equation*}
+            \pi_0(F((\Box^n, C^n),(X, x))) \xrightarrow{\sim} \pi_0(F((\Box^n, \partial \Box^n),(X, x))) \,.
+        \end{equation*}
+        By inspection, we have for every pair of simplicial sets $A \subseteq B$ a natural isomorphism
+        \begin{equation*}
+            F((B, A), (X, x)) \cong F((B/A, *), (X, x)) \,.
+        \end{equation*}
+        Consequently, we have natural bijections
+        \begin{align*}
+            \pi_0(F((\Box^n, C^n),(X, x))) &\sim \pi_0(F((\Box^n/C^n, *),(X, x))) \\
+                                 &\sim \pi_0(F((\Delta^n/\partial \Delta^n, *),(X, x))) \\
+                                 &\sim \pi_0(F((\Delta^n, \partial \Delta^n),(X, x))) \,.
+        \end{align*}
+        \hfill$\Box$
+
+    \subsection{Remark}\label{chV-3-15}
+        The bijection $\pi^{\triangle}_n(X, x) \to \pi_n(X, x)$ from \ref{chV-3-14} sends a map $\alpha \colon (\Delta, \partial \Delta^n) \to (X, x)$ to the map $(\Box^n, \partial \Box^n) \to (X, x)$ which is given by $\alpha$ on the simplex $\sigma^n$ appearing in the proof and is constant on all other simplices.
+
+    \subsection{Lemma}\label{chV-3-16}
+        Let $X, x$ be a pointed Kan complex such that $\pi_n(X, x)$ is trivial for all $n \geq 0$. Let $f \colon B \to X$ be a map, let $A \subseteq B$ and let $h \colon A \times \Delta^1 \to X$ be a homotopy from ${f|}_A$ to the constant map with value $x$.\\
+        Then there exists an extension of $h$ to a homotopy $B \times \Delta^1 \to X$ from $f$ to the constant map with value $x$.
+        \smallskip
+
+        \emph{Proof}. The extension may be constructed simplex by simplex, so it suffices to consider $B = \Delta^n$ and $A = \partial \Delta^n$. Since $(\partial \Delta^n \to \Delta^n) \boxtimes (\{0\} \to \Delta^1)$ is anodyne, there exists a homotopy $h' \colon \Delta^n \times \Delta^1 \to X$ such that ${h'|}_{\Delta^n \times \{0\}} = f$ and ${h'|}_{\partial \Delta^n \times \{1\}} = \const_x$. Therefore, $f' \coloneq {h'|}_{\Delta^n \times \{1\}}$ represents an element in $\pi^{\triangle}_n(X, x)$. Since $\pi_x(X, x)$ is trivial, \ref{chV-3-14} guarantees the existence of a homotopy $h''$ relative $\partial \Delta^n$ from $f'$ to the constant map with value $x$.\\
+        The two homotopies $h'$ and $h''$ glue with the map
+        \begin{equation*}
+            \partial \Delta^n \times \Delta^2 \xrightarrow{\partial \Delta^n \times s_1} \partial \Delta^n \times \Delta^1 \xrightarrow{h} X
+        \end{equation*}
+        to give a map
+        \begin{equation*}
+            \widetilde{h} \,\colon (\Delta^n \times \horn{2}{1}) \underset{\partial \Delta^n \times \horn{2}{1}}{\cup} (\partial \Delta^n \times \Delta^2) \to X \,.
+        \end{equation*}
+        Since $(\partial \Delta^n \to \Delta^n) \boxtimes (\horn{2}{1} \to \Delta^2)$ is anodyne, there exists an extension of $\widetilde{h}$ to $\Delta^n \times \Delta^2$. restricting to $\Delta^n \times d_1 \Delta^2$ yields the desired extension of $h$.\hfill$\Box$
