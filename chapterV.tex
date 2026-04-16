@@ -1174,3 +1174,105 @@
             \end{tikzcd}
         \end{equation*}
         If $p$ is a weak equivalence, it has the RLP with respect to $I$ by \ref{chV-4-3}, so this lifting problem has a solution.\hfill$\Box$
+
+    \subsection{Remark}\label{chV-4-6}
+        Informally, \ref{chV-4-5} tells us that ``the space of solutions to any lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                A \arrow[d, "i"'] \arrow[r] & X \arrow[d, "p"] \\
+                B \arrow[r] & Y
+            \end{tikzcd}
+        \end{equation*}
+        is contractible''.
+        \medskip
+
+        The proof of \ref{chV-4-1} occupies the remainder of this section. We begin by defining all the relevant constructions.
+
+    \subsection{Definition}\label{chV-4-7}
+        Let $P$ be a poset. Define $\chains(P)$ as the poset whose elements are finite, linearly ordered subsets of $P$ such that a chain $c$ is smaller then a chain $c'$ if $c$ is a suborder of $c'$.
+        \medskip
+
+        This defines an endofunctor on the category of posets.
+
+    \subsection{Definition}\label{chV-4-8}
+        Define $\sd \Delta^{\bullet} \colon \Delta \to \sSet$ as the functor sending $[n]$ to $N(\chains[n])$. The \emph{(barycentric) subdivision} $\sd \colon \sSet \to \sSet$ is the unique colimit-preserving extension of $\sd \Delta$. By Exercise 2 on Sheet 3. $\sd$ has a right adjoint $\Ex \colon \sSet \to \sSet$.
+
+    \subsection{Definition}\label{chV-4-9}
+        The \emph{last vertex map} is the natural transformation
+        \begin{equation*}
+            \lambda \,\colon \sd \to \id_{\sSet}
+        \end{equation*}
+        induced by the natural map
+        \begin{equation*}
+            \chains[n] \to [n], \quad c \mapsto \max c \,.
+        \end{equation*}
+        Denote by $\rho$ the adjoint transformation
+        \begin{equation*}
+            \rho \,\colon \id_{\sSet} \to \Ex \,.
+        \end{equation*}
+
+    \subsection{Definition}\label{chV-4-10}
+        Define $\Ex^{\infty} \colon \sSet \to \sSet$ as the colimit of
+        \begin{equation*}
+            \id_{\sSet} \xrightarrow{\rho} \Ex \xrightarrow{\rho \Ex} \Ex^2 \xrightarrow{\rho \Ex^2} \Ex^3 \rightarrow \ldots
+        \end{equation*}
+
+        Let $\rho^{\infty} \colon \id_{\sSet} \to \Ex^{\infty}$ be the induced natural transformation.
+
+    \subsection{Corollary}\label{chV-4-11}
+        $\Ex^{\infty}$ commutes with finite limits.
+        \smallskip
+
+        \emph{Proof}. Since $\Ex$ is a right adjoint, it commutes with arbitrary limits. Filtered colimits commute with finite limits in Set (by inspection), so the same statement holds in $\sSet$. This implies the corollary.\hfill$\Box$
+        \medskip
+
+        Since $\Ex$ arises as the right adjoint of $\sd$, everything we want to know about $\Ex$ will be deduced from appropriate statements about the subdivision functor.
+
+    \subsection{Proposition}\label{chV-4-12}
+        Let $X$ be a simplicial set. Then every horn in $\Ex X$ has a filler in $\Ex^2 X$.
+        \smallskip
+
+        \emph{Proof}. For every map $f \colon \horn{n}{k} \to \Ex X$, we have to show that $\horn{n}{k} \xrightarrow{f} \Ex X \xrightarrow{\rho \Ex X} \Ex^2 X$ admits a filler. Let $g \colon \sd \horn{n}{k} X$ be the map determined by $f$. The map adjoint to $\rho \Ex X \circ f$ is given by $\lambda_{\Ex X} \circ \sd f$, which is the same as $f \circ \lambda_{\horn{n}{k}}$ by naturality of $\lambda$. The adjoint of this map is
+        \begin{equation*}
+            \sd^2 \horn{n}{k} \xrightarrow{\sd \lambda_{\horn{n}{k}}} \sd \horn{n}{k} \xrightarrow{g} X \,.
+        \end{equation*}
+        Consequently, we have to show that the dotted arrow in the diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                \sd^2 \horn{n}{k} \arrow[d] \arrow[r, "\sd \lambda"] & \sd \horn{n}{k} \arrow[d, "g"] \\
+                \sd^2 \Delta^n \arrow[r, dotted] & X
+            \end{tikzcd}
+        \end{equation*}
+        exists and makes the resulting square commute. Note that it suffices to find the dotted arrow in the case $g = \id$.\\
+        Observe that $\sd \horn{n}{k}$ is the nerve of the poset $P \coloneq \chains[n] \setminus \{ [n], [n] \setminus \{k\}\}$, so we have to specify a map of posets
+        \begin{equation*}
+            \chains \chains[n] \to P, \quad (c_0 \subseteq \ldots \subseteq c_r) \mapsto \{ \widetilde{\max}(c_0), \ldots, \widetilde{\max}(c_r) \} \,,
+        \end{equation*}
+        where $\widetilde{\max}$ is defined by
+        \begin{equation*}
+            \widetilde{\max}(c) \coloneq
+            \begin{cases*}
+                k & $c = [n]$ or $c = [n] \setminus \{k\}$, \\
+                \max c & else.
+            \end{cases*}
+        \end{equation*}
+        It is straightforward to check that this is well-defined, and the map evidently extends $\sd \lambda$.\hfill$\Box$
+
+    \subsection{Corollary}\label{chV-4-13}
+        $\Ex^{\infty} X$ is a Kan complex for every simplicial set $X$.
+        \smallskip
+
+        \emph{Proof}. Since $\horn{n}{k}$ is compact, every map $\horn{n}{k} \to \Ex^{\infty}$ factors through some $\Ex^n X$. Assume $n \geq 1$. Then $\horn{n}{k} \to \Ex^n X \xrightarrow{\rho \Ex^n} \Ex^{n+1} X$ extends to a map $\Delta^n \to \Ex^{n+1} X$ by \ref{chV-4-12}, and this provides also a filler in $\Ex^{\infty} X$.\hfill$\Box$
+        \medskip
+
+        We consider the question whether $\Ex$ preserves Kan fibrations next. By the adjunction between $\sd$ and $\Ex$, this reduces to the question whether $\sd$ preserves anodyne extensions.
+
+    \subsection{Lemma}\label{chV-4-14}
+        Let $J$ be a non-empty, finite set. The inclusion $L_J \coloneq \Pp(J) \setminus \{J\} \to \Pp(J)$ induces a left anodyne map on nerves.
+        \smallskip
+
+        \emph{Proof}. Pick some element $j \in J$. Then the inclusion map $N(L_J) \to N(\Pp(J))$ is isomorphic to the map
+        \begin{equation*}
+            (N(L_{J \setminus \{j\}}) \times \Delta^1) \underset{N(L_{J \setminus \{j\}}) \times \{0\}}{\cup} (N(\Pp(J \setminus \{j\})) \times \{0\}) \rightarrow N(\Pp(J \setminus \{j\})) \times \Delta^1 \,.
+        \end{equation*}
+        This map is left anodyne by \ref{chV-2-22}.\hfill$\Box$
