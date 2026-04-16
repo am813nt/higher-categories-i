@@ -690,7 +690,7 @@
         \end{equation*}
         So $f$ is in $\sat(S)$.\hfill$\Box$
 
-\section{Simplicial homotopy groups}
+\section{Simplicial homotopy groups}\label{chV-3}
     \subsection{Proposition}\label{chV-3-1}
         Let $K$ be a Kan complex. Then $\pi X$ is a groupoid. In particular, homotopy is an equivalence relation on $\Hom_{\sSet}(\Delta^0, K)$.
         \smallskip
@@ -1022,3 +1022,155 @@
             \widetilde{h} \,\colon (\Delta^n \times \horn{2}{1}) \underset{\partial \Delta^n \times \horn{2}{1}}{\cup} (\partial \Delta^n \times \Delta^2) \to X \,.
         \end{equation*}
         Since $(\partial \Delta^n \to \Delta^n) \boxtimes (\horn{2}{1} \to \Delta^2)$ is anodyne, there exists an extension of $\widetilde{h}$ to $\Delta^n \times \Delta^2$. restricting to $\Delta^n \times d_1 \Delta^2$ yields the desired extension of $h$.\hfill$\Box$
+
+    \subsection{Corollary}\label{chV-3-17}
+        Let $X$ be a Kan complex. The following are equivalent:
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                The map $X \to \Delta^0$ has the RLP with respect to $I$.\label{chV-3-17-1}
+            \item 
+                The map $X \to \Delta^0$ is a homotopy equivalence.\label{chV-3-17-2}
+            \item 
+                $X$ is non-empty and $\pi_n(X, x)$ is trivial for all $x \in X_0$ and for every $n \geq 0$.\label{chV-3-17-3}
+            \item 
+                $\pi_0(X)$ is a singleton and there exists some $x \in X_0$ such that $\pi_n(X, x)$ is trivial for all $n \geq 1$.\label{chV-3-17-4}
+        \end{enumerate}
+        \smallskip
+
+        \emph{Proof}. \ref{chV-3-17-1} implies \ref{chV-3-17-2} by \ref{chV-2-8}. \ref{chV-3-17-2} implies \ref{chV-3-17-3} by \ref{chV-3-10}. \ref{chV-3-17-3} obviously implies \ref{chV-3-17-4}.\\
+        Suppose \ref{chV-3-17-4} holds. Let
+        \begin{equation*}
+            \begin{tikzcd}
+                \partial \Delta^n \arrow[d] \arrow[r, "f"] & X \arrow[d] \\
+                \Delta^n \arrow[r] & \Delta^0
+            \end{tikzcd}
+        \end{equation*}
+        be a lifting problem. By \ref{chV-3-16}, there exists a homotopy from $f$ to the constant map with value $x$. Since $(\partial \Delta^n \to \Delta^n) \boxtimes (\{1\} \to \Delta^1)$ is anodyne, we obtain a homotopy $\Delta^n \times \Delta^1 \to X$ whose restriction to $\Delta^n \times \{0\}$ is the desired lift.\hfill$\Box$
+
+    \subsection{Corollary}\label{chV-3-18}
+        Let $p \colon X \to Y$ be a Kan fibration. The following are equivalent:
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                $p$ has the RLP with respect to $I$.\label{chV-3-18-1}
+            \item 
+                For every $y \in Y$, the fibre $p^{-1}(y)$ is contractible.\label{chV-3-18-2}
+            \item 
+                For every $y \in Y$, the set $\pi_0(p^{-1}(y))$ is a singleton and there exists some $x \in p^{-1}(y)$ such that $\pi_n(p^{-1}(y), x)$ is trivial for all $n \geq 1$.\label{chV-3-18-3}
+        \end{enumerate}
+        \smallskip
+
+        \emph{Proof}. Assume \ref{chV-3-18-1}. Then, being a pullback, $p^{-1}(y) \to \Delta^0$ has the RLP with respect to $I$. Then \ref{chV-3-18-2} \ref{chV-3-18-3} follow by \ref{chV-3-17}. Note that \ref{chV-3-18-2} and \ref{chV-3-18-3} are equivalent, also by \ref{chV-3-17}.\\
+        Suppose \ref{chV-3-18-2} holds and that we are given a lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                \partial \Delta^n \arrow[d] \arrow[r, "\partial \overline{\sigma}"] & X \arrow[d, "p"] \\
+                \Delta^n \arrow[r, "\sigma"] & Y
+            \end{tikzcd}
+        \end{equation*}
+        Let $h \colon \Delta^n \times \Delta^1 \to \Delta^n$ be a simplicial homotopy from $\id$ to the constant map with value $n$ (this exists e.g. by Exercise 2 on Sheet 4). Then $\sigma \circ h$ is a homotopy  from $\sigma$ to the constant map with value $\sigma(n)$.\\
+        Then ${(\sigma \circ h)|}_{\partial \Delta^n \times \Delta^1}$ admits a lift to a homotopy $k$ in $X$ whose endpoint is a map $\partial \tau \colon \partial \Delta^n \to p^{-1}(\sigma(n))$. Since $p^{-1}(\sigma(n))$ is assumed to be contractible, \ref{chV-3-17} implies that $\partial \tau$ extends to a map $\tau \colon \Delta^n \to p^{-1}(\sigma(n))$. Since $(\partial \Delta^n \to \Delta^n) \boxtimes (\{1\} \to \Delta^1)$ is anodyne, there exists a homotopy $\overline{k}$ extending $k$ such that ${\overline{k}|}_{\Delta^n \times \{1\}} = \tau$ and ${\overline{k}|}_{\partial \Delta^n \times \{0\}} = \partial \overline{\sigma}$. So $\overline{\sigma} \coloneq {\overline{k}|}_{\Delta^n \times \{0\}}$ is the desired lift.\hfill$\Box$
+        \medskip
+
+        \emph{Proof of Theorem \ref{chV-3-11}}. One direction is provided by \ref{chV-3-10}.\\
+        For the converse, assume that $f$ induces a bijection on $\pi_0$ and an isomorphism $\pi_n(X, x) \to \pi_n(Y, f(x))$ for all $x \in X_0$ and $n \geq 1$. By \ref{chV-2-30}, factor $f$ into an anodyne extension $i \colon X \to \overline{X}$ followed by a Kan fibration $p \colon \overline{X} \to Y$. Since $i$ is a weak equivalence of Kan complexes by \ref{chV-2-27}, it is a homotopy equivalence. So we only need to show that $p$ is an equivalence.
+
+        We show that all fibres of $p$ are contractible.\\
+        \emph{Exercise}. Show that the fibres over any two vertices in the same path component are homotopy equivalent.\\
+        Since $f$ is surjective on $\pi_0$, we may therefore only consider $y \in Y_0$ such that there exists $x \in X_0$ with $f(x) = y$. By \ref{chV-3-17} and the long exact sequence of a fibration (\ref{chV-3-8}), it suffices to show that $p_{*} \colon \pi_n(\overline{X}, i(x)) \to \pi_n(Y, y)$ is a bijection for all $n \geq 0$. Since
+        \begin{equation*}
+            \begin{tikzcd}
+                \pi_n(X, x) \arrow[rr, "i_{*}"] \arrow[dr, "f_{*}"'] & & \pi_n(\overline{X}, i(x)) \arrow[dl, "p_{*}"] \\
+                & \pi_n(Y, y) &
+            \end{tikzcd}
+        \end{equation*}
+        commutes, $f_{*}$ is assumed to be a bijection and $i_{*}$ is a bijection by \ref{chV-3-10}, the theorem follows.
+        
+        \quad\hfill$\Box$
+
+    \subsection{Remark}\label{chV-3-19}
+        It should in principle be possible to prove Theorem \ref{chV-3-11} without factoring the morphism, working with relative homotopy groups instead. However, this would force us to consider homotopy classes of maps of triples, which would certainly not reduce the amount of bookkeeping we would have to do.
+
+\section[Ex]{$\Ex^{\infty}$}\label{chV-4}
+    The discussion in \ref{chV-3} provides us with a good understanding of Kan fibrations which are homotopy equivalences. However, it remains unclear how these relate to Kan fibrations which are weak equivalences. For example, if $p \colon X \to Y$ is any Kan fibration, we could apply the small object argument (\ref{chV-2-30}) twice to replace $Y$ by a Kan complex $j \colon Y \to \overline{Y}$ and then the map $jp$ into an anodyne map $i \colon X \to \overline{X}$ followed by a Kan fibration $\overline{p} \colon \overline{X} \to \overline{Y}$:
+    \begin{equation*}
+        \begin{tikzcd}
+            X \arrow[d, "p"'] \arrow[r, "i"] & \overline{X} \arrow[d, "\overline{p}"] \\
+            Y \arrow[r, "j"] & \overline{Y}
+        \end{tikzcd}
+    \end{equation*}
+    However, we are unable to control the effect of this construction on the fibres. This is remedied by a more sophisticated construction called $\Ex^{\infty}$.
+
+    \subsection{Theorem}\label{chV-4-1}
+        There exists a functor $\Ex^{\infty} \colon \sSet \to \sSet$ and a natural transformation $\rho^{\infty} \colon \id_{\sSet} \to \Ex^{\infty}$ such that the following holds:
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                $\Ex^{\infty} \Delta^0 \cong \Delta^0$;
+            \item 
+                $\Ex^{\infty} X$ is  Kan complex for every simplicial set $X$;
+            \item 
+                $\rho^{\infty} \colon X \to \Ex^{\infty} X$ is a weak equivalence for every simplicial set $X$;
+            \item 
+                $\Ex^{\infty}$ preserves finite limits;
+            \item 
+                $\Ex^{\infty}$ preserves Kan fibrations.
+        \end{enumerate}
+        \medskip
+
+        Before we start with the proof of this theorem, we establish some important consequences.
+
+    \subsection{Corollary}\label{chV-4-2}
+        $\Ex^{\infty}$ preserves and detects weak equivalences.
+        \smallskip
+
+        \emph{Proof}. If $f \colon X \to Y$ is a map, it follows from the commutative square
+        \begin{equation*}
+            \begin{tikzcd}
+                X \arrow[d, "f"'] \arrow[r, "\rho^{\infty}"] & \Ex^{\infty} X \arrow[d, "\Ex^{\infty} f"] \\
+                Y \arrow[r, "\rho^{\infty}"] & \Ex^{\infty} Y
+            \end{tikzcd}
+        \end{equation*}
+        and \ref{chV-4-1} that $f$ is a weak equivalence if and only if $\Ex^{\infty} f$ is a weak equivalence.\hfill$\Box$
+
+    \subsection{Corollary}\label{chV-4-3}
+        Let $p \colon X \to Y$ be a Kan fibration and a weak equivalence. Then $p$ has the RLP with respect to $I$.
+        \smallskip
+
+        \emph{Proof}. By \ref{chV-4-1}, we have a commutative square
+        \begin{equation*}
+            \begin{tikzcd}
+                X \arrow[d, "p"'] \arrow[r, "\rho^{\infty}"] & \Ex^{\infty} X \arrow[d, "\Ex^{\infty} p"] \\
+                Y \arrow[r, "\rho^{\infty}"] & \Ex^{\infty} Y
+            \end{tikzcd}
+        \end{equation*}
+        Since $p$ is a weak equivalence, $\Ex^{\infty} p$ is a homotopy equivalence. Consequently, all fibres of $\Ex^{\infty} p$ are contractible. For any $y \in Y_0$, we have a weak equivalence $\rho^{\infty} \colon p^{-1}(y) \to (\Ex^{\infty} p)^{-1} (\rho^{\infty}(y))$. Since $\Ex^{\infty}$ preserves finite limits, the target of this map is the fibre of $\Ex^{\infty} p$ over $\rho^{\infty}(y)$. Consequently, $p^{-1}(y)$ is contractible. It follows that $p$ has the RLP with respect to $I$.\hfill$\Box$
+
+    \subsection{Corollary}\label{chV-4-4}
+        If $f \colon X \to Y$ is a cofibration and a weak equivalence, then it is anodyne.
+        \smallskip
+
+        \emph{Proof}. Factor $f$ into an anodyne map $i \colon X \to \overline{X}$ followed by a Kan fibration $p \colon \overline{X} \to Y$. Any lifting problem against a Kan fibration $q \colon V \to W$ gives rise to a commutative diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                X \arrow[d, "i"'] \arrow[rr] & & V \arrow[d, "q"] \\
+                \overline{X} \arrow[r, "p"] & Y \arrow[r] & W
+            \end{tikzcd}
+        \end{equation*}
+        There exists a lift $l \colon \overline{X} \to V$. Since $f$ is a weak equivalence, so is $p$. By \ref{chV-4-3}, $p$ has the RLP with respect to $I$. In particular, there exists by \ref{chV-2-8} a section $s$. Then $l \circ s$ is the desired lift.
+
+    \subsection{Corollary (HELP)}\label{chV-4-5}
+        Let $i \colon A \to B$ be a cofibration and let $p \colon X \to Y$ be a Kan fibration. If $i$ or $p$ is a weak equivalence, then the canonical map
+        \begin{equation*}
+            F(B, X) \to F(A, X) \underset{F(A, Y)}{\times} F(B, Y)
+        \end{equation*}
+        has the RLP with respect to $I$.
+        \smallskip
+
+        \emph{Proof}. If $i$ is a weak equivalence, it is an anodyne extension by \ref{chV-4-4}. Then the corollary follows from \ref{chV-2-23}.\\
+        As usual, any right lifting problem with respect to $\partial \Delta^n \to \Delta^n$ corresponds to a lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                \Delta^n \times A \underset{\partial \Delta^n \times A}{\cup} \partial \Delta^n \times B \arrow[d, "{(\partial \Delta^n \to \Delta^n)} \, \boxtimes \, i"'] \arrow[r] & X \arrow[d, "p"] \\
+                \Delta^n \times B \arrow[r] & Y
+            \end{tikzcd}
+        \end{equation*}
+        If $p$ is a weak equivalence, it has the RLP with respect to $I$ by \ref{chV-4-3}, so this lifting problem has a solution.\hfill$\Box$
