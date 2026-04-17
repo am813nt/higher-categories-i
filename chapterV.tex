@@ -1104,15 +1104,15 @@
         There exists a functor $\Ex^{\infty} \colon \sSet \to \sSet$ and a natural transformation $\rho^{\infty} \colon \id_{\sSet} \to \Ex^{\infty}$ such that the following holds:
         \begin{enumerate}[label=\roman*)]
             \item 
-                $\Ex^{\infty} \Delta^0 \cong \Delta^0$;
+                $\Ex^{\infty} \Delta^0 \cong \Delta^0$;\label{chV-4-1-1}
             \item 
-                $\Ex^{\infty} X$ is  Kan complex for every simplicial set $X$;
+                $\Ex^{\infty} X$ is  Kan complex for every simplicial set $X$;\label{chV-4-1-2}
             \item 
                 $\rho^{\infty} \colon X \to \Ex^{\infty} X$ is a weak equivalence for every simplicial set $X$;\label{chV-4-1-3}
             \item 
-                $\Ex^{\infty}$ preserves finite limits;
+                $\Ex^{\infty}$ preserves finite limits;\label{chV-4-1-4}
             \item 
-                $\Ex^{\infty}$ preserves Kan fibrations.
+                $\Ex^{\infty}$ preserves Kan fibrations.\label{chV-4-1-5}
         \end{enumerate}
         \medskip
 
@@ -1353,9 +1353,9 @@
         \end{equation*}
         is a bijection. This map fits into a commutative square
         \begin{equation*}
-            \begin{tikzcd}
+            \begin{tikzcd}[column sep=large]
                 \pi_0 F(\colim\limits_{\mathbb{N}} Y, K) \arrow[d, "\cong"'] \arrow[r, "{(\colim\limits_{\mathbb{N}} f)^{*}}"] & \pi_0 F(\colim\limits_{\mathbb{N}} X, K) \arrow[d, "\cong"] \\
-                \pi_0(\lim\limits_{\mathbb{N}^{\op}} F(Y, K)) \arrow[r, "{(\lim_{\mathbb{N}^{\op}} f)^{*}}"] & \pi_0(\lim\limits_{\mathbb{N}^{\op}} F(X, K))
+                \pi_0(\lim\limits_{\mathbb{N}^{\op}} F(Y, K)) \arrow[r, "{(\lim\limits_{\mathbb{N}^{\op}} f)^{*}}"] & \pi_0(\lim\limits_{\mathbb{N}^{\op}} F(X, K))
             \end{tikzcd}
         \end{equation*}
         Let us show directly that the lower horizontal map is a bijection.\\
@@ -1370,3 +1370,141 @@
         Given $(b_n)_n \in \lim\limits_{\mathbb{N}^{\op}} V$, there exists a sequence $(a'_n)_n \prod_{\mathbb{N}} U(n)$ such that $q(n)(a'_n) = b_n$. Set $a_0 \coloneq a'_0$. Since $q(0)(u(1)(a'_1)) = b_0$, the constant homotopy on $b_0$ lifts to a homotopy $u(1)(a'_1) \simeq a_0$. Since $u(1)$ is a Kan fibration, this homotopy lifts to a homotopy $h_1 \colon \Delta^1 \to U(1)$ from $a'_1$ to some vertex $a_1$. Note that $u(1)(a_1) = a_0$. Moreover, $q(1) \circ h_1$ provides a homotopy $b_1 \simeq q(1)(a_1)$ such that $v(1) \circ q(1) \circ h_1$ is the constant homotopy on $b_0$. Continuing inductively, we find a vertex $(a_n)_n \in \lim\limits_{\mathbb{N}^{\op}} U$ and a homotopy $\Delta^1 \to \lim\limits_{\mathbb{N}^{\op}} V$ from $(b_n)_n$ to $(q(n)(a_n))_n$. So the comparison map is surjective.\\
         Suppose that $(a_n)_n$, $(a'_n)_n$ are two vertices such that there exists a homotopy $\Delta^1 \to \lim\limits_{\mathbb{N}^{\op}} V$ from $(q(n)(a_n))_n$ to $(q(n)(a'_n))_n$, i.e. a sequence of homotopies $(h_n \colon \Delta^1 \to V(n))_n$ such that $h_n$ is a homotopy $q(n)(a_n) \simeq q(n)(a'_n)$ and $v(n+1) \circ h_{h+1} = h_n$. Since each $q(n)$ has the RLP with respect to $I$, there exists a sequence of homotopies $(k'_n \colon \Delta^1 \to U(n))_n$ such that $k'_n$ is a homotopy $a_n \simeq a'_n$. Set $k_0 \coloneq k'_0$.\\
         Consider the map $H_0 \colon \partial \Box^2 \to U(0)$ which is given by $u(1)k'_1$ and $k_0$ on two opposite faces, respectively. Then $q(0) \circ H_0$ extends to the map $\Box^2 \xrightarrow{\pr} \Delta^1 \xrightarrow{h_0} V(0)$. As $q(0)$ has the RLP with respect to $I$, the map $H_0$ extends to a map $K_0 \colon \Box^2 \to U(0)$ lifting the given map. Since $u(1)$ is a Kan fibration, $K_0$ lifts further to a homotopy $k'_1 \simeq k_1$ (relative endpoints). Again, one continues this procedure inductively to obtain a homotopy $\Delta^1 \to \lim\limits_{\mathbb{N}^{\op}} U$ from $(a_n)_n$ to $(a'_n)_n$. This proves injectivity, and thus finishes the proof of the proposition.\hfill$\Box$
+
+    \subsection{Proposition}\label{chV-4-18}
+        Let
+        \begin{equation*}
+            \begin{tikzcd}
+                X \arrow[d, "p"'] \arrow[r, "f"] & X' \arrow[d, "p'"] \\
+                Y \arrow[r, "g"] & Y'
+            \end{tikzcd}
+        \end{equation*}
+        be a commutative diagram such that $p$ and $p'$ are Kan fibrations of Kan complexes and $g$ is a weak equivalence. Then the following are equivalent:
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                $f$ is a weak equivalence.
+            \item 
+                The induced map $p^{-1}(y) \to (p')^{-1}(g(y))$ is a homotopy equivalence for every $y \in Y_0$.
+        \end{enumerate}
+        \smallskip
+
+        \emph{Proof}. Exercise.
+
+    \subsection{Proposition}\label{chV-4-19}
+        The last vertex map $\lambda \colon \sd X \to X$ is a weak equivalence for every simplicial set $X$.
+        \smallskip
+
+        \emph{Proof}. Since $\sd$ preserves colimits and cofibrations, it follows from \ref{chV-4-17} that it suffices to show that $\lambda \colon \sd \sk_n(X) \to \sk_n(X)$ is a weak equivalence for every $n$. We do this by induction on $n$. For $n = 0$, one sees directly that $\lambda_{\sk_0(X)}$ is an isomorphism.\\
+        Let $K$ be a Kan complex. The vertical maps in the commutative square
+        \begin{equation*}
+            \begin{tikzcd}[column sep=large]
+                F(\sk_{n+1}(X), K) \arrow[d] \arrow[r, "{\lambda^{*}_{\sk_{n+1}(X)}}"] & F(\sd \sk_{n+1}(X), K) \arrow[d] \\
+                F(\sk_n(X), K) \arrow[r, "{\lambda^{*}_{\sk_n(X)}}"] & f(\sd \sk_n(X), K)
+            \end{tikzcd}
+        \end{equation*}
+        are Kan fibrations of Kan complexes, and $\lambda^{*}_{\sk_n (X)}$ is a weak equivalence by induction hypothesis.\\
+        By \ref{chV-4-18}, it suffices to show that the induced maps on vertical fibres are weak equivalences.\\
+        Consider the pullback square
+        \begin{equation*}
+            \begin{tikzcd}
+                F(\sk_{n+1} X, K) \arrow[d] \arrow[r] & F(\coprod\limits_{I_{n+1}} \partial \Delta^{n+1}, K) \arrow[d] \\
+                F(\sk_n X, K) \arrow[r] & F(\coprod\limits_{I_{n+1}} \Delta^{n+1}, K)
+            \end{tikzcd}
+        \end{equation*}
+        arising from the pushout describing the attachment of $(n+1)$-simplices. Since $\sd$ preserves colimits, there is an analogous square in which all sources of function complexes have bin replaced by their subdivisions. Consequently, for $f \in F(\sk_n(X), K)$ the induced map on fibres can be identified with
+        \begin{equation*}
+            \{f'\} \underset{F(\coprod\limits_{I_{n+1}} \partial \Delta^{n+1}, K)}{\times} F(\coprod\limits_{I_{n+1}} \Delta^{n+1}, K) \to \{f'\} \underset{F(\coprod\limits_{I_{n+1}} \sd \partial \Delta^{n+1}, K)}{\times} F(\coprod\limits_{I_{n+1}} \sd \Delta^{n+1}, K) \,, 
+        \end{equation*}
+        where $f' \colon \coprod\limits_{I_{n+1}} \partial \Delta^{n+1} \to K$ is the map induced by $f$.\\
+        Again by \ref{chV-4-18}, it suffices to show that the two horizontal maps in the diagram 
+        \begin{equation*}
+            \begin{tikzcd}
+                F(\coprod\limits_{I_{n+1}} \Delta^{n+1}, K) \arrow[d] \arrow[r, "\lambda^{*}"] & F(\coprod\limits_{I_{n+1}} \sd \Delta^{n+1}, K) \arrow[d] \\
+                F(\coprod\limits_{I_{n+1}} \partial \Delta^{n+1}, K) \arrow[r, "\lambda^{*}"] & F(\coprod\limits_{I_{n+1}} \sd \partial \Delta^{n+1}, K)
+            \end{tikzcd}
+        \end{equation*}
+        are homotopy equivalences. The lower horizontal map is again a homotopy equivalence by induction hypothesis.\\
+        A product of homotopy equivalences is a homotopy equivalence, so it suffices to see that $\lambda_{\Delta^{n+1}} \colon \sd \Delta^{n+1} \to \Delta^{n+1}$ is a homotopy equivalence. Since both $\sd \Delta^{n+1}$ and $\Delta^{n+1}$ are nerves of posets with a largest element, this is immediate from Exercise 2 on Sheet 4.\hfill$\Box$
+
+    \subsection{Lemma}\label{chV-4-20}
+        Let $X$ be a simplicial set and let $K$ be a Kan complex. Then the bijection $\Hom_{\sSet}(\sd X, K) \cong \Hom_{\sSet}(X, \Ex K)$ induces a bijection
+        \begin{equation*}
+            \pi_0 F(\sd X, K) \cong \pi_0 F(X, \Ex K) \,.
+        \end{equation*}
+        \smallskip
+
+        \emph{Proof}. Suppose that $h \colon \sd X \times \Delta^1 \to K$ is a homotopy. Then the adjoint morphism to
+        \begin{equation*}
+            \sd(X \times \Delta^1) \to \sd X \times \sd \Delta^1 \xrightarrow{\sd X \times \lambda_{\Delta^1}} \sd X \times \Delta^1 \xrightarrow{h} K
+        \end{equation*}
+        provides a homotopy between the morphisms adjoint to $h_0$ and $h_1$.\\
+        Suppose that $X \times \Delta^1 \to \Ex K$ is a homotopy. Let $h \colon \sd(X \times \Delta^1) \to K$ be the adjoint morphism. Let $k$ denote the composition $\sd(X \times \Delta^1) \to \sd X \xrightarrow{h_0} K$. Since $X \times \{0\} \to X \times \Delta^1$ is anodyne, the restriction map
+        \begin{equation*}
+            F(\sd(X \times \Delta^1), K) \to F(\sd(X \times \{0\}), K)
+        \end{equation*}
+        has the RLP with respect to $I$ by \ref{chV-4-15} and \ref{chV-2-26}. Since $h$ and $k$ restrict to the same map $\sd(X \times \{0\}) \to K$, there exists a homotopy $\sd(X \times \Delta^1) \times \Delta^1 \to K$ between $h$ and $k$.The restriction of this homotopy to $\sd(X \times \{1\}) \times \Delta^1$ provides the required homotopy between $h_0$ and $h_1$.\hfill$\Box$
+
+    \subsection{Corollary}\label{chV-4-21}
+        The transformation $\rho \colon K \to \Ex K$ induces a bijection
+        \begin{equation*}
+            \pi_0 F(X, K) \xrightarrow{\sim} \pi_0 F(X, \Ex K)
+        \end{equation*}
+        for every Kan complex $K$ and every simplicial set $X$.
+        \smallskip
+
+        \emph{Proof}. By \ref{chV-4-20}, there is a commutative triangle
+        \begin{equation*}
+            \begin{tikzcd}
+                & \pi_0(X, \Ex K) \arrow[dd, "\cong"] \\
+                \pi_0 F(X, K) \arrow[ur, "\rho_{*}"] \arrow[dr, "\lambda^{*}"] & \\
+                & \pi_0 F(\sd X, K)
+            \end{tikzcd}
+        \end{equation*}
+        The lower diagonal arrow is a bijection by \ref{chV-4-19}.\hfill$\Box$
+
+    \subsection{Lemma}\label{chV-4-22}
+        Let $X$ be a simplicial set. Then there is a simplicial homotopy $\rho_{\Ex X} \simeq \Ex \rho_X$.
+        \smallskip
+
+        \emph{Proof}. Define the map of posets
+        \begin{align*}
+            h \,\colon \chains(\chains[n]) \times [q] &\to \chains[n] \\
+            (c_0 \subseteq \ldots \subseteq c_k, i) &\mapsto
+                \begin{cases*}
+                    \max c_0 \leq \ldots \leq \max c_k & $i = 0$,\\
+                    c_k & $i = 1$
+                \end{cases*}
+        \end{align*}
+        Note that $\max c_0 \leq \ldots \leq \max c_k$ is a suborder of $c_k$, so this is well-defined. Taking nerves, we obtain a homotopy from $\sd \lambda_{\Delta^n}$ to $\lambda_{\sd \Delta^n}$. This is natural in $n$, so we obtain a natural transformation $\sd^2(-) \times \Delta^1 \Rightarrow \sd$ (using that $ - \times \Delta^1$ commutes with arbitrary colimits). Since there is also a natural transformation $\sd^2(- \times \Delta^1) \Rightarrow \sd^2(-) \times \Delta^1$, we obtain a natural transformation $\sd^2(- \times \Delta^1) \Rightarrow \sd$. Using the solution to Exercise 1 on Sheet 4, we obtain a natural transformation $\Ex \Rightarrow F(\Delta^1, \Ex^2(-))$ which provides (by ``currying'') the required homotopy $\rho \Ex \simeq \Ex \rho$.\hfill$\Box$
+
+    \subsection{Proposition}\label{chV-4-23}
+        The transformation $\rho \colon X \to \Ex X$ is a weak equivalence for every simplicial set $X$.
+        \smallskip
+
+        \emph{Proof}. Let $K$ be a Kan complex. Consider the diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                \pi_0 F(\Ex X, K) \arrow[d, "{(\rho_k)_{*}}"'] \arrow[r, "\rho^{*}_X"] & \pi_0 F(X, K) \arrow[dl, dashed] \arrow[d, "{(\rho_K)_{*}}"] \\
+                \pi_0 F(\Ex X, \Ex K) \arrow[r, "\rho^{*}_X"] & \pi_0 F(X, \Ex K)
+            \end{tikzcd}
+        \end{equation*}
+        The dashed diagonal map is induced by the functoriality of $\Ex$: note that $\Ex$ preserves simplicial homotopy since a homotopy $X \times \Delta^1 \to K$ gives rise to a homotopy $\Ex X \times \Delta^1 \to \Ex X \times \Ex \Delta^1 \cong \Ex(X \times \Delta^1) \to K$. Both vertical maps are bijections by \ref{chV-4-21}. Then the lower triangle commutes by the naturality of $\rho$.\\
+        For $f \colon \Ex X \to K$, we have by \ref{chV-4-22}
+        \begin{equation*}
+            \Ex(f \circ \rho_X) = \Ex f \circ \Ex \rho_X \simeq \Ex f \circ \rho_{\Ex X} = \rho_k \circ f \,.
+        \end{equation*}
+        So the upper triangle commutes as well.\\
+        It follows that all maps in the diagram are bijections.\hfill$\Box$
+
+    \subsection{Remark}\label{chV-4-24}
+        Note that $\rho$ is injective. Since $\lambda$ is evidently surjective, this follows from the commutativity of
+        \begin{equation*}
+            \begin{tikzcd}
+                & \Hom_{\sSet}(Y, \Ex X) \arrow[dd, "\cong"] \\
+                \Hom_{\sSet}(Y, X) \arrow[ur, "{(\rho_X)_{*}}"] \arrow[dr, "\lambda^{*}_Y"] & \\
+                & \Hom_{\sSet}(\sd Y, X)
+            \end{tikzcd}
+        \end{equation*}
+        \medskip
+
+        \emph{Proof of \ref{chV-4-1}}. \ref{chV-4-1-1} is obvious. \ref{chV-4-1-2}, \ref{chV-4-1-4} and \ref{chV-4-1-5} hold by \ref{chV-4-11}, \ref{chV-4-13} and \ref{chV-4-16}, respectively. So we are left with showing that $\rho^{\infty} \colon X \to \Ex^{\infty} X$ is a weak equivalence for every simplicial set $X$. By \ref{chV-4-23}, each composite $X \to \Ex^n X$ is a weak equivalence for every $n$. By \ref{chV-4-17}, it follows that $\rho^{\infty}$ is also a weak equivalence.\hfill$\Box$
