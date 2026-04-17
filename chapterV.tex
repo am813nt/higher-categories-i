@@ -1108,7 +1108,7 @@
             \item 
                 $\Ex^{\infty} X$ is  Kan complex for every simplicial set $X$;
             \item 
-                $\rho^{\infty} \colon X \to \Ex^{\infty} X$ is a weak equivalence for every simplicial set $X$;
+                $\rho^{\infty} \colon X \to \Ex^{\infty} X$ is a weak equivalence for every simplicial set $X$;\label{chV-4-1-3}
             \item 
                 $\Ex^{\infty}$ preserves finite limits;
             \item 
@@ -1276,3 +1276,97 @@
             (N(L_{J \setminus \{j\}}) \times \Delta^1) \underset{N(L_{J \setminus \{j\}}) \times \{0\}}{\cup} (N(\Pp(J \setminus \{j\})) \times \{0\}) \rightarrow N(\Pp(J \setminus \{j\})) \times \Delta^1 \,.
         \end{equation*}
         This map is left anodyne by \ref{chV-2-22}.\hfill$\Box$
+
+    \subsection{Proposition}\label{chV-4-15}
+        The subdivision functor preserves anodyne extensions.
+        \smallskip
+
+        \emph{Proof}. Since $\sd$ is a colimit-preserving functor, the class of morphisms
+        \begin{equation*}
+            \Sigma \coloneq \{ i \mid \sd i \text{ is anodyne} \}
+        \end{equation*}
+        is saturated. Hence it suffices to show that $H \subseteq \Sigma$. Recall that $\sd \Delta^n$ is the nerve of the poset $\chains[n]$, and that $\horn{n}{k}$ is the nerve of the subposet $P \coloneq \chains[n] \setminus \{ [n], [n] \setminus \{k\} \}$. In this proof, we identify $\chains[n]$ with the set $\Pp_{*}([n])$ of non-empty subsets of $[n]$.\\
+        Set $[n]_k \coloneq [n] \setminus \{k\}$. The map
+        \begin{equation*}
+            \Pp([n]_k) \to \Pp_{*}([n]), \quad S \mapsto S \cup \{ k \}
+        \end{equation*}
+        is injective. Let $X \subseteq \sd \Delta^n$ denote the image of the induced map on nerves. Then $X \cap \sd \horn{n}{k} \cong N(L_{[n]_k})$, and there is a pushout square
+        \begin{equation*}
+            \begin{tikzcd}
+                N(L_{[n]_k}) \cong X \cap \sd \horn{n}{k} \arrow[d] \arrow[r] & \sd \horn{n}{k} \arrow[d] \\
+                N(\Pp([n]_k)) \cong X \arrow[r] & Y
+            \end{tikzcd}
+        \end{equation*}
+        Consequently, $\sd \horn{n}{k} \to X$ is left anodyne by \ref{chV-4-14}.
+
+        Consider now the injective map
+        \begin{equation*}
+            (\Pp([n]_k) \setminus \{\varnothing\}) \times [1] \to \Pp_{*}([n]), \quad (S, r) \mapsto
+            \begin{cases*}
+                S & $r = 0$,\\
+                c(S) = S \cup \{k\} & $r = 1$,
+            \end{cases*}
+        \end{equation*}
+        and denote its image by $Z$. Then
+        \begin{equation*}
+            Z \cap Y \cong N((\Pp([n]_k) \setminus \{\varnothing\}) \times \{1\}) \underset{N((\Pp([n]_k) \setminus \{\varnothing, [n]_k\}) \times \{1\})}{\cup} N((\Pp([n]_k) \setminus \{\varnothing, [n]_k\}) \times \{1\})
+        \end{equation*}
+        and there is a pushout square
+        \begin{equation*}
+            \begin{tikzcd}
+                Z \cap Y \arrow[d] \arrow[r] & Y \arrow[d] \\
+                Z \arrow[r] & \sd \Delta^n
+            \end{tikzcd}
+        \end{equation*}
+        The left vertical map is right anodyne by \ref{chV-2-22}, so $X \to \sd \Delta^n$ is also right anodyne. Consequently, the composition $\sd \horn{n}{k} \to X \to \sd \Delta^n$ is anodyne.\hfill$\Box$
+
+    \subsection{Corollary}\label{chV-4-16}
+        $\Ex^n$ preserves Kan fibrations for every $n \in \mathbb{N} \cup \{\infty\}$.
+        \smallskip
+
+        \emph{Proof}. Suppose by induction that $\Ex^n$ preserves Kan fibrations. Any lifting problem for $\Ex^{n+1} p$, where $p \colon X \to Y$ is a Kan fibration, corresponds to a lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                \sd \horn{n}{k} \arrow[d] \arrow[r] & \Ex^n X \arrow[d, "\Ex^n p"] \\
+                \sd \Delta^n \arrow[r] & \Ex^n Y
+            \end{tikzcd}
+        \end{equation*}
+        Since $\sd \horn{n}{k} \to \sd \Delta^n$ is anodyne by \ref{chV-4-15}, a solution to the lifting problem exists.\\
+        The statement for $n = \infty$ follows since $\horn{n}{k}$ and $\Delta^n$ are compact objects in $\sSet$.\hfill$\Box$
+        \medskip
+
+        Since $\Ex^{\infty} \Delta^0$ is obviously isomorphic to $\Delta^0$, \ref{chV-4-11}, \ref{chV-4-13} and \ref{chV-4-16} take care of \ref{chV-4-1} with the exception of \ref{chV-4-1-3}.
+
+    \subsection{Proposition}\label{chV-4-17}
+        Let $X, Y \colon \mathbb{N} \to \sSet$ be diagrams and let $f \colon X \to Y$ be a transformation. Suppose that $x(n) \colon X(n) \to X(n+1)$ and $y(n) \colon Y(n) \to Y(n+1)$ are cofibrations for all $n$, and that $f(n) \colon X(n) \to Y(n)$ is a weak equivalence for every $n$.\\
+        Then the induced map $\colim\limits_{\mathbb{N}} X \to \colim\limits_{\mathbb{N}} Y$ is a weak equivalence.
+        \smallskip
+
+        \emph{Proof}. Let $g \colon V \to W$ be an arbitrary transformation of diagrams $\mathbb{N} \to \sSet$. We claim that $g$ can be factored as $g = p i$, where $i(n)$ is anodyne for every $n$ and $p(n)$ is a Kan fibration for every $n$.\\
+        This factorisation can be built by induction. In degree $0$, apply \ref{chV-2-20} to factor $g(0)$ into an anodyne $i(0) \colon V(0) \to \overline{V}(0)$ and a Kan fibration $p(0) \colon \overline{V}(0) \to W(0)$. Then the induced map $j(1) \colon V(1) \to V(1) \underset{V(0)}{\cup} \overline{V}(0)$ is anodyne and the map $\overline{V}(0) \to V(1) \underset{V(0)}{\cup} \overline{V}(0)$ is a cofibration. Moreover, $g(1)$ induces a map $V(1) \underset{V(0)}{\cup} \overline{V}(0) \to W(0)$. Factor this map into an anodyne map $j'(1) \colon V(1) \underset{V(0)}{\cup} \overline{V}(0) \overline{V}(1)$ and a Kan fibration $p(1) \colon \overline{V}(1) \to W(1)$. Set $i(1) \coloneq j'(1) \circ j(1)$. Processing like this inductively produces the desired factorisaton.\\
+        Apply the claim to the unique transformation $Y \to \Delta^0$ to obtain a transformation $j \colon Y \to \overline{Y}$ such that $j(n)$ is anodyne for all $n$ and $\overline{Y}(n)$ is a Kan complex for every $n$. Apply the claim a second time to $jf \colon X \to \overline{Y}$, producing a pointwise anodyne transformation $i \colon X \to \overline{X}$ and a pointwise Kan fibration $p \colon \overline{X} \to \overline{Y}$. Since $Y(n)$ is a Kan complex and $p(n)$ is a Kan fibration, $\overline{X}(n)$ is a Kan complex for every $n$. Moreover, $p(n)$ is a weak equivalence, so it has the RLP with respect to $I$ by \ref{chV-3-18}, \ref{chV-3-8} and \ref{chV-3-11}.\\
+        Since $\partial \Delta^n$ and $\Delta^n$ are compact, it follows directly that $\colim\limits_{\mathbb{N}} p$ has the RLP with respect to $I$. In particular, $\colim\limits_{\mathbb{N}} p$ is a weak equivalence.\\
+        Therefore, it suffices to show the proposition in the case when all components of the transformation are anodyne: then both $\colim\limits_{\mathbb{N}} j$ and $\colim\limits_{\mathbb{N}} i$ are weak equivalences, which readily implies that $\colim\limits_{\mathbb{N}} f$ is a weak equivalence.\\
+        Hence, assume that $f(n)$ is anodyne for all $n$. Let $K$ be a Kan complex. We have to show that the induced map
+        \begin{equation*}
+            (\colim\limits_{\mathbb{N}} f)^{*} \,\colon \pi_0 F(\colim\limits_{\mathbb{N}} Y, K) \to \pi_0 F(\colim\limits_{\mathbb{N}} X, K)
+        \end{equation*}
+        is a bijection. This map fits into a commutative square
+        \begin{equation*}
+            \begin{tikzcd}
+                \pi_0 F(\colim\limits_{\mathbb{N}} Y, K) \arrow[d, "\cong"'] \arrow[r, "{(\colim\limits_{\mathbb{N}} f)^{*}}"] & \pi_0 F(\colim\limits_{\mathbb{N}} X, K) \arrow[d, "\cong"] \\
+                \pi_0(\lim\limits_{\mathbb{N}^{\op}} F(Y, K)) \arrow[r, "{(\lim_{\mathbb{N}^{\op}} f)^{*}}"] & \pi_0(\lim\limits_{\mathbb{N}^{\op}} F(X, K))
+            \end{tikzcd}
+        \end{equation*}
+        Let us show directly that the lower horizontal map is a bijection.\\
+        We claim in slightly greater generality that if we have a transformation between towers of Kan fibrations of Kan complexes
+        \begin{equation*}
+            \begin{tikzcd}
+                \ldots \arrow[r] & U(2) \arrow[d, "{q(2)}"] \arrow[r, "{u(2)}"] & U(1) \arrow[d, "{q(1)}"] \arrow[r, "{u(1)}"] & U(0) \arrow[d, "{q(0)}"] \\
+                \ldots \arrow[r] & V(2) \arrow[r, "{v(2)}"] & V(1) \arrow[r, "{v(1)}"] & V(0)
+            \end{tikzcd}
+        \end{equation*}
+        such that $q(n)$ has the RLP with respect to $I$ for all $n$, then the induced map $\pi_0(\lim\limits_{\mathbb{N}^{\op}} U) \to \pi_0(\lim\limits_{\mathbb{N}^{\op}} V)$ is a bijection.\\
+        Given $(b_n)_n \in \lim\limits_{\mathbb{N}^{\op}} V$, there exists a sequence $(a'_n)_n \prod_{\mathbb{N}} U(n)$ such that $q(n)(a'_n) = b_n$. Set $a_0 \coloneq a'_0$. Since $q(0)(u(1)(a'_1)) = b_0$, the constant homotopy on $b_0$ lifts to a homotopy $u(1)(a'_1) \simeq a_0$. Since $u(1)$ is a Kan fibration, this homotopy lifts to a homotopy $h_1 \colon \Delta^1 \to U(1)$ from $a'_1$ to some vertex $a_1$. Note that $u(1)(a_1) = a_0$. Moreover, $q(1) \circ h_1$ provides a homotopy $b_1 \simeq q(1)(a_1)$ such that $v(1) \circ q(1) \circ h_1$ is the constant homotopy on $b_0$. Continuing inductively, we find a vertex $(a_n)_n \in \lim\limits_{\mathbb{N}^{\op}} U$ and a homotopy $\Delta^1 \to \lim\limits_{\mathbb{N}^{\op}} V$ from $(b_n)_n$ to $(q(n)(a_n))_n$. So the comparison map is surjective.\\
+        Suppose that $(a_n)_n$, $(a'_n)_n$ are two vertices such that there exists a homotopy $\Delta^1 \to \lim\limits_{\mathbb{N}^{\op}} V$ from $(q(n)(a_n))_n$ to $(q(n)(a'_n))_n$, i.e. a sequence of homotopies $(h_n \colon \Delta^1 \to V(n))_n$ such that $h_n$ is a homotopy $q(n)(a_n) \simeq q(n)(a'_n)$ and $v(n+1) \circ h_{h+1} = h_n$. Since each $q(n)$ has the RLP with respect to $I$, there exists a sequence of homotopies $(k'_n \colon \Delta^1 \to U(n))_n$ such that $k'_n$ is a homotopy $a_n \simeq a'_n$. Set $k_0 \coloneq k'_0$.\\
+        Consider the map $H_0 \colon \partial \Box^2 \to U(0)$ which is given by $u(1)k'_1$ and $k_0$ on two opposite faces, respectively. Then $q(0) \circ H_0$ extends to the map $\Box^2 \xrightarrow{\pr} \Delta^1 \xrightarrow{h_0} V(0)$. As $q(0)$ has the RLP with respect to $I$, the map $H_0$ extends to a map $K_0 \colon \Box^2 \to U(0)$ lifting the given map. Since $u(1)$ is a Kan fibration, $K_0$ lifts further to a homotopy $k'_1 \simeq k_1$ (relative endpoints). Again, one continues this procedure inductively to obtain a homotopy $\Delta^1 \to \lim\limits_{\mathbb{N}^{\op}} U$ from $(a_n)_n$ to $(a'_n)_n$. This proves injectivity, and thus finishes the proof of the proposition.\hfill$\Box$
