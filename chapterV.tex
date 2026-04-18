@@ -1484,7 +1484,7 @@
         \emph{Proof}. Let $K$ be a Kan complex. Consider the diagram
         \begin{equation*}
             \begin{tikzcd}
-                \pi_0 F(\Ex X, K) \arrow[d, "{(\rho_k)_{*}}"'] \arrow[r, "\rho^{*}_X"] & \pi_0 F(X, K) \arrow[dl, dashed] \arrow[d, "{(\rho_K)_{*}}"] \\
+                \pi_0 F(\Ex X, K) \arrow[d, "{(\rho_K)_{*}}"'] \arrow[r, "\rho^{*}_X"] & \pi_0 F(X, K) \arrow[dl, dashed] \arrow[d, "{(\rho_K)_{*}}"] \\
                 \pi_0 F(\Ex X, \Ex K) \arrow[r, "\rho^{*}_X"] & \pi_0 F(X, \Ex K)
             \end{tikzcd}
         \end{equation*}
@@ -1508,3 +1508,147 @@
         \medskip
 
         \emph{Proof of \ref{chV-4-1}}. \ref{chV-4-1-1} is obvious. \ref{chV-4-1-2}, \ref{chV-4-1-4} and \ref{chV-4-1-5} hold by \ref{chV-4-11}, \ref{chV-4-13} and \ref{chV-4-16}, respectively. So we are left with showing that $\rho^{\infty} \colon X \to \Ex^{\infty} X$ is a weak equivalence for every simplicial set $X$. By \ref{chV-4-23}, each composite $X \to \Ex^n X$ is a weak equivalence for every $n$. By \ref{chV-4-17}, it follows that $\rho^{\infty}$ is also a weak equivalence.\hfill$\Box$
+
+\section{The comparison with the homotopy theory of CW-complexes}\label{chV-5}
+    To finish our discussion of simplicial homotopy theory, we outline the relation to the homotopy theory of CW-complexes. We will assume some facts about the geometric realisation functor. This is summarized in the following theorem:
+
+    \subsection{Theorem}\label{chV-5-1}
+        Let $\Kan$ denote the simplicially enriched category of Kan complexes and let $\CW$ denote the simplicially enriched category of CW-complexes (by taking $\Sing$ of the spaces of all continuous maps). Then both
+        \begin{equation*}
+            \gr{-} \,\colon \Kan \to \CW
+        \end{equation*}
+        and
+        \begin{equation*}
+            \Sing \,\colon \CW \to \Kan
+        \end{equation*}
+        are Dwyer-Kan equivalences, i.e.
+        \begin{itemize}
+            \item 
+                they induced essentially surjective functors on homotopy categories and
+            \item 
+                they induce weak equivalences on all mapping spaces.
+        \end{itemize}
+        \medskip
+
+        The remainder of this section os occupied by the proof of \ref{chV-5-1}.
+
+    \subsection{Proposition}\label{chV-5-2}
+        Geometric realisation $\gr{-} \colon \sSet \to \kTop$ commutes with finite products.
+        \smallskip
+
+        \emph{Proof}. Gabriel-Zisman ...
+
+    \subsection{Corollary}\label{chV-5-3}
+        Both $\Sing \colon \kTop \to \sSet$ and $\gr{-} \colon \sSet \to \kTop$ define enriched functors which are adjoint. More precisely, the adjunction $(\gr{-}, \Sing)$ induces natural bijections
+        \begin{equation*}
+            F_{\kTop}(\gr{-}, -) \cong F_{\sSet}(-, \Sing -) \,\colon \sSet^{\op} \times \kTop \to \sSet \,.
+        \end{equation*}
+        \smallskip
+
+        \emph{Proof}. Let $f \colon X \times \Delta^n \to Y$. By \ref{chV-5-2}, the map $\gr{f}$ may be regarded as a map
+        \begin{equation*}
+            \gr{\Delta^n} \times \gr{X} \cong \gr{\Delta^n \times X} \to \gr{Y} \,,
+        \end{equation*}
+        and therefore defines an $n$-simplex in $F_{\kTop}(\gr{X}, \gr{Y})$.\\
+        An $n$-simplex in $F_{\kTop}(T, U)$ is given by a map $f \colon \gr{\Delta^n} \times T \to U$ which induces a map
+        \begin{equation*}
+            \Delta^n \times \Sing T \xrightarrow{u_{\Delta^n} \times \Sing T} \Sing \gr{\Delta^n} \times \Sing T \cong \Sing(\gr{\Delta^n} \times T) \xrightarrow{\Sing f} \Sing U \,.
+        \end{equation*}
+        It is straightforward to check that these rules do define enriched functors.\\
+        For the second part, observe that an $n$-simplex $\Delta^n \to F_{\kTop}(\gr{X}, T)$ induces by \ref{chV-5-2} an unique map
+        \begin{equation*}
+            \gr{X \times \Delta^n} \cong \gr{X} \times \gr{\Delta^n} \to T \,,
+        \end{equation*}
+        which by adjunction is the same as a map $\Delta^n \to F(X, \Sing T)$.\hfill$\Box$
+
+    \subsection{Lemma}\label{chV-5-4}
+        There are natural isomorphisms
+        \begin{equation*}
+            \pi_0(-) \xrightarrow{\sim} \pi_0(\Sing(-)) \,\colon \kTop \to \Set 
+        \end{equation*}
+        and
+        \begin{equation*}
+            \pi_n(-) \xrightarrow{\sim} \pi_n(\Sing(-)) \,\colon \kTop_{*} \to \Grp 
+        \end{equation*}
+        for every $n \geq 0$.
+        \smallskip
+
+        \emph{Proof}. Exercise.\hfill$\Box$
+
+    \subsection{Corollary}\label{chV-5-5}
+        Both $\gr{-}$ and $\Sing$ preserve weak equivalences.
+        \smallskip
+
+        \emph{Proof}. Exercise.\hfill$\Box$
+
+    \subsection{Theorem}\label{chV-5-6}
+        The following are equivalent:
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                Simplicial approximation holds for maps from finite simplicial sets: Let $A \subseteq X$ be finite simplicial sets and let $Y$ be a simplicial set. Suppose that $f_0 \colon A \to Y$ and $g \colon \gr{X} \to \gr{Y}$ are maps such that ${g|}_{\gr{A}} = \gr{f_0}$.\\
+                Then there exists for some $n$ a map $f \colon \sd^n X \to Y$ such that
+                \begin{equation*}
+                    \begin{tikzcd}
+                        \sd^n A \arrow[d] \arrow[r, "\lambda^n"] & A \arrow[r, "f_0"] & Y \\
+                        \sd^n X \arrow[urr, "f"] & &
+                    \end{tikzcd}
+                \end{equation*}
+                commutes and a homotopy $\gr{F} \simeq g\gr{\lambda^n}$ relative $\gr{\sd^n A}$.\label{chV-5-6-1}
+            \item 
+                Simplicial approximation holds for maps into Kan complexes: Let $A \subseteq X$ be simplicial sets and let $K$ be a Kan complex. Suppose that $f_0 \colon A \to K$ and $g \colon \gr{X} \to \gr{K}$ are maps such that ${g|}_{\gr{A}} = f_0$.\\
+                Then there exists a map $f \colon X \to K$ and a homotopy $\gr{f} \simeq g$ relative $\gr{A}$.\label{chV-5-6-2}
+            \item 
+                The unit morphism $X \to \Sing \gr{X}$ is a homotopy equivalence for every Kan complex. \label{chV-5-6-3}
+            \item 
+                The unit morphism $X \to \Sing \gr{X}$ is a weak equivalence for every simplicial set.\label{chV-5-6-4}
+            \item 
+                Geometric realisation induces an equivalence $F(X, K) \xrightarrow{\simeq} F(\gr{X}, \gr{K})$ for every simplicial set $X$ and every Kan complex $K$.\label{chV-5-6-5}
+        \end{enumerate}
+        \smallskip
+
+        \emph{Proof}. We only sketch why \ref{chV-5-6-1} is equivalent \ref{chV-5-6-2}. If \ref{chV-5-6-1} holds, one constructs an approximation simplex by simplex. This reduces the problem to the case $A = \partial \Delta^n$ and $X = \Delta^n$. In this case, the simplicial approximation whose existence is guaranteed by \ref{chV-5-6-1} yields a commutative square
+        \begin{equation*}
+            \begin{tikzcd}
+                \partial \Delta^n \arrow[d] \arrow[r, "f_0"] & K \arrow[d, "\rho^n"] \\
+                \Delta^n \arrow[r, "f"] & \Ex^n K
+            \end{tikzcd}
+        \end{equation*}
+        Since $\rho^n$ is an anodyne map between Kan complexes, it has a retraction. This yields the desired extension.\\
+        Conversely, we may replace $Y$ by $\Ex^{\infty} Y$ and apply \ref{chV-5-6-2}. Since $X$ is assumed to be finite, the resulting map $X \to \Ex^{\infty} Y$ factors through some $Ex^n Y$ and gives thus rise to a map $\sd^n X \to Y$ with the desired properties.\\
+        We now show \ref{chV-5-6-2} $\Rightarrow$ \ref{chV-5-6-3}. By one of the triangle identities, the composition
+        \begin{equation*}
+            \gr{X} \xrightarrow{\gr{u_X}} \gr{\Sing \gr{X}} \xrightarrow{c_{\gr{X}}} \gr{X}
+        \end{equation*}
+        is the identity. By \ref{chV-5-6-2}, there exists a map $k \colon \Sing \gr{X} \to X$ extending $\id_X$ such that $\gr{k}$ is homotopic to $c_{\gr{X}}$ relative $\gr{X}$. Let $h \colon \gr{\Sing \gr{X}} \times [0, 1] \to \gr{X}$ be such a homotopy. Since $\gr{\Delta^1} \cong [0, 1]$ and $\gr{-}$ commutes with finite products, this corresponds to a map
+        \begin{equation*}
+            \gr{\Sing \gr{X} \times \Delta^1} \to \gr{X}
+        \end{equation*}
+        whose adjoint provides a deformation retraction of $\Sing \gr{X}$ onto $\gr{X}$.\\
+        For \ref{chV-5-6-3} $\Rightarrow$ \ref{chV-5-6-4}, consider the commutative square
+        \begin{equation*}
+            \begin{tikzcd}[column sep=large]
+                X \arrow[d, "\rho^{\infty}"'] \arrow[r, "u_X"] & \Sing \gr{X} \arrow[d, "\Sing \gr{\rho^{\infty}}"] \\
+                \Ex^{\infty} \arrow[r, "u_{\Ex^{\infty} X}"] & \Sing \gr{\Ex^{\infty} X}
+            \end{tikzcd}
+        \end{equation*}
+        The vertical maps are weak equivalences by \ref{chV-4-1} and \ref{chV-5-5}, and the lower horizontal map is a weak equivalence by assumption. So $u_X$ is also a weak equivalence.\\
+        For \ref{chV-5-6-4} $\Rightarrow$ \ref{chV-5-6-5}, consider the commutative diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                & F_{\CW}(\gr{X}, \gr{K}) \arrow[dd, "\cong"] \\
+                F_{\sSet}(X, K) \arrow[ur, "\gr{-}"] \arrow[dr, "{(u_K)_{*}}"] & \\
+                & F_{\sSet}(X, \Sing \gr{K})
+            \end{tikzcd}
+        \end{equation*}
+        Since $u_K$ is a homotopy equivalence by assumption, \ref{chV-5-6-5} follows.\\
+        Finally, we show that \ref{chV-5-6-5} $\Rightarrow$ \ref{chV-5-6-2}. There is a map of Kan fibrations of Kan complexes
+        \begin{equation*}
+            \begin{tikzcd}
+                F_{\sSet}(X, K) \arrow[d] \arrow[r, "\gr{-}"] & F_{\CW}(\gr{X}, \gr{K}) \arrow[d] \\
+                F_{\sSet}(A, K) \arrow[r, "\gr{-}"] & F_{\CW}(\gr{A} , \gr{K})
+            \end{tikzcd}
+        \end{equation*}
+        and by assumption both horizontal maps are weak equivalences. It follows from \ref{chV-4-18} that the induced map on fibres over $f_0$ and $\gr{f_0}$ is a homotopy equivalence. Picking a preimage of $g$ yields the desired smplicial approximation.\hfill$\Box$
+        \medskip
+
+        \emph{Standing assumption}: Let us assume for a moment that one of the simplicial approximation statements holds.
