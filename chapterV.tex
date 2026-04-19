@@ -1648,7 +1648,371 @@
                 F_{\sSet}(A, K) \arrow[r, "\gr{-}"] & F_{\CW}(\gr{A} , \gr{K})
             \end{tikzcd}
         \end{equation*}
-        and by assumption both horizontal maps are weak equivalences. It follows from \ref{chV-4-18} that the induced map on fibres over $f_0$ and $\gr{f_0}$ is a homotopy equivalence. Picking a preimage of $g$ yields the desired smplicial approximation.\hfill$\Box$
+        and by assumption both horizontal maps are weak equivalences. It follows from \ref{chV-4-18} that the induced map on fibres over $f_0$ and $\gr{f_0}$ is a homotopy equivalence. Picking a preimage of $g$ yields the desired simplicial approximation.\hfill$\Box$
         \medskip
 
         \emph{Standing assumption}: Let us assume for a moment that one of the simplicial approximation statements holds.
+
+    \subsection{Corollary}\label{chV-5-7}
+        The counit $\gr{\Sing T} \to T$ is a weak equivalence for every $T \in \Top$.
+        \smallskip
+
+        \emph{Proof}. By \ref{chV-5-4}, it suffices to check that $\Sing c_T \colon \Sing \gr{\Sing T} \to \Sing T$ induces bijections on all $\pi_n$. By one of the triangle identities, the identity on $\Sing T$ factors as
+        \begin{equation*}
+            \Sing T \xrightarrow{u_{\Sing T}} \Sing \gr{\Sing T} \xrightarrow{\Sing c_T} \Sing T \,.
+        \end{equation*}
+        Since $u_{\Sing T}$ is a homotopy equivalence, $\Sing c_T$ is also a homotopy equivalence. So the corollary follows from \ref{chV-3-10}.\hfill$\Box$
+
+    \subsection{Corollary}\label{chV-5-8}
+        The geometric realisation detects weak equivalences, i.e. if $f \colon X \to Y$ is a map of simplicial sets such that $\gr{f}$ is a weak equivalence, then $f$ is a weak equivalence.
+        \smallskip
+
+        \emph{Proof}. By \ref{chV-5-5}, $\Sing \gr{f}$ is a weak equivalence. Then it follows from the commutative diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                X \arrow[d, "u_X"'] \arrow[r, "f"] & Y \arrow[d, "u_Y"] \\
+                \Sing \gr{X} \arrow[r, "\Sing \gr{f}"] & \Sing \gr{Y}
+            \end{tikzcd}
+        \end{equation*}
+        and \ref{chV-5-6} that $f$ is a weak equivalence.\hfill$\Box$
+        \medskip
+
+        \emph{Proof of \ref{chV-5-1}}. \ref{chV-5-6} deals almost with the entire statement since it already tells us that $\Sing$ is essentially surjective on homotopy categories and that $\gr{-}$ induces weak equivalences on mapping spaces. By \ref{chV-5-7}, the functor $\gr{-}$ is also essentially surjective on homotopy categories.\\
+        Using \ref{chV-5-7} a second time, the commutative diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                & F_{\sSet}(\Sing T, \Sing U) \arrow[dd, "\cong"] \\
+                F_{\CW}(T, U) \arrow[ur, "\Sing"] \arrow[dr, "c^{*}_T"] & \\
+                & F_{\CW}(\gr{\Sing T}, U)
+            \end{tikzcd}
+        \end{equation*}
+        shows that $\Sing$ also induces weak equivalences on mapping spaces.\hfill$\Box$
+        \medskip
+
+        In the remainder of this section, we outline why simplicial approximation holds for simplicial sets. Our discussion follows Jardine, but many of the properties in which we are interested (plus many other, more subtle properties) are also studies in WJR13, Section 2. We assume the classical simplicial approximation theorem for simplicial complexes. To formulate it, we need to recall the barycentric subdivision of a simplicial complex: Given an (abstract) simplicial complex $(V, S)$, we define $\sd(V, S)$ as the abstract simplicial complex whose set of vertices is given by $S$, and whose $n$-simplices are given by strictly ascending chains $s_0 \subseteq s_1 \subseteq \ldots \subseteq s_n$ of length $n$.
+
+    \subsection{Remark}\label{chV-5-9}
+        Recall that any locally ordered simplicial complex gives rise to a simplicial set by formally adjoining degeneracies (see Exercise 3 on Sheet 3). Denote this functor by
+        \begin{equation*}
+            (-)^{+} \,\colon \SC^{\lo} \to \sSet \,.
+        \end{equation*}
+        Canonical examples of locally ordered simplicial complexes are those arising from posets: For a poset $P$, let $V(P)$ be the simplicial complex with vertex set $P$ and $n$-simplices strictly ascending chains $p_0 < \ldots p_n$. The simplicial complex $V(P)$ is often called the nerve of the poset $P$, but we will avoid that terminology because the nerve of a poset is a simplicial set for us. However, note that there is a natural isomorphism $NP \cong V(P)^{+}$, so the two notions are not unrelated.\\
+        Moreover, it is straightforward to check that $(\sd V(P))^{+} \cong \sd V(P)^{+}$ for any poset $P$.
+
+    \subsection{Proposition}\label{chV-5-10}
+        Let $U \subseteq V$ and $W$ be simplicial complexes. Let $f_0 \colon U \to W$ be a simplicial map and let $g \colon \gr{V} to \gr{W}$ be a map such that ${g|}_{\gr{U}} = \gr{f_0}$. Suppose that $V$ is finite.\\
+        Then there exist some $n$ ans a map $f \colon \sd^n V \to W$ such that
+        \begin{equation*}
+            \begin{tikzcd}
+                \sd^n U \arrow[d] \arrow[r, "\lambda^n"] & U \arrow[r, "f_0"] & W \\
+                sd^n V \arrow[urr, "f"'] & &
+            \end{tikzcd}
+        \end{equation*}
+        commutes and a homotopy $\gr{f} \simeq g \gr{\lambda^n}$ relative $\gr{\sd^n U}$.
+        \smallskip
+
+        \emph{Proof}. Exercise, possibly. If not, I will insert a textbook reference here later.\hfill$\Box$
+        \medskip
+
+        Our line of approach is to deduce a simplicial approximation theorem for simplicial sets by turning the simplicial sets in question into simplicial complexes. Here is a particularly brutal way of building a simplicial complex from simplicial set:
+
+    \subsection{Definition}\label{chV-5-11}
+        Let $X$ be a simplicial set. Let $\nd X$ denote the set of non-degenerate simplices of $X$. Denoting by $\langle x \rangle$ the smallest simplicial subset generated by a non-generate simplex $x$, equip $\nd X$ with the partial order given by
+        \begin{equation*}
+            x \leq y \quad :\Leftrightarrow \quad \langle x \rangle \subseteq \langle y \rangle \,.
+        \end{equation*}
+        The \emph{Barratt nerve} $\B X$ of $X$ is defined as
+        \begin{equation*}
+            \B X \coloneq N(\nd X) \,.
+        \end{equation*}
+        Any map $f \colon X \to Y$ of simplicial sets induces a map of posets $\nd f \colon \nd X \to \nd Y$ (since every simplex is the unique, possibly trivial, degeneration of an unique non-degenerate simplex), and thus induces a map $\B f \colon \B X \to \B Y$. Therefore, we obtain a functor
+        \begin{equation*}
+            \B \,\colon \sSet \to \sSet \,.
+        \end{equation*}
+
+    \subsection{Remark}\label{chV-5-12}
+        In general, the Barratt nerve of a simplicial set has little to do with the original simplicial set. For example, $\B (\Delta^1 / \partial \Delta^1)$ is the nerve of the poset $[1]$ and therefore simplicially contractible.\\
+        On the other hand, $\B (V, S)^{+} \cong \sd(V, S)^{+}$ for any locally ordered simplicial complex $(V, S)$.
+
+    \subsection{Lemma}\label{chV-5-13}
+        For every simplicial set $X$, the canonical maps
+        \begin{equation*}
+            \colim\limits_{x \in \nd X} \sd \langle x \rangle \to \sd X \quad \text{and} \quad \colim\limits_{x \in \nd X} \B \langle x \rangle \to \B X
+        \end{equation*}
+        are isomorphisms.
+        \smallskip
+
+        \emph{Proof}. Since $\colim\limits_{x \in \nd X} \sd \langle x \rangle \cong X$, the first part follows because $\sd$ is colimit-preserving.\\
+        Let $\xi = x_0 \leq \ldots \leq x_0$ be an $n$-simplex in $\B X$. Then $\xi$ is also an $n$-simplex in $\langle x_n \rangle$. So $\colim\limits_{x \in \nd X} \B \langle x \rangle \to \B X$ is surjective.\\
+        Suppose that $\xi = x_0 \leq \ldots \leq x_k \in \B \langle x \rangle$ and $\eta = y_0 \leq \ldots \leq y_l \in \B \langle y \rangle$ map to the same simplex in $\B X$. Then $\xi$ and $\eta$ define the same sequence in $\nd X$. In particular, $y_l = x_k$. Call this simplex $z$. Then $\xi$ and $\eta$ both lie in $\B \langle z \rangle$ and define the same element there. So $\xi = \eta$ in $\colim\limits_{x \in \nd X} \B \langle x \rangle$.\hfill$\Box$
+        \medskip
+
+        By \ref{chV-5-9}, the restrictions of $\sd$ and $\B$ along Yoneda embedding $\Delta \ \to \sSet$ agree. By the universal property of the left Kan extension, there is an induced natural transformation
+        \begin{equation*}
+            \pi \,\colon \sd \to \B \,.
+        \end{equation*}
+
+    \subsection{Lemma}\label{chV-5-14}
+        Let $X$ be a simplicial set. the map $\pi \colon \sd X \to \B X$ is
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                surjective in all degrees;
+            \item 
+                bijective on vertices.
+        \end{enumerate}
+        In particular, two $n$-simplices in $\sd X$ map to the same simplex in $\B X$ if and only if they have the same set of vertices.
+        \smallskip
+
+        \emph{Proof}. By definition, an $n$-simplex in $\B X$ is a sequence $x_0 \leq \ldots \leq x_n$ in $\nd X$. Choose injective maps $\delta_i$ such that $x_i = \delta^{*}_i(x_n)$. Then each $\delta_i$ can be considered a simplex in $\Delta^{\gr{x_n}}$, and thus $\delta_0 \leq \ldots \leq \delta^n$ defines an $n$-simplex in $\sd \Delta^{\gr{x_n}}$. the pair $(\delta_0 \leq \ldots \leq \delta^n, x_n)$ defines an $n$-simplex in $\sd X$ which maps to the original $n$-simplex in $\B X$ under $\pi$.\\
+        For any two vertices in $\sd X$, choose $k$, $l$ minimal such that they can be represented as
+        \begin{equation*}
+            \Delta^0 \xrightarrow{v} \sd \Delta^k \xrightarrow{\sd x} \sd X \quad \text{and} \quad \Delta^0 \xrightarrow{w} \sd \Delta^l \xrightarrow{\sd y} \sd X 
+        \end{equation*}
+        for non-degenerate simplices $x$ and $y$ of $X$. By the minimality of $k$ and $l$, $v = [k]$ and $w = [l]$. If $\pi_X \circ \sd x \circ v = \pi_X = \sd y \circ w$, then use $(\B X)_0 = \nd X$ and $\B \Delta^k \cong \sd \Delta^k$ to see that
+        \begin{equation*}
+            x = \B x(v) = \pi_X(\sd x(v)) = \pi_X(\sd y(w)) = \B y(w) = y \,.
+        \end{equation*}
+        \quad\hfill$\Box$
+
+    \subsection{Definition}\label{chV-5-15}
+        A non-degenerate simplex $x \in X_n$ is \emph{regular} if
+        \begin{equation*}
+            \begin{tikzcd}
+                \Delta^{n-1} \arrow[d, "d_n"'] \arrow[r, "{d_n(x)}"] & \langle d_n(x) \rangle \arrow[d] \\
+                \Delta^n \arrow[r, "x"] & \langle x \rangle
+            \end{tikzcd}
+        \end{equation*}
+        is a pushout square.\\
+        A simplicial set is \emph{regular} if all its non-degenerate simplices are regular.
+
+    \subsection{Example}\label{chV-5-16}
+        It the characteristic map of every non-degenerate simplex in $X$ is injective (i.e. $X$ is \emph{non-singular}), then $X$ is regular. In particular, the nerve of every poset is regular.
+
+    \subsection{Proposition}\label{chV-5-17}
+        The subdivision $\sd X$ is regular for every simplicial set $X$.
+        \smallskip
+
+        \emph{Proof}. Let $c \colon \Delta^n \to \sd X$ be a non-degenerate simplex. Choose $k$ minimal such that $c$ factors as
+        \begin{equation*}
+            c \,\colon \Delta^n \xrightarrow{\kappa} \sd \Delta^k \xrightarrow{\sd x} \sd \sk_k(X)
+        \end{equation*}
+        for some non-degenerate $k$-simplex $x$ of $X$ and some non-degenerate $n$-simplex $\kappa$ of $\sd \delta^k$ (if $\kappa$ was degenerate, $c$ would also be degenerate; if $x$ was degenerate, $k$ would not have been minimal). We may assume $k > 0$. Since $k$ is minimal, $\kappa(n) = [k]$. In particular, $d_n(\kappa)$ is a simplex in $\sd \partial \Delta^k$. Therefore, there is an induced commutative diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                \Delta^{n-1} \arrow[d, hook, "d_n"'] \arrow[r, "{d_n(\kappa)}"] & \sd \partial \Delta^k \arrow[d, hook] \arrow[r] & \sd \partial \langle x \rangle \arrow[d, hook] \\
+                \Delta^n \arrow[r, "\kappa"] & \sd \Delta^k \arrow[r] & \sd \langle x \rangle
+            \end{tikzcd}
+        \end{equation*}
+        where $\partial \langle x \rangle$ denotes the simplicial set $\langle x \rangle$ with the unique top-dimensional simplex $x$ removed. The right hand square is a pushout. Consider the outer square
+        \begin{equation*}
+            \begin{tikzcd}
+                \Delta^{n-1} \arrow[d, hook, "d_n"'] \arrow[r, "{d_n(c)}"] & \sd \partial \langle x \rangle \arrow[d, hook] \\
+                \Delta^n \arrow[r, "c"] & \sd \langle x \rangle
+            \end{tikzcd}
+        \end{equation*}
+        If $y$ is a simplex in $\Delta^n$ which does not lie in $d_n \Delta^n$, its image contains $[n]$. Hence $c(y) \notin \sd \partial \langle x \rangle$. Consequently, this square is a pullback. Since this square fits into the commutative diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                \Delta^{n-1} \arrow[d, hook, "d_n"'] \arrow[r, "{d_n(\kappa)}"] & \langle d_n(c) \rangle \arrow[d, hook] \arrow[r, hook] & \sd \partial \langle x \rangle \arrow[d, hook] \\
+                \Delta^n \arrow[r, "\kappa"] & \langle x \rangle \arrow[r, hook] & \sd \langle x \rangle
+            \end{tikzcd}
+        \end{equation*}
+        and all arrows in the right hand square are monomorphisms as indicated, the square
+        \begin{equation*}
+            \begin{tikzcd}
+                \Delta^{n-1} \arrow[d, hook, "d_n"'] \arrow[r, "{d_n(c)}"] & \langle d_n(c) \rangle \arrow[d, hook] \\
+                \Delta^n \arrow[r, "c"] & \langle c \rangle
+            \end{tikzcd}
+        \end{equation*}
+        is also a pullback. Therefore, it suffices to show that the induced map
+        \begin{equation*}
+            \Delta^n \setminus d_n \Delta^n \to \langle c \rangle \setminus \langle d_n(c) \rangle 
+        \end{equation*}
+        is a degree-wise bijection. This map is surjective since $c \colon \Delta^n \to \langle c \rangle$ is surjective.\\
+        Suppose that $\sigma$, $\tau$ are in $\Delta^n \setminus d_n \Delta^n$ such that $c(\sigma) = c(\tau) \in \langle c \rangle \subseteq \sd \langle x \rangle$. Then $c(\sigma)$ and $c(\tau)$ factor through $\sd \Delta^k$, so $\kappa(\sigma) = \kappa(\tau)$. Since $\sd \Delta^k$ is non-singular and $\kappa$ is non-degenerate, $\sigma = \tau$. This proves the proposition.\hfill$\Box$
+
+    \subsection{Definition}\label{chV-5-18}
+        A simplicial set $X$ is \emph{op-regular} if $X^{\op}$ is regular, i.e. for every $n$-simplex $x$ the diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                \Delta^{n-1} \arrow[d, "d_0"'] \arrow[r, "{d_0(c)}"] & \langle d_0(x) \rangle \arrow[d] \\
+                \Delta^n \arrow[r, "x"] & \langle x \rangle
+            \end{tikzcd}
+        \end{equation*}
+        is a pushout. Let $\sSet^{\opreg}$ denote the full subcategory of $\sSet$ spanned by the op-regular simplicial sets.
+
+    \subsection{Proposition}\label{chV-5-19}
+        There exists a natural transformation
+        \begin{equation*}
+            \gamma \,\colon {\B|}_{\sSet^{\opreg}} \Rightarrow \id
+        \end{equation*}
+        such that ${\lambda|}_{\sSet^{\opreg}} = \gamma \circ {\pi|}_{\sSet^{\opreg}}$.
+        \smallskip
+
+        \emph{Proof}. If such a factorisation $\gamma_X$ exists for every op-regular simplicial set $X$ in some full subcategory $\Cc$ of $\sSet^{\opreg}$, then the collection $(\gamma_X)_{X \in \Cc}$ is automatically a natural transformation on $\Cc$: for every $f \colon X \to Y$ we have
+        \begin{equation*}
+            \pi_X \circ \B f \circ \gamma_Y = \gamma_y \circ \pi_Y \circ \sd f = \lambda_Y \circ \sd f = f \circ \lambda_X = f \circ \lambda_X \circ \pi_X \,.
+        \end{equation*}
+        Since $\pi$ is an epimorphism by \ref{chV-5-14}, naturality of $\gamma$ follows. So we only need to show that $\gamma_X$ exists for every $X \in \sSet^{\opreg}$.\\
+        By \ref{chV-5-13} and the preliminary observation, the existence of $\gamma_X$ follows if we can show that for every non-degenerate simplex $x \in X$ there exists a commutative triangle
+        \begin{equation*}
+            \begin{tikzcd}
+                \sd \langle x \rangle \arrow[dr, "\lambda_{\langle x \rangle}"] \arrow[rr, "\pi_{\langle x \rangle}"] & & \B \langle x \rangle \arrow[dl, dotted, "\gamma_x"] \\
+                & \langle x \rangle &
+            \end{tikzcd}
+        \end{equation*}
+        We proceed by induction on the dimension of $x$. If $x$ is a $0$-simplex, $\sd_{\op} \langle x \rangle$, $\B_{\op} \langle x \rangle$ and $\langle x \rangle$ are all isomorphic to $\Delta^0$, nd the existence of $\gamma_x$ follows trivially.\\
+        Suppose that the dimension of $x$ is $n > 0$. By induction hypothesis, there exists a commutative triangle
+        \begin{equation*}
+            \begin{tikzcd}
+                \sd \langle d_n(x) \rangle \arrow[dr, "{\lambda_{\langle d_0(x) \rangle}}"] \arrow[rr, "{\pi_{\langle d_0(x) \rangle}}"] & & \B \langle d_n(x) \rangle \arrow[dl, "{\gamma_{d_0(x)}}"] \\
+                & \langle d_n(x) \rangle &
+            \end{tikzcd}
+        \end{equation*}
+        Note the slight abuse of notation: $d_0(x)$ is not necessarily non-degenerate. However, it is the unique degeneration $d_0(x) = s(y)$ of a non-degenerate simplex $y$, and evidently $\langle y \rangle = \langle d_0(x) \rangle$.\\
+        Since $X$ is op-regular, $\lambda_{\langle x \rangle}$ fits into a map of pushout squares (the front and back face of the cube):
+        \begin{equation*}
+            \begin{tikzcd}
+                & \sd \Delta^{n-1} \arrow[ld, "\lambda"] \arrow[dd] \arrow[rr] & & \sd \langle d_0(x) \rangle \arrow[ld, "\lambda"] \arrow[dd] \\
+                \Delta^{n-1} \arrow[dd, "d_0"] \arrow[rr, crossing over] & & \langle d_n(x) \rangle & \\
+                & \sd \Delta^n \arrow[ld, "\lambda"] \arrow[rr] & & \sd \langle x \rangle \arrow[ld, "\lambda"] \\
+                \Delta^n \arrow[rr, "x"] & & \langle x \rangle \arrow[from=uu, crossing over] &
+            \end{tikzcd}
+        \end{equation*}
+        Consequently, we only need to factor the composite map
+        \begin{equation*}
+            \sd \Delta^n \xrightarrow{\sd x} \sd \langle x \rangle \xrightarrow{\lambda_{\langle x \rangle}} \langle x \rangle
+        \end{equation*}
+        in a way which is compatible with the given factorisation on $\sd \Delta^{n-1}$.\\
+        Therefore, suppose that $\sigma, \tau \colon \Delta^k \to \sd \Delta^n$ are $k$-simplices such that $\pi_{\langle x \rangle} \circ \sd(x) \circ \sigma = \pi_{\langle x \rangle} \circ \sd(x) \circ \tau$. Write $\sigma = \sigma_0 \leq \ldots \leq \sigma_k$ and $\tau = \tau_0 \leq \ldots \leq \tau_k$. By \ref{chV-5-14} this means that
+        \begin{equation*}
+            \{ x \circ \sigma_0, \ldots, x \circ \sigma_k \} = \{ x \circ \tau_0, \ldots, x \circ \tau_k\} \,.
+        \end{equation*}
+        We have to show that
+        \begin{equation*}
+            \lambda_{\langle x \rangle} \circ \sd(x) \circ \sigma = \lambda_{\langle x \rangle} \circ \sd(x) \circ \tau \,.
+        \end{equation*}
+        Let $i$ be the smallest index such that $0$ lies in the image of $\sigma_i$ and $\tau_i$. Then $\sigma_j = \tau_j$ for all $j \geq i$ since $x$ is injective on that part of $\Delta^n$. Set $i \coloneq k +1$ if no such index exists.\\
+        If $i = k + 1$, then $\sigma$ and $\tau$ both map to $\sd d_0 \Delta^n$. This case is covered by the induction hypothesis. So suppose $i < k + 1$.\\
+        If $i = 0$, then $\sigma = \tau$, so obviously $\lambda \circ \sd(x) \circ \sigma = \lambda_{\langle x \rangle} \circ \sd(x) \circ \tau$.\\
+        Suppose that $0 < i < k + 1$. Then $\lambda \circ \sigma_j = \lambda \circ d_0(\sigma_j)$ and $\lambda \circ \tau_j = \lambda d_0(\tau_j)$ for all $j \geq i$. Consequently, the simplices
+        \begin{equation*}
+            \sigma' \coloneq \sigma_0 \leq \ldots \leq \sigma_{i-1} \leq d_0(\sigma_i) \leq \ldots \leq d_0(\sigma_k)
+        \end{equation*}
+        and
+        \begin{equation*}
+            \tau' \coloneq \tau_0 \leq \ldots \leq \tau_{i-1} \leq d_0(\tau_i) \leq \ldots \leq d_0(\tau_k)
+        \end{equation*}
+        both lie in $\sd d_0 \Delta^n$ and map to the same simplex as $\sigma$ and $\tau$ under $\lambda \circ \sd(X)$, respectively. Since $x \circ d_0(\sigma_j) = x \circ \sigma_j \circ d_0 = x \circ \tau_j \circ d_0 = x \circ d_0(\tau_j)$, the simplices $\sigma'$ and $\tau'$ map to the same simplex under $\pi$, and therefore satisfy $\lambda \circ \sd(x) \circ \sigma' = \lambda \circ \sd(x) \circ \tau'$ by induction. This finishes the proof.\hfill$\Box$
+        \medskip
+
+        For the following discussion, abbreviate the composite functor
+        \begin{equation*}
+            (-)^{\op} \circ \sd \,\colon \sSet \to \sSet
+        \end{equation*}
+        by $\sd_{\op}$. By \ref{chV-5-17}, $\sd_{\op}$ takes values in the full subcategory of op-regular simplicial sets. It comes equipped with a natural transformation
+        \begin{equation*}
+            \varphi \,\colon \sd_{\op} \to \id_{\sSet} \,,
+        \end{equation*}
+        the \emph{first vertex map}, induced by the transformation $(\chains[n])^{\op} \to [n], \; c \mapsto \min c$.
+
+    \subsection{Lemma}\label{chV-5-20}
+        There is a natural isomorphism $\Phi \colon \sd \cong \sd \circ (-)^{\op}$.\\
+        Let $\Psi \colon \sd^2 \cong \sd \sd_{\op}$ denote the induced isomorphism. Then there exists a simplicial homotopy
+        \begin{equation*}
+            \sd^2 X \times \Delta^1 \to X
+        \end{equation*}
+        from $\varphi \lambda \Psi$ to $\lambda^2$.
+        \smallskip
+
+        \emph{Proof}. It suffices to show that the lemma holds on the full subcategory of standard simplices.\\
+        For any poset $P$, $\Phi$ is given by
+        \begin{equation*}
+            \Phi_P \,\colon \chains P \to \chains(P^{\op}), \quad c \mapsto c \text{ with reversed order}.
+        \end{equation*}
+        The transformation $\lambda^2$ is induced by
+        \begin{equation*}
+            \chains(\chains[n]) \to [n], \quad (c_0 \subseteq \ldots \subseteq c_r) \mapsto \max c_r \,,
+        \end{equation*}
+        and $\varphi \lambda \Psi$ is induced by
+        \begin{equation*}
+            \chains(\chains[n]) \to [n], \quad (c_0 \subseteq \ldots \subseteq c_r) \mapsto \min c_0 \,.
+        \end{equation*}
+        Since $\min c_0 \leq \max c_r$, these two maps combined define a natural map
+        \begin{equation*}
+            \chains(\chains[n]) \times [1] \to [n]
+        \end{equation*}
+        which induces the required homotopy.\hfill$\Box$
+
+    \subsection{Theorem (Simplicial approximation for simplicial sets)}\label{chV-5-21}
+        Let $A \subseteq X$ be finite simplicial sets and let $Y$ be a simplicial set. Suppose that $f_0 \colon A \to Y$ and $g \colon \gr{X} to \gr{Y}$ are maps such that ${g|}_{\gr{A}} = \gr{f_0}$.\\
+        Then there exists for some $k$ a map $f \colon \sd^k \sd_{\op} \sd \sd_{\op} X \to Y$ such that
+        \begin{equation*}
+            \begin{tikzcd}
+                \sd^k \sd_{\op} \sd \sd_{\op} A \arrow[d] \arrow[r, "\varphi \lambda \varphi \lambda^k"] & A \arrow[r, "f_0"] & Y \\
+                \sd^k \sd_{\op} \sd \sd_{\op} X \arrow[urr, "f"']
+            \end{tikzcd}
+        \end{equation*}
+        commutes and a homotopy $\gr{f} \simeq g \gr{\varphi \lambda \varphi \lambda^k}$ relative $\gr{\sd^k \sd_{\op} \sd \sd_{\op} A}$.
+        \smallskip
+
+        \emph{Proof}. Consider the commutative diagram
+        \begin{equation*}
+            \begin{tikzcd}[column sep=large]
+                \gr{\sd \sd_{\op} A} \arrow[d, "\gr{\sd \sd_{\op} i}"'] \arrow[r, "\gr{\sd \sd_{\op} f_0}"] & \gr{\sd \sd_{\op} Y} \arrow[d, "\gr{\varphi \lambda}"] \\
+                \gr{\sd \sd_{\op} X} \arrow[r, "g \gr{\varphi \lambda}"] & \gr{Y}
+            \end{tikzcd}
+        \end{equation*}
+        Since $\sd \sd_{\op} i$ is a cofibration (even the inclusion of a sub-CW complex) and $\gr{\varphi \lambda}$ is a homotopy equivalence by \ref{chV-5-20} and \ref{chV-4-19}, there exists a map
+        \begin{equation*}
+            \overline{g} \,\colon \gr{\sd \sd_{\op} X} \to \gr{\sd \sd_{\op} Y}
+        \end{equation*}
+        such that $\overline{g} \circ \gr{\sd \sd_{\op} i} = \gr{\sd \sd_{\op} f_0}$ and $\gr{\varphi \lambda} \circ \overline{g} \simeq g \gr{\varphi \lambda}$ relative $\gr{\sd \sd_{\op} A}$.\\
+        Using \ref{chV-5-17} and \ref{chV-5-19}, we can consider the maps
+        \begin{equation*}
+            \begin{tikzcd}[column sep=huge]
+                \B \sd_{\op} \sd \sd_{\op} A \arrow[d, "\B \sd_{\op} \sd \sd_{\op} i"'] \arrow[r, "\B \sd_{\op} \sd \sd_{\op} f_0"] & \B \sd_{\op Y} \\
+                \B \sd_{\op} \sd \sd_{\op} X &
+            \end{tikzcd}
+        \end{equation*}
+        and
+        \begin{equation*}
+            \widetilde{g} \,\colon \gr{\B \sd_{\op} \sd \sd_{\op} X} \xrightarrow{\gr{\varphi \gamma}} \gr{\sd \sd_{\op} X} \xrightarrow{\overline{g}} \gr{\sd \sd_{\op} Y} \xrightarrow{\pi} \gr{\B \sd_{\op} Y} \,.
+        \end{equation*}
+        \ref{chV-5-10} applies to these to yield a commutative diagram
+        \begin{equation*}
+            \begin{tikzcd}[column sep=huge]
+                \sd^n \B \sd_{\op} \sd \sd_{\op} A \arrow[d] \arrow[r, "\lambda^n"] & \B \sd_{\op} \sd \sd_{\op} A \arrow[r, "\B \sd_{\op} \sd \sd_{\op} f_0"] & \B \sd_{\op} Y \\
+                \sd^n \B \sd_{\op} \sd \sd_{\op} X \arrow[urr, "f"']
+            \end{tikzcd}
+        \end{equation*}
+        such that $\gr{f}$ is homotopic to $\widetilde{g} \gr{\lambda^n}$ relative $\gr{\sd^n \B \sd_{\op} \sd \sd_{\op} A}$. These maps can be composed with the appropriate instances of $\pi$ and $\varphi$ to obtain a commutative diagram
+        \begin{equation*}
+            \begin{tikzcd}[column sep=large]
+                \sd^{n+1} \sd_{\op} \sd \sd_{\op} A \arrow[d] \arrow[r, "\varphi \lambda \varphi \lambda^{n+1}"] & A \arrow[r, "f_0"] & Y \\
+                \sd^{n+1} \sd_{\op} \sd \sd_{\op} X \arrow[urr, "f \circ \sd^n \pi"']
+            \end{tikzcd}
+        \end{equation*}
+        such that
+        \begin{equation*}
+            \gr{f \circ \sd^n \pi} \simeq \gr{\varphi \gamma \gr{\widetilde{g}} \lambda^n \sd^n \pi} \simeq g \gr{\varphi \lambda \varphi \lambda^{n+1}}
+        \end{equation*}
+        relative $\gr{\sd^{n+1} \sd_{\op} \sd \sd_{\op} A}$.\hfill$\Box$
+
+    \subsection{Corollary}\label{chV-5-22}
+        All statements listed in \ref{chV-5-6} hold.
+        \smallskip
+
+        \emph{Proof sketch}. We prove \ref{chV-5-6-1}. In this situation, \ref{chV-5-21} gives a simplicial approximation
+        \begin{equation*}
+            \begin{tikzcd}
+                \sd^k \sd_{\op} \sd \sd_{\op} A \arrow[d] \arrow[r, "\varphi \lambda \varphi \lambda^k"] & A \arrow[r, "f_0"] & Y \\
+                \sd^k \sd_{\op} \sd \sd_{\op} X \arrow[urr, "f'"']
+            \end{tikzcd}
+        \end{equation*}
+        Compose this approximation with the canonical map $\rho^{\infty} \colon K \to \Ex^{\infty} Y$. Since $A \to X$ is a cofibration and $\Ex^{\infty} Y$ is Kan, there exists by \ref{chV-5-20} a map
+        \begin{equation*}
+            f \,\colon \sd^{k+3} X \to \Ex^{\infty} Y
+        \end{equation*}
+        such that $f$ is simplicially homotopic to $\sd^{k+3} X \cong \sd^k \sd_{\op} \sd \sd_{\op} X \xrightarrow{\rho^{\infty} \circ f} \Ex^{\infty} Y$ and extends $\rho^{\infty} f_0 \lambda^{k+3}$.\\
+        As $X$ is assumed finite, $\sd^{k+3} X$ is also finite, so the approximation factors through some $\Ex^n Y$. Adjoining to a map $\sd^{k+n+3} X \to Y$ yields the desired approximation.\hfill$\Box$
