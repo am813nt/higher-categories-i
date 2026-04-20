@@ -1,0 +1,104 @@
+\chapter{Categorical Homotopy Theory}
+\section{Basic definitions}\label{chVI-1}
+    Our discussion of simplicial homotopy theory in the previous chapter was essentially concerned with studying the interplay between the notions of \emph{fibration}, \emph{cofibration} and \emph{weak equivalence} on simplicial sets. In fact, we had three notions of fibration, but let us concentrate on Kan fibrations.\\
+    The tools we used to get a grip on things were essentially the following:
+    \begin{enumerate}[label=\roman*)]
+        \item 
+            the notion of a \emph{saturated set} (\ref{chV-2-4});
+        \item 
+            the \emph{small object argument} (\ref{chV-2-30});
+        \item 
+            the long exact sequence of a fibration and the analogue of Whitehead's theorem (\ref{chV-3-8} and \ref{chV-3-11});
+        \item 
+            the extension functor $\Ex^{\infty} (\ref{chV-4-1})$.
+    \end{enumerate}
+    Here is an attempt at illustrating the main relations we established between these notions:
+    \begin{equation*}
+        TODO
+    \end{equation*}
+
+    Note in addition that the implications labeled with $\Ex^{\infty}$ can be shown to hold for maps between Kan complexes without using $\Ex^{\infty}$.\\
+
+    We have not shown yet that weak equivalences induce equivalences on mapping spaces if the target is a Kan complex:
+
+    \subsection{Lemma}\label{chVI-1-1}
+        Let $f \colon X \to Y$ be a weak equivalence of simplicial sets. Then for every Kan complex $K$, the natural map
+        \begin{equation*}
+            f^{*} \,\colon F(Y, K) \to F(X, K)
+        \end{equation*}
+        is a homotopy equivalence.
+        \smallskip
+
+        \emph{Proof}. By \ref{chV-3-11}, it suffices to check that $f^{*}$ induces a bijection on $\pi_0$ and isomorphisms on all $\pi_n$ for $n \geq 1$. The map is a bijection on $\pi_0$ by assumption. By the small object argument (\ref{chV-2-30}), there exists a Kan fibration $p \colon P \to K$ such tht $P$ is contractible. Let $G$ be the fibre of $p$ over any vertex of $K$. Then the long exact sequence of $p$ (\ref{chV-3-8}) implies that $\pi_{n+1}(F(X, K)) \cong \pi_n(F(X, G))$, so $f^{*}$ induces isomorphisms on $\pi_1$. Iterating this argument yields the analogous statement for all $n \geq 1$.\hfill$\Box$
+        \medskip
+
+        For quasicategories, we will try to develop a similar picture as far as it is possible to develop a parallel theory. Note that the mere possibility of defining analogous, but different concepts is very specific to the setting of simplicial sets. We originally decided, drawing on our intuition from topological spaces, to base our ``homotopy theory'' on lifting properties with respect to various cylinder inclusions. Then we observed that these lifting properties can equivalently be described in terms of horn inclusions. The theory of quasicategories is entirely based on horn inclusions; there is no description of quasicategories in terms of filling conditions for cylinders.\\
+        One of the key points in simplicial homotopy theory was the fact that all notions behave very reasonably on simplicial sets for which the projection to $\Delta^0$ is a Kan fibration. Since quasicategories are defined by requiring the existence of inner horn fillers, there is a very natural notion of fibration to consider:
+
+    \subsection{Definition}\label{chVI-1-2}
+        Let $I H$ denote the set of \emph{inner horn inclusions}:
+        \begin{equation*}
+            I H \coloneq \{ \horn{n}{k} \to \Delta^n \mid 0 < k < n \} 
+        \end{equation*}
+
+    \subsection{Definition}\label{chVI-1-3}
+        An \emph{inner fibration} is a map of simplicial sets which has the RLP with respect to $I H$.
+
+    \subsection{Definition}\label{chVI-1-4}
+        A map is \emph{inner anodyne} if it lies in $\sat(I H)$.
+
+    \subsection{Corollary}\label{chVI-1-5}
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                A map is an inner fibration if and only if it has the RLP with respect to all inner anodyne maps.\label{chVI-1-5-1}
+            \item 
+                A map is inner anodyne if and only if it has the LLP with respect to all inner fibrations.\label{chVI-1-5-2}
+        \end{enumerate}
+        \smallskip
+
+        \emph{Proof}. \ref{chVI-1-5-1} is clear from \ref{chV-2-2}. Every inner anodyne map has the LLP with respect to inner fibrations by \ref{chV-2-2}, and the converse of \ref{chVI-1-5-2} is provided by \ref{chV-2-31}.\hfill$\Box$
+        \medskip
+
+        Despite our best efforts to come up with a notion of cofibration which is analogous to the three different notions of fibration we had before (left, right and Kan), we ended up with the same class of morphisms, namely the injections. Since we do not have any better idea what we should do now (and since homotopy extension properties do not make any sense in the absence of cylinders), we will stick to this notion of cofibration.\\
+        Defining a notion of weak equivalence was already a somewhat subtle point in the previous chapter. For maps between quasicategories, we discussed a notion of equivalence in Chapter IV; at the moment, there is no reasonable guess what a notion of “categorical equivalence” might be for arbitrary simplicial sets.
+
+    \subsection{Definition}\label{chVI-1-6}
+        A functor $F \colon \Cc \to \Dd$ is a \emph{Joyal equivalence} if there exist a functor $G \colon \Dd \to \Cc$ and natural equivalences $GF \sim \id_{\Cc}$ and $FG \sim \id_{\Dd}$.
+
+    \subsection{Remark}\label{chVI-1-7}
+        Note that, the way we have defined natural equivalences, there is no ambiguity about the directionality of the natural equivalences $GF \sim \id_{\Cc}$ and $FG \sim \id_{\Dd}$ since natural equivalences can always be inverted.
+
+\section{Inner anodyne maps}\label{chVI-2}
+    As with anodyne maps, we need a better understanding of the class of inner anodynes to get things going. In the following, we use the shorthand notation $S \boxtimes T$ for two classes of morphisms $S$ and $T$ to mean
+    \begin{equation*}
+        S \boxtimes T \coloneq \{ s \boxtimes t \mid s \in S, \; t \in T \} \,.
+    \end{equation*}
+
+    \subsection{Lemma}\label{chVI-2-1}
+        Every inner horn inclusion $\horn{n}{k} \to \Delta^n$ (i.e. $0 < k <n$) is a retract of $(\horn{n}{k} \to \Delta^n) \boxtimes (\horn{2}{1} \to \Delta^2)$.
+        \smallskip
+
+        \emph{Proof}. Define maps of posets
+        \begin{align*}
+            s \,\colon [n] &\to [n] \times [2] \\
+            i &\mapsto
+            \begin{cases}
+                (i, 0) & i < k \\
+                (i, 1) & i = k \\
+                (i, 2) & i > k
+            \end{cases}
+        \end{align*}
+        and
+        \begin{align*}
+            r \,\colon [n] \times [2] &\to [n]\\
+            (i, j) &\mapsto
+            \begin{cases}
+                i & i < k, \, j = 0 \\
+                i & i > k, \, j = 2 \\
+                k & \text{else}
+            \end{cases}
+        \end{align*}
+        Evidently, $rs = \id_{[n]}$. We need to check that $s$ and $r$ restrict appropriately on nerves. Observer that a simplex $\alpha \colon [p] \to [n]$ lies in $\horn{n}{k}$ if and only if $[n] \setminus \{k\} \nsubseteq \im \alpha$.\\
+        Note that the composition of $s$ with the projection $\pr \colon [n] \times [2] \to [n]$ onto the first factor is also the identity. Hence, $\pr s \alpha$ lies in $\horn{n}{k}$, so $s \alpha$ is in $\horn{n}{k} \times \Delta^2$.\\
+        Let $\alpha \colon [p] \to [n] \times [2]$ represent a simplex in $\horn{n}{k} \times \Delta^2$, i.e. $[n] \setminus \{k\} \nsubseteq \im (\pr \alpha)$. Then there exists $i \ne k$ such that $i \notin \im(\pr \alpha)$. Since $i \ne k$, the preimage of $i$ under $r$ consists of precisely one point, namely either $(i, 0)$ for $i < k$ or $(i, 2)$ for $i > k$. Since $i \notin \im(\pr \alpha)$, we have $\im(\alpha) \cap r^{-1}(i) = \varnothing$ and thus $i \notin \im(r \alpha)$. Hence $r \alpha$ defines a simplex in $\horn{n}{k}$.\\
+        If $\alpha \colon [p] \to [n] \times [2]$ represents s simplex in $\Delta^n \times \horn{2}{1}$, then there exists $j \in \{0, 2\}$ such that $j \notin \im(\pr' \alpha)$, where $\pr' \colon [n] \times [2] \to [2]$ is the projection onto the second factor. Then it follows from the definition of $r$ that $\im(r \alpha)$ contains either no $i < k$ (if $j = 0$) or no $i > k$ (if $j = 1$). Since $0 < k < n$, both the sets $\{ i \mid 0 \leq i < k \}$ and $\{ i \mid k < i < \leq n \}$ are non-empty, so there exists some $i \ne k$ with $i \notin \im(r \alpha)$.\hfill$\Box$
