@@ -102,3 +102,215 @@
         Note that the composition of $s$ with the projection $\pr \colon [n] \times [2] \to [n]$ onto the first factor is also the identity. Hence, $\pr s \alpha$ lies in $\horn{n}{k}$, so $s \alpha$ is in $\horn{n}{k} \times \Delta^2$.\\
         Let $\alpha \colon [p] \to [n] \times [2]$ represent a simplex in $\horn{n}{k} \times \Delta^2$, i.e. $[n] \setminus \{k\} \nsubseteq \im (\pr \alpha)$. Then there exists $i \ne k$ such that $i \notin \im(\pr \alpha)$. Since $i \ne k$, the preimage of $i$ under $r$ consists of precisely one point, namely either $(i, 0)$ for $i < k$ or $(i, 2)$ for $i > k$. Since $i \notin \im(\pr \alpha)$, we have $\im(\alpha) \cap r^{-1}(i) = \varnothing$ and thus $i \notin \im(r \alpha)$. Hence $r \alpha$ defines a simplex in $\horn{n}{k}$.\\
         If $\alpha \colon [p] \to [n] \times [2]$ represents s simplex in $\Delta^n \times \horn{2}{1}$, then there exists $j \in \{0, 2\}$ such that $j \notin \im(\pr' \alpha)$, where $\pr' \colon [n] \times [2] \to [2]$ is the projection onto the second factor. Then it follows from the definition of $r$ that $\im(r \alpha)$ contains either no $i < k$ (if $j = 0$) or no $i > k$ (if $j = 1$). Since $0 < k < n$, both the sets $\{ i \mid 0 \leq i < k \}$ and $\{ i \mid k < i < \leq n \}$ are non-empty, so there exists some $i \ne k$ with $i \notin \im(r \alpha)$.\hfill$\Box$
+
+    \subsection{Proposition}\label{chVI-2-2}
+        The following classes of morphisms generate the same saturated class:
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                $I H$;
+            \item 
+                $B \boxtimes \{ \horn{2}{1} \to \Delta^2 \}$;
+            \item 
+                $I \boxtimes \{ \horn{2}{1} \to \Delta^2 \}$;
+            \item 
+                $I \boxtimes I H$.
+        \end{enumerate}
+        \smallskip
+
+        \emph{Proof}. Obviously,
+        \begin{equation*}
+            \sat(B \boxtimes \{ \horn{2}{1} \to \Delta^2 \}) \subseteq \sat(I \boxtimes \{ \horn{2}{1} \to \Delta^2 \}) \subseteq \sat(I \boxtimes I H) \,.
+        \end{equation*}
+        The inclusion
+        \begin{equation*}
+            I \boxtimes \{ \horn{2}{1} \to \Delta^2 \} \subseteq \sat(B \boxtimes \{ \horn{2}{1} \to \Delta^2 \})
+        \end{equation*}
+        follows as in \ref{chV-2-9} by considering the relative skeletal filtration of an injection.\\
+        Let $i$ be an arbitrary injection. By \ref{chVI-2-1}, the map $i \boxtimes (\horn{n}{k} \to \Delta^n)$ is a retract of
+        \begin{equation*}
+            i \boxtimes ((\horn{n}{k} \to \Delta^n) \boxtimes (\horn{2}{1} \to \Delta^2)) \cong (i \boxtimes (\horn{n}{k} \to \Delta^n)) \boxtimes (\horn{2}{1} \to \Delta^2) \,.
+        \end{equation*}
+        Since $i \boxtimes (\horn{n}{k} \to \Delta^n)$ is an injection, this shows
+        \begin{equation*}
+            I \boxtimes I H \subseteq \sat(I \boxtimes (\horn{2}{1} \to \Delta^2)) \,.
+        \end{equation*}
+        Also by \ref{chVI-2-1}, $I H$ is contained in the saturation of $I \boxtimes \{\horn{2}{1} \to \Delta^2\}$.\\
+        So the only thing left to show is that $(\partial \Delta^n \to \Delta^n) \boxtimes (\horn{2}{1} \to \Delta^2)$ is contained in the saturation of $I H$. We do this by explicit horn-filling.\\
+        For $n = 0$, note that
+        \begin{equation*}
+            (\partial \Delta^n \to \Delta^n) \boxtimes (\horn{2}{1} \to \Delta^2) \cong (\horn{2}{1} \to \Delta^2) \,,
+        \end{equation*}
+        so we may assume $n > 0$.\\
+        The simplicial set $\Delta^n \times \Delta^2$ is the nerve of the poset $[n] \times [2]$, so non-degenerate simplices are given by injective maps $[p] \to [n] \times [2]$. For $p < n$, the composition of any map $\alpha \colon [n] \times [2]$ with the projection $\pr \colon [n] \times [2] \to [n]$ cannot be surjective, so such a simplex is contained in $\partial \Delta^n \times \Delta^2$. In particular, $(\partial \Delta^n \times \Delta^2) \underset{\partial \Delta^n \times \horn{2}{1}}{\cup} (\Delta^n \times \horn{2}{1})$ is only missing $n$-simplices, $(n+1)$-simplices and $(n+2)$-simplices. Moreover, all $(n+2)$-simplices are missing.\\
+        Any injective map $[n + 2] \to [n] \times [2]$ is uniquely determined by the two indices at which its value jumps in the second coordinate. Hence we can enumerate all non-degenerate $(n + 2)$-simplices in $\Delta^n \times \Delta^2$ as $(\tau_{i,j})_{o \leq i \leq j \leq n}$, where we set
+        \begin{equation*}
+            \tau_{i j}(k) \coloneq
+            \begin{cases}
+                (k, 0) & 0 \leq k \leq i \\
+                (k - 1, 1) & i + 1 \leq k \leq j + 1 \\
+                (k - 2, 2) & j + 2 \leq k \leq n + 2
+            \end{cases}
+        \end{equation*}
+        To glue these simplices in, we need to understand their face structure:
+        \begin{enumerate}[label=\arabic*)]
+            \item 
+                For $l \notin \{i, i + 1, j + 1, j + 2\}$, $\pr \circ d_l \tau_{i j}$ is not surjective, So $d_l \tau_{i j} \in \partial \Delta^n \times \Delta^2$.\label{chVI-2-2-1}
+            \item 
+                The simplex $d_{j+2} \tau_{i j}$ is given by
+                \begin{equation*}
+                    k \mapsto
+                    \begin{cases}
+                        (k, 0) & 0 \leq k \leq i \\
+                        (k - 1, 1) & i + 1 \leq k \leq j + 1 \\
+                        (k - 1, 2) & j + 2 \leq k \leq n + 1
+                    \end{cases}
+                \end{equation*}
+                Call this simplex $\sigma_{i j}$. It is defined for $0 \leq i \leq j < n$, and it is a non-degenerate $(n+1)$-simplex in $\Delta^n \times \Delta^2$. Since both $\pr \circ \sigma_{i j}$ and $\pr' \circ \sigma_{i j}$ are surjective, where $\pr' \colon [n] \times [2] \to [2]$ is the projection onto the second coordinate, none of these simplices is contained in $\partial ]Delta^n \times \Delta^2 \underset{\partial \Delta^n \times \horn{2}{1}}{\cup} (\Delta^n \times \horn{2}{1})$.\label{chVI-2-2-2}
+            \item 
+                For $i < j$, the simplex $d_{j+1} \tau){i j}$ is given by
+                \begin{equation*}
+                    k \mapsto
+                    \begin{cases}
+                        (k, 0) & 0 \leq k \leq i \\
+                        (k - 1, 1) & i + 1 \leq k \leq j \\
+                        (k - 1, 2) & j + 1 \leq k \leq n + 1
+                    \end{cases}
+                \end{equation*}
+                So $d_{j+1} \tau_{i j} = \sigma_{i, j-1}$.\label{chVI-2-2-3}
+            \item 
+                If $i = 0$, then $0 \notin \pr' \circ d_i \tau_{i j}$, so $d_i \tau_{i j} \in \Delta^n \times \horn{2}{1}$.\label{chVI-2-2-4}
+            \item 
+                If $i > 0$, then $d_i \tau_{i j}$ is given by
+                \begin{equation*}
+                    k \mapsto
+                    \begin{cases}
+                        (k, 0) & 0 \leq k < i \\
+                        (k, 1) & i \leq k \leq j \\
+                        (k - 1, 2) & j + 1 \leq k \leq n + 1
+                    \end{cases}
+                \end{equation*}
+                so $d_i \tau_{i j} = d_i \tau_{i-1, j}$.\label{chVI-2-2-5}
+        \end{enumerate}
+        The remaining face $d_{i+1} \tau_{i j}$ is given by
+        \begin{equation*}
+            k \mapsto
+            \begin{cases}
+                (k, 0) & 0 \leq k \leq i \\
+                (k, 1) & i + 1 \leq k \leq j \\
+                (k - 1, 2) & j + 1 \leq k \leq n + 1
+            \end{cases}
+        \end{equation*}
+        This entails:
+        \begin{enumerate}[label=\arabic*)]
+            \setcounter{enumi}{5}
+            \item 
+                For $k < i$, $d_{i+1} \tau_{i j}$ is not a face of $\tau_{k j}$ for any $k < i$: this holds since $(i, 0) \in \im(d_{i+1} \tau_{ij})$, but $(i, 0) \notin \im(\tau_{k j})$.\label{chVI-2-2-6}
+            \item 
+                For $l < j$, $d_{i+1} \tau_{i j}$ is not a face of $\tau_{k l}$: this holds since $(j, 1) \in \im(d_{i+1} \tau_{i j})$, but $(j, 1) \notin \im(\tau_{k l})$.\label{chVI-2-2-7}
+        \end{enumerate}
+        The collection of $(n+1)$-simplices $(\sigma_{i j})_{0 \leq i \leq \j < n}$ naturally appeared as faces of the $\tau_{i j}$, so let us understand their face structure next:
+        \begin{enumerate}[label=\arabic*)]
+            \setcounter{enumi}{7}  
+            \item 
+                For $l \notin \{ i, i + 1 \}$, $\pr \circ d_l \sigma_{i j}$ is not surjective, so $d_l \sigma_{i j} \in \partial \Delta^n \times \Delta^2$.\label{chVI-2-2-8}
+            \item 
+                If $i = 0$, then $0 \notin \im(\pr \circ d_i \sigma_{i j})$, so $d_0 \sigma_{0 j} \in \partial \Delta^n \times \Delta^2$.\label{chVI-2-2-9}
+            \item 
+                If $i > 0$, the face $d_i \sigma_{i j}$ is given by
+                \begin{equation*}
+                    k \mapsto
+                    \begin{cases}
+                        (k, 0) & 0 \leq k < i \\
+                        (k, 1) & i \leq k \leq j \\
+                        (k, 2) & j + 1 \leq k \leq n
+                    \end{cases}
+                \end{equation*}
+                so $d_i \sigma_{i j} = d_i \sigma_{i-1, j}$.\label{chVI-2-2-10}  
+        \end{enumerate}
+        Once more, the interesting remaining face is $d_{i+1} \sigma_{i j}$. This face is given by
+        \begin{equation*}
+            k \mapsto
+            \begin{cases}
+                (k, 0) & 0 \leq k \leq i \\
+                (k, 1) & i + 1 \leq k \leq j \\
+                (k, 2) & j + 1 \leq k \leq n
+            \end{cases}
+        \end{equation*}
+        Observe the following:
+        \begin{enumerate}[label=\arabic*)]
+            \setcounter{enumi}{10}
+            \item 
+                $d_{i+1} \sigma_{i j} \notin (\partial \Delta^n \times \Delta^2) \underset{\partial \Delta^n \times \horn{2}{1}}{\cup} (\Delta^n \times \horn{2}{1})$: this holds since $\{ 0, 2 \} \subseteq \im(\pr' \circ d_{i+1} \sigma_{i j})$ and $\pr \circ d_{i+1} \sigma_{i j}$ is surjective.\label{chVI-2-2-11}
+            \item 
+                For $k < i$ and $l \leq j$, $d_{i+1} \sigma_{i j}$ is not a face of $\sigma_{k l}$: this holds since $(i, 0) \in \im(d_{i+1} \sigma_{i j})$ and $(i, 0) \notin \im(\sigma_{k l})$.\label{chVI-2-2-12}
+            \item 
+                For $l < j$, $d_{i+1} \sigma_{i j}$ is not a face of $\sigma_{k l}$: if $i < j$, then $(j, 1) \in \im(d_{i+1} \sigma_{i j})$, but $(j, 1) \notin \im(\sigma_{k l})$. If $i = j$, then $k \leq l < j = i$, so \ref{chVI-2-2-12} applies.\label{chVI-2-2-13} 
+        \end{enumerate}
+        Now we only need to assemble the information we have gathered. Define $X(0, 0) \coloneq (\partial \Delta^n \times \Delta^2) \underset{\partial \Delta^n}{\cup} (\Delta^n \times \horn{2}{1})$. Proceeding by induction, we build simplicial subsets of $\Delta^n \times \Delta^2$ by letting $X(i + 1, j)$ be given by the pushout
+        \begin{equation*}
+            \begin{tikzcd}
+                \horn{n+1}{i+1} \arrow[d] \arrow[r, "{\sigma_{i j}|}_{\ldots}"] & X(i, j) \arrow[d] \\
+                \Delta^{n+1} \arrow[r, "\sigma_{i j}"] & X(i + 1, j)
+            \end{tikzcd}
+        \end{equation*}
+        for $0 \leq i \leq j < n$ and setting $X(0, j + 1) \coloneq X(j + 1, j)$. We have to check that the pushout squares above actually exist as claimed:
+        \begin{itemize}
+            \item 
+                For the start of induction, \ref{chVI-2-2-8} and \ref{chVI-2-2-9} imply that $\sigma_{0 0}$ induces a map $\horn{n+1}{1} \to X(0, 0)$. \ref{chVI-2-2-11} shows that $\sigma_{0 0}$ induces an injective map $X(1, 0) \to \Delta^n \times \Delta^2$.
+            \item 
+                For $i = 0$ and $j \geq 1$, \ref{chVI-2-2-8} and \ref{chVI-2-2-9} imply that $\sigma_{0 j}$ induces a map $\horn{n+1}{1} \to X(0, j)$. \ref{chVI-2-2-11} and \ref{chVI-2-2-13} show that $\sigma_{0 j}$ induces an injective map $X(1, j) \to \Delta^n \times \Delta^2$.
+            \item 
+                For $i \geq 1$ and $j \geq 1$, \ref{chVI-2-2-8} and \ref{chVI-2-2-10} imply that $\sigma_{i j}$ induces a map $\horn{n+1}{1} \to X(i, j)$. \ref{chVI-2-2-11}, \ref{chVI-2-2-12} and \ref{chVI-2-2-13} show that $\sigma_{i j}$ induces an injective map $X(i + 1, j) \to \Delta^n \times \Delta^2$.
+        \end{itemize}
+        Observe that $X(i, j) \to X(i + 1, j)$ is inner anodyne. Thus, so is $X(0, j) \to X(0, j + 1)$ and therefore $X(0, 0) \to X(0, n)$. Set $Y(0, 0) \coloneq X(0, n)$.\\
+        Then we do a second induction to define for $i \leq j \leq n$ the simplicial subset $Y(i + 1, j)$ by a pushout
+        \begin{equation*}
+            \begin{tikzcd}
+                \horn{n+2}{i+1} \arrow[d] \arrow[r, "{\tau_{i j}|}_{\ldots}"] & Y(i, j) \arrow[d] \\
+                \Delta^{n+2} \arrow[r, "\tau_{i j}"] & Y(i + 1, j)
+            \end{tikzcd}
+        \end{equation*}
+        and by defining $Y(0, j + 1) \coloneq Y(j + 1, j)$. Again, we have to check that the pushout squares above actually exist as claimed:
+        \begin{itemize}
+            \item 
+                For the start of the induction, \ref{chVI-2-2-1}, \ref{chVI-2-2-2} and \ref{chVI-2-2-4} show that $\tau_{0 0}$ induces a map $\horn{n+1}{i+1} \to Y(0, 0)$. By the formula for $d_1 \tau_{0 0}$, one observes that $\im(d_1 \tau_{0 0}) = \{0, 2\}$, and none of the $(n+1)$-simplices in $Y(0, 0)$ has this property. So the pushout $Y(1, 0)$ is in fact a simplicial subset of $\Delta^n \times \Delta^2$.
+            \item 
+                For $i = 0$ and $j \geq 1$, \ref{chVI-2-2-1}, \ref{chVI-2-2-2}, \ref{chVI-2-2-3} and \ref{chVI-2-2-4} imply that $\tau_{i j}$ induces a map $\horn{n+1}{i+1} \to Y(0, j)$. The remaining face $d_1 \tau_{0 j}$ is not of the form $\sigma_{k l}$, and by \ref{chVI-2-2-6} and \ref{chVI-2-2-7} it is also not a face if any of the preceding $\tau_{k l}$. So $Y(1, j)$ is a simplicial subset of $\Delta^n \times \Delta^2$.
+            \item 
+                For $i, j \geq 1$, \ref{chVI-2-2-1}, \ref{chVI-2-2-2}, \ref{chVI-2-2-3} and \ref{chVI-2-2-5} imply that $\tau_{i j}$ induces a map $\horn{n+1}{i+1} \to Y(i, j)$. The remaining face $d_{i+1} \tau_{i j}$ is not of the form $\sigma_{k l}$, and by \ref{chVI-2-2-6} and \ref{chVI-2-2-7} it is also not a face of any of the preceding $\tau_{k l}$. So $Y(i + 1, j)$ is a simplicial subset of $\Delta^n \times \Delta^2$.
+        \end{itemize}
+        All the inclusions $Y(i, j) \to Y(i + 1, j)$ are inner anodyne by definition, and therefore so is $Y(0, 0) \to Y(0, n + 1)$. Since $Y(0, n + 1)$ contains all non-degenerate $(n + 2)$-simplices of $\Delta^n \times \Delta^2$, we have $Y(0, n + 1) = \Delta^n \times \Delta^2$. Consequently, the inclusion $(\partial \Delta^n \times \Delta^2) \underset{\partial \delta^n \times \horn{2}{1}}{\cup} (\Delta^n \times \horn{2}{1}) = X(0, 0) \to X(0, n) = Y(0, 0) \to Y(0, n + 1) = \Delta^n \times \Delta^2$ is inner anodyne as claimed.\hfill$\Box$
+
+    \subsection{Corollary}\label{chVI-2-3}
+        Let $i$ be an inner anodyne morphism and $j$ a cofibration. Then $i \boxtimes j$ is inner anodyne.
+        \smallskip
+
+        \emph{Proof}. The class
+        \begin{equation*}
+            \Sigma \coloneq \{ i \mid \i \boxtimes j \text{ inner anodyne} \}
+        \end{equation*}
+        is saturated by Exercise 3 on Sheet 7. Hence, it suffices to check that $I H \subseteq \Sigma$. This is true by \ref{chVI-2-2}.\hfill$\Box$
+
+    \subsection{Corollary}\label{chVI-2-4}
+        Let $i \colon A \to B$ be a cofibration and let $p \colon X \to Y$ be an inner fibration. Then induced map
+        \begin{equation*}
+            F(B, X) \to F(A, X) \underset{F(A, Y)}{\times} F(B, Y)
+        \end{equation*}
+        is an inner fibration. If $i$ is inner anodyne, this map is a trivial Kan fibration.
+        \smallskip
+
+        \emph{Proof}. As usual, every lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                U \arrow[d, "j"'] \arrow[r] & F(B, X) \arrow[d] \\
+                V \arrow[r] & F(A, X) \underset{F(A, Y)}{\times} F(B, Y)
+            \end{tikzcd}
+        \end{equation*}
+        translates to a lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                (U \times B) \underset{U \times A}{\cup} (V \times A) \arrow[d, "i \,\boxtimes\, j"'] \arrow[r] & X \arrow[d] \\
+                V \times B \arrow[r] & Y
+            \end{tikzcd}
+        \end{equation*}
+        If $i$ or $j$ is inner anodyne, then $i \boxtimes j$ is inner anodyne by \ref{chVI-2-3}. This implies the corollary.\hfill$\Box$
