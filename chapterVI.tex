@@ -165,9 +165,9 @@
                         (k - 1, 2) & j + 2 \leq k \leq n + 1
                     \end{cases}
                 \end{equation*}
-                Call this simplex $\sigma_{i j}$. It is defined for $0 \leq i \leq j < n$, and it is a non-degenerate $(n+1)$-simplex in $\Delta^n \times \Delta^2$. Since both $\pr \circ \sigma_{i j}$ and $\pr' \circ \sigma_{i j}$ are surjective, where $\pr' \colon [n] \times [2] \to [2]$ is the projection onto the second coordinate, none of these simplices is contained in $\partial ]Delta^n \times \Delta^2 \underset{\partial \Delta^n \times \horn{2}{1}}{\cup} (\Delta^n \times \horn{2}{1})$.\label{chVI-2-2-2}
+                Call this simplex $\sigma_{i j}$. It is defined for $0 \leq i \leq j < n$, and it is a non-degenerate $(n+1)$-simplex in $\Delta^n \times \Delta^2$. Since both $\pr \circ \sigma_{i j}$ and $\pr' \circ \sigma_{i j}$ are surjective, where $\pr' \colon [n] \times [2] \to [2]$ is the projection onto the second coordinate, none of these simplices is contained in $\partial \Delta^n \times \Delta^2 \underset{\partial \Delta^n \times \horn{2}{1}}{\cup} (\Delta^n \times \horn{2}{1})$.\label{chVI-2-2-2}
             \item 
-                For $i < j$, the simplex $d_{j+1} \tau){i j}$ is given by
+                For $i < j$, the simplex $d_{j+1} \tau_{i j}$ is given by
                 \begin{equation*}
                     k \mapsto
                     \begin{cases}
@@ -208,7 +208,7 @@
             \item 
                 For $l < j$, $d_{i+1} \tau_{i j}$ is not a face of $\tau_{k l}$: this holds since $(j, 1) \in \im(d_{i+1} \tau_{i j})$, but $(j, 1) \notin \im(\tau_{k l})$.\label{chVI-2-2-7}
         \end{enumerate}
-        The collection of $(n+1)$-simplices $(\sigma_{i j})_{0 \leq i \leq \j < n}$ naturally appeared as faces of the $\tau_{i j}$, so let us understand their face structure next:
+        The collection of $(n+1)$-simplices $(\sigma_{i j})_{0 \leq i \leq j < n}$ naturally appeared as faces of the $\tau_{i j}$, so let us understand their face structure next:
         \begin{enumerate}[label=\arabic*)]
             \setcounter{enumi}{7}  
             \item 
@@ -287,7 +287,7 @@
 
         \emph{Proof}. The class
         \begin{equation*}
-            \Sigma \coloneq \{ i \mid \i \boxtimes j \text{ inner anodyne} \}
+            \Sigma \coloneq \{ i \mid i \boxtimes j \text{ inner anodyne} \}
         \end{equation*}
         is saturated by Exercise 3 on Sheet 7. Hence, it suffices to check that $I H \subseteq \Sigma$. This is true by \ref{chVI-2-2}.\hfill$\Box$
 
@@ -314,3 +314,261 @@
             \end{tikzcd}
         \end{equation*}
         If $i$ or $j$ is inner anodyne, then $i \boxtimes j$ is inner anodyne by \ref{chVI-2-3}. This implies the corollary.\hfill$\Box$
+
+    \subsection{Corollary}\label{chVI-2-5}
+        A simplicial set $\Cc$ is a quasicategory if and only if the restriction map $F(\Delta^2, \Cc) \to F(\horn{2}{1}, \Cc)$ is a trivial Kan fibration.
+        \smallskip
+
+        \emph{Proof}. Suppose that $\Cc$ is a quasicategory, i.e. $\Cc \to \Delta^0$ is an inner fibration. Since $\horn{2}{1} \to \Delta^2$ is inner anodyne, it follows from \ref{chVI-2-4} that $F(\Delta^2, \Cc) \to F(\horn{2}{1}, \Cc)$ is a trivial Kan fibration.\\
+        Conversely, \ref{chVI-2-2} implies that it suffices to show that $\Cc \to \Delta^0$ has the RLP with respect to $I \boxtimes \{\horn{2}{1} \to \Delta^2\}$. Let $i \colon A \to B$ be a cofibration. Since every lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                (A \times \Delta^2) \underset{A \times \horn{2}{1}}{\cup} (B \times \horn{2}{1}) \arrow[d, "{i \,\boxtimes\, (\horn{2}{1} \to \Delta^2)}"'] \arrow[r] & \Cc \arrow[d] \\
+                B \times \Delta^2 \arrow[r] & \Delta^0
+            \end{tikzcd}
+        \end{equation*}
+        corresponds to a lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                A \arrow[d, "i"'] \arrow[r] & F(\Delta^2, \Cc) \arrow[d] \\
+                B \arrow[r] & F(\horn{2}{1}, \Cc)
+            \end{tikzcd}
+        \end{equation*}
+        a solution exists by assumption.\hfill$\Box$
+
+    \subsection{Corollary (Theorem B)}\label{chVI-2-6}
+        Let $f \colon y \to z$ and $g \colon x \to y$ be edges in a quasicategory $\Cc$. Then $\comp(f, g) \coloneq \Delta^0 \underset{F(\horn{2}{1}, \Cc)}{\times} F(\Delta^2, \Cc)$ is a contractible Kan complex.
+        \smallskip
+
+        \emph{Proof}. This is immediate from \ref{chVI-2-4} and \ref{chV-3-18}.\hfill$\Box$
+
+    \subsection{Remark}\label{chVI-2-7}
+        \ref{chVI-2-4} also implies that the ``mapping space''
+        \begin{equation*}
+            \Hom_{\Cc}(x, y) = \Delta^0 \underset{\Cc \times \Cc}{\times} F(\Delta^1, \Cc)
+        \end{equation*}
+        between any two objects $x, y$ in a quasicategory $\Cc$ is itself a quasicategory (because $\partial \Delta^1 \to \Delta^1$ is a cofibration). Of course, this is still quite a bit away from the statement of Theorem A (claiming that it is a Kan complex).
+
+    \subsection{Corollary [Theorem D, first part]}\label{chVI-2-8}
+        If $\Cc$ is a quasicategory and $X$ is a simplicial set, then $F(X, \Cc)$ is also a quasicategory.
+        \smallskip
+
+        \emph{Proof}. Apply \ref{chVI-2-4} with $i = \varnothing \to X$ and $p \colon \Cc \to \Delta^0$.\hfill$\Box$
+        \medskip
+
+        As a consequence of \ref{chVI-2-8}, we will prefer to write $\Fun(X, \Cc)$ instead of $F(X, \Cc)$ if $\Cc$ is a quasicategory.\\
+        \ref{chVI-2-8} puts us in a position where we can finally define what a ``categorical equivalence'' between arbitrary simplicial sets is.
+
+    \subsection{Definition}\label{chVI-2-9}
+        A map $f \colon X \to Y$ of simplicial sets is a \emph{Joyal equivalence} (or \emph{categorical equivalence}) if the restriction map
+        \begin{equation*}
+            \pi f^{*} \,\colon \pi \Fun(Y, \Cc) \to \pi \Fun(X, \Cc)
+        \end{equation*}
+        is an equivalence of categories for every quasicategory $\Cc$.
+
+    \subsection{Corollary}\label{chVI-2-10}
+        A map of quasicategories is a Joyal equivalence in the sense of \ref{chVI-1-6} if and only if it is a Joyal equivalence in the sense of \ref{chVI-2-9}.
+        \smallskip
+
+        \emph{Proof}. If $F \colon \Cc \to \Dd$ admits an inverse $G \colon \Dd \to \Cc$ witnessed by natural equivalences $GF \sim \id_{\Cc}$ and $FG \sim \id_{\Dd}$, then $F^{*} \colon \pi \Fun(\Dd, \Ee) \to \pi \Fun(\Cc, \Ee)$ has an evident inverse, namely $G^{*}$.\\
+        Conversely, the essential surjectivity of $\pi F^{*} \colon \pi \Fun(\Dd, \Cc) \to \pi \Fun(\Cc, \Cc)$ yields a functor $G \colon \Dd \to \Cc$ such that $GF \sim \id_{\Cc}$. Then $\pi G^{*} \colon \pi \Fun(\Cc, \Dd) \to \pi \Fun(\Dd, \Dd)$ is also an equivalence, so there exists $F' \colon \Cc \to \Dd$ such that $F'G \sim \id_{\Dd}$. It follows that $FG \sim F'GFG \sim F'G \sim \id_{\Dd}$.
+
+    \subsection{Example}\label{chVI-2-11}
+        A functor $F \colon \Cc \to \Dd$ of categories is an equivalence if and only if $N F$ is a Joyal equivalence.
+
+    \subsection{Lemma}\label{chVI-2-12}
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                A map of Kan complexes is a Joyal equivalence if and only if it  is a homotopy equivalence.\label{chVI-2-12-1}
+            \item 
+                Every trivial Kan fibration is a Joyal equivalence.\label{chVI-2-12-2}
+            \item 
+                every inner anodyne map is a Joyal equivalence.\label{chVI-2-12-3}
+            \item 
+                Every Joyal equivalence is a weak equivalence.\label{chVI-2-12-4}
+        \end{enumerate}
+        \smallskip
+
+        \emph{Proof}. Any Joyal equivalence of quasicategories is a particular kind of simplicial homotopy equivalence. Conversely, if $f \colon X \to Y$ is a homotopy equivalence, we find $g \colon Y \to X$ and homotopies $h \colon gf \simeq \id_X$ and $k \colon gf \simeq \id_Y$. Since $F(X, X)$ and $F(Y, Y)$ are Kan complexes, there are also homotopies $h' \colon \id_X \simeq gf$ and $k' \colon \id_Y \simeq gf$ such that $h$ and $h'$ compose to the constant homotopy on $gf$, and $k$ and $k'$ compose to the constant homotopy on $\id_Y$ (compositions are taken in $F(X, X)$ and $F(Y, Y)$, respectively). The diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                & gf \arrow[dr, "h"] \arrow[rr, "{s(gf)}"] & & gf \\
+                \id_X \arrow[ur, "h'"] \arrow[urrr, dotted] \arrow[rr, "{s(\id_X)}"] & & \id_X \arrow[ur, "h'"] &
+            \end{tikzcd}
+        \end{equation*}
+        in $F(X, X)$ defines a right horn: the bottom face and left face are degenerate with the dotted arrow unlabeled, the right face is the one arising from the definition of $h'$, and the front face is missing. Filling this horn shows that $h'$ and $h$ also compose to the constant homotopy on $\id_X$. The argument for $k$ and $k'$ is analogous.\\
+        Let $p \colon X \to Y$ be a trivial Kan fibration. Choose a section $s \colon Y \to X$. Then the lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                X \times \Delta^{\{0,2\}} \sqcup X \times \Delta^{\{1,3\}} \arrow[d] \arrow[r, "\pr \sqcup \pr"] & X \sqcup X \arrow[r, "\id_X \sqcup \, sp"] & X \arrow[d, "p"] \\
+                X \times \Delta^3 \arrow[r, "\pr"] & X \arrow[r, "p"] & Y
+            \end{tikzcd}
+        \end{equation*}
+        has a solution. Restricting to along the spine inclusion $X \times I_3 \to X \times \Delta^3$ yields three natural transformations $\tau_1 \colon \id_X \Rightarrow s p$, $\tau_2 \colon s p \Rightarrow \id_X$, $\tau_3 \colon \id_X \Rightarrow s p$ such that $\id_X$ is a composition of both $\tau_2$ and $\tau_1$ as well as $\tau_3$ and $\tau_2$ (in $\Fun(X, X)$). Since equivalences in a quasicategory satisfy two-out-of-six (by \ref{chIII-8}), it follows that $s p$ and $\id_X$ are naturally equivalent.\\
+        Let $i \colon A \to B$ be inner anodyne. By \ref{chVI-2-4}, the restriction map
+        \begin{equation*}
+            i^{*} \,\colon \Fun(B, \Cc) \to \Fun(A, \Cc)
+        \end{equation*}
+        is a trivial Kan fibration. The first part of the lemma shows that $i^{*}$ is a Joyal equivalence, so it follows that $\pi i^{*}$ is an equivalence of categories.\\
+        Let $f \colon X \to Y$ be a Joyal equivalence. Since Kan complexes are quasicategories, $f$ induces for every Kan complex $K$ an equivalence of categories
+        \begin{equation*}
+            \pi f^{*} \,\colon \pi F(Y, K) \to \pi F(X, K) \,.
+        \end{equation*}
+        Equivalences of categories induce bijections on the sets of connected components, so $\pi_0 f^{*}$ is a bijection.\hfill$\Box$
+
+    \subsection{Remark}\label{chVI-2-13}
+        It may seem pedantic that we gave proofs for \ref{chVI-2-12} \ref{chVI-2-12-2} and \ref{chVI-2-12-1}, but here is an example to illustrate that this is necessary: Suppose that $\Cc$ and $\Dd$ are Kan-enriched categories, and that we have functors $F \colon \Cc \to \Dd$ as well as $G \colon \Dd \to \Cc$ together with natural transformations $u \colon \id_{\Cc} \to GF$ and $c \colon FG \to \id_{\Dd}$ such that $u_x$ is a weak equivalence for every $x \in \Cc$ and $c_y$ is a weak equivalence for every $y \in \Dd$; the adjunction between $\gr{-} \colon \Kan \to \CW$ and $\Sing \colon \CW \to \Kan$ is an example of this situation.\\
+        Applying the coherent nerve, we obtain functors $N^c F, N^c G$ together with natural transformations $\id \to N^c G N^c F$ and $N^c F N^c G \to \id$ through equivalences. But this is not yet enough to conclude that $N^c F$ is a Joyal equivalence because we cannot say anything at the moment about the invertibility of the natural transformations. This would either rely on Theorem E, which we have not proved yet. or we would have to provide inverse transformation on the Kan-enriched level.
+
+\section{Joins and Slices}\label{chVI-3}
+    The next result from the list announced in Chapter III that we a going to prove is \hyperref[chIII-thm-c]{Theorem C}, but the proof requires some preparations. It relies on the formalism of \emph{slices}. To motivate their definition, consider the following situation: let $\Cc$ be a category and $f \colon x \to y$ a morphism in $\Cc$. Then one observes that $f$ is an isomorphism in $\Cc$ if and only if the forgetful functor
+    \begin{align*}
+        \Cc_{f/} \coloneq \{ \text{cones under } f \} &\to \{ \text{cones under } x \} = x / \Cc \\
+        \begin{tikzcd}[sep=tiny,ampersand replacement=\&]
+            x \arrow[dd, "f"'] \arrow[dr] \& \\
+            \& c \\
+            y \arrow[ur] \&
+        \end{tikzcd}
+        &\mapsto (x \to x)
+    \end{align*}
+    is an isomorphism of categories. The ``only if'' part is clear. If $\Cc_{f/} \to x / \Cc$ is an isomorphism, then $x \xrightarrow{\id_x} x$ has a preimage, which is a morphism $g \colon y \to x$ such that $gf = \id_x$. Since
+    \begin{equation*}
+        \begin{tikzcd}[sep=small]
+            & y \\
+            x \arrow[ur, "f"] \arrow[dr, "\id_x"'] \\
+            & x \arrow[uu, "f"']
+        \end{tikzcd}
+    \end{equation*}
+    is a morphism in $x / \Cc$, the pair $(\id_x, g)$ is a preimage of the dmain and $(f, \id_y)$ is a preimage of the target, it follows that $fg = \id_y$.\\
+    It will turn out that a similar statement holds for quasicategories, namely that a morphism $f$ in a quasicategory is an equivalence if and only if a certain forgetful functor $\Cc_{f/} \to \Cc_{x/}$ is a trivial Kan fibration. It will then only be a matter of decoding to see that certain outer horn fillers exist. Note that we have not yet made sense of the symbols, but they a supposed to indicate categories or appropriate cones.\\
+    In the 1-categorical situation, the following construction formalises the concept of cones:
+
+    \subsection{Definition}\label{chVI-3-1}
+        Let $\Cc$ and $\Dd$ be ordinary categories. Define their \emph{join} $\Cc \star \Dd$ as the category whose objects are $\obj \Cc \sqcup \obj \Dd$ and whose morphisms are given by
+        \begin{equation*}
+            \Hom_{\Cc \star \Dd}(x, y) \coloneq
+            \begin{cases}
+                \Hom_{\Cc}(x, y) & x, y \in \Cc \\
+                \Hom_{\Dd}(x, y) & x, y \in \Dd \\
+                \{*\} & x \in \Cc, y \in \Dd \\
+                \varnothing & x \in \Dd, y \in \Cc \,,
+            \end{cases}
+        \end{equation*}
+        together with the obvious composition rules.
+        \medskip
+
+        So the join connects each object in $\Cc$ with each object in $\Dd$ via unique morphism. Now note that objects in $\Cc_{f/}$ are given by certain diagrams $[1] \star \{c\} \to \Cc$, and morphisms in $\Cc_{f/}$ correspond to certain functors $[1] \star \{c \leq c'\} \to \Cc$. This suggests to define an $n$-simplex in the quasicategory $\Cc_{f/}$ to be a certain diagram $\Delta^1 \star \Delta^n \to \Cc$. Of course, this is in no way specific to the situation of cones under a morphism, and $\Delta^1$ can be replaced by any diagram shape. This leads us to consider joins of arbitrary simplicial sets.
+
+    \subsection{Definition}\label{chVI-3-2}
+        Define the functor cut as the representable functor
+        \begin{equation*}
+            \cut \coloneq \Hom_{\LinOrd}(-, [1]) \,\colon \LinOrd^{\op} \to \Set
+        \end{equation*}
+        Note that for $L \in \LinOrd$, there is a natural bijection
+        \begin{equation*}
+            \Hom_{\LinOrd}(L, [1]) \cong \{(L_0, L_1) \mid L_0 \cup L_1 = L,\, L_0 \cap L_1 = \varnothing,\, \forall l_0 \in L_0 \; \forall l_1 \in L_1 : l_0 < l_1 \} \,,
+        \end{equation*}
+        which explains the name of the functor.
+
+    \subsection{Definition}\label{chVI-3-3}
+        Let $c \colon [n] \to [1]$ be a cut in $[n]$. Define for $i \in \{0, 1\}$ the simplicial set $\Delta_{c,i}$ as the pullback
+        \begin{equation*}
+            \begin{tikzcd}
+                \Delta_{c,i} \arrow[d] \arrow[r] & \Delta^n \arrow[d, "c"] \\
+                \{i\} \arrow[r] & \Delta^1
+            \end{tikzcd}
+        \end{equation*}
+        Observe that $\Delta_{c,i}$ is isomorphic to a standard simplex.
+
+    \subsection{Definition}\label{chVI-3-4}
+        Let $X$ and $Y$ be simplicial sets. Define their \emph{join} as follows: for $n \geq 0$, set
+        \begin{equation*}
+            (X \star Y)_n \coloneq \coprod\limits_{c \in \cut[n]} \Hom_{\sSet}(\Delta_{c,0}, X) \times \Hom_{\sSet}(\Delta_{c,1}, Y) \,.
+        \end{equation*}
+        Given $\alpha \colon [m] to [n]$, the universal property of the pullback construction induces maps $\Delta_{c \alpha, i} \to \Delta_{c,i}$, and precomposition with these maps turns $X \star Y$ into a simplicial set.
+
+    \subsection{Remark}\label{chVI-3-5}
+        The join of two simplicial sets is slightly awkward to write down since we chose to define $\Delta$ as the category with object set $\{[n] \mid n \geq 0 \}$. Note that $\Delta$ is a skeleton of the category of all non-empty, finite linear orders $\LinOrd_{\fin}$, so
+        \begin{equation*}
+            \sSet \simeq \Fun(\LinOrd^{\op}_{\fin}, \Set) \,.
+        \end{equation*}
+        In the latter category, we could define the join of $X$ and $Y$ by
+        \begin{equation*}
+            (X \star Y)_n \coloneq \coprod\limits_{c \in \cut[n]} X(c^{-1}(0)) \times Y(c^{-1}(1)) \,.
+        \end{equation*}
+        This is not the only construction that is easier to define. With the enlarged indexing category, the functor $(-)^{\op}$ is for example simply induced by the endofunctor of $\LinOrd_{\fin}$ which reverses the ordering on each object.
+
+    \subsection{Example}\label{chVI-3-6}
+        By inspection, one observes that
+        \begin{enumerate}[label=\arabic*)]
+            \item 
+                $\Delta^0 \star \Delta^0 \cong \Delta^1$;
+            \item 
+                $X \star \varnothing \cong X$ and $\varnothing \star Y \cong Y$.
+        \end{enumerate}
+
+    \subsection{Lemma}\label{chVI-3-7}
+        The join construction defines a functor $- \star - \colon \sSet \times \sSet \to \sSet$.
+        \smallskip
+
+        \emph{Proof}. Given maps $f \colon X \to X'$ and $g \colon Y \to Y'$, composition with $f$ and $g$ induces maps
+        \begin{equation*}
+            (X \star Y)_n \to (X' \star Y')_n
+        \end{equation*}
+        for all $n$, and it is straightforward to check that these define maps of simplicial sets.\hfill$\Box$
+
+    \subsection{Corollary}\label{chVI-3-8}
+        Let $X$ and $Y$ be simplicial sets. Then $X \star -$ and $- \star Y$ factor as
+        \begin{equation*}
+            X \star - \,\colon \sSet \to X / \sSet \to \sSet \quad \text{and} \quad - \star Y \,\colon \sSet \to Y / \sSet \to \sSet \,.
+        \end{equation*}
+
+        \emph{Proof}. By \ref{chVI-3-7}, the unique map $\varnothing \to Y$ induces a map $X \cong X \star \varnothing \to X \star Y$, which defines an object in $X / \sSet$. Functoriality is obvious. The other case is analogous.\hfill$\Box$
+
+    \subsection{Lemma}\label{chVI-3-9}
+        For every map of simplicial sets $p \colon X \to \Delta^1$, there exists a factorization
+        \begin{equation*}
+            X \xrightarrow{q} X_0 \star X_1 \xrightarrow{c} \Delta^1 \,,
+        \end{equation*}
+        where $X_i = p^{-1}(\{i\})$ and $c \colon X_0 \star X_1 \to \Delta^0 \star \Delta^0 \cong \Delta^1$ is induced by the projection maps. This factorization is initial among maps
+        \begin{equation*}
+            \begin{tikzcd}
+                X \arrow[dr] \arrow[rr] & & Y \star Z \arrow[dl] \\
+                & \Delta^1 & 
+            \end{tikzcd}
+        \end{equation*}
+        such that $Y \star Z \to \Delta^1$ us induced by the projection maps to $\Delta^0$.
+        \smallskip
+
+        \emph{Proof}. We need to define $q$. Let $x \colon \Delta^n \to X$ be an $n$-simplex. Then the composition $p x$ determines a cut in $[n]$. Define
+        \begin{equation*}
+            q(x) \coloneq (\Delta_{px,0} \to \Delta^n \xrightarrow{x} X,\, \Delta_{px,1} \to \Delta^n \xrightarrow{x} X) \,.
+        \end{equation*}
+        It is straightforward to check that this defines a map of simplicial sets and that it is initial in the claimed sense.\hfill$\Box$
+
+    \subsection{Example}\label{chVI-3-10}
+        Let $\Cc$ and $\Dd$ be ordinary categories. The canonical projection $\Cc \star \Dd \to [1]$ induces by \ref{chVI-3-9} a factorization
+        \begin{equation*}
+            N(\Cc \star \Dd) \to N \Cc \star N \Dd \to \Delta^1 \,.
+        \end{equation*}
+        Since there exists an unique morphism from each object in $\Cc$ to each object in $\Dd$, it is easy to see that the first map is an isomorphism. So there is a natural isomorphism
+        \begin{equation*}
+            N(\Cc \star \Dd) \cong N \Cc \star N \Dd \,.
+        \end{equation*}
+        In particular, there are canonical isomorphisms
+        \begin{equation*}
+            \Delta^{n+m+1} \cong \Delta^n \star \Delta^m \,.
+        \end{equation*}
+
+    \subsection{Lemma}\label{chVI-3-11}
+        If $\Cc$ and $\Dd$ are quasicategories, then $\Cc \star \Dd$ is also a quasicategory.
+        \smallskip
+
+        \emph{Proof}. Let $f \colon \horn{n}{k} \to \Cc \star \Dd$ be an inner horn. If $f$ factors via one of the maps $\Cc \to \Cc \star \Dd$ or $\Dd \to \Cc \star \Dd$, the map $f$ obviously extends. Note that this is the case if and only if the composite map $\horn{n}{k} \xrightarrow{f} \Cc \star \Dd \xrightarrow{p} \Delta^1$ is constant.\\
+        So let us assume that $p f$ is not constant. Since $\Delta^1$ is the nerve of a category, $p f$ extends uniquely to a map $q \colon \Delta^n \to \Delta^1$ which we identify with a map $[n] \to [1]$. By \ref{chVI-3-9}, there is a factorization
+        \begin{equation*}
+            f \,\colon \horn{n}{k} \to L_0 \star L_1 \xrightarrow{c} \Cc \star \Dd \,.
+        \end{equation*}
+        A map $\alpha \colon [r] \to [n]$ defines a simplex in $L_0$ if and only if there exists some $i \ne k$ such that $i \notin \im(\alpha)$ and if $q \alpha$ takes the constant value $0$. Since $q$ is not constant, the latter condition implies that $n \notin \im(\alpha)$. As $n \ne k$, this automatically entails $\alpha \in \horn{n}{k}$. Consequently, $L_0 \cong \Delta^{\gr{q^{-1}(0)}}$.\\
+        Similarly, if $q \alpha$ takes the constant value $1$, then $0 \notin \im(\alpha)$ and $\alpha \in \horn{n}{k}$ since $0 \ne k$. Therefore, $L_1 \cong \Delta^{\gr{c^{-1}(1)}-1}$.\\
+        by \ref{chVI-3-10}, $L_0 \star L_1 \cong \Delta^n$, so $c$ is the desired extension of $f$.\hfill$\Box$
