@@ -347,7 +347,7 @@
         \begin{equation*}
             \Hom_{\Cc}(x, y) = \Delta^0 \underset{\Cc \times \Cc}{\times} F(\Delta^1, \Cc)
         \end{equation*}
-        between any two objects $x, y$ in a quasicategory $\Cc$ is itself a quasicategory (because $\partial \Delta^1 \to \Delta^1$ is a cofibration). Of course, this is still quite a bit away from the statement of Theorem A (claiming that it is a Kan complex).
+        between any two objects $x, y$ in a quasicategory $\Cc$ is itself a quasicategory (because $\partial \Delta^1 \to \Delta^1$ is a cofibration). Of course, this is still quite a bit away from the statement of \hyperref[chIII-4]{Theorem A} (claiming that it is a Kan complex).
 
     \subsection{Corollary [Theorem D, first part]}\label{chVI-2-8}
         If $\Cc$ is a quasicategory and $X$ is a simplicial set, then $F(X, \Cc)$ is also a quasicategory.
@@ -418,7 +418,7 @@
 
     \subsection{Remark}\label{chVI-2-13}
         It may seem pedantic that we gave proofs for \ref{chVI-2-12} \ref{chVI-2-12-2} and \ref{chVI-2-12-1}, but here is an example to illustrate that this is necessary: Suppose that $\Cc$ and $\Dd$ are Kan-enriched categories, and that we have functors $F \colon \Cc \to \Dd$ as well as $G \colon \Dd \to \Cc$ together with natural transformations $u \colon \id_{\Cc} \to GF$ and $c \colon FG \to \id_{\Dd}$ such that $u_x$ is a weak equivalence for every $x \in \Cc$ and $c_y$ is a weak equivalence for every $y \in \Dd$; the adjunction between $\gr{-} \colon \Kan \to \CW$ and $\Sing \colon \CW \to \Kan$ is an example of this situation.\\
-        Applying the coherent nerve, we obtain functors $N^c F, N^c G$ together with natural transformations $\id \to N^c G N^c F$ and $N^c F N^c G \to \id$ through equivalences. But this is not yet enough to conclude that $N^c F$ is a Joyal equivalence because we cannot say anything at the moment about the invertibility of the natural transformations. This would either rely on Theorem E, which we have not proved yet. or we would have to provide inverse transformation on the Kan-enriched level.
+        Applying the coherent nerve, we obtain functors $N^c F, N^c G$ together with natural transformations $\id \to N^c G N^c F$ and $N^c F N^c G \to \id$ through equivalences. But this is not yet enough to conclude that $N^c F$ is a Joyal equivalence because we cannot say anything at the moment about the invertibility of the natural transformations. This would either rely on \hyperref[chIII-thm-c]{Theorem E}, which we have not proved yet, or we would have to provide inverse transformation on the Kan-enriched level.
 
 \section{Joins and Slices}\label{chVI-3}
     The next result from the list announced in Chapter III that we a going to prove is \hyperref[chIII-thm-c]{Theorem C}, but the proof requires some preparations. It relies on the formalism of \emph{slices}. To motivate their definition, consider the following situation: let $\Cc$ be a category and $f \colon x \to y$ a morphism in $\Cc$. Then one observes that $f$ is an isomorphism in $\Cc$ if and only if the forgetful functor
@@ -485,7 +485,7 @@
         \begin{equation*}
             (X \star Y)_n \coloneq \coprod\limits_{c \in \cut[n]} \Hom_{\sSet}(\Delta_{c,0}, X) \times \Hom_{\sSet}(\Delta_{c,1}, Y) \,.
         \end{equation*}
-        Given $\alpha \colon [m] to [n]$, the universal property of the pullback construction induces maps $\Delta_{c \alpha, i} \to \Delta_{c,i}$, and precomposition with these maps turns $X \star Y$ into a simplicial set.
+        Given $\alpha \colon [m] \to [n]$, the universal property of the pullback construction induces maps $\Delta_{c \alpha, i} \to \Delta_{c,i}$, and precomposition with these maps turns $X \star Y$ into a simplicial set.
 
     \subsection{Remark}\label{chVI-3-5}
         The join of two simplicial sets is slightly awkward to write down since we chose to define $\Delta$ as the category with object set $\{[n] \mid n \geq 0 \}$. Note that $\Delta$ is a skeleton of the category of all non-empty, finite linear orders $\LinOrd_{\fin}$, so
@@ -572,3 +572,155 @@
         A map $\alpha \colon [r] \to [n]$ defines a simplex in $L_0$ if and only if there exists some $i \ne k$ such that $i \notin \im(\alpha)$ and if $q \alpha$ takes the constant value $0$. Since $q$ is not constant, the latter condition implies that $n \notin \im(\alpha)$. As $n \ne k$, this automatically entails $\alpha \in \horn{n}{k}$. Consequently, $L_0 \cong \Delta^{\gr{q^{-1}(0)}}$.\\
         Similarly, if $q \alpha$ takes the constant value $1$, then $0 \notin \im(\alpha)$ and $\alpha \in \horn{n}{k}$ since $0 \ne k$. Therefore, $L_1 \cong \Delta^{\gr{c^{-1}(1)}-1}$.\\
         by \ref{chVI-3-10}, $L_0 \star L_1 \cong \Delta^n$, so $c$ is the desired extension of $f$.\hfill$\Box$
+
+    \subsection{Lemma}\label{chVI-3-12}
+        Let $\Cc$ be a category and $x \in \Cc$.
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                If $\Cc$ is cocomplete, then $x/\Cc$ and $\Cc/x$ are cocomplete. The forgetful functor $x/\Cc \to \Cc$ preserves connected colimits, the forgetful functor $\Cc/x \to \Cc$ preserves all colimits.
+            \item 
+                If $\Cc$ is complete, then $x/\Cc$ and $\Cc/x$ are complete. The forgetful functor $x/\Cc \to \Cc$ preserves all limits, the forgetful functor $\Cc/x \to \Cc$ preserves all connected limits.
+        \end{enumerate}
+
+        \emph{Proof}. We prove only that part of the lemma we will actually need. Suppose $\Cc$ is cocomplete and let $F \colon I \to x/\Cc$ be a diagram. Then $F$ defines a diagram $G \colon \{-\infty\} \star I \to \Cc$, which admits a colimit by assumption. The structure map $x = G(-\infty) \to \colim G$ defines an object in $x/\Cc$.\\
+        Let $F^{+} \colon I \star \{\infty\} \to x/\Cc$ be an arbitrary cone under $F$. Then $F^{+}$ corresponds to a diagram $G^{+} \colon \{-\infty\} \star I \star \{\infty\} \to \Cc$, which is a cone under $G$. So there is an unique induced map $\colim G \to G^{+}(\infty)$, which is compatible with the structure maps $x \to \colim G$ and $x \to G^{+}(\infty)$ by definition. Therefore, $x \to \colim G$ is a colimit of $F$.\\
+        Note that there is always a canonical map $\colim {G|}_I \to \colim G$. Let us try to turn $\colim {G|}_I$ into a cone under $G$. For $i \in I$, choose as $G(i) \to \colim {G|}_I$ the respective structure map of the colimit. Let $\sim$ be the equivalence relation on $I$ given by $i \sim j$ if the maps $x \to G(i) \to \colim {G|}_I$ and $x \to G(j) \to \colim {G|}_I$ are the same. By definition of the colimit, $i \sim j$ whenever there exists a morphism $i \to j$, so there exists only a single equivalence class if $I$ is connected. Consequently, we may pick any $i \in I$ and consider the composition $x \to G(i) \to \colim {G|}_I$ to exhibit $\colim {G|}_I$ as a cone under $G$. It follows that there exists an induced map $\colim G \to \colim {G|}_I$.\\
+        Tracing through the definitions shows that both $\colim {G|}_I \to \colim G \to \colim {G|}_I$ and $\colim G \to \colim {G|}_I \to \colim G$ are the identity.\\
+        For the other claims, see Land's ``Introduction to infinity-categories'', Lemma 4.13.\hfill$\Box$
+
+    \subsection{Corollary}\label{chVI-3-13}
+        Let $X \in \sSet$. Then $X \star - \colon \sSet \to X/\sSet$ and $- \star X \colon \sSet \to X/\sSet$ preserve all colimits.
+        \smallskip
+
+        \emph{Proof}. For $F \colon I \to \Cc$ an arbitrary diagram in a cocomplete category $\Cc$, note that
+        \begin{equation*}
+            \colim F \cong \coprod\limits_{J \in \pi_0(I)} \colim\limits_{i \in J} {F|}_{J} \,.
+        \end{equation*}
+        Hence, it suffices to show that $X \star -$ preserves coproducts and connected colimits.\\
+        In $\Set$, observe that
+        \begin{equation*}
+            \Hom_{\Set}(\varnothing, \colim\limits_{I} Z) \cong \colim\limits_{I} \Hom_{\Set}(\varnothing, Z)
+        \end{equation*}
+        if and only if $I$ is connected.\\
+        By \ref{chVI-3-12}, connected colimits may be computed in $\sSet$, and this can be done degreewise. Let $Y \colon I \to \sSet$ be a connected diagram. Using that simplices are tiny, the remark about colimits in $\Set$ (since $\Delta_{c,1} = \varnothing$ for $c$ the constant map $[n] \to \{0\} \to [1]$). and that all colimits in $\Set$ commute with products with a fixed set, we have
+        \begin{align*}
+            (X \star \colim\limits_{I} Y)_n &= \coprod\limits_{c \in \cut[n]} \Hom(\Delta_{c,0}, X) \times \Hom(\Delta_{c,1}, \colim\limits_{I} Y) \\
+            &\cong \coprod\limits_{c \in \cut[n]} \colim\limits_{i \in I} \Hom(\Delta_{c,0}, X) \times \Hom(\Delta_{c,1}, Y(i)) \\
+            &\cong \colim\limits_{I} \coprod\limits_{c \in \cut[n]} \Hom(\Delta_{c,0}, X) \times \Hom(\Delta_{c,1}, Y(i)) \\
+            &\cong \colim\limits_{I}(X \star Y(i))_n \,.
+        \end{align*}
+        So $X \star -$ preserves all connected colimits.\\
+        For coproducts, we saw in the proof of \ref{chVI-3-12} that $\coprod\limits_{i \in I}(X \to X \star Y(i))$ may be computed as the colimit of the associated diagram $\{-\infty\} \star I \to \sSet$. It is straightforward to verify that this colimit is precisely $X \star (\coprod\limits_{i \in I} Y(i))$.\hfill$\Box$
+        \medskip
+
+        Since $X \star - \colon \sSet \to X/\sSet$ and $- \star X \colon \sSet \to X/\sSet$ are colimit-preserving, it follows that they admit right adjoints.
+
+    \subsection{Definition}\label{chVI-3-14}
+        Let $f \colon X \to Y$. Define the \emph{slices} $Y_{f/}$ and $Y_{/f}$ of $Y$ under and over $f$ as the images of $f$ under the right adjoints $X/\sSet \to \sSet$ of $X \star -$ and $- \star X$, respectively.
+
+    \subsection{Remark}\label{chVI-3-15}
+        Note that slices encode cones under and over a given diagram $f$. So to $f \colon I \to \Cc$ a functor of categories, one musr be careful to distinguish the categories $N(f/\Cc)$ and $N(\Cc)_{N(f)/}$; they only agree when $I = *$.
+        \medskip
+
+        The reformulation of \hyperref[chIII-thm-c]{Theorem C} that we are planning to prove next is the following (note that we are cheating a little bit in the formulation since we have not yet discussed the functoriality of the slice construction):
+
+    \subsection{Theorem}\label{chVI-3-16}
+        Let $\Cc$ be a quasicategory and let $f \colon x \to y$ be a morpism in $\Cc$. Then $f$ is an equivalence if and only if
+        \begin{equation*}
+            \Cc_{f/} \to \Cc_{x/}
+        \end{equation*}
+        is a trivial Kan fibration.
+        \medskip
+
+        This will be done in January. On the way to proving this theorem, we will consider a pushout-joint-construction $\boxstar$ which is analogous to the pushout-product-construction $\boxtimes$.
+
+    \subsection{Notation}\label{chVI-3-17}
+        For $i \colon A \to B$ and $f \colon X \to Y$, denote by $i \boxstar f$ the map
+        \begin{equation*}
+            (A \star Y) \underset{A \star X}{\cup} (B \star X) \to B \star Y
+        \end{equation*}
+        induced by $i$ and $f$.
+        \medskip
+
+        The key technical statement about this construction is the following:
+
+    \subsection{Lemma}\label{chVI-3-18}
+        Let $i \colon A \to B$ and $j \colon K \to L$ be injections of simplicial sets.
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                $i \boxstar j$ is an injection.
+            \item 
+                If $i$ is right anodyne, then $i \boxstar j$ is inner anodyne.
+            \item 
+                If $j$ is left anodyne, then $i \boxstar j$ is inner anodyne.
+            \item 
+                If $i$ is left anodyne, then $i \boxstar j$ is left anodyne.
+            \item 
+                If $j$ is right anodyne, then $i \boxstar j$ is right anodyne.
+        \end{enumerate}
+
+        Just like \ref{chVI-3-16}, the proof has to wait until next year. But we can use it to close the remaining gap in Chapter V:
+
+        Recall that $\Box^n$ denotes the $n$-cube $(\Delta^1)^n$, and that
+        \begin{equation*}
+            \partial \Box^n \coloneq \{ \alpha \colon [k] \to [1]^n \mid \exists 1 \leq i \leq n \colon \pr_i \alpha \text{ constant}\}
+        \end{equation*}
+        is the boundary of the $n$-cube. In order to identify our cubical model $\pi_{*}(X, x)$ of simplicial homotopy groups with the simplicial model $\pi^{\triangle}_{*}(X, x)$, we used the following statement:
+
+    \subsection{Lemma}\label{chVI-3-19}
+        For $n \geq 2$, let $C^n \subseteq \Box^n$ denote the simplicial subset obtained by removing the simplex
+        \begin{equation*}
+            \sigma^n \,\colon [n] \to [1]^n, \quad i \mapsto \underbrace{1 \ldots 1}_{i \text{ times}} \; \underbrace{0 \ldots 0}_{n-i \text{ times}} \,.
+        \end{equation*}
+        Then the inclusion $\partial \Box^n \to C^n$ is inner anodyne.
+        \smallskip
+
+        \emph{Proof}. The case $n = 2$ holds by inspection.\\
+        For $k \geq 1$, set
+        \begin{equation*}
+            L_k \coloneq \{ \alpha \colon [p] \to [1]^k \mid \underbrace{1 \ldots 1}_{k \text{ times}} \notin \im(\alpha)\} \subseteq \Box^k
+        \end{equation*}
+        and
+        \begin{equation*}
+            L'_k \coloneq \{ \alpha \colon [p] \to [1]^k \mid \underbrace{0 \ldots 0}_{k \text{ times}} \notin \im(\alpha)\} \subseteq \Box^k \,.
+        \end{equation*}
+        Note that $L_k$ already appeared in \ref{chV-4-14} and the proof of \ref{chV-4-15}. Set $S_k \coloneq L_k \cap L'_k$. Observe that there is a canonical isomorphism
+        \begin{equation*}
+            (\{1\} \times L_k) \underset{\{1\} \times S_k}{\cup} (\Delta^1 \times S_k) \underset{\{0\} \times S_k}{\cup} (\{0\} \times L'_k) \xrightarrow{\cong} S_{k+1} \\
+            (\tau, \alpha) \mapsto (i \mapsto \tau(i) \frown \alpha(i)) \,.
+        \end{equation*}
+        Then
+        \begin{equation*}
+            (\{1\} \to \Delta^1) \boxtimes (S_k \to L_k)
+        \end{equation*}
+        is right anodyne. Consequently, the lower horizontal map in the pushout square
+        \begin{equation*}
+            \begin{tikzcd}
+                (\Delta^1 \times S_k) \underset{\{1\} \times S_k}{\cup} (\{1\} \times L_k) \arrow[d] \arrow[r] & L_k \times \Delta^1 \arrow[d] \\
+                S_{k+1} \arrow[r] & X_{k+1}
+            \end{tikzcd}
+        \end{equation*}
+        is also right anodyne. Note that the induced map $X \to \Box^{k+1}$ is injective, so we can regard $X_{k+1}$ as a simplicial subset of $\Box^{k+1}$. \\
+        Let now $n > 2$. The simplicial subset $\{0\} \times \partial \Box^{n-1}$ is contained in $X_n$, so we can form the pushout
+        \begin{equation*}
+            \begin{tikzcd}
+                \{0\} \times \partial \Box^{n-1} \arrow[d] \arrow[r] & \{0\} \times C^{n-1} \arrow[d] \\
+                X_n \arrow[r] & Y_n
+            \end{tikzcd}
+        \end{equation*}
+        By induction, the bottom horizontal map is inner anodyne. Note again that $Y_n$ is a simplicial subset of $\Box^n$. It follows that $S_n \to X_n \to Y_n$ is right anodyne.\\
+        By \ref{chVI-3-18}, the map
+        \begin{equation*}
+            (S_n \to Y_n) \boxstar (\varnothing \to \{1 \ldots 1\})
+        \end{equation*}
+        is inner anodyne. Finally, the square
+        \begin{equation*}
+            \begin{tikzcd}
+                (S_n \star \{1 \ldots 1\}) \underset{S_n \star \varnothing}{\cup} \arrow[d] \arrow[r] & Y_n \star \{1 \ldots 1\} \arrow[d] \\
+                \partial \Box^n \arrow[r] & C^n
+            \end{tikzcd}
+        \end{equation*}
+        is a pushout, so we see that $\partial \Box^n \to C^n$ is inner anodyne as claimed.\hfill$\Box$
+        \medskip
+
+        This closes the remaining gap in the proof of \ref{chV-3-14}.

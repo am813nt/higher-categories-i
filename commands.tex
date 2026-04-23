@@ -40,6 +40,12 @@
 \newcommand{\comp}{\operatorname{comp}}
 \newcommand*{\pb}{\mathlarger{\mathlarger{\lrcorner}}}
 \newcommand*{\boldone}{\text{\usefont{U}{bbold}{m}{n}1}}
+%\newcommand{\boxstar}{\mathsmaller{\mathsmaller{\boxed \star}}}
+%\newcommand*\boxstar{
+%    \begin{tikzpicture}
+%      \node [rectangle,scale=0.7,draw] {$\star$};
+%    \end{tikzpicture}
+%}
 
 \DeclareFontFamily{U}{stix2bb}{}
 \DeclareFontShape{U}{stix2bb}{m}{n} {<-> stix2-mathbb}{}
@@ -118,3 +124,35 @@
 
 % bbDelta
 \DeclareMathSymbol\bbDelta  \mathord{bbold}{"01}
+
+% boxstar
+\makeatletter
+\providecommand*{\boxstar}{%
+  \mathbin{% as \boxplus and \boxtimes
+    \mathpalette\@boxit{\star}%
+  }%
+}
+\newcommand*{\@boxit}[2]{%
+  % #1: math style (\displaystyle, \textstyle, ...)
+  % #2: symbol to be boxed that is centered around the math axis
+  \sbox0{$\m@th#1\Box$}%
+  % Manual correction for font bounding boxes:
+  \ifx#1\displaystyle \ht0=\dimexpr\ht0+.05ex\relax \fi
+  \ifx#1\textstyle \ht0=\dimexpr\ht0+.05ex\relax \fi
+  \ifx#1\scriptstyle \ht0=\dimexpr\ht0+.04ex\relax \fi
+  \ifx#1\scriptscriptstyle \ht0=\dimexpr\ht0+.065ex\relax \fi
+  \sbox2{$#1\vcenter{}$}% \ht2 is positionn of math axis
+  \rlap{%
+    \hbox to \wd0{%
+      \hfill
+      \raisebox{%
+        \dimexpr.5\dimexpr\ht0+\dp0\relax-\ht2\relax
+      }{$\m@th#1#2$}%
+      \hfill
+    }%
+  }%
+  \Box
+}
+\makeatother
+
+
