@@ -101,7 +101,7 @@
         Evidently, $rs = \id_{[n]}$. We need to check that $s$ and $r$ restrict appropriately on nerves. Observer that a simplex $\alpha \colon [p] \to [n]$ lies in $\horn{n}{k}$ if and only if $[n] \setminus \{k\} \nsubseteq \im \alpha$.\\
         Note that the composition of $s$ with the projection $\pr \colon [n] \times [2] \to [n]$ onto the first factor is also the identity. Hence, $\pr s \alpha$ lies in $\horn{n}{k}$, so $s \alpha$ is in $\horn{n}{k} \times \Delta^2$.\\
         Let $\alpha \colon [p] \to [n] \times [2]$ represent a simplex in $\horn{n}{k} \times \Delta^2$, i.e. $[n] \setminus \{k\} \nsubseteq \im (\pr \alpha)$. Then there exists $i \ne k$ such that $i \notin \im(\pr \alpha)$. Since $i \ne k$, the preimage of $i$ under $r$ consists of precisely one point, namely either $(i, 0)$ for $i < k$ or $(i, 2)$ for $i > k$. Since $i \notin \im(\pr \alpha)$, we have $\im(\alpha) \cap r^{-1}(i) = \varnothing$ and thus $i \notin \im(r \alpha)$. Hence $r \alpha$ defines a simplex in $\horn{n}{k}$.\\
-        If $\alpha \colon [p] \to [n] \times [2]$ represents s simplex in $\Delta^n \times \horn{2}{1}$, then there exists $j \in \{0, 2\}$ such that $j \notin \im(\pr' \alpha)$, where $\pr' \colon [n] \times [2] \to [2]$ is the projection onto the second factor. Then it follows from the definition of $r$ that $\im(r \alpha)$ contains either no $i < k$ (if $j = 0$) or no $i > k$ (if $j = 1$). Since $0 < k < n$, both the sets $\{ i \mid 0 \leq i < k \}$ and $\{ i \mid k < i < \leq n \}$ are non-empty, so there exists some $i \ne k$ with $i \notin \im(r \alpha)$.\hfill$\Box$
+        If $\alpha \colon [p] \to [n] \times [2]$ represents s simplex in $\Delta^n \times \horn{2}{1}$, then there exists $j \in \{0, 2\}$ such that $j \notin \im(\pr' \alpha)$, where $\pr' \colon [n] \times [2] \to [2]$ is the projection onto the second factor. Then it follows from the definition of $r$ that $\im(r \alpha)$ contains either no $i < k$ (if $j = 0$) or no $i > k$ (if $j = 1$). Since $0 < k < n$, both the sets $\{ i \mid 0 \leq i < k \}$ and $\{ i \mid k < i \leq n \}$ are non-empty, so there exists some $i \ne k$ with $i \notin \im(r \alpha)$.\hfill$\Box$
 
     \subsection{Proposition}\label{chVI-2-2}
         The following classes of morphisms generate the same saturated class:
@@ -142,7 +142,7 @@
         \end{equation*}
         so we may assume $n > 0$.\\
         The simplicial set $\Delta^n \times \Delta^2$ is the nerve of the poset $[n] \times [2]$, so non-degenerate simplices are given by injective maps $[p] \to [n] \times [2]$. For $p < n$, the composition of any map $\alpha \colon [n] \times [2]$ with the projection $\pr \colon [n] \times [2] \to [n]$ cannot be surjective, so such a simplex is contained in $\partial \Delta^n \times \Delta^2$. In particular, $(\partial \Delta^n \times \Delta^2) \underset{\partial \Delta^n \times \horn{2}{1}}{\cup} (\Delta^n \times \horn{2}{1})$ is only missing $n$-simplices, $(n+1)$-simplices and $(n+2)$-simplices. Moreover, all $(n+2)$-simplices are missing.\\
-        Any injective map $[n + 2] \to [n] \times [2]$ is uniquely determined by the two indices at which its value jumps in the second coordinate. Hence we can enumerate all non-degenerate $(n + 2)$-simplices in $\Delta^n \times \Delta^2$ as $(\tau_{i,j})_{o \leq i \leq j \leq n}$, where we set
+        Any injective map $[n + 2] \to [n] \times [2]$ is uniquely determined by the two indices at which its value jumps in the second coordinate. Hence we can enumerate all non-degenerate $(n + 2)$-simplices in $\Delta^n \times \Delta^2$ as $(\tau_{i,j})_{0 \leq i \leq j \leq n}$, where we set
         \begin{equation*}
             \tau_{i j}(k) \coloneq
             \begin{cases}
@@ -724,3 +724,223 @@
         \medskip
 
         This closes the remaining gap in the proof of \ref{chV-3-14}.
+        \medskip
+
+        The goal of the present section id to prove:
+
+    \subsection{Theorem (Joyal's lifting theorem)}\label{chVI-3-20}
+        Let $F \colon \Cc \to \Dd$ be an inner fibration between quasicategories. Then all outer horns
+        \begin{equation*}
+            \begin{tikzcd}
+                \horn{n}{0} \arrow[d] \arrow[r, "f"] & \Cc \arrow[d, "F"] \\
+                \Delta^n \arrow[ur, dashed] \arrow[r] & \Dd
+            \end{tikzcd}
+            \qquad\qquad\quad
+            \begin{tikzcd}
+                \horn{n}{n} \arrow[d] \arrow[r, "g"] & \Cc \arrow[d] \\
+                \Delta^n \arrow[ur, dashed] \arrow[r] & \Dd
+            \end{tikzcd}  
+        \end{equation*}
+        with
+        \begin{equation*}
+            \Delta^1 \xrightarrow{\text{incl}} \horn{n}{0} \xrightarrow{f} \Cc \quad \text{or} \quad \Delta^1 \xrightarrow{(n-1,n)} \horn{n}{n} \xrightarrow{g} \Cc
+        \end{equation*}
+        representing equivalences in $\Cc$ admit a contractible space of lifts.
+        \medskip
+
+        The proof will be by reduction to the ? (also to be proven \ref{chVI-3-16} and \ref{chVI-3-17}). But before that, let's get back into the groove with some corollaries to see the importance of this result.
+
+    \subsection{Corollary (Theorem C)}\label{chVI-3-21}
+        Every anima is a Kan complex. In particular, the core of any quasicategory is a Kan complex.\\
+        We already recorded the converse in \ref{chIII-8}.\\
+        \smallskip
+
+        \emph{Proof}. Apply \ref{chVI-3-20} with $\Dd = \pt$ to obtain fillers for the outer horns.\hfill$\Box$
+
+    \subsection{Corollary (Second half of Theorem D)}\label{chVI-3-22}
+        For quasicategories $\Cc$ and $\Dd$,
+        \begin{equation*}
+            \Fun(\Cc, \core \Dd) \subseteq \core(\Fun(\Cc, \Dd))
+        \end{equation*}
+        is a collection of path components, with equality if either $\Cc$ or $\Dd$ is an anima.
+        \smallskip
+
+        \emph{Proof}. Since $\core \Dd$ is an anima, it is a Kan complex by the previous corollary, so $\Fun(\Cc, \core \Dd)$ is a Kan complex by \ref{chV-2-24}, thus an anima by (the trivial) \ref{chIII-8}. This also gives the containment and furthermore equality if $\Dd$ is an anima.\\
+        For the remainder, observe first that a functor naturally equivalent to one taking values in the core of $\Dd$ also does so, as this can (by definition of the core and \ref{chIII-8})be tested in the homotopy category, where it is obvious. To see that it is an inclusion of path components, take an $n$-simplex $\sigma$ on the right, whose vertices lie in $\Fun(\Cc, \core \Dd)$. \\
+        We have to show that already $\sigma \in \Fun(\Cc, \core \Dd)$. This means that regarded as a map $\Delta^n \times \Cc \to \Dd$ all edges of $\Delta^n \times \Cc$ map to equivalences in $\Dd$. Again this can be tested in the homotopy category, where for an arbitrary edge $(f, g)$ we find $[(f, g)] = [(f, \id)] \circ [(\id, g)]$. But by assumption the edges of $\sigma$ are natural equivalences which in particular means that edges of the form $(f, \id)$ are mapped to equivalences. And also by assumption the vertices of $\sigma$ are functors into the core, so edges of the form $(\id, g)$ are mapped to equivalences. Thus we generally have an inclusion of path components with equality if $\Cc$ is anima, as then any functor $\Cc \to \Dd$ factors through $\core \Dd$.\hfill$\Box$
+        \medskip
+
+        Of course the inclusion
+        \begin{equation*}
+            \Fun(\Cc, \core \Dd) \subseteq \core(\Fun(\Cc, \Dd))
+        \end{equation*}
+        is generally strict, and we do not yet have a handle on the target. However, already the fact that transformations between functors to an anima are invertible os far from obvious. Decoding we obtain that a natural transformation $\tau \colon F \Rightarrow G$ of functors $\Cc \to \Dd$ is invertible if for every $f \colon x \to y$ in $\Cc$ the diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                F(x) \arrow[d, "F(f)"'] \arrow[r, "\tau_x"] & G(x) \arrow[d, "G(f)"] \\
+                F(y) \arrow[r, "\tau_y"] & G(y)
+            \end{tikzcd}
+        \end{equation*}
+        consists entirely of equivalences, then $\tau$ is invertible.\\
+        Clearly, the invertibility of $G(f)$ and $F(f)$ should not play a role. That is the content of \hyperref[chIII-thm-e]{Theorem E} and will have to wait until the next section.\\
+        However, we now know that $\Core F(-, -)$ gives a Kan-enrichment on the category $\hCat{q} \subseteq \sSet$.
+
+    \subsection{Definition}\label{chVI-3-23}
+        Define the \emph{quasicategory of quasicategories}, usually denoted by $\Cat_{\infty}$, as $\Nn^c(\hCat{q})$ using the above enrichment.
+        \medskip
+
+        Since $F(\Cc, K)$ is Kan if $K$ is, we also obtain a simplicially enriched functor
+        \begin{equation*}
+            \Kan \to \hCat{q}
+        \end{equation*}
+        and so a functor $\An \to \Cat_{\infty}$. It is degree-wise injective and gives bijections $\Hom_{\An}(K, K') \to \Hom_{\Cat_{\infty}}(K, K')$ for every two anima $K$ and $K'$.\\
+        Let ne warn you about two things though: We do not yet know the homotopy type of either of these spaces (that is the content of \hyperref[chIV-thm-h]{Theorem H}), but even assuming it we find
+        \begin{equation*}
+            \Hom_{\Cat_{\infty}}(\Cc, \Cc') \simeq \Core \Fun(\Cc, \Cc') \,.
+        \end{equation*}
+        So $\Cat_{\infty}$ is neither analogous to $\Cat$, the $1$-category of small $1$-categories, nor $\Cat_2$, the $2$-category of small $1$-categories, but rather the $(2, 1)$-category obtained from $\Cat_2$ by discarding non-invertible natural transformations. Indeed, $\hCat{q}$ really is $\hCat{q}$ enriched and thus wants to give a (non-strict) $(\infty, 2)$-category. Alas, we shall not define such objects (they are not nearly as developed as quasicategories), apart from mentioning that they can be defined using either enriched $(\infty, 1)$-category theory, or by iterating Rezk's Segal space approach to higher categories.\\
+        Let us, however, record that equivalences in $\Cat_{\infty}$ are exactly the equivalences of quasicategories.
+        \medskip
+
+        Here's another application of anima being Kan complexes: Let $\Jj \in \Kan$ denote the nerve of the groupoid having objects $0, 1$ and 4 morphisms as indicated on the picture:
+        \begin{equation*}
+            \begin{tikzcd}
+                0 \arrow[loop, distance=2em, in=215, out=145, "\id"'] \arrow[r, bend left] & 1 \arrow[loop, distance=2em, in=35, out=325, "\id"'] \arrow[l, bend left]
+            \end{tikzcd}
+        \end{equation*}
+        There is then a canonical inclusion $\Delta^1 \subseteq \Jj$ and we have:
+
+    \subsection{Proposition}
+        A morphism $f$ in a quasicategory $\Cc$ is an equivalence if and only if its classifier $\Delta^1 \to \Cc$ lies in the image of the restriction
+        \begin{equation*}
+            p \,\colon \Fun(\Jj, \Cc) \to \Fun(\Delta^1, \Cc) \,.
+        \end{equation*}
+        In this case the core of the fibre over $f$ is contractible.
+        \medskip
+
+        This proposition says that inverses of an equivalence in a quasicategory are unique up to contractible choice!\\
+        The statement follows from \ref{chVI-3-21} and the following Lemma:
+
+    \subsection{Lemma}\label{chVI-3-25}
+        The map $\Delta^1 \to \Jj$ is both left and right anodyne.
+        \medskip
+
+        The complex $\Jj$ has exactly 2 non-degenerate simplices in each dimension (corresponding to the sequences $0 \to 1 \to 0 \to 1 \ldots$ and $1 \to 0 \to 1 \to 0 \ldots$). Its realization is easily checked to be $S^{\infty}$ with the ``hemispherical'' cell structure, in particular, contractible, whence \ref{chV-4-4} shows that $\Delta^1 \subseteq \Jj$ is at least anodyne, which would suffice for our purposes.\\
+        But it is clearly not inner anodyne (it is not even an equivalence of categories), so gives a weak example that
+        \begin{equation*}
+            \text{inner anodynes} \subsetneq \text{left anodynes} \,\cap\, \text{right anodynes} \,.
+        \end{equation*}
+
+        \emph{Proof}. To see that the inclusion is left anodyne, let $F_k \subseteq \Jj$ be the simplicial subset generated by the $k$-simplex $\upsilon_k = 0 \to 1 \to 0 \to 1 \to 0 \to \ldots$. Then $\Delta^1 = F_1$ and there is a pushout diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                \horn{k}{0} \arrow[d] \arrow[r] & F_{k-1} \arrow[d, phantom, "\subseteq" rotate=-90] \\
+                \Delta^k \arrow[r, "\upsilon_k"] & F_k
+            \end{tikzcd}
+        \end{equation*}
+        since $v_k \colon \Delta^k \to F_k$ is surjective and $\upsilon_k^{-1}(F_{k-1}) = \horn{k}{0}$, because $d_i \upsilon_k$ is degenerate for $0 < i < k$ (and $\sk_{k-2} F_{k-1} = \sk_{k-2} \Jj$, which contains all degenerate $k-1$ simplices), $d_k \upsilon_k = \upsilon_{k-1} \in F_{k-1}$ and $d_0 \upsilon_k = 1 \to 0 \to 1 \to \ldots \notin F_{k-1}$. The claim follows.\\
+        To see that $\Delta^1 \subseteq \Jj$ is also right anodyne use the filtration spanned by the simplices $\ldots 0 \to 1 \to 0 \to 1$ instead.\hfill$\Box$
+        \medskip
+
+        \emph{Proof of \ref{chVI-3-24}}. Since $\Jj$ is an anima any map $\Jj \to \Cc$ factors through $\core \Cc$, so both its edges go to equivalences.\\
+        Conversely, if $f$ is an equivalence it is represented by a map $\Delta^1 \to \core \Cc$, which is a Kan complex by \ref{chVI-3-21}. But then the map
+        \begin{equation*}
+            \overline{p} \,\colon \Fun(\Jj, \core \Cc) \to \Fun(\Delta^1, \core \Cc)
+        \end{equation*}
+        is a trivial Kan fibration by \ref{chVI-3-25} and \ref{chV-2-26}, in particular, surjective on $0$-simplices. To see the contractibility statement, note that
+        \begin{equation*}
+            \Fun(\Jj, \core \Cc) = \core \Fun(\Jj, \Cc)
+        \end{equation*}
+        by \ref{chVI-3-22} and that
+        \begin{equation*}
+            \core p^{-1}(f) = p^{-1}(f) \cap \core \Fun(\Jj, \Cc) = \overline{p}^{-1}(f) \,;
+        \end{equation*}
+        to see the first equality let $h \colon \Delta^1 \to \Fun()\Jj, \Cc$ be inverse to $g \colon \Delta^1 \to p^{-1}(f)$. Then $p(h)$ is inverse to $p(g) = \id_f$ so $p(h) \sim \id_f$. But $p$ is an inner fibration by \ref{chVI_2-4} so then we can fill
+        \begin{equation*}
+            \begin{tikzcd}
+                \horn{2}{1} \arrow[d] \arrow[r, "{(h, \id)}"] & \Fun(\Jj, \Cc) \arrow[d, "p"] \\
+                \Delta^2 \arrow[ur, dashed, "G"] \arrow[r, "H"] & \Fun(\Delta^1, \Cc)
+            \end{tikzcd}
+            \qquad
+            H =
+            \begin{tikzcd}[column sep=small]
+                & 1 \arrow[dr, "\id_f"] & \\
+                0 \arrow[ur, "{p(h)}"] \arrow[rr, "\id_f"] & & 2
+            \end{tikzcd}
+        \end{equation*}
+        and $d_1 G \sim h$ is still inverse to $g$, but also $d_1 G \colon \Delta^1 \to p^{-1}(f)$, so $g \in \core p^{-1}(f)$.\\
+        Finally, $\overline{p}^{-1}(f)$ is contractible by \ref{chV-3-17}.\hfill$\Box$
+
+    \subsection{Remark}\label{chVI-3-26}
+        In fact, something stronger is true: The map $p \colon \Fun(\Jj, \Cc) \to \Fun(\Delta^1, \Cc)$ is a trivial Kan fibration, and thus an equivalence of categories, onto the subcategory of the target spanned by the equivalences. This will be an exercise later. In particular, $p^{-1}(f)$ is itself a contractible Kan complex! The latter statement also follows from \ref{chVI-3-24} and the pointwise criterion for natural equivalences, which implies that $p$ is conservative.
+        \medskip
+
+        Continuing with applications, we have:
+
+    \subsection{Corollary}\label{chVI-3-27}
+        If $p \colon \Cc \to \Dd$ is left or right fibration and $\Dd$ is Kan, then $p$ is a Kan fibration as well. In particular, $\Cc$ is also a Kan complex. \\
+        Specializing to $\Dd = *$ we see that left and right Kan complexes are automatically Kan complexes, as announced in \ref{chV-1-6}. In particular, the fibres of left/right fibrations are always Kan complexes, removing an assumption from Exercise 4, sheet 8, that constructed a functor
+        \begin{equation*}
+            \st_p \,\colon h\Dd \to \hoAn
+        \end{equation*}
+        from a left fibration $p \colon \Cc \to \Dd$. From this point of view \ref{chVI-3-22} is also very natural. If $\Dd$ is Kan then $h\Dd$ is a groupoid, so $\st_p$ factors through core $\hoAn$,as does the straightening of any Kan fibration. In fact, it is an exercise on sheet 10 to show that this characterizes Kan fibrations among left fibrations.
+
+    \subsection{Lemma / Definition}\label{chVI-3-28}
+        Left and right fibrations are \emph{conservative}, i.e. if $p \colon \Cc \to \Dd$ is a left/right fibration between quasicategories and $f \in \Cc_1$ is a morphism such that $p(f)$ is an equivalence, then so is $f$ itself. In particular, if $\Dd$ is an  anima then so is $\Cc$.
+        \smallskip
+
+        The proof is another exercise on sheet 10; crucially it does not use Joyal's lifting theorem, as it will also enter into its proof!
+        \medskip
+
+        \emph{Proof of \ref{chVI-3-27}}. Given a lifting diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                \horn{n}{i} \arrow[d] \arrow[r] & \Cc \arrow[d, "p"] \\
+                \Delta^n \arrow[r] & \Dd
+            \end{tikzcd}
+        \end{equation*}
+        with $i \in \{0, n\}$, then we know from \ref{chVI-3-26} that $\Cc$ is an anima as $\Dd$ is one. Thus \ref{chVI-3-20} applies to give a lift.\hfill$\Box$
+        \medskip
+
+        Ley me spell out explicitly another corollary on the technical side:
+
+    \subsection{Corollary}\label{chVI-3-29}
+        If $p \colon \Cc \to \Dd$ is a left (or right) fibration with contractible fibres, then it is a trivial Kan fibration.
+        \medskip
+
+        This generalizes \ref{chV-3-18}, where we showed the analogous assertion for Kan fibrations. Let me warn you, though: A left fibration, that is a weak homotopy equivalence need not be a Joyal equivalence, let alone a trivial fibration. Counterexamples follow below.
+        \smallskip
+
+        \emph{Proof}. We follow the proof of \ref{chV-3-18}: Given a diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                \partial \Delta^n \arrow[d] \arrow[r] & \Cc \arrow[d, "p"] \\
+                \Delta^n \arrow[r] & \Dd
+            \end{tikzcd}
+        \end{equation*}
+        consider a simplicial contraction $H \colon \Delta^n \times \Delta^1 \to \Delta^n$ onto $\{n\}$. Then in the diagram
+        \begin{equation*}
+            \begin{tikzcd}[row sep=small]
+                \partial \Delta^n \times \{0\} \arrow[d, phantom, "\subseteq" rotate=-90] \arrow[rr] & & \Cc \arrow[d] \\
+                \partial \Delta^n \times \Delta^1 \arrow[urr, dashed] \arrow[r, "H"] & \Delta^n \arrow[r] & \Dd
+            \end{tikzcd}
+        \end{equation*}
+        the left vertical map is left anodyne by \ref{chV-2-9}, so there exists a filler $G$. Now ${G|}_{\partial \Delta^n \times \{1\}}$ factors through a single fibre, so by assumption $G$ can be extended to a diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                \partial \Delta^n \times \Delta^1 \cup \Delta^n \times \{1\} \arrow[d] \arrow[rr, "G"] & & \Cc \arrow[d] \\
+                \Delta^n \times \Delta^1 \arrow[urr, dashed] \arrow[r, "H"] & \Delta^n \arrow[r] & \Dd
+            \end{tikzcd}
+        \end{equation*}
+        which in \ref{chV-2-9} we could fill since the left hand map is right anodyne (by definition). The restriction of a filler to $\Delta^n \times \{1\}$ in any case is a solution to the original lifting problem. This time we have to use Joyal's theorem: First, as part of the proof of \ref{chV-2-9}, we have seen that the inclusion
+        \begin{equation*}
+            \partial \Delta^n \times \Delta^1 \cup \Delta^n \times \{1\} \subseteq \Delta^n \times \Delta^1 - \{\alpha_n \cup d_{n+1} \alpha_n\}
+        \end{equation*}
+        is actually inner anodyne, where $\alpha_i \colon [n+1] \to [n] \times [1]$ is given by
+        \begin{equation*}
+            k \mapsto
+            \begin{cases}
+                (k, 0) & k \leq i \\
+                (k - 1, 1) & k > i
+            \end{cases}
+        \end{equation*}
