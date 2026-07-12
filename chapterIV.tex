@@ -260,7 +260,7 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
                 \1_{\Dd} \underset{\Dd}{\boxtimes} F(X) \arrow[r, "u"] & F(\1_{\Cc}) \underset{\Dd}{\boxtimes} F(X) \arrow[u, "\lambda"']
             \end{tikzcd}
         \end{equation*}
-        commute. The triple $(F, \lambda, u)$ is called (strong) \emph{monoidal} if both $\lambda$ and $u$ are isomorphisms. Dually, an \emph{oplsx monoidal functor} has as data
+        commute. The triple $(F, \lambda, u)$ is called (strong) \emph{monoidal} if both $\lambda$ and $u$ are isomorphisms. Dually, an \emph{oplax monoidal functor} has as data
         \begin{enumerate}[label=\roman*)]
             \item 
                 a functor $F \colon \Cc \to \Dd$
@@ -862,7 +862,7 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
         \begin{equation*}
             \mathrm{Bicat} \to \sSet, \quad \hCat{\omega} \to \sSet
         \end{equation*}
-        which take values in quasi-categories, when restricted to $\hCat{(\mathrm{Bi}, 1)}$ and $\hCat{(\omega, 1)}$. The former is well=documented in Lurie's Kerodon, and quite useful, whereas details of the latter were worked out in Verity's unpublished thesis. The constructions again rely on \ref{chII-19} and proceed by building certain cosimplicial objects in $\mathrm{Bicat}$ and $\hCat{\omega}$. In the latter case these are known as Street's \emph{orientals}, obtained from $n \to \mathbbmsl{N}[n]$ by freely adding a new morphism $n_1 \to n_k$ for every string $n_1 \to n_2 \to \ldots \to n_k$ and then higher morphisms to relate it to the actual composite $n_1 \to n_k$, and their composites, and their composites, and their composites...\\
+        which take values in quasi-categories, when restricted to $\hCat{(\mathrm{Bi}, 1)}$ and $\hCat{(\omega, 1)}$. The former is well-documented in Lurie's \emph{Kerodon}, and quite useful, whereas details of the latter were worked out in Verity's unpublished thesis. The constructions again rely on \ref{chII-19} and proceed by building certain cosimplicial objects in $\mathrm{Bicat}$ and $\hCat{\omega}$. In the latter case these are known as Street's \emph{orientals}, obtained from $n \to \mathbbmsl{N}[n]$ by freely adding a new morphism $n_1 \to n_k$ for every string $n_1 \to n_2 \to \ldots \to n_k$ and then higher morphisms to relate it to the actual composite $n_1 \to n_k$, and their composites, and their composites, and their composites...\\
         Let me just mention that Street's nerve is \emph{not} fully faithful: For example consider the $2$-categories
         \begin{equation*}
             \begin{tikzpicture}[
@@ -1190,7 +1190,7 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
         \end{equation*}
         in the enrichment discussed above. We will maybe review this later in the course, when we have established Theorem F. The fact that Dwyer-Kan equivalences are not invertible is the worst defect of simplicially enriched categories.
 
-        To this end recall, what the coherent nerve $\Nn^c$cis supposed to do:
+        To this end recall, what the coherent nerve $\Nn^c$ is supposed to do:
         \begin{equation*}
             (\Nn^c \Cc)_0 = \obj(\Cc) \quad \text{and} \quad (\Nn^c \Cc)_1 = \mor(u\Cc)
         \end{equation*}
@@ -1245,7 +1245,7 @@ X \boxtimes Y \arrow[ru, Rightarrow, start anchor={[yshift=-0.5ex]north east}, e
 
                 % Edges with labels
                 \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (A) -- node[above left] {$f$} (B);
-                \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (A) -- node[below left] {$u$} (C);
+                \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (A) -- node[below left] {$h$} (C);
                 \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>[length=10pt,width=7pt]}}}}] (B) -- node[above right] {$g$} (C);
                 \draw (B)[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>[length=10pt,width=7pt]}}}}] -- node[above] {$i$} (D);
                 \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (C) -- node[below right] {$j$} (D);
