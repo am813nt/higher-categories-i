@@ -1005,4 +1005,94 @@
         are a left and right fibration, respectively, for all $X \in \Cc$.
         \smallskip
 
-        \emph{Proof}: 
+        \emph{Proof}: Let us treat the left case only. The diagram adjoins to the extension problem
+        \begin{equation*}
+            \begin{tikzcd}
+                \horn{n}{0} \times \Delta^1 \cup \Delta^n \times \partial \Delta^1 \arrow[d, phantom, "\subseteq" rotate=-90] \arrow[r] & \Cc \\
+                \Delta^n \times \Delta^1 \arrow[ru, dashed]
+            \end{tikzcd}
+        \end{equation*}
+        Set $K(0) = \horn{n}{0} \times \Delta^1 \cup \Delta^n \times \partial \Delta^1$ and
+        \begin{equation*}
+            K(i + 1) = K(i) \cup \{ \alpha_i \}
+        \end{equation*}
+        where the $\alpha_i \colon \Delta^{n+1} \to \Delta^n \times \Delta^1$ are the nondegenerate $n+1$-simplices as described in \ref{chV-29} and \ref{chVI-3-29}.\\
+        Now one readily checks again that
+        \begin{equation*}
+            K(0) \subseteq K(1) \subseteq \ldots \subseteq K(n) = \Delta^n \times \Delta^1 - \{ \alpha_n \cup d_0 \alpha_n \}
+        \end{equation*}
+        are given by filling an inner horn each, where as $\alpha_n$ defines an outer left horn in $K(n)$.\\
+        But for $n > 0$ (which is all we need!) the composite
+        \begin{align*}
+            &\Delta^1 \xrightarrow{(0, 1)} \Delta^{n+1} \xrightarrow{\alpha_n} \Delta^n \times \Delta^1 \\
+            &{\color{magenta} \scriptstyle (0, 1) \longmapsto (0, 1) \longmapsto ((0,0),(1,0))}
+        \end{align*}
+        factors as
+        \begin{equation*}
+            \Delta^1 \xrightarrow{(0, 1)} \Delta^n \times \{ 0 \} \subseteq \Delta^n \times \Delta^1
+        \end{equation*}
+        and thus
+        \begin{align*}
+            &\Delta^1 \xrightarrow{(0, 1)} \horn{n+1}{0} \xrightarrow{\alpha_n} K(n) \rightarrow \Cc \\
+            = &\Delta^1 \xrightarrow{(0, 1)} \Delta^n \times \{ 0 \} \rightarrow \Cc \\
+            = &\Delta^1 \xrightarrow{(0, 1)} \Delta^n \rightarrow \Fun(\Delta^1, \Cc) \xrightarrow{s} \Cc \\
+            = &\Delta^1 \xrightarrow{(0, 1)} \Delta^n \rightarrow \Cc \times \Cc \xrightarrow{\pr_1} \Cc
+        \end{align*}
+        represents an equivalence by assumption. By \ref{chVI-3-20} then there exists an extension
+        \begin{equation*}
+            \begin{tikzcd}
+                \horn{n+1}{0} \arrow[d] \arrow[r, "\alpha_n"] & K(n) \arrow[r] & \Cc \\
+                \Delta^{n+1} \arrow[rru, dashed]                
+            \end{tikzcd}
+        \end{equation*}
+        which completes the extension to $\Delta^n \times \Delta^1 \to \Cc$.\\
+        The final statements follow since
+        \begin{equation*}
+            \Fun(\Delta^1, \Cc) \to \Fun(\partial \Delta^1, \Cc) = \Cc \times \Cc
+        \end{equation*}
+        is an inner fibration by \ref{chVI-2-4}.\hfill$\Box$
+    
+    \subsection{Remark}\label{chVI-3-32}
+        \begin{enumerate}[label=\roman*)]
+            \item
+                An inner fibration $A \to S \times T$ such that all outer horns
+                \begin{equation*}
+                    \begin{tikzcd}
+                        \horn{n}{0} \arrow[d] \arrow[r] & A \arrow[d] \\
+                        \Delta^n \arrow[r, "f"] & S \times T 
+                    \end{tikzcd}
+                    \qquad
+                    \begin{tikzcd}
+                        \horn{n}{n} \arrow[d] \arrow[r] & A \arrow[d] \\
+                        \Delta^n \arrow[r, "g"] & S \times T 
+                    \end{tikzcd}
+                \end{equation*}
+                in which the composites
+                \begin{align*}
+                    \Delta^1 \xrightarrow{(0,1)} \Delta^n \xrightarrow{f} S \times T \xrightarrow{\pr_1} S \\
+                    \Delta^1 \xrightarrow{(n-1,n)} \Delta^n \xrightarrow{g} S \times T \xrightarrow{\pr_2} T
+                \end{align*}
+                are degenerate and admit fillers is called a \emph{bifibrant}.\\
+                Bifibrations are always conservative (with essentially the same proof as \ref{chVI-3-28}), which gives us another instance of the pointwise criterion for the invertibility for natural transformations (which, together with Theorem B clearly also implies Theorem A!)
+
+            \item
+                The categories $X \big/ \Cc$, $\Cc \big/ X$ in \ref{chVI-3-31} are models for over- and under-categories, see exercise 4, sheet 12. Note, however, that these are different (!) from $\Cc_{X/}$ and $\Cc_{/X}$ unless $\Cc$ is the nerve of an ordinary category. It is a theorem of Joyal that the natural map $\Cc \big/ X \to \Cc_{/X}$ is always a Joyal equivalence. We may discuss this later, or next term.
+
+            \item
+                \ref{chVI-3-31} gives us examples of left fibrations that are weak homotopy equivalences, but bot Joyal equivalences:\\
+                Let $\Cc$ be an ordinary category. Then for $X \in \Cc$
+                \begin{equation*}
+                    X \big/ \mathcal{N}(\Cc) \xrightarrow{t} \mathcal{N}(\Cc)
+                \end{equation*}	
+                is a left fibration by \ref{chVI-3-30}, and $X \big/ \mathcal{N}(\Cc) \cong \mathcal(\nicefrac{X}{\Cc})$ by exercise 4, sheet 12. If for example $\Cc$ has an initial object then both $\mathcal{N}(\Cc)$ and $X \big/ \mathcal{N}(\Cc)$ are simplicially contractible as
+                \begin{equation*}
+                    \Delta^0 \xrightarrow{\star} \Cc \quad \text{and} \quad \Delta^0 \xrightarrow{\id_X} X \big/ \mathcal{N}(\Cc)
+                \end{equation*}
+                are then left adjoint functors by \ref{chI-33-ii}, so simplicial homotopy equivalences by exercise 2, sheet 4. But already for $\Cc = \mathbbmsl{N}[1]$ and $X = 1$, we find 
+                \begin{equation*}
+                    \nicefrac{1}{\Delta^1} = \{ \id_1\}	
+                \end{equation*}
+                not Joyal equivalent to $\Delta^1$.
+        \end{enumerate}
+
+        Finally, let us record the converse to Joyal's lifting theorem:
