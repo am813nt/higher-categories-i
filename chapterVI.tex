@@ -1076,7 +1076,7 @@
                 Bifibrations are always conservative (with essentially the same proof as \ref{chVI-3-28}), which gives us another instance of the pointwise criterion for the invertibility for natural transformations (which, together with Theorem B clearly also implies Theorem A!)
 
             \item
-                The categories $X \big/ \Cc$, $\Cc \big/ X$ in \ref{chVI-3-31} are models for over- and under-categories, see exercise 4, sheet 12. Note, however, that these are different (!) from $\Cc_{X/}$ and $\Cc_{/X}$ unless $\Cc$ is the nerve of an ordinary category. It is a theorem of Joyal that the natural map $\Cc \big/ X \to \Cc_{/X}$ is always a Joyal equivalence. We may discuss this later, or next term.
+                The categories $X \big/ \Cc$, $\Cc \big/ X$ in \ref{chVI-3-31} are models for over- and under-categories, see exercise 4, sheet 12. Note, however, that these are different (!) from $\Cc_{x/}$ and $\Cc_{/x}$ unless $\Cc$ is the nerve of an ordinary category. It is a theorem of Joyal that the natural map $\Cc \big/ X \to \Cc_{/x}$ is always a Joyal equivalence. We may discuss this later, or next term.
 
             \item
                 \ref{chVI-3-31} gives us examples of left fibrations that are weak homotopy equivalences, but bot Joyal equivalences:\\
@@ -1084,7 +1084,7 @@
                 \begin{equation*}
                     X \big/ \mathcal{N}(\Cc) \xrightarrow{t} \mathcal{N}(\Cc)
                 \end{equation*}	
-                is a left fibration by \ref{chVI-3-30}, and $X \big/ \mathcal{N}(\Cc) \cong \mathcal(\nicefrac{X}{\Cc})$ by exercise 4, sheet 12. If for example $\Cc$ has an initial object then both $\mathcal{N}(\Cc)$ and $X \big/ \mathcal{N}(\Cc)$ are simplicially contractible as
+                is a left fibration by \ref{chVI-3-30}, and $X \big/ \mathcal{N}(\Cc) \cong \mathcal{N}(\nicefrac{X}{\Cc})$ by exercise 4, sheet 12. If for example $\Cc$ has an initial object then both $\mathcal{N}(\Cc)$ and $X \big/ \mathcal{N}(\Cc)$ are simplicially contractible as
                 \begin{equation*}
                     \Delta^0 \xrightarrow{\star} \Cc \quad \text{and} \quad \Delta^0 \xrightarrow{\id_X} X \big/ \mathcal{N}(\Cc)
                 \end{equation*}
@@ -1096,3 +1096,232 @@
         \end{enumerate}
 
         Finally, let us record the converse to Joyal's lifting theorem:
+
+    \subsection{Observation}\label{chVI-3-33}
+        If $f \colon x \to y$ is a morphism in a quasicategory $\Cc$ and the lifting problems
+        \begin{equation*}
+            \begin{tikzpicture}[
+                scale=0.9, 
+                thick, 
+                color=violet, 
+                every node/.style={text=black},
+                dot/.style={circle, fill=violet, inner sep=1.5pt, outer sep=0pt}
+            ]
+                \begin{scope}[shift={(0,0)}]
+                
+                    % Define coordinates
+                    \coordinate (O) at (0,0);       % Vertex 0
+                    \coordinate (A) at (1, 1.5);    % Vertex 1
+                    \coordinate (B) at (2, 0);      % Vertex 2
+
+                    % Draw the triangle and edge labels
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>}}}}] (O) -- node[above left] {$f$} (A);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>}}}}] (O) -- node[below] {} (B);
+
+                    % Draw vertices (dots)
+                    \node[dot] at (O) {};
+                    \node[dot] at (A) {};
+                    \node[dot] at (B) {};
+
+                    % Draw vertex labels (0, 1, 2)
+                    \node[below left] at (O) {$x$};
+                    \node[above] at (A) {$y$};
+                    \node[below right] at (B) {$z$};
+
+                    \node at (1,-1) {\normalsize $\horn{2}{0} \to \Cc$};
+                \end{scope}
+                \begin{scope}[shift={(4,0)}]
+                    \coordinate (A) at (0,1);
+                    \node[] at (A) {and};
+                \end{scope}
+                \begin{scope}[shift={(6,0)}]
+                    % Coordinates
+                    \coordinate (A) at (0,0);       % Bottom Left
+                    \coordinate (B) at (1.2, 1.8);  % Top
+                    \coordinate (C) at (2.4, 0);    % Bottom Middle
+                    \coordinate (D) at (3.5, 1.2);  % Right
+
+                    % Edges with labels
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (A) -- node[above left] {$f$} (B);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (A) -- node[below left] {} (C);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>[length=10pt,width=7pt]}}}}] (B) -- node[above right] {} (C);
+                    \draw (B)[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>[length=10pt,width=7pt]}}}}] -- node[above] {} (D);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (C) -- node[below right] {} (D);
+    
+                    % Dashed diagonal
+                    \draw[dashed,postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>[length=10pt,width=7pt]}}}}] (A) -- node[above, pos=0.3] {} (D);
+
+                    % Vertices
+                    \node[dot] at (A) {};
+                    \node[dot] at (B) {};
+                    \node[dot] at (C) {};
+                    \node[dot] at (D) {};
+
+                    % Vertex Labels
+                    \node[below] at (A) {$x$};
+                    \node[above] at (B) {$y$};
+                    \node[below] at (C) {$z$};
+                    \node[right] at (D) {$w$};
+
+                    \node at (1,-1) {\normalsize $\horn{3}{0} \to \Cc$};
+                \end{scope}    
+            \end{tikzpicture}
+        \end{equation*}
+        admit solutions, then $f$ is an equivalence.
+        \smallskip
+
+        \emph{Proof}: A solution to the first problem as below 
+        \begin{equation*}
+            \begin{tikzpicture}[
+                scale=0.9, 
+                thick, 
+                color=violet, 
+                every node/.style={text=black},
+                dot/.style={circle, fill=violet, inner sep=1.5pt, outer sep=0pt}
+            ]
+
+                % Define coordinates
+                \coordinate (O) at (0,0);       % Vertex 0
+                \coordinate (A) at (1, 1.5);    % Vertex 1
+                \coordinate (B) at (2, 0);      % Vertex 2
+
+                % Draw the triangle and edge labels
+                \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>}}}}] (O) -- node[above left] {$f$} (A);
+                \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>}}}}] (O) -- node[below] {$\id_x$} (B);
+
+                % Draw vertices (dots)
+                \node[dot] at (O) {};
+                \node[dot] at (A) {};
+                \node[dot] at (B) {};
+
+                % Draw vertex labels (0, 1, 2)
+                \node[below left] at (O) {$x$};
+                \node[above] at (A) {$y$};
+                \node[below right] at (B) {$x$};
+
+            \end{tikzpicture}
+        \end{equation*}
+        gives a left inverse $g$ to $f$. But then a solution to the second one as below
+        \begin{equation*}
+            \begin{tikzpicture}[
+                scale=0.9,
+                every node/.style={text=black}, % Set default text color to match drawing
+                thick,
+                color=violet, % Set line color
+                dot/.style={circle, fill=violet, inner sep=1.5pt, outer sep=0pt} % Vertex style
+            ]
+                % Coordinates
+                \coordinate (A) at (0,0);       % Bottom Left
+                \coordinate (B) at (1.2, 1.8);  % Top
+                \coordinate (C) at (2.4, 0);    % Bottom Middle
+                \coordinate (D) at (3.5, 1.2);  % Right
+
+                % Edges with labels
+                \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (A) -- node[above left] {$f$} (B);
+                \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (A) -- node[below left] {$\id_x$} (C);
+                \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>[length=10pt,width=7pt]}}}}] (B) -- node[above right] {$g$} (C);
+                \draw (B)[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>[length=10pt,width=7pt]}}}}] -- node[above] {$\id_y$} (D);
+                \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=10pt,width=7pt]}}}}] (C) -- node[below right] {$f$} (D);
+    
+                % Dashed diagonal
+                \draw[dashed,postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.5 with {\arrow{>[length=10pt,width=7pt]}}}}] (A) -- node[above, pos=0.3] {$f$} (D);
+
+                % Vertices
+                \node[dot] at (A) {};
+                \node[dot] at (B) {};
+                \node[dot] at (C) {};
+                \node[dot] at (D) {};
+
+                % Vertex Labels
+                \node[below] at (A) {$x$};
+                \node[above] at (B) {$y$};
+                \node[below] at (C) {$x$};
+                \node[right] at (D) {$y$};
+            \end{tikzpicture}            
+        \end{equation*}
+        shows that $g$ is also right inverse.\hfill$\Box$
+
+    \subsection{Remark}\label{chVI-3-34}
+        \begin{enumerate}[label=\roman*)]
+            \item
+                Another way of phrasing this is the argument that the left of these two lifting diagrams admits a filler iff $[f]$ admits a left inverse and the right if $[f]$ is right cancelable, clearly equivalent to $[f] \in \mor(\pi \Cc)$ being an isomorphism.\\
+                We also already saw that for the nerve of a category \emph{any} higher dimensional horn admits (unique) fillers in \ref{chII-28}, and the same argument (namely nerves of categories are $2$-coskeletal and $\horn{n}{0}$ and $\Delta^n$ have the same $2$-skeleton once $n \geq 4$) also gives Joyal's lifting theorem for ordinary categories. In a sense then, it encodes that higher simplices of a quasicategory are automatically invertible, as the fillability of higher outer horns cannot fail once the $1$-skeleton consists of equivalences in the necessary spots.
+            \item
+                Finally, let me comment on the role of the assumption that $F$ is an inner fibration. Without it, the theorem becomes false, but only barely: Every functor $\Cc \to \Dd$ can be factored into an inner anodyne map $\Cc \to \Cc'$ followed by an inner fibration using the small object argument \ref{chV-2-30}. Since $\Dd$ is a quasicategory it follows that $\Cc'$ is one as well and by \ref{chVI-2-12} and \ref{chVI-2-10} an inner anodyne map is an equivalence of quasicategories. So Joyal's theorem applies to $\Cc' \to \Dd$ and the resulting lift $\Delta^n \to \Cc'$ can be composed with the inverse equivalence $\Cc' \to \Cc$ to yield a map $\Delta^n \to \Cc$ whose restriction to $\partial \Delta^n$ is homotopic to the given one and whose projection to $\Dd$ is naturally isomorphic to the given diagram. The homotopy extension property finally allows us to alter $\Delta^n \to \Cc$ to be an extension of the original lifting problem, and a lift up to natural isomorphism. 
+        \end{enumerate}	
+        Now, to move toward the proof of \ref{chVI-3-20} we observe, that the map $\horn{n}{0} \to \Delta^n$ is isomorphic to
+        \begin{equation*}
+            (\Delta^0 \xrightarrow{d_1} \Delta^1) \boxstar (\partial \Delta^{n-2} \to \Delta^{n-2}) \to \Delta^1 \star \Delta^{n-2} \,;
+        \end{equation*}
+        more generally we have:
+
+    \subsection{Lemma}\label{chVI-3-35}
+        There are canonical isomorphisms
+        \begin{equation*}
+            (\horn{n}{j} \to \Delta^n) \boxstar (\partial \Delta^m \to \Delta^m) \cong \horn{n+1+m}{j} \to \Delta^{n+1+m}
+        \end{equation*}
+        and
+        \begin{equation*}
+            (\partial \Delta^m \to \Delta^m) \boxstar (\horn{n}{j} \to \Delta^n) \cong \horn{m+1+n}{m+1+j} \to \Delta^{m+1+n}
+        \end{equation*}
+        \smallskip
+
+        \emph{Proof}: Since joining preserves (by definition) injections, it also preserves unions of simplicial subsets, i.e. for $A, B \subseteq X$ we have
+        \begin{align*}
+            (A \cup B) \star Y = (A \star Y) \cup (B \star Y) \subseteq X \star Y \\
+            Y \star (A \cup B) = (Y \star A) \cup (Y \star B) \subseteq Y \star X
+        \end{align*}
+        as the image of either term in $X \star Y$ can be determined using the pushout of $A \leftarrow \varnothing \rightarrow B$, which $- \star Y$ and $Y \star -$ preserve by \ref{chVI-3-12} and \ref{chVI-3-13}.\\
+        Thus we have:
+        \begin{align*}
+            \horn{n}{i} \star \Delta^m &= (\bigcup_{\substack{0 \leq j \leq n \\ i \neq j}} d_j(\Delta^{n-1})) \star \Delta^m = \bigcup_{\substack{0 \leq j \leq n \\ i \neq j}} (d_j(\Delta^{n-1}) \star \Delta^m) \\
+            &= \bigcup_{\substack{0 \leq j \leq n \\ i \neq j}} d_j(\Delta^{n+m}) \subseteq \Delta^{n+1+m}
+        \end{align*}
+        Similarly, we have
+        \begin{align*}
+            \Delta^n \star \partial \Delta^m &= \Delta^n \star \bigcup_{0 \leq j \leq m} d_j(\Delta^{m-1}) \\
+            &= \bigcup_{0 \leq j \leq m} \Delta^n \star d_j(\Delta^{m-1}) \\
+            &= \bigcup_{0 \leq j \leq m} d_{n+1+j}(\Delta^{n+1+m-1})
+            &= \bigcup_{n+1 \leq j \leq n+1+m} d_j(\Delta^{n+m}) \subseteq \Delta^{n+1+m}
+        \end{align*}
+        Their union is clearly $\horn{n+1+m}{i}$ and since $\boxstar$ preserves injections (again straight from the definition) the first claim follows. The second is analogous.\hfill$\Box$
+        \medskip
+
+        But by adjunction a lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                (A_0 \to A_1) \boxstar (B_0 \to B_1) \arrow[d] \arrow[r] & X \arrow[d] \\
+                A_1 \star B_1 \arrow[ru, dashed] \arrow[r] & Y
+            \end{tikzcd}	
+        \end{equation*}	
+        is equivalent to either of
+        \begin{equation*}
+            \begin{tikzcd}
+                A_0 \arrow[d] \arrow[r] & X_{/ B_1 \to X} \arrow[d] \\
+                A_1 \arrow[ru, dashed] \arrow[r] & (X_{/ B_0 \to X}) \underset{Y_{/ B_0 \to Y}}{\times} (Y_{/ B_1 \to Y})
+            \end{tikzcd}
+            \qquad
+            \begin{tikzcd}
+                B_0 \arrow[d] \arrow[r] & X_{A_1 \to X /} \arrow[d] \\
+                B_1 \arrow[ru, dashed] \arrow[r] & (X_{A_0 \to X /}) \underset{Y_{A_0 \to Y /}}{\times} (Y_{A_1 \to Y /})
+            \end{tikzcd}	
+        \end{equation*}
+        In our case $A_0 \rightarrow A_1 = \Delta^0 \xrightarrow{d_1} \Delta^1 = \horn{1}{0} \to \Delta^1$ is left anodyne, so it would be enough to see that the right hand map in the upper diagram is a left fibration. It is \emph{not}! We will see that it is instead a right fibration. This will turn out to be good enough! Since $B_0 \to B_1 = \partial \Delta^{n-2} \to \Delta^{n-2}$, setting $Y = \star$ in the right diagram (together with \ref{chVI-3-30}) recovers the formulation \ref{chVI-3-16}, that we gave earlier.
+        \medskip
+
+        Let us first deal with the last argument:
+
+    \subsection{Lemma}\label{chVI-3-36}
+        Let $F \colon \Cc \to \Dd$ be an inner fibration of quasicategories. Then if $f \colon x \to y$ and $g \colon y \to x$ are inverse equivalences there exists a solution to one of the lifting problems
+        \begin{equation*}
+            \begin{tikzcd}
+                \Delta^0 \arrow[d, hook, "d_1"] \arrow[r] & \Cc \arrow[d, "F"] \\
+                \Delta^1 \arrow[ru, dashed] \arrow[r, "f"'] & \Dd
+            \end{tikzcd}
+            \qquad
+            \begin{tikzcd}
+                \Delta^0 \arrow[d, hook, "d_0"] \arrow[r] & \Cc \arrow[d, "F"] \\
+                \Delta^1 \arrow[ru, dashed] \arrow[r, "g"'] & \Dd
+            \end{tikzcd}	
+        \end{equation*}	
+        that represents an equivalence in $\Cc$, if and only if the same is true for the other.        
