@@ -1,365 +1,436 @@
-\section{T}
+\chapter{T}
 
-    \subsection{Corollary}\label{chV-5-7}
-        The counit $\gr{\Sing T} \to T$ is a weak equivalence for every $T \in \Top$.
-        \smallskip
+\section{TT}
 
-        \emph{Proof}. By \ref{chV-5-4}, it suffices to check that $\Sing c_T \colon \Sing \gr{\Sing T} \to \Sing T$ induces bijections on all $\pi_n$. By one of the triangle identities, the identity on $\Sing T$ factors as
+    \subsection{Observation}\label{chVI-3-40}
+        The slice constructions assemble into functors
         \begin{equation*}
-            \Sing T \xrightarrow{u_{\Sing T}} \Sing \gr{\Sing T} \xrightarrow{\Sing c_T} \Sing T \,.
+            \ls, \rs \colon \TwAr(\sSet) \to \sSet \,.
         \end{equation*}
-        Since $u_{\Sing T}$ is a homotopy equivalence, $\Sing c_T$ is also a homotopy equivalence. So the corollary follows from \ref{chV-3-10}.\hfill$\Box$
-
-    \subsection{Corollary}\label{chV-5-8}
-        The geometric realisation detects weak equivalences, i.e. if $f \colon X \to Y$ is a map of simplicial sets such that $\gr{f}$ is a weak equivalence, then $f$ is a weak equivalence.
+        In particular, for every sequence of map
+        \begin{equation*}
+            A \xrightarrow{i} X \xrightarrow{f} Y \xrightarrow{p} B
+        \end{equation*}	
+        we obtain maps
+        \begin{align*}
+            Y_{f /} \to Y_{f i /} \underset{B_{p f i /}}{\times} B_{p f /} \\
+            Y_{/ f} \to Y_{/ f i} \underset{B_{/ p f i}}{\times} B_{p f} \,.
+        \end{align*}
+        It is these maps that appear in the proof of Joyal's theorem.
         \smallskip
 
-        \emph{Proof}. By \ref{chV-5-5}, $\Sing \gr{f}$ is a weak equivalence. Then it follows from the commutative diagram
+        \emph{Proof}: The first part is immediate from the discussion preceding \ref{chVI-3-39}. For the second one we need to show that
         \begin{equation*}
             \begin{tikzcd}
-                X \arrow[d, "u_X"'] \arrow[r, "f"] & Y \arrow[d, "u_Y"] \\
-                \Sing \gr{X} \arrow[r, "\Sing \gr{f}"] & \Sing \gr{Y}
-            \end{tikzcd}
+                Y_{f/} \arrow[d, "p_{\star}"] \arrow[r, "i^{\star}"] & Y_{f i /} \arrow[d, "p_{\star}"] \\
+                B_{p f /} \arrow[r, "i^{\star}"] & B_{p f i /}
+            \end{tikzcd}	
         \end{equation*}
-        and \ref{chV-5-6} that $f$ is a weak equivalence.\hfill$\Box$
-        \medskip
-
-        \emph{Proof of \ref{chV-5-1}}. \ref{chV-5-6} deals almost with the entire statement since it already tells us that $\Sing$ is essentially surjective on homotopy categories and that $\gr{-}$ induces weak equivalences on mapping spaces. By \ref{chV-5-7}, the functor $\gr{-}$ is also essentially surjective on homotopy categories.\\
-        Using \ref{chV-5-7} a second time, the commutative diagram
+        commutes. But this is immediate from the compositions
         \begin{equation*}
             \begin{tikzcd}
-                & F_{\sSet}(\Sing T, \Sing U) \arrow[dd, "\cong"] \\
-                F_{\CW}(T, U) \arrow[ur, "\Sing"] \arrow[dr, "c^{*}_T"] & \\
-                & F_{\CW}(\gr{\Sing T}, U)
+                X \arrow[r, "f"] & Y \arrow[d, equal] \\
+                A \arrow[d, equal] \arrow[u, "i"] \arrow[r, "f i"] & Y \arrow[d, "p"] \\
+                A \arrow[r, "p f i"] & B
             \end{tikzcd}
+            \quad \text{and} \quad
+            \begin{tikzcd}
+                X \arrow[d, equal] \arrow[r, "f"] & Y \arrow[d, "p"] \\
+                X \arrow[r, "p f"] & B \arrow[d, equal] \\
+                A \arrow[u] \arrow[r, "p f i"] & B
+            \end{tikzcd}	
         \end{equation*}
-        shows that $\Sing$ also induces weak equivalences on mapping spaces.\hfill$\Box$
+        representing the same morphism $f \to p f i$ in $\TwAr(\sSet)$.\hfill$\Box$
         \medskip
 
-        In the remainder of this section, we outline why simplicial approximation holds for simplicial sets. Our discussion follows Jardine, but many of the properties in which we are interested (plus many other, more subtle properties) are also studies in WJR13, Section 2. We assume the classical simplicial approximation theorem for simplicial complexes. To formulate it, we need to recall the barycentric subdivision of a simplicial complex: Given an (abstract) simplicial complex $(V, S)$, we define $\sd(V, S)$ as the abstract simplicial complex whose set of vertices is given by $S$, and whose $n$-simplices are given by strictly ascending chains $s_0 \subseteq s_1 \subseteq \ldots \subseteq s_n$ of length $n$.
+        Let us now address the fibrancy properties of slices. Just as those of function spaces rested in the cofibrancy properties of the pushout-product operation, so do they rest on the cofibrancy properties of the pushout-join, which we recorded in \ref{chVI-3-18}, but did not yet prove. Here's the statement again:
+        \medskip
 
-    \subsection{Remark}\label{chV-5-9}
-        Recall that any locally ordered simplicial complex gives rise to a simplicial set by formally adjoining degeneracies (see Exercise 3 on Sheet 3). Denote this functor by
+        \ref{chVI-3-18} Lemma:
+        Let $i \colon A \to B$ and $j \colon K \to L$ be cofibrations. Then $i \boxstar j$ is again a cofibration and
+        \begin{enumerate}[label=\roman*)]
+            \item[ii)-iii)]\addtocounter{enumi}{3}
+                inner anodyne if either $i$ is right anodyne or $j$ is left anodyne
+            \item
+                left anodyne if $i$ is left anodyne
+            \item
+                right anodyne if $j$ is right anodyne
+        \end{enumerate}
+        \medskip
+
+        We need one more lemma:
+
+    \subsection{Lemma}\label{chVI-3-41}
+        If $\Sigma \subseteq \mor (\sSet)$ is a saturated class of morphisms then
         \begin{equation*}
-            (-)^{+} \,\colon \SC^{\lo} \to \sSet \,.
+            \{ i \in \mor (\sSet) \mid i \boxstar j \in \Sigma \}
         \end{equation*}
-        Canonical examples of locally ordered simplicial complexes are those arising from posets: For a poset $P$, let $V(P)$ be the simplicial complex with vertex set $P$ and $n$-simplices strictly ascending chains $p_0 < \ldots p_n$. The simplicial complex $V(P)$ is often called the nerve of the poset $P$, but we will avoid that terminology because the nerve of a poset is a simplicial set for us. However, note that there is a natural isomorphism $NP \cong V(P)^{+}$, so the two notions are not unrelated.\\
-        Moreover, it is straightforward to check that $(\sd V(P))^{+} \cong \sd V(P)^{+}$ for any poset $P$.
+        and
+        \begin{equation*}
+            \{ i \in \mor (\sSet)\ \mid j \boxstar i \in \Sigma \}
+        \end{equation*}
+        whenever $\Sigma$ is of the form
+        \begin{equation*}
+            \Sigma = \{ i \in \mor (\sSet) \mid i \text{ admits left lifts against } J \}
+        \end{equation*}
+        for some class $J \subseteq \mor (\sSet)$.
+        \smallskip
 
-    \subsection{Proposition}\label{chV-5-10}
-        Let $U \subseteq V$ and $W$ be simplicial complexes. Let $f_0 \colon U \to W$ be a simplicial map and let $g \colon \gr{V} to \gr{W}$ be a map such that ${g|}_{\gr{U}} = \gr{f_0}$. Suppose that $V$ is finite.\\
-        Then there exist some $n$ ans a map $f \colon \sd^n V \to W$ such that
+        Note that \ref{chV-2-31} says that $\Sigma = \sat (S)$ for some set $S \subseteq \mor (\sSet)$ with compact sources satisfies the assumptions; in particular this is the case for $\Sigma$ the left/right/inner/$\varnothing$ anodyne maps.
+
+    \subsection{Remark}\label{chVI-3-42}
+        The analogue of this result for the pushout-product was exercise 3 on sheet 7. It was easier in that for every saturated class $\Sigma \in \mor (\sSet)$ the set
+        \begin{equation*}
+            \{ i \in \mor (\sSet) \mid i \boxstar j \in \Sigma \}
+        \end{equation*}
+        is again saturated, without the assumption that $\Sigma$ was defined by left lifting against some class $J$. The proof of that statement transfers to the present situation to show closure under retracts (trivially), pushouts and countable compositions, but not coproducts, since the join functor, when regarded as a functor $\sSet \to \sSet$ only preserves connected colimits.\\
+        There are other sufficient conditions on $\Sigma$ such as right cancelability against cofibrations, i.e. if $i \in \Sigma$, $j$ cofibration and $i \circ j \in \Sigma$ implies $j \in \Sigma$. This is also true in all relevant examples , but nontrivial for all three cases of interest (though we know it for anodynes: By \ref{chV-4-4} and \ref{chV-2-27} we have
+        \begin{equation*}
+            \{ \text{anodyne extensions} \} = \{ \text{cofibrations }\} \cap \{ \text{weak homotopy equivalences}\}
+        \end{equation*}	
+        and the latter two are clearly right cancelable against all maps).
+
+        \emph{Proof of \ref{chVI-3-41}}: By assumption, $i \boxstar j \in \Sigma$ is equivalent to admitting left lifts against $J$, i.e. every diagram
         \begin{equation*}
             \begin{tikzcd}
-                \sd^n U \arrow[d] \arrow[r, "\lambda^n"] & U \arrow[r, "f_0"] & W \\
-                sd^n V \arrow[urr, "f"'] & &
+                A \star Y \underset{A \star X}{\cup} B \star X \arrow[d, "i \, \boxstar \, j"'] \arrow[r] & K \arrow[d, "f"] \\
+                B \star Y \arrow[ur, dashed] \arrow[r] & L
+            \end{tikzcd}
+        \end{equation*}	
+        admitting a filler for all $f \in J$. But by adjunction this is the same as
+        \begin{equation*}
+            \begin{tikzcd}
+                A \arrow[d, "i"'] \arrow[r] & K_{/ B \to K} \arrow[d] \\
+                B \arrow[ru, dashed] \arrow[r] & (K_{/ A \to K}) \underset{L_{/ A \to L}}{\times} (L_{/ B \to L})
             \end{tikzcd}
         \end{equation*}
-        commutes and a homotopy $\gr{f} \simeq g \gr{\lambda^n}$ relative $\gr{\sd^n U}$.
-        \smallskip
+        admitting fillers, which defines a saturated class by \ref{chV-2-2}.\\
+        The other case is analogous using right instead of left slices.\hfill$\Box$
 
-        \emph{Proof}. Exercise, possibly. If not, I will insert a textbook reference here later.\hfill$\Box$
-        \medskip
-
-        Our line of approach is to deduce a simplicial approximation theorem for simplicial sets by turning the simplicial sets in question into simplicial complexes. Here is a particularly brutal way of building a simplicial complex from simplicial set:
-
-    \subsection{Definition}\label{chV-5-11}
-        Let $X$ be a simplicial set. Let $\nd X$ denote the set of non-degenerate simplices of $X$. Denoting by $\langle x \rangle$ the smallest simplicial subset generated by a non-generate simplex $x$, equip $\nd X$ with the partial order given by
+        \emph{Proof of \ref{chVI-3-18}}: Part i) is obvious (and we used it in \ref{chVI-3-30} already). For part ii) consider the class
         \begin{equation*}
-            x \leq y \quad :\Leftrightarrow \quad \langle x \rangle \subseteq \langle y \rangle \,.
-        \end{equation*}
-        The \emph{Barratt nerve} $\B X$ of $X$ is defined as
+            C = \{ k \in \mor (\sSet) \mid k \boxstar l \text{ is inner anodyne for all cofibrations } l\}
+        \end{equation*}	
+        By \ref{chVI-3-34} it is an intersection of saturated classes and thus itself saturated. We need to show that it contains the right anodynes, so it suffices to show
         \begin{equation*}
-            \B X \coloneq N(\nd X) \,.
+            \horn{n}{i} \to \Delta^n \in C
         \end{equation*}
-        Any map $f \colon X \to Y$ of simplicial sets induces a map of posets $\nd f \colon \nd X \to \nd Y$ (since every simplex is the unique, possibly trivial, degeneration of an unique non-degenerate simplex), and thus induces a map $\B f \colon \B X \to \B Y$. Therefore, we obtain a functor
+        for all $0 < i \leq n$. But consider
         \begin{equation*}
-            \B \,\colon \sSet \to \sSet \,.
+            D = \{ l \in \mor (\sSet) \mid (\horn{n}{i} \to \Delta^n) \boxstar l \text{ is inner anodyne}\}
         \end{equation*}
+        Again, this is saturated by \ref{chVI-3-34}, and we have to show that all cofibrations are contained in $D$, for which it suffices to treat the boundary inclusions $\partial \Delta^k \to \Delta^k$ by exercise 2, sheet 7. But lemma \ref{chVI-3-30} identifies $(\horn{n}{i} \to \Delta^n) \boxstar (\partial \Delta^k \to \Delta^k)$ as an inner horn, which is certainly inner anodyne.\\
+        The argument in the other cases is the same.\hfill$\Box$
 
-    \subsection{Remark}\label{chV-5-12}
-        In general, the Barratt nerve of a simplicial set has little to do with the original simplicial set. For example, $\B (\Delta^1 / \partial \Delta^1)$ is the nerve of the poset $[1]$ and therefore simplicially contractible.\\
-        On the other hand, $\B (V, S)^{+} \cong \sd(V, S)^{+}$ for any locally ordered simplicial complex $(V, S)$.
-
-    \subsection{Lemma}\label{chV-5-13}
-        For every simplicial set $X$, the canonical maps
+    \subsection{Proposition}\label{chVI-3-43}
+        Let $A \xrightarrow{i} X \xrightarrow{f} Y \xrightarrow{p}$ be composable morphisms maps of simplicial sets, such that $i$ is a cofibration and $p$ as inner fibration, Then consider the maps
         \begin{equation*}
-            \colim\limits_{x \in \nd X} \sd \langle x \rangle \to \sd X \quad \text{and} \quad \colim\limits_{x \in \nd X} \B \langle x \rangle \to \B X
+            s \colon Y_{/ f} \to Y_{/ f i} \underset{B_{/ p f i}}{\times} B_{/ p f}
         \end{equation*}
-        are isomorphisms.
-        \smallskip
-
-        \emph{Proof}. Since $\colim\limits_{x \in \nd X} \sd \langle x \rangle \cong X$, the first part follows because $\sd$ is colimit-preserving.\\
-        Let $\xi = x_0 \leq \ldots \leq x_0$ be an $n$-simplex in $\B X$. Then $\xi$ is also an $n$-simplex in $\langle x_n \rangle$. So $\colim\limits_{x \in \nd X} \B \langle x \rangle \to \B X$ is surjective.\\
-        Suppose that $\xi = x_0 \leq \ldots \leq x_k \in \B \langle x \rangle$ and $\eta = y_0 \leq \ldots \leq y_l \in \B \langle y \rangle$ map to the same simplex in $\B X$. Then $\xi$ and $\eta$ define the same sequence in $\nd X$. In particular, $y_l = x_k$. Call this simplex $z$. Then $\xi$ and $\eta$ both lie in $\B \langle z \rangle$ and define the same element there. So $\xi = \eta$ in $\colim\limits_{x \in \nd X} \B \langle x \rangle$.\hfill$\Box$
-        \medskip
-
-        By \ref{chV-5-9}, the restrictions of $\sd$ and $\B$ along Yoneda embedding $\Delta \ \to \sSet$ agree. By the universal property of the left Kan extension, there is an induced natural transformation
+        and
         \begin{equation*}
-            \pi \,\colon \sd \to \B \,.
+            t \colon Y_{f /} \to Y_{f i /} \underset{B_{p f i /}}{\times} B_{p f /} \,. 
         \end{equation*}
-
-    \subsection{Lemma}\label{chV-5-14}
-        Let $X$ be a simplicial set. the map $\pi \colon \sd X \to \B X$ is
         \begin{enumerate}[label=\roman*)]
             \item 
-                surjective in all degrees;
+                $t$ is a left fibration and $s$ a right fibration
             \item 
-                bijective on vertices.
+                if $p$ is a right fibration, then $t$ is a Kan fibration, and if $p$ is a left fibration, then $s$ is a Kan fibration
+            \item 
+                if $p$ is a trivial fibration, then so are $t$ and $s$
+            \item 
+                if $i$ is right anodyne, then $t$ is a trivial fibration, and if $i$ is left anodyne then $s$ is a trivial fibration.
         \end{enumerate}
-        In particular, two $n$-simplices in $\sd X$ map to the same simplex in $\B X$ if and only if they have the same set of vertices.
-        \smallskip
 
-        \emph{Proof}. By definition, an $n$-simplex in $\B X$ is a sequence $x_0 \leq \ldots \leq x_n$ in $\nd X$. Choose injective maps $\delta_i$ such that $x_i = \delta^{*}_i(x_n)$. Then each $\delta_i$ can be considered a simplex in $\Delta^{\gr{x_n}}$, and thus $\delta_0 \leq \ldots \leq \delta^n$ defines an $n$-simplex in $\sd \Delta^{\gr{x_n}}$. the pair $(\delta_0 \leq \ldots \leq \delta^n, x_n)$ defines an $n$-simplex in $\sd X$ which maps to the original $n$-simplex in $\B X$ under $\pi$.\\
-        For any two vertices in $\sd X$, choose $k$, $l$ minimal such that they can be represented as
+        \emph{Proof}: We prove statements about $t$: As discussed, a lifting problem
         \begin{equation*}
-            \Delta^0 \xrightarrow{v} \sd \Delta^k \xrightarrow{\sd x} \sd X \quad \text{and} \quad \Delta^0 \xrightarrow{w} \sd \Delta^l \xrightarrow{\sd y} \sd X 
+            \begin{tikzcd}
+                S \arrow[d, "a"'] \arrow[r] & Y_{f /} \arrow[d, "t"] \\
+                T \arrow[ru, dashed] \arrow[r] & Y_{f i /} \underset{B_{p f i /}}{\times} B_{p f /}
+            \end{tikzcd}	
         \end{equation*}
-        for non-degenerate simplices $x$ and $y$ of $X$. By the minimality of $k$ and $l$, $v = [k]$ and $w = [l]$. If $\pi_X \circ \sd x \circ v = \pi_X = \sd y \circ w$, then use $(\B X)_0 = \nd X$ and $\B \Delta^k \cong \sd \Delta^k$ to see that
+        is equivalent to
         \begin{equation*}
-            x = \B x(v) = \pi_X(\sd x(v)) = \pi_X(\sd y(w)) = \B y(w) = y \,.
+            \begin{tikzcd}
+                A \star T \underset{A \star S}{\cup} X \star S \arrow[d, "i \, \boxstar \, a"'] \arrow[r] & Y \arrow[d, "p"] \\
+                X \star T \arrow[ru, dashed] \arrow[r] & B
+            \end{tikzcd}	
         \end{equation*}
-        \quad\hfill$\Box$
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                To show that $t$ is a left fibration we consider the inclusions $\horn{n}{i} \to \Delta^n$ for $0 \leq i < n$ for $a$, which are left anodyne by definition. Thus \ref{chVI-3-18} shows that $i \boxstar a$ is then inner anodyne, so since $p$ is an inner fibration, the lower diagram admits a lift.
+            \item 
+                If we take $a = \horn{n}{n} \to \Delta^n$ then \ref{chVI-3-18} gives that $i \boxstar a$ is still right anodyne so a lift exists whenever $p$ is a right fibration.
+            \item 
+                If we take $a = \partial \Delta^n \to \Delta^n$ then $i \boxstar a$ is still a cofibration, so a lift exists if $p$ is a trivial fibration.
+            \item 
+                If again $a = \partial \Delta^n \to \Delta^n$, but $i$ is right anodyne, then $i \boxstar a$ is inner anodyne by \ref{chVI-3-18}, so a lift always exists.\hfill$\Box$
+        \end{enumerate}
 
-    \subsection{Definition}\label{chV-5-15}
-        A non-degenerate simplex $x \in X_n$ is \emph{regular} if
+    \subsection{Corollary}\label{chVI-3-44}
+        If $f \colon \Ii \to \Cc$ is a map to a quasicategory then
         \begin{equation*}
-            \begin{tikzcd}
-                \Delta^{n-1} \arrow[d, "d_n"'] \arrow[r, "{d_n(x)}"] & \langle d_n(x) \rangle \arrow[d] \\
-                \Delta^n \arrow[r, "x"] & \langle x \rangle
-            \end{tikzcd}
-        \end{equation*}
-        is a pushout square.\\
-        A simplicial set is \emph{regular} if all its non-degenerate simplices are regular.
-
-    \subsection{Example}\label{chV-5-16}
-        It the characteristic map of every non-degenerate simplex in $X$ is injective (i.e. $X$ is \emph{non-singular}), then $X$ is regular. In particular, the nerve of every poset is regular.
-
-    \subsection{Proposition}\label{chV-5-17}
-        The subdivision $\sd X$ is regular for every simplicial set $X$.
-        \smallskip
-
-        \emph{Proof}. Let $c \colon \Delta^n \to \sd X$ be a non-degenerate simplex. Choose $k$ minimal such that $c$ factors as
-        \begin{equation*}
-            c \,\colon \Delta^n \xrightarrow{\kappa} \sd \Delta^k \xrightarrow{\sd x} \sd \sk_k(X)
-        \end{equation*}
-        for some non-degenerate $k$-simplex $x$ of $X$ and some non-degenerate $n$-simplex $\kappa$ of $\sd \delta^k$ (if $\kappa$ was degenerate, $c$ would also be degenerate; if $x$ was degenerate, $k$ would not have been minimal). We may assume $k > 0$. Since $k$ is minimal, $\kappa(n) = [k]$. In particular, $d_n(\kappa)$ is a simplex in $\sd \partial \Delta^k$. Therefore, there is an induced commutative diagram
-        \begin{equation*}
-            \begin{tikzcd}
-                \Delta^{n-1} \arrow[d, hook, "d_n"'] \arrow[r, "{d_n(\kappa)}"] & \sd \partial \Delta^k \arrow[d, hook] \arrow[r] & \sd \partial \langle x \rangle \arrow[d, hook] \\
-                \Delta^n \arrow[r, "\kappa"] & \sd \Delta^k \arrow[r] & \sd \langle x \rangle
-            \end{tikzcd}
-        \end{equation*}
-        where $\partial \langle x \rangle$ denotes the simplicial set $\langle x \rangle$ with the unique top-dimensional simplex $x$ removed. The right hand square is a pushout. Consider the outer square
-        \begin{equation*}
-            \begin{tikzcd}
-                \Delta^{n-1} \arrow[d, hook, "d_n"'] \arrow[r, "{d_n(c)}"] & \sd \partial \langle x \rangle \arrow[d, hook] \\
-                \Delta^n \arrow[r, "c"] & \sd \langle x \rangle
-            \end{tikzcd}
-        \end{equation*}
-        If $y$ is a simplex in $\Delta^n$ which does not lie in $d_n \Delta^n$, its image contains $[n]$. Hence $c(y) \notin \sd \partial \langle x \rangle$. Consequently, this square is a pullback. Since this square fits into the commutative diagram
-        \begin{equation*}
-            \begin{tikzcd}
-                \Delta^{n-1} \arrow[d, hook, "d_n"'] \arrow[r, "{d_n(\kappa)}"] & \langle d_n(c) \rangle \arrow[d, hook] \arrow[r, hook] & \sd \partial \langle x \rangle \arrow[d, hook] \\
-                \Delta^n \arrow[r, "\kappa"] & \langle x \rangle \arrow[r, hook] & \sd \langle x \rangle
-            \end{tikzcd}
-        \end{equation*}
-        and all arrows in the right hand square are monomorphisms as indicated, the square
-        \begin{equation*}
-            \begin{tikzcd}
-                \Delta^{n-1} \arrow[d, hook, "d_n"'] \arrow[r, "{d_n(c)}"] & \langle d_n(c) \rangle \arrow[d, hook] \\
-                \Delta^n \arrow[r, "c"] & \langle c \rangle
-            \end{tikzcd}
-        \end{equation*}
-        is also a pullback. Therefore, it suffices to show that the induced map
-        \begin{equation*}
-            \Delta^n \setminus d_n \Delta^n \to \langle c \rangle \setminus \langle d_n(c) \rangle 
-        \end{equation*}
-        is a degree-wise bijection. This map is surjective since $c \colon \Delta^n \to \langle c \rangle$ is surjective.\\
-        Suppose that $\sigma$, $\tau$ are in $\Delta^n \setminus d_n \Delta^n$ such that $c(\sigma) = c(\tau) \in \langle c \rangle \subseteq \sd \langle x \rangle$. Then $c(\sigma)$ and $c(\tau)$ factor through $\sd \Delta^k$, so $\kappa(\sigma) = \kappa(\tau)$. Since $\sd \Delta^k$ is non-singular and $\kappa$ is non-degenerate, $\sigma = \tau$. This proves the proposition.\hfill$\Box$
-
-    \subsection{Definition}\label{chV-5-18}
-        A simplicial set $X$ is \emph{op-regular} if $X^{\op}$ is regular, i.e. for every $n$-simplex $x$ the diagram
-        \begin{equation*}
-            \begin{tikzcd}
-                \Delta^{n-1} \arrow[d, "d_0"'] \arrow[r, "{d_0(c)}"] & \langle d_0(x) \rangle \arrow[d] \\
-                \Delta^n \arrow[r, "x"] & \langle x \rangle
-            \end{tikzcd}
-        \end{equation*}
-        is a pushout. Let $\sSet^{\opreg}$ denote the full subcategory of $\sSet$ spanned by the op-regular simplicial sets.
-
-    \subsection{Proposition}\label{chV-5-19}
-        There exists a natural transformation
-        \begin{equation*}
-            \gamma \,\colon {\B|}_{\sSet^{\opreg}} \Rightarrow \id
-        \end{equation*}
-        such that ${\lambda|}_{\sSet^{\opreg}} = \gamma \circ {\pi|}_{\sSet^{\opreg}}$.
-        \smallskip
-
-        \emph{Proof}. If such a factorisation $\gamma_X$ exists for every op-regular simplicial set $X$ in some full subcategory $\Cc$ of $\sSet^{\opreg}$, then the collection $(\gamma_X)_{X \in \Cc}$ is automatically a natural transformation on $\Cc$: for every $f \colon X \to Y$ we have
-        \begin{equation*}
-            \pi_X \circ \B f \circ \gamma_Y = \gamma_y \circ \pi_Y \circ \sd f = \lambda_Y \circ \sd f = f \circ \lambda_X = f \circ \lambda_X \circ \pi_X \,.
-        \end{equation*}
-        Since $\pi$ is an epimorphism by \ref{chV-5-14}, naturality of $\gamma$ follows. So we only need to show that $\gamma_X$ exists for every $X \in \sSet^{\opreg}$.\\
-        By \ref{chV-5-13} and the preliminary observation, the existence of $\gamma_X$ follows if we can show that for every non-degenerate simplex $x \in X$ there exists a commutative triangle
-        \begin{equation*}
-            \begin{tikzcd}
-                \sd \langle x \rangle \arrow[dr, "\lambda_{\langle x \rangle}"] \arrow[rr, "\pi_{\langle x \rangle}"] & & \B \langle x \rangle \arrow[dl, dotted, "\gamma_x"] \\
-                & \langle x \rangle &
-            \end{tikzcd}
-        \end{equation*}
-        We proceed by induction on the dimension of $x$. If $x$ is a $0$-simplex, $\sd_{\op} \langle x \rangle$, $\B_{\op} \langle x \rangle$ and $\langle x \rangle$ are all isomorphic to $\Delta^0$, nd the existence of $\gamma_x$ follows trivially.\\
-        Suppose that the dimension of $x$ is $n > 0$. By induction hypothesis, there exists a commutative triangle
-        \begin{equation*}
-            \begin{tikzcd}
-                \sd \langle d_n(x) \rangle \arrow[dr, "{\lambda_{\langle d_0(x) \rangle}}"] \arrow[rr, "{\pi_{\langle d_0(x) \rangle}}"] & & \B \langle d_n(x) \rangle \arrow[dl, "{\gamma_{d_0(x)}}"] \\
-                & \langle d_n(x) \rangle &
-            \end{tikzcd}
-        \end{equation*}
-        Note the slight abuse of notation: $d_0(x)$ is not necessarily non-degenerate. However, it is the unique degeneration $d_0(x) = s(y)$ of a non-degenerate simplex $y$, and evidently $\langle y \rangle = \langle d_0(x) \rangle$.\\
-        Since $X$ is op-regular, $\lambda_{\langle x \rangle}$ fits into a map of pushout squares (the front and back face of the cube):
-        \begin{equation*}
-            \begin{tikzcd}
-                & \sd \Delta^{n-1} \arrow[ld, "\lambda"] \arrow[dd] \arrow[rr] & & \sd \langle d_0(x) \rangle \arrow[ld, "\lambda"] \arrow[dd] \\
-                \Delta^{n-1} \arrow[dd, "d_0"] \arrow[rr, crossing over] & & \langle d_n(x) \rangle & \\
-                & \sd \Delta^n \arrow[ld, "\lambda"] \arrow[rr] & & \sd \langle x \rangle \arrow[ld, "\lambda"] \\
-                \Delta^n \arrow[rr, "x"] & & \langle x \rangle \arrow[from=uu, crossing over] &
-            \end{tikzcd}
-        \end{equation*}
-        Consequently, we only need to factor the composite map
-        \begin{equation*}
-            \sd \Delta^n \xrightarrow{\sd x} \sd \langle x \rangle \xrightarrow{\lambda_{\langle x \rangle}} \langle x \rangle
-        \end{equation*}
-        in a way which is compatible with the given factorisation on $\sd \Delta^{n-1}$.\\
-        Therefore, suppose that $\sigma, \tau \colon \Delta^k \to \sd \Delta^n$ are $k$-simplices such that $\pi_{\langle x \rangle} \circ \sd(x) \circ \sigma = \pi_{\langle x \rangle} \circ \sd(x) \circ \tau$. Write $\sigma = \sigma_0 \leq \ldots \leq \sigma_k$ and $\tau = \tau_0 \leq \ldots \leq \tau_k$. By \ref{chV-5-14} this means that
-        \begin{equation*}
-            \{ x \circ \sigma_0, \ldots, x \circ \sigma_k \} = \{ x \circ \tau_0, \ldots, x \circ \tau_k\} \,.
-        \end{equation*}
-        We have to show that
-        \begin{equation*}
-            \lambda_{\langle x \rangle} \circ \sd(x) \circ \sigma = \lambda_{\langle x \rangle} \circ \sd(x) \circ \tau \,.
-        \end{equation*}
-        Let $i$ be the smallest index such that $0$ lies in the image of $\sigma_i$ and $\tau_i$. Then $\sigma_j = \tau_j$ for all $j \geq i$ since $x$ is injective on that part of $\Delta^n$. Set $i \coloneq k +1$ if no such index exists.\\
-        If $i = k + 1$, then $\sigma$ and $\tau$ both map to $\sd d_0 \Delta^n$. This case is covered by the induction hypothesis. So suppose $i < k + 1$.\\
-        If $i = 0$, then $\sigma = \tau$, so obviously $\lambda \circ \sd(x) \circ \sigma = \lambda_{\langle x \rangle} \circ \sd(x) \circ \tau$.\\
-        Suppose that $0 < i < k + 1$. Then $\lambda \circ \sigma_j = \lambda \circ d_0(\sigma_j)$ and $\lambda \circ \tau_j = \lambda d_0(\tau_j)$ for all $j \geq i$. Consequently, the simplices
-        \begin{equation*}
-            \sigma' \coloneq \sigma_0 \leq \ldots \leq \sigma_{i-1} \leq d_0(\sigma_i) \leq \ldots \leq d_0(\sigma_k)
-        \end{equation*}
-        and
-        \begin{equation*}
-            \tau' \coloneq \tau_0 \leq \ldots \leq \tau_{i-1} \leq d_0(\tau_i) \leq \ldots \leq d_0(\tau_k)
-        \end{equation*}
-        both lie in $\sd d_0 \Delta^n$ and map to the same simplex as $\sigma$ and $\tau$ under $\lambda \circ \sd(X)$, respectively. Since $x \circ d_0(\sigma_j) = x \circ \sigma_j \circ d_0 = x \circ \tau_j \circ d_0 = x \circ d_0(\tau_j)$, the simplices $\sigma'$ and $\tau'$ map to the same simplex under $\pi$, and therefore satisfy $\lambda \circ \sd(x) \circ \sigma' = \lambda \circ \sd(x) \circ \tau'$ by induction. This finishes the proof.\hfill$\Box$
+            s \colon \Cc_{/ f} \to \Cc \qquad t \colon \Cc_{f /} \to \Cc
+        \end{equation*}	
+        are a right and left fibration, respectively.\\
+        In particular, $\Cc_{/ f}$ and $\Cc_{f /}$ are again quasicategories.
         \medskip
 
-        For the following discussion, abbreviate the composite functor
-        \begin{equation*}
-            (-)^{\op} \circ \sd \,\colon \sSet \to \sSet
-        \end{equation*}
-        by $\sd_{\op}$. By \ref{chV-5-17}, $\sd_{\op}$ takes values in the full subcategory of op-regular simplicial sets. It comes equipped with a natural transformation
-        \begin{equation*}
-            \varphi \,\colon \sd_{\op} \to \id_{\sSet} \,,
-        \end{equation*}
-        the \emph{first vertex map}, induced by the transformation $(\chains[n])^{\op} \to [n], \; c \mapsto \min c$.
+        Before we finish the proof of Joyal's theorem, a remark:
 
-    \subsection{Lemma}\label{chV-5-20}
-        There is a natural isomorphism $\Phi \colon \sd \cong \sd \circ (-)^{\op}$.\\
-        Let $\Psi \colon \sd^2 \cong \sd \sd_{\op}$ denote the induced isomorphism. Then there exists a simplicial homotopy
+    \subsection{Remark}\label{chVI-3-45}
+        We now have two competing definitions for over- and under-categories of quasicategories: On the one hand for $X \colon \Delta^0 \to \Cc$ there are the categories
         \begin{equation*}
-            \sd^2 X \times \Delta^1 \to X
+            \Cc_{/X} \quad \text{and} \quad \Cc_{X /}
         \end{equation*}
-        from $\varphi \lambda \Psi$ to $\lambda^2$.
-        \smallskip
-
-        \emph{Proof}. It suffices to show that the lemma holds on the full subcategory of standard simplices.\\
-        For any poset $P$, $\Phi$ is given by
+        defined using joins and on the other hand there are
         \begin{equation*}
-            \Phi_P \,\colon \chains P \to \chains(P^{\op}), \quad c \mapsto c \text{ with reversed order}.
+            \Cc \big/ X \quad \text{and} \quad X \big/ \Cc
         \end{equation*}
-        The transformation $\lambda^2$ is induced by
-        \begin{equation*}
-            \chains(\chains[n]) \to [n], \quad (c_0 \subseteq \ldots \subseteq c_r) \mapsto \max c_r \,,
-        \end{equation*}
-        and $\varphi \lambda \Psi$ is induced by
-        \begin{equation*}
-            \chains(\chains[n]) \to [n], \quad (c_0 \subseteq \ldots \subseteq c_r) \mapsto \min c_0 \,.
-        \end{equation*}
-        Since $\min c_0 \leq \max c_r$, these two maps combined define a natural map
-        \begin{equation*}
-            \chains(\chains[n]) \times [1] \to [n]
-        \end{equation*}
-        which induces the required homotopy.\hfill$\Box$
-
-    \subsection{Theorem (Simplicial approximation for simplicial sets)}\label{chV-5-21}
-        Let $A \subseteq X$ be finite simplicial sets and let $Y$ be a simplicial set. Suppose that $f_0 \colon A \to Y$ and $g \colon \gr{X} to \gr{Y}$ are maps such that ${g|}_{\gr{A}} = \gr{f_0}$.\\
-        Then there exists for some $k$ a map $f \colon \sd^k \sd_{\op} \sd \sd_{\op} X \to Y$ such that
+        defined using the arrow category. Worse yet, the latter construction can be extended as follows: Given $F \colon \Ii \to \Cc$ and $G \Jj \to \Cc$ put
         \begin{equation*}
             \begin{tikzcd}
-                \sd^k \sd_{\op} \sd \sd_{\op} A \arrow[d] \arrow[r, "\varphi \lambda \varphi \lambda^k"] & A \arrow[r, "f_0"] & Y \\
-                \sd^k \sd_{\op} \sd \sd_{\op} X \arrow[urr, "f"']
-            \end{tikzcd}
+                F \big/ G \arrow[d] \arrow[r] \arrow[rd, phantom, "\lrcorner", very near end] & \Ar(\Cc) \arrow[d, "(s{,}t)"] \\
+                \Ii \times \Jj \arrow[r] & \Cc \times \Cc
+            \end{tikzcd}	
         \end{equation*}
-        commutes and a homotopy $\gr{f} \simeq g \gr{\varphi \lambda \varphi \lambda^k}$ relative $\gr{\sd^k \sd_{\op} \sd \sd_{\op} A}$.
-        \smallskip
-
-        \emph{Proof}. Consider the commutative diagram
+        As $(s, t)$ is an inner fibration $f \big/ G$ is a quasicategory whenever $\Ii$ and $\Jj$ are such, and it follows from \ref{chVI-3-31} that the map $f \big/ G \to \Ii \times \Jj$ is a left fibration if $\Ii \simeq *$ and a right fibration if $\Jj \simeq *$. But then 
         \begin{equation*}
-            \begin{tikzcd}[column sep=large]
-                \gr{\sd \sd_{\op} A} \arrow[d, "\gr{\sd \sd_{\op} i}"'] \arrow[r, "\gr{\sd \sd_{\op} f_0}"] & \gr{\sd \sd_{\op} Y} \arrow[d, "\gr{\varphi \lambda}"] \\
-                \gr{\sd \sd_{\op} X} \arrow[r, "g \gr{\varphi \lambda}"] & \gr{Y}
-            \end{tikzcd}
+            \Cc_{\sslash f} \coloneq \const \colon \Cc \to \Fun(\Ii, \Cc) \Big/ f \colon \Delta^0 \to \Fun(\Ii, \Cc)
         \end{equation*}
-        Since $\sd \sd_{\op} i$ is a cofibration (even the inclusion of a sub-CW complex) and $\gr{\varphi \lambda}$ is a homotopy equivalence by \ref{chV-5-20} and \ref{chV-4-19}, there exists a map
-        \begin{equation*}
-            \overline{g} \,\colon \gr{\sd \sd_{\op} X} \to \gr{\sd \sd_{\op} Y}
-        \end{equation*}
-        such that $\overline{g} \circ \gr{\sd \sd_{\op} i} = \gr{\sd \sd_{\op} f_0}$ and $\gr{\varphi \lambda} \circ \overline{g} \simeq g \gr{\varphi \lambda}$ relative $\gr{\sd \sd_{\op} A}$.\\
-        Using \ref{chV-5-17} and \ref{chV-5-19}, we can consider the maps
-        \begin{equation*}
-            \begin{tikzcd}[column sep=huge]
-                \B \sd_{\op} \sd \sd_{\op} A \arrow[d, "\B \sd_{\op} \sd \sd_{\op} i"'] \arrow[r, "\B \sd_{\op} \sd \sd_{\op} f_0"] & \B \sd_{\op Y} \\
-                \B \sd_{\op} \sd \sd_{\op} X &
-            \end{tikzcd}
-        \end{equation*}
-        and
-        \begin{equation*}
-            \widetilde{g} \,\colon \gr{\B \sd_{\op} \sd \sd_{\op} X} \xrightarrow{\gr{\varphi \gamma}} \gr{\sd \sd_{\op} X} \xrightarrow{\overline{g}} \gr{\sd \sd_{\op} Y} \xrightarrow{\pi} \gr{\B \sd_{\op} Y} \,.
-        \end{equation*}
-        \ref{chV-5-10} applies to these to yield a commutative diagram
-        \begin{equation*}
-            \begin{tikzcd}[column sep=huge]
-                \sd^n \B \sd_{\op} \sd \sd_{\op} A \arrow[d] \arrow[r, "\lambda^n"] & \B \sd_{\op} \sd \sd_{\op} A \arrow[r, "\B \sd_{\op} \sd \sd_{\op} f_0"] & \B \sd_{\op} Y \\
-                \sd^n \B \sd_{\op} \sd \sd_{\op} X \arrow[urr, "f"']
-            \end{tikzcd}
-        \end{equation*}
-        such that $\gr{f}$ is homotopic to $\widetilde{g} \gr{\lambda^n}$ relative $\gr{\sd^n \B \sd_{\op} \sd \sd_{\op} A}$. These maps can be composed with the appropriate instances of $\pi$ and $\varphi$ to obtain a commutative diagram
-        \begin{equation*}
-            \begin{tikzcd}[column sep=large]
-                \sd^{n+1} \sd_{\op} \sd \sd_{\op} A \arrow[d] \arrow[r, "\varphi \lambda \varphi \lambda^{n+1}"] & A \arrow[r, "f_0"] & Y \\
-                \sd^{n+1} \sd_{\op} \sd \sd_{\op} X \arrow[urr, "f \circ \sd^n \pi"']
-            \end{tikzcd}
-        \end{equation*}
-        such that
-        \begin{equation*}
-            \gr{f \circ \sd^n \pi} \simeq \gr{\varphi \gamma \gr{\widetilde{g}} \lambda^n \sd^n \pi} \simeq g \gr{\varphi \lambda \varphi \lambda^{n+1}}
-        \end{equation*}
-        relative $\gr{\sd^{n+1} \sd_{\op} \sd \sd_{\op} A}$.\hfill$\Box$
-
-    \subsection{Corollary}\label{chV-5-22}
-        All statements listed in \ref{chV-5-6} hold.
-        \smallskip
-
-        \emph{Proof sketch}. We prove \ref{chV-5-6-1}. In this situation, \ref{chV-5-21} gives a simplicial approximation
+        is another perfectly reasonable attempt at defining a category of cones over a functor $f \colon \Ii \to \Cc$.\\
+        It will be  an exercise to show, that $\Cc_{\sslash f}$ and $\Cc_{/ f}$ agree for nerves of ordinary categories, but this is not true in general. Furthermore, since by definition both
         \begin{equation*}
             \begin{tikzcd}
-                \sd^k \sd_{\op} \sd \sd_{\op} A \arrow[d] \arrow[r, "\varphi \lambda \varphi \lambda^k"] & A \arrow[r, "f_0"] & Y \\
-                \sd^k \sd_{\op} \sd \sd_{\op} X \arrow[urr, "f'"']
+                \Hom_{\Cc}(Y, X) \arrow[d] \arrow[r] & \Cc \big/ X \arrow[d] \\
+                \Delta^0 \arrow[r, "Y"] & \Cc
+            \end{tikzcd}
+            \quad
+            \text{and}
+            \quad
+            \begin{tikzcd}
+                \Hom_{\Cc}(Y, X) \arrow[d] \arrow[r] & Y \big/ \Cc \arrow[d] \\
+                \Delta^0 \arrow[r, "X"] & \Cc
+            \end{tikzcd}	
+        \end{equation*}
+        are pullbacks, the diagrams
+        \begin{equation*}
+            \begin{tikzcd}
+                \Hom_{\Cc}^R(Y, X) \arrow[d] \arrow[r] \arrow[rd, phantom, "\lrcorner", very near end] & \Cc_{/ X} \arrow[d] \\
+                \Delta^0 \arrow[r, "Y"] & \Cc
+            \end{tikzcd}
+            \quad
+            \text{and}
+            \quad
+            \begin{tikzcd}
+                \Hom_{\Cc}^L(Y, X) \arrow[d] \arrow[r] \arrow[rd, phantom, "\lrcorner", very near end] & \Cc_{Y /} \arrow[d] \\
+                \Delta^0 \arrow[r, "X"] & \Cc
+            \end{tikzcd}	
+        \end{equation*}
+        give reasonable definitions of mapping spaces (they are Kan by \ref{chVI-3-44} and \ref{chVI-3-27}). As the notation suggests these are different from $\Hom_{\Cc}(Y, X)$ and inn fact from one another! There are natural injections
+        \begin{equation*}
+            \Hom_{\Cc}^R(Y, X) \hookrightarrow \Hom_{\Cc}(Y, X) \hookleftarrow \Hom_{\Cc}^L(Y, X)
+        \end{equation*}
+        but it is a non-trivial result that these are homotopy equivalences, and similarly, that the two categories of cones are in fact equivalent.\\
+        The formation of fat slice categories also admits a left adjoint, the \emph{fat join}, so one may wonder, why bother with the usual join and slices at all... The answer is that necessarily the fat join of $\Delta^n$ and $\Delta^m$ is \emph{not} $\Delta^{n+m+1}$, so the one thing they cannot obviously be used for is a proof of Joyal's lifting theorem! Quite the pickle...
+
+        These issues will come facts to haunt us when establishing Theorem H, as $\Hom_{\Cc}(X, Y)$ is more easily compared to $\Hom_{\Nn^c(\Cc)}^L(X, Y)$ than $\Hom_{\Nn^c(\Cc)}(X, Y)$.
+        \medskip
+
+        We are finally ready to prove Joyal's theorem:
+
+    \subsection{Proof of \ref{chvI-3-20} (existence)}
+        By \ref{chVI-3-35} the lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                \horn{n}{0} \arrow[d] \arrow[r, "f"] & \Cc \arrow[d, "F"] \\
+                \Delta^n \arrow[ru, dashed] \arrow[r] & \Dd
+            \end{tikzcd}	
+        \end{equation*}	
+        is equivalent to
+        \begin{equation*}
+            \begin{tikzcd}
+                \Delta^0 \arrow[d, "d_1"'] \arrow[r] & \Cc_{/ \Delta^{n-2}} \arrow[d] \\
+                \Delta^1 \arrow[ru, dashed] \arrow[r] & \Cc_{/ \partial \Delta^{n-2}} \underset{\Dd_{\partial \Delta^{n-2}}}{\times} \Dd_{/ \Delta^{n-2}}
+            \end{tikzcd}	
+        \end{equation*}
+        As $F$ is an inner fibration and $\partial \Delta^{n-2} \to \Delta^{n-2}$ a cofibration the right hand vertical map is a right fibration by \ref{chVI-3-43}. Furthermore, by construction there is a commutative diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                \Delta^1 \arrow[dd, "(01)"'] \arrow[r] & \Cc_{/ \partial \Delta^{n-2}} \underset{\Dd_{\partial \Delta^{n-2}}}{\times} \Dd_{/ \Delta^{n-2}} \arrow[d] \arrow[r] \arrow[rd, phantom, "\ulcorner" very near end] & \Dd_{/ \Delta^{n-2}} \arrow[d, color=magenta] \\
+                & \Cc_{/ \partial \Delta^{n-2}} \arrow[d, color=magenta] \arrow[r] & \Dd_{/ \partial \Delta^{n-2}} \\
+                \horn{n}{0} \arrow[r, "f"] & \Cc &
             \end{tikzcd}
         \end{equation*}
-        Compose this approximation with the canonical map $\rho^{\infty} \colon K \to \Ex^{\infty} Y$. Since $A \to X$ is a cofibration and $\Ex^{\infty} Y$ is Kan, there exists by \ref{chV-5-20} a map
+        By \ref{chVI-3-43} these two magenta vertical maps are right fibrations, thus so is the middle vertical composite. This implies first that $\Cc_{/ \partial \Delta^{n-2}} \underset{\Dd_{\partial \Delta^{n-2}}}{\times} \Dd_{/ \Delta^{n-2}}$ is a quasicategory and secondly \ref{chV-38} implies that
         \begin{equation*}
-            f \,\colon \sd^{k+3} X \to \Ex^{\infty} Y
+            \Delta^1 \to \Cc_{/ \partial \Delta^{n-2}} \underset{\Dd_{\partial \Delta^{n-2}}}{\times} \Dd_{/ \Delta^{n-2}}
         \end{equation*}
-        such that $f$ is simplicially homotopic to $\sd^{k+3} X \cong \sd^k \sd_{\op} \sd \sd_{\op} X \xrightarrow{\rho^{\infty} \circ f} \Ex^{\infty} Y$ and extends $\rho^{\infty} f_0 \lambda^{k+3}$.\\
-        As $X$ is assumed finite, $\sd^{k+3} X$ is also finite, so the approximation factors through some $\Ex^n Y$. Adjoining to a map $\sd^{k+n+3} X \to Y$ yields the desired approximation.\hfill$\Box$
+        represents an equivalence as the composite
+        \begin{equation*}
+            \Delta^1 \to \horn{n}{0} \xrightarrow{f} \Cc
+        \end{equation*}
+        does so by assumption. But then \ref{chVI-3-36} and \ref{chVI-3-38} give the desired lift.\hfill$\Box$
+        \medskip
+
+        To establish uniqueness of the lift in Joyal's theorem it suffices to show:
+
+    \subsection{Lemma}\label{chVI-3-46}
+        If $p \colon \Cc \to \Dd$ is a right fibration between quasicategories, then the fibre of the map
+        \begin{equation*}
+            r \,\colon \Fun(\Delta^1, \Cc) \to \Fun(\Delta^1, \Dd)_s \underset{\Dd}{\times} \Cc
+        \end{equation*}
+        over a pair $(f, x)$ is a contractible Kan complex, whenever $f \colon \Delta^1 \to \Dd$ is an equivalence.
+        \medskip
+
+        The proof will use \ref{chVI-3-27}, which in turn relies only on the existence part of \ref{chVI-3-20}, so we avoid circularity.
+        \smallskip
+
+        \emph{Proof}: Since $p$ is conservative by \ref{chVI-3-28}, the diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                \core(\Cc) \arrow[d, "\core(p)"'] \arrow[r] & \Cc \arrow[d, "p"] \\
+                \core(\Dd) \arrow[r] & \Dd
+            \end{tikzcd}	
+        \end{equation*}
+        is a pullback. In particular, $\core(p)$ is again a right fibration, and thus a Kan fibration by \ref{chVI-3-27}. But then by \ref{chV-2-26} the map
+        \begin{equation*}
+            \overline{r} \,\colon \Fun(\Delta^1, \core(\Cc)) \to \Fun(\Delta^1, \core(\Dd)) \underset{\Fun(\{0\}, \core(\Dd))}{\times} \Fun(\{0\}, \core(\Cc))
+        \end{equation*}
+        is a trivial fibration, so in particular has contractible fibres. It remains to check that
+        \begin{equation*}
+            \overline{r}^{-1}(f, x) = r^{-1}(f, x)
+        \end{equation*}
+        whenever $f$ is an equivalence. But these simplicial sets have the same vertices and edges as $p$ is conservative. This is immediate for the vertices and for edges one decodes that an edge of $r^{-1}(f, x)$ is a diagram $\Delta^1 \times \Delta^1 \to \Cc$:
+        \begin{equation*}
+            \begin{tikzpicture}[
+                scale=0.9, 
+                thick, 
+                color=violet, 
+                every node/.style={text=black}
+            ]
+                    \coordinate (A) at (0, 0);
+                    \coordinate (B) at (0, 2);
+                    \coordinate (C) at (2, 2);
+                    \coordinate (D) at (2, 0);
+
+                    \node[below] at (A) {$x$};
+                    \node[below] at (D) {$x$};                
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (A) -- node[left] {$g$} (B);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (B) -- node[above] {$s$} (C);
+                    
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (A) -- (C);
+
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (A) -- node[below] {$\id_x$} (D);
+
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (D) -- node[right] {$g'$} (C);
+
+                    %\draw[fill=violet,fill opacity=0.3] (A) -- (B) -- (C) -- cycle;
+                    %\draw[fill=violet,fill opacity=0.3] (A) -- (C) -- (D) -- cycle;
+                    
+            \end{tikzpicture}
+        \end{equation*}
+        where $g, g'$ are lifts of $f$ and $s$ lifts the identity of $d_0(f)$. In particular all these edges are equivalences by conservativity of $p$, so the entire diagram factors through $\core(\Cc)$. For higher simplices $\Delta^n \to r^{-1}(f, x)$, note that the condition that
+        \begin{equation*}
+            \Delta^1 \times \Delta^1 \to \Cc
+        \end{equation*}
+        factors through $\core(\Cc)$ depends only on the images of edges, which we just checked.\hfill$\Box$
+
+    \subsection{Proof of \ref{chVI-3-20} (uniqueness)}
+        Apply \ref{chVI-3-46} to the reformulation of the lifting problem in the proof of existence.\hfill$\Box$
+        \medskip
+
+        Finally, we deduce the formulation of Joyal's theorem given in \ref{chVI-3-16}. Given a morphism $f \colon x \to y$ in a quasicategory $\Cc$ consider the functors
+        \begin{equation*}
+            \Cc_{/ x} \leftarrow \Cc_{/ f} \rightarrow \Cc_{/ y} 
+        \end{equation*}
+        arising from the sequences $\Delta^0 \xrightarrow{0 \text{ or } 1} \Delta^1 \xrightarrow{f} \Cc \rightarrow *$. Then by \ref{chVI-3-43} the left functor is a trivial Kan fibration, so in particular an equivalence of categories by \ref{chVI-2-12}. Choosing an inverse (of which there is a contractible choice by \ref{chVI-3-24}) we obtain a functor
+        \begin{equation*}
+            f_* \,\colon \Cc_{/ x} \to \Cc_{/ y}
+        \end{equation*}
+        that on vertices is given by postcomposition with $f$. Analogously, there is a functor
+        \begin{equation*}
+            f^* \,\colon \Cc_{y /} \to \Cc_{x /}
+        \end{equation*}
+        given by precomposition with $f$. We then have the following refinement of \ref{chVI-3-20}:
+
+    \subsection{Proposition}\label{chVI-3-47}
+        For a morphism $f \colon x \to y$ in a quasicategory $\Cc$ the statements
+        \begin{enumerate}[label=\roman*)]
+            \item 
+                $f$ is an equivalence \label{chVI-3-47-i}
+            \item 
+                $\Cc_{/ f} \to \Cc_{/ y}$ is a trivial Kan fibration \label{chVI-3-47-ii}
+            \item 
+                $\Cc_{/ f} \to \Cc_{/ y}$ is an equivalence of categories \label{chVI-3-47-iii}
+            \item 
+                'the' functor $f_* \colon \Cc_{/ x} \to \Cc_{/ y}$ is an equivalence of categories \label{chVI-3-47-iv}
+        \end{enumerate}	
+        are equivalent.
+        \smallskip
+
+        The analogous statements using under-categories hold as well.
+        \smallskip
+
+        \emph{Proof}: $\ref{chVI-3-47-i} \to \ref{chVI-3-47-ii}$: A lifting problem
+        \begin{equation*}
+            \begin{tikzcd}
+                \partial \Delta^n \arrow[d] \arrow[r] & \Cc_{/ f} \arrow[d] \\
+                \Delta^n \arrow[r] & \Cc_{/ x}
+            \end{tikzcd}	
+        \end{equation*}
+        by using \ref{chVI-3-35} translates to
+        \begin{equation*}
+            \begin{tikzcd}
+                \Delta^1 \arrow[r] \arrow[rr, "f", bend left] & \horn{n+2}{0} \arrow[d] \arrow[r] & \Cc \arrow[d] \\
+                & \Delta^{n+2} \arrow[r] & * 
+            \end{tikzcd}	
+        \end{equation*}
+        which has a solution by \ref{chVI-3-20} if $f$ is an equivalence. \\
+        $\ref{chVI-3-47-ii} \to \ref{chVI-3-47-iii}$: \ref{chVI-2-12}. \\
+        $\ref{chVI-3-47-iii} \to \ref{chVI-3-47-iv}$: Immediate from the homotopy commutative diagram
+        \begin{equation*}
+            \begin{tikzcd}
+                \Cc_{/ x} \arrow[rd, "f_*"] & \Cc_{/ f} \arrow[l] \arrow[d] \\
+                & \Cc_{/ y}
+            \end{tikzcd}	
+        \end{equation*}	
+        since the horizontal map is an equivalence.
+        $\ref{chVI-3-47-iv} \to \ref{chVI-3-47-i}$: If $f_* \colon \Cc_{/ x} \to \Cc_{/ y}$ is an equivalence of categories we can in particular pick a $g \in \Cc_{/ x}$ such that $f_* g$ is equivalent to $\id_y$ in $\Cc_{/ y}$. But decoding this means that there is a $2$-simplex in $\Cc$
+        \begin{equation*}
+            \begin{tikzpicture}[
+                scale=0.9, 
+                thick, 
+                color=violet, 
+                every node/.style={text=black}
+            ]
+                    \coordinate (A) at (0, 0);
+                    \coordinate (B) at (1, 1.73);
+                    \coordinate (C) at (2, 0);
+
+                    \node[below] at (A) {$y$};
+                    \node[below] at (C) {$y$};                
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (A) -- node[left] {$s$} (B);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (B) -- node[right] {$h$} (C);
+                    \draw[postaction={nomorepostaction,decorate,decoration={markings,mark=at position 0.6 with {\arrow{>[length=8pt,width=5pt]}}}}] (A) -- node[below] {$\id_y$} (C);
+                    
+            \end{tikzpicture}        
+        \end{equation*}	
+        where $s$ is an equivalence and $h$ a composite of $f$ and $g$. But this means that $\id_y$ is a composite of $f$ and $g s$. So $f$ admits a right inverse. But then the images of $\id_x$ and $g s f$ in $\Cc_{/ y}$ are equivalent since
+        \begin{equation*}
+            f_* \id_x \sim f \sim \id_y f \sim f g s f \sim f_* g s f \,.
+        \end{equation*}
+        But as $f_*$ is an equivalence this implies that $\id_y$ and $g s f$ are equivalent in $\Cc_{/ x}$. Decoding again, we find this implies that $g s f$ is an equivalence, so $f$ also admits a left inverse, hence is an equivalence.\hfill$\Box$
+
+    \subsection{Remark}\label{chVI-3-48}
+        We have \emph{not} constructed a functor
+        \begin{equation*}
+            \Cat_{\infty \Cc_{/}} \to \Cat_{\infty}, \quad f \colon \Cc \to \Dd \mapsto \Dd_{f /} \text{ or } \Dd_{/ f}
+        \end{equation*}
+        or anything similar so far! This is quite difficult, in fact already showing that an equivalence of categories $g \colon \Dd \to \Dd'$ gives equivalences
+        \begin{equation*}
+            \Dd_{f /} \to \Dd'_{g f /} \quad \text{and} \quad \Dd_{/ f} \to \Dd'_{/ g f}
+        \end{equation*}
+        is a highly non-trivial endeavor. Here again the fat slices are better behaved; the latter statement is almost a triviality here. To obtain a functor one 'only' needs to understand the interaction of the coherent nerve functor with over- and under-categories to build a simplicial model for $\Cat_{\infty \Cc_{/}}$; alternatively the statement will follow from general machinery about limits in quasicategories.
+
+        In fact the statement about thin slices is usually proved by reduction to the corresponding one for fat slices!
